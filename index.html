@@ -4,26 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mystery Chart</title>
-<meta name="description" content="A daily chart-guessing game. Five real charts a day, built from live public data, with the one label that tells you what you are looking at blacked out.">
+<meta name="description" content="A daily chart-guessing game. Five real charts a day, built from live public data, with the one label that tells you what you are looking at redacted.">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#F6F7F8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121213" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23F6F7F8'/><rect x='14' y='42' width='72' height='16' rx='3' fill='%231A1A1B'/></svg>">
-
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23FFFFFF'/><rect x='14' y='42' width='72' height='16' rx='3' fill='%231A1A1B'/></svg>">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mystery Chart">
-<meta property="og:description" content="A daily chart-guessing game. Five real charts a day, built from live public data, with the one label that tells you what you are looking at blacked out.">
+<meta property="og:description" content="A daily chart-guessing game. Five real charts a day, built from live public data, with the one label that tells you what you are looking at redacted.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mystery Chart">
-<meta name="twitter:description" content="A daily chart-guessing game. Five real charts a day, built from live public data, with the one label that tells you what you are looking at blacked out.">
+<meta name="twitter:description" content="A daily chart-guessing game. Five real charts a day, built from live public data, with the one label that tells you what you are looking at redacted.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Anonymous, cookieless counts. Dashboard: https://mysterychart.goatcounter.com -->
+<script data-goatcounter="https://mysterychart.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,75..125,400..700;1,75..125,400&display=swap">
 
 <style>
 :root {
   color-scheme: light;
-  --plane:      #F6F7F8;
+  --plane:      #FFFFFF;
   --panel:      #FFFFFF;
   --ink:        #1A1A1B;
   --ink-2:      #4A4A4C;
@@ -52,7 +54,7 @@
   :root:not([data-theme="light"]) {
     color-scheme: dark;
     --plane:      #121213;
-    --panel:      #1E1E20;
+    --panel:      #121213;
     --ink:        #FFFFFF;
     --ink-2:      #C8C8C9;
     --muted:      #818384;
@@ -80,7 +82,7 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
   --plane:      #121213;
-  --panel:      #1E1E20;
+  --panel:      #121213;
   --ink:        #FFFFFF;
   --ink-2:      #C8C8C9;
   --muted:      #818384;
@@ -130,11 +132,7 @@ body {
 .masthead { display: flex; flex-direction: column; gap: 10px; }
 
 .eyebrow {
-  font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
+  font-size: 0.95rem; color: var(--muted); margin: 0;
   display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
 }
 .eyebrow .dot { color: var(--rule); }
@@ -148,26 +146,31 @@ h1 {
   margin: 0;
   text-wrap: balance;
 }
-h1 em { font-style: italic; color: var(--accent); }
+/* The word is set as an actual redaction rather than described as one, using
+   the same ink and inversion as the bar that covers every chart title. */
+h1 em {
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: var(--redact);
+  color: var(--redact-ink);
+  padding: 0.04em 0.24em 0.1em;
+  border-radius: 2px;
+  white-space: nowrap;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
 
 .standfirst { color: var(--ink-2); font-size: 1rem; max-width: 58ch; margin: 0; }
 
 /* ---------- the document panel ---------- */
 
 .doc {
-  background: var(--panel);
-  border: 1px solid var(--hairline);
-  border-radius: 3px;
-  padding: 20px 22px 14px;
+  padding: 0;
   display: flex; flex-direction: column; gap: 18px;
 }
 
-.period {
-  margin: 0;
-  font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase;
-  color: var(--muted); text-align: right;
-}
+.period { margin: 0; font-size: 12px; color: var(--muted); text-align: right; }
 
 .redaction { position: relative; display: block; min-height: 34px; border-radius: 2px; overflow: hidden; }
 .redaction .bar {
@@ -178,12 +181,15 @@ h1 em { font-style: italic; color: var(--accent); }
   display: flex; align-items: center; padding: 0 12px;
 }
 .redaction .bar::after {
-  content: "CLASSIFIED";
+  content: "REDACTED";
   font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 10px; letter-spacing: 0.34em;
-  color: var(--redact-ink); opacity: 0.4;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.3em;
+  color: var(--redact-ink);
 }
 .redaction.lifted .bar { transform: scaleX(0); opacity: 0; }
+/* Advancing to the next chart must re-cover the title instantly. Letting the
+   bar animate back in leaves the next answer readable for half a second. */
+.redaction.snap .bar, .redaction.snap .truth { transition: none; }
 .redaction .truth {
   font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.3rem; font-weight: 600; line-height: 1.24; letter-spacing: -0.02em;
@@ -198,11 +204,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 
 /* ---------- answers ---------- */
 
-.prompt {
-  font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--muted);
-}
+.prompt { font-size: 0.95rem; color: var(--ink-2); }
 
 .options { display: flex; flex-direction: column; gap: 8px; }
 
@@ -237,22 +239,26 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 
 /* ---------- hints ---------- */
 
-.hints { display: flex; flex-direction: column; gap: 8px; }
+.hints:not(:empty) { display: flex; flex-direction: column; gap: 8px;
+  padding-bottom: 4px; }
 
 .hint {
-  border-left: 2px solid var(--accent);
-  background: var(--accent-bg);
-  padding: 11px 15px; border-radius: 0 3px 3px 0;
+  display: grid; grid-template-columns: 10px 1fr; gap: 4px 14px;
+  padding: 2px 0 12px;
+  border-bottom: 1px solid var(--rule);
   animation: slip 380ms cubic-bezier(.22,1,.36,1) both;
+}
+.hint::before {
+  content: ""; grid-row: 1 / span 2;
+  width: 10px; height: 10px; margin-top: 7px;
+  background: var(--ink);
 }
 @keyframes slip {
   from { opacity: 0; transform: translateY(-5px); }
   to   { opacity: 1; transform: none; }
 }
 .hint .n {
-  font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--accent); display: block; margin-bottom: 3px;
+  font-size: 12px; color: var(--muted); font-weight: 500;
 }
 .hint p {
   margin: 0;
@@ -318,10 +324,10 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 @media (max-width: 560px) {
   body { font-size: 15.5px; }
   .wrap { padding: 22px 16px 72px; gap: 20px; }
-  .doc { padding: 14px 13px 10px; gap: 14px; }
+  .doc { gap: 14px; }
   .opt { padding: 12px 13px; font-size: 0.95rem; gap: 10px; }
   .opt .key { width: 20px; height: 20px; font-size: 10px; }
-  .period { font-size: 9.5px; letter-spacing: 0.1em; }
+  .period { font-size: 11px; }
   .redaction .truth { font-size: 1.15rem; }
   .wordmark { font-size: 1rem; }
   .gamebar { gap: 8px; }
@@ -331,7 +337,6 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   .progress { gap: 5px; }
   .game { gap: 20px; }
   .hint p { font-size: 1rem; }
-  .score-grid { grid-template-columns: repeat(2, 1fr); }
   .controls .btn { flex: 1 1 auto; }
 }
 
@@ -350,18 +355,15 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 .pip.done.r1 { background: var(--accent); }
 .pip.done.r2 { background: var(--s2); }
 .pip.done.r3 { background: var(--s1); }
-.pip.done.r4 { background: var(--wrong); }
+.pip.done.r4 { background: var(--muted); }
+.pip.done.rMiss { background: var(--wrong); }
 
 /* ---------- results ---------- */
 
 .results { display: none; flex-direction: column; gap: 22px; }
 
 .score-head { display: flex; flex-direction: column; gap: 2px; }
-.score-eyebrow {
-  font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--muted); margin: 0;
-}
+.score-eyebrow { font-size: 0.95rem; color: var(--muted); margin: 0; }
 .score-total {
   font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: clamp(3rem, 11vw, 4.6rem); line-height: 1; margin: 4px 0 0;
@@ -374,23 +376,18 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 }
 .score-streak { margin: 8px 0 0; color: var(--ink-2); font-size: 0.95rem; }
 
-.score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); gap: 8px; }
+/* A row per chart, not a column: the titles are the point of this screen and
+   five narrow columns wrapped them to four lines each. */
+.score-grid { display: flex; flex-direction: column; gap: 6px; }
 .cell {
   background: var(--panel); border: 1px solid var(--hairline);
-  border-radius: 3px; padding: 12px 13px;
-  display: flex; flex-direction: column; gap: 3px;
-  border-left-width: 3px;
+  border-radius: 3px; padding: 12px 14px;
+  display: grid; grid-template-columns: 20px 1fr auto auto;
+  align-items: baseline; gap: 13px;
 }
-.cell.r0 { border-left-color: var(--right); }
-.cell.r1 { border-left-color: var(--accent); }
-.cell.r2 { border-left-color: var(--s2); }
-.cell.r3 { border-left-color: var(--s1); }
-.cell.r4 { border-left-color: var(--wrong); }
-.cell b { font-size: 1.05rem; line-height: 1; }
-.cell span {
-  font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
-}
+.cell b { font-size: 0.95rem; line-height: 1; }
+.cell span { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.cell strong { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.35; }
 .cell em {
   font-style: normal; font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 13px; color: var(--ink-2);
@@ -408,14 +405,15 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 /* ---------- hint button ---------- */
 
 .prompt-row {
-  display: flex; align-items: baseline; justify-content: space-between;
-  gap: 12px; flex-wrap: wrap;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 12px 16px; flex-wrap: wrap;
 }
+.ramp { margin: 3px 0 0; font-size: 0.88rem; color: var(--muted); }
 .hintbtn {
   font: inherit; font-size: 0.85rem;
-  background: transparent; color: var(--accent);
-  border: 1px solid var(--rule); border-radius: 100px;
-  padding: 5px 14px; cursor: pointer;
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 3px;
+  padding: 6px 12px; cursor: pointer;
   display: inline-flex; align-items: baseline; gap: 7px;
   transition: border-color 140ms ease, background 140ms ease, opacity 140ms ease;
 }
@@ -423,7 +421,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 0.76rem; color: var(--muted);
 }
-.hintbtn:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-bg); }
+.hintbtn:hover:not(:disabled) { border-color: var(--ink); }
 .hintbtn:disabled { opacity: 0.4; cursor: default; }
 .hintbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .gamebar-meta b { color: var(--ink-2); font-weight: 600; }
@@ -440,6 +438,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 .pts.r2 { color: var(--s2); }
 .pts.r3 { color: var(--s1); }
 .pts.r4 { color: var(--muted); }
+.pts.rMiss { color: var(--wrong); }
 
 .outcome {
   display: none; flex-direction: column; gap: 12px;
@@ -481,35 +480,6 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 #tip .sw { width: 8px; height: 8px; border-radius: 2px; flex: none; }
 #tip .tt-head { color: color-mix(in srgb, var(--panel) 62%, transparent); margin-bottom: 3px; }
 
-/* ---------- under the hood ---------- */
-
-.notes { border-top: 1px solid var(--rule); padding-top: 28px; display: flex; flex-direction: column; gap: 16px; }
-.notes h2 {
-  font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 500;
-  font-size: 1.5rem; margin: 0; letter-spacing: -0.01em;
-}
-.notes p { margin: 0; color: var(--ink-2); font-size: 0.95rem; max-width: 64ch; }
-.notes h3 {
-  font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--muted); margin: 10px 0 0; font-weight: 500;
-}
-.tbl-scroll { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; font-size: 0.88rem; min-width: 580px; }
-th, td { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
-th {
-  font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase;
-  color: var(--muted); font-weight: 500;
-}
-td { color: var(--ink-2); }
-td b { color: var(--ink); font-weight: 500; }
-.notes .warn {
-  border-left: 2px solid var(--accent); background: var(--accent-bg);
-  padding: 12px 15px; border-radius: 0 3px 3px 0;
-}
-.notes .warn p { color: var(--ink); }
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
@@ -526,7 +496,7 @@ td b { color: var(--ink); font-weight: 500; }
 
   <section class="intro" id="intro">
     <p class="eyebrow">Mystery Chart</p>
-    <h1>The chart is real.<br>Its title is <em>blacked out</em>.</h1>
+    <h1>The chart is real.<br>Its title is <em>redacted</em>.</h1>
     <p class="standfirst">Five charts a day, all built from live public data. Everything is there except the one label that tells you what you're looking at.</p>
 
     <ol class="rules">
@@ -535,23 +505,23 @@ td b { color: var(--ink); font-weight: 500; }
         <span>Country names, years and numbers all stay visible. Only the subject is hidden, so the answer is there to be worked out rather than guessed.</span>
       </li>
       <li>
-        <b>Name what it shows.</b>
-        <span>Four options. One is right, and the wrong ones are chosen to be tempting.</span>
+        <b>It gets harder as you go.</b>
+        <span>Chart one offers four options. Chart two, five. By the last chart there are eight, and the wrong ones are chosen to be tempting.</span>
       </li>
       <li>
         <b>Wrong answers buy hints.</b>
-        <span>Each one unlocks a clue, starting cryptic and ending obvious, and costing you points.</span>
+        <span>A clue appears just under the chart, starting cryptic and ending obvious. You can also ask for one outright. Either way it costs the same.</span>
       </li>
       <li>
-        <b>Score out of 500.</b>
-        <span>100 for a chart you name straight away, 60 after one hint, 30 after two. All five first time earns a bonus. There's no clock. This rewards reading carefully, not clicking fast.</span>
+        <b>The harder charts are worth more.</b>
+        <span>Naming a chart straight away scores 100 on the first, and triple that on the last. Every mistake or hint costs you. All five first time earns a bonus, for 1,200 out of a possible 1,000. There's no clock: this rewards reading carefully, not clicking fast.</span>
       </li>
     </ol>
 
     <div class="controls">
       <button class="btn" id="start">Start today's run</button>
     </div>
-    <p class="score-note">Data from Our World in Data, CC BY 4.0.</p>
+    <p class="score-note">Data from Our World in Data, CC BY 4.0. No cookies, no accounts, no sign-in. Anonymous counts only.</p>
   </section>
 
   <div id="game" class="game">
@@ -559,8 +529,8 @@ td b { color: var(--ink); font-weight: 500; }
   <header class="gamebar">
     <span class="wordmark">Mystery Chart</span>
     <span class="gamebar-meta">
-      Run #<span id="runno">1</span> · Chart <span id="pnum">1</span>/<span id="ptotal">5</span>
-      · <b id="runscore">0</b> pts
+      <span id="runlabel">Run #1</span> · Chart <span id="pnum">1</span>/<span id="ptotal">5</span>
+      · <b id="mult">x1</b> · <b id="runscore">0</b> pts
     </span>
     <button class="help" id="help" aria-label="How to play">?</button>
   </header>
@@ -576,11 +546,14 @@ td b { color: var(--ink); font-weight: 500; }
   </section>
 
   <div class="prompt-row">
-    <p class="prompt">What is this chart showing?</p>
+    <div>
+      <p class="prompt">What is this chart showing?</p>
+      <p class="ramp" id="ramp"></p>
+    </div>
     <button class="hintbtn" id="hintbtn">Give me a hint <span>&minus;40</span></button>
   </div>
-  <div class="options" id="options"></div>
   <div class="hints" id="hints" aria-live="polite"></div>
+  <div class="options" id="options"></div>
 
   <section class="outcome" id="outcome">
     <div class="verdict-row">
@@ -599,14 +572,14 @@ td b { color: var(--ink); font-weight: 500; }
 
   <section class="results" id="results">
     <div class="score-head">
-      <p class="score-eyebrow">Mystery Chart · Run #<span id="results-runno"></span> complete</p>
+      <p class="score-eyebrow" id="results-head"></p>
       <p class="score-total"><span id="score-total">0</span><small id="score-max"></small></p>
       <p class="score-streak" id="score-streak"></p>
     </div>
     <div class="score-grid" id="score-grid"></div>
     <div class="controls">
       <button class="btn" id="copy">Copy result</button>
-      <button class="btn ghost" id="replay">Next run</button>
+      <button class="btn ghost" id="replay">Play a practice run</button>
     </div>
     <textarea id="share-fallback" readonly rows="5" aria-label="Your result, ready to copy"></textarea>
     <p class="score-note">Your result copies as plain text, so it pastes into WhatsApp, Discord or a group chat without an image or a login. The squares say how many hints each chart cost you, without giving any answers away.</p>
@@ -641,13 +614,16 @@ td b { color: var(--ink); font-weight: 500; }
         ["Brazil", 297509], ["Peru", 157253], ["Sierra Leone", 93750],
         ["Colombia", 67678], ["Rest of world", 480159]
       ],
-      options: [
+      answer: "Cocoa bean production, 2024",
+      decoys: [
         "Coffee production, 2024",
-        "Cocoa bean production, 2024",
+        "Palm oil production, 2024",
+        "Cashew nut production, 2024",
         "Natural rubber production, 2024",
-        "Palm oil production, 2024"
+        "Tea production, 2024",
+        "Pineapple production, 2024",
+        "Yam production, 2024"
       ],
-      answer: 1,
       hints: [
         "Two neighbours on the Gulf of Guinea between them fill nearly half this square.",
         "It grows only near the equator, yet the countries that consume the most of it are cold, rich and northern.",
@@ -670,13 +646,16 @@ td b { color: var(--ink); font-weight: 500; }
         ["Indonesia", 4, 4], ["Côte d'Ivoire", 5, 17], ["Uganda", 10, 6],
         ["Honduras", 12, 10], ["Vietnam", 17, 2], ["Peru", 19, 8]
       ],
-      options: [
+      answer: "World ranking of coffee-producing countries",
+      decoys: [
         "World ranking of tea-growing countries",
+        "World ranking of cocoa-producing countries",
         "World ranking of sugarcane-growing countries",
-        "World ranking of coffee-producing countries",
-        "World ranking of cocoa-producing countries"
+        "World ranking of banana-growing countries",
+        "World ranking of tobacco-growing countries",
+        "World ranking of palm-oil-producing countries",
+        "World ranking of rice-growing countries"
       ],
-      answer: 2,
       hints: [
         "The line that climbs fifteen places belongs to a country better known in 1990 for a war it had recently finished.",
         "Two of the fallers are in Latin America; the steepest faller is in West Africa, which switched to a more profitable bean.",
@@ -700,13 +679,16 @@ td b { color: var(--ink); font-weight: 500; }
         ["Mexico", 6.529, 1.91], ["India", 5.624, 1.975], ["Bangladesh", 6.839, 2.163],
         ["Kenya", 7.943, 3.208], ["Nigeria", 6.466, 4.482], ["Niger", 7.514, 6.061]
       ],
-      options: [
+      answer: "Average number of children born per woman",
+      decoys: [
         "Average number of people living in one household",
-        "Average number of children born per woman",
         "Average number of years spent in school",
-        "Annual deaths per 1,000 people"
+        "Annual deaths per 1,000 people",
+        "Average number of rooms in a home",
+        "Average hours of unpaid housework a day",
+        "Doctors per 10,000 people",
+        "Average number of farm animals kept per household"
       ],
-      answer: 1,
       hints: [
         "Only one country here has barely moved in half a century, and it sits in the Sahel.",
         "The country at the very top of the list is now spending billions trying to push its figure back up.",
@@ -731,13 +713,16 @@ td b { color: var(--ink); font-weight: 500; }
         { name: "China", values: [11.21,10.63,10.08,9.52,8.97,8.43,7.91,7.42,6.98,6.59,6.26,5.99,5.77,5.61,5.49,5.42,5.39,5.38,5.39,5.38,5.36,5.3,5.21,5.08,4.92,4.74,4.55,4.35,4.14,3.91,3.66,3.41,3.14,2.88,2.63,2.4,2.19,2.01,1.85,1.71,1.57,1.46,1.35,1.25,1.16,1.07,1,0.93,0.86,0.8,0.75,0.7,0.66,0.61,0.57] },
         { name: "South Korea", values: [6.14,5.72,5.37,5.08,4.83,4.62,4.42,4.24,4.04,3.85,3.63,3.4,3.16,2.93,2.69,2.46,2.24,2.05,1.87,1.71,1.57,1.45,1.33,1.23,1.14,1.05,0.98,0.91,0.85,0.8,0.76,0.72,0.68,0.64,0.6,0.56,0.52,0.48,0.45,0.43,0.41,0.4,0.38,0.37,0.36,0.35,0.34,0.33,0.32,0.31,0.31,0.3,0.29,0.29,0.28] }
       ],
-      options: [
+      answer: "Share of children who die before their fifth birthday",
+      decoys: [
         "Share of the population living in extreme poverty",
-        "Share of children who die before their fifth birthday",
         "Share of the population without access to electricity",
-        "Share of adults who cannot read or write"
+        "Share of adults who cannot read or write",
+        "Share of children not in primary school",
+        "Share of the population who are undernourished",
+        "Share of births without a trained midwife or doctor",
+        "Share of the population without clean drinking water"
       ],
-      answer: 1,
       hints: [
         "The cliff at the far left is a war ending, not a policy working.",
         "One line flattens for two decades while the others keep falling. Progress here can stall without anything visibly going wrong.",
@@ -752,19 +737,22 @@ td b { color: var(--ink); font-weight: 500; }
       form: "Beeswarm · every country, 2020",
       exhibit: "Exhibit E",
       type: "beeswarm", diff: 2,
-      truth: "Alcohol consumed per adult, 2020", period: "2020",
+      truth: "Litres of pure alcohol drunk per adult, 2020", period: "2020",
       unit: "litres of pure alcohol per adult per year",
       data: ALCOHOL,
       label: ["Somalia", "Saudi Arabia", "Turkey", "India",
               "Japan", "United Kingdom", "Germany", "Georgia", "Romania"],
       labelSm: ["Somalia", "Saudi Arabia", "India", "United Kingdom", "Romania"],
-      options: [
+      answer: "Litres of pure alcohol drunk per adult each year",
+      decoys: [
         "Kilograms of coffee drunk per person each year",
         "Cigarettes smoked per adult each day",
-        "Litres of pure alcohol drunk per adult each year",
-        "Hours of television watched per person each day"
+        "Hours of television watched per person each day",
+        "Kilograms of fish eaten per person each month",
+        "Doctors per 1,000 people",
+        "Litres of petrol used per person each week",
+        "Hours of paid work per person each day"
       ],
-      answer: 2,
       hints: [
         "Four countries record exactly zero. Not nearly zero. Zero.",
         "What those four have in common is a law rather than a shortage. The two highest are in the Balkans and the Caucasus.",
@@ -777,17 +765,22 @@ td b { color: var(--ink); font-weight: 500; }
     {
       family: "Ranking", form: "Lollipop · log scale, 2023", exhibit: "Exhibit F",
       type: "lollipop", log: true, diff: 1,
-      truth: "Population density, 2023", period: "2023", unit: "people per square kilometre",
+      truth: "People per square kilometre, 2023", period: "2023", unit: "people per square kilometre",
       data: [["Monaco",18704],["Singapore",8063],["Bahrain",1987],["Maldives",1754],
              ["Malta",1666],["Bangladesh",1317],["Taiwan",658],["Barbados",657],
              ["Mauritius",638],["Netherlands",537],["India",484],["Belgium",387],
              ["Japan",341],["United Kingdom",284],["United States",37.5],
              ["Russia",8.9],["Canada",4.5],["Australia",3.4]],
-      options: ["Average number of tourists a year, per thousand residents",
-                "People per square kilometre",
-                "Cost of a square metre of housing, in hundreds of dollars",
-                "Mobile phone subscriptions per hundred people"],
-      answer: 1,
+      answer: "People per square kilometre",
+      decoys: [
+        "Average number of tourists a year, per thousand residents",
+        "Cost of a square metre of housing, in hundreds of dollars",
+        "Mobile phone subscriptions per hundred people",
+        "Average annual rainfall, in millimetres",
+        "Visitors a year, in thousands",
+        "Average income per person, in dollars",
+        "Trees per hectare of land"
+      ],
       hints: ["You could drive across anything at the top of this list before lunch. You could not cross anything at the bottom in a week.",
               "Bangladesh sits sixth, above every European country here. It is neither rich nor tiny, but it is crowded.",
               "The scale is logarithmic, because the leader is more than five thousand times the last place.",
@@ -798,16 +791,21 @@ td b { color: var(--ink); font-weight: 500; }
     {
       family: "Ranking", form: "Lollipop · 2024", exhibit: "Exhibit G",
       type: "lollipop", diff: 2,
-      truth: "International tourist arrivals, 2024", period: "2024", unit: "arrivals from abroad per year",
+      truth: "People arriving from abroad, 2024", period: "2024", unit: "arrivals from abroad per year",
       data: [["Spain",93759300],["United States",72390320],["Italy",57725000],
              ["Turkey",50453000],["France",48395000],["Mexico",45038750],
              ["United Kingdom",38229570],["Germany",37420000],["Japan",36870000],
              ["Saudi Arabia",29727444],["Portugal",28970000],["Greece",27836000]],
-      options: ["Number of people arriving from abroad each year",
-                "Number of people born there who now live abroad",
-                "Number of people employed in hotels and restaurants",
-                "Number of air passengers on domestic flights each year"],
-      answer: 0,
+      answer: "Number of people arriving from abroad each year",
+      decoys: [
+        "Number of people born there who now live abroad",
+        "Number of people employed in hotels and restaurants",
+        "Number of air passengers on domestic flights each year",
+        "Number of international students enrolled each year",
+        "Number of hotel beds available",
+        "Number of passports issued each year",
+        "Number of people employed in transport"
+      ],
       hints: ["Every country in the top six has a long coastline and a warm summer. Saudi Arabia is the odd one out.",
               "Spain's number is roughly twice the number of people who live in Spain. Whatever this counts, it is events rather than people.",
               "Counted in millions a year, each one crossing a border in one direction.",
@@ -824,9 +822,16 @@ td b { color: var(--ink); font-weight: 500; }
              ["China",1761139],["Chile",1103023],["Australia",964000],["South Africa",922185],
              ["Argentina",881305],["Portugal",737257],["Russia",481907],["Germany",472196],
              ["Rest of world",1629638]],
-      options: ["Olive oil production, 2023", "Wine production, 2023",
-                "Cheese production, 2023", "Beer production, 2023"],
-      answer: 1,
+      answer: "Wine production, 2023",
+      decoys: [
+        "Olive oil production, 2023",
+        "Cheese production, 2023",
+        "Beer production, 2023",
+        "Tomato production, 2023",
+        "Apple production, 2023",
+        "Sugar beet production, 2023",
+        "Barley production, 2023"
+      ],
       hints: ["The top three have been arguing about which of them does this best for roughly two thousand years.",
               "Chile, Australia, South Africa and Argentina all rank high. This followed European settlers wherever the climate would take it.",
               "Measured in tonnes. The top three between them are half the world's supply.",
@@ -835,40 +840,51 @@ td b { color: var(--ink); font-weight: 500; }
       slug: "wine-production"
     },
     {
-      family: "Ranking", form: "Lollipop · 2025", exhibit: "Exhibit I",
-      type: "lollipop", diff: 3,
-      truth: "Share of the population using the internet, 2025", period: "2025", unit: "% of the population",
-      data: [["Bahrain",100],["Kuwait",100],["Saudi Arabia",100],["United Arab Emirates",100],
-             ["Denmark",99.8],["Luxembourg",99.1],["Norway",99],["Iceland",98.2],
-             ["Malaysia",98],["United Kingdom",95.5],["United States",94.7],["China",91.6],
-             ["Japan",85.5],["Brazil",84.5],["India",70],["Nigeria",41.2],["Malawi",19],
-             ["Chad",12.6],["Uganda",8.9],["Burundi",8.6]],
-      options: ["Share of adults who can read and write",
-                "Share of homes with running water",
-                "Share of the population using the internet",
-                "Share of adults in paid employment"],
-      answer: 2,
-      hints: ["The four at the top have reached exactly 100. The two at the bottom are under nine.",
-              "Under nine is far too low for literacy or running water in Burundi, and no country has every adult in paid work. Malaysia outranking Britain is the other clue: this is about timing, not wealth.",
-              "A percentage of the population. The four sitting at exactly 100 are all on the Persian Gulf.",
+      family: "Change over time", form: "Dumbbell · 2000 → 2025", exhibit: "Exhibit I",
+      type: "dumbbell", diff: 3,
+      truth: "Share of the population using the internet, 2000 vs 2025",
+      period: "2000 → 2025", unit: "% of the population",
+      leftYear: 2000, rightYear: 2025,
+      data: [["Burundi",0.1,8.6],["Nigeria",0.1,41.2],["India",0.5,70],["Brazil",2.9,84.5],
+             ["Japan",30,85.5],["China",1.8,91.6],["United States",43.1,94.7],
+             ["United Kingdom",26.8,95.5],["Malaysia",21.4,98],["Norway",52,99],
+             ["Denmark",39.2,99.8],["Bahrain",6.2,100],["Saudi Arabia",2.2,100]],
+      answer: "Share of the population using the internet",
+      decoys: [
+        "Share of adults who can read and write",
+        "Share of homes with running water",
+        "Share of adults in paid employment",
+        "Share of the population aged under 30",
+        "Share of children vaccinated against measles",
+        "Share of journeys made by car",
+        "Share of adults who own their home"
+      ],
+      hints: ["Twenty-five years ago every country on this list was close to zero. Two of them still are.",
+              "Even Norway, the highest anywhere in 2000, managed only fifty. Nothing a rich country had already sorted out by then can look like this.",
+              "A percentage of the population. The gap between top and bottom is wider now than it was in 2000, not narrower.",
               "The question asked is whether you have been online in the last three months."],
-      why: "The bottom of the chart is what settles it: Burundi at 8.6 rules out literacy (about 74% there) and running water (over 60%), and no country has 100% of adults in paid work. Only one thing on the list can be both universal in the Gulf and under 9% in Burundi.",
+      why: "In 2000 the highest figure anywhere was Norway at 52%, and most of the world was under 1%. Nothing else on the list was that rare that recently: literacy, running water and measles vaccination were long settled in rich countries by then. Burundi at 8.6% today rules them out at the other end too.",
       slug: "share-of-individuals-using-the-internet"
     },
     {
       family: "Ranking", form: "Lollipop · 2025", exhibit: "Exhibit J",
       type: "lollipop", diff: 3,
-      truth: "GDP per capita, 2025", period: "2025", unit: "international dollars per person",
+      truth: "Economic output per person, 2025", period: "2025", unit: "international dollars per person",
       data: [["Singapore",139593],["Ireland",131338],["Luxembourg",127421],["Qatar",110136],
              ["Norway",95173],["Switzerland",85732],["Guyana",83659],["Brunei",78985],
              ["United States",76931],["Denmark",72723],["Netherlands",71378],
              ["United Arab Emirates",69702],["Iceland",68065],["Germany",62824],
              ["United Kingdom",53993],["China",25067],["India",10039]],
-      options: ["Average yearly wage, in dollars",
-                "Economic output per person, in dollars",
-                "Household savings per adult, in dollars",
-                "Value of exports per person, in dollars"],
-      answer: 1,
+      answer: "Economic output per person, in dollars",
+      decoys: [
+        "Average yearly wage, in dollars",
+        "Household savings per adult, in dollars",
+        "Value of exports per person, in dollars",
+        "Government spending per person, in dollars",
+        "Value of goods imported per person, in dollars",
+        "Electricity used per person, in kilowatt-hours",
+        "Average house price, in dollars"
+      ],
       hints: ["Two of the top three are small European countries whose figures have long embarrassed their own statisticians.",
               "Guyana appears seventh. A decade ago it was nowhere near. Then oil was found off its coast.",
               "Ireland's figure is inflated by multinationals booking profits there. The Irish are not twice as rich as the Germans.",
@@ -877,20 +893,26 @@ td b { color: var(--ink); font-weight: 500; }
       slug: "gdp-per-capita-worldbank"
     },
     {
-      family: "Part-to-whole", form: "Treemap · share of world total", exhibit: "Exhibit K",
+      family: "Part-to-whole", form: "Treemap · the twelve largest growers", exhibit: "Exhibit K",
       type: "treemap", diff: 4,
       truth: "Banana production, 2024", period: "2024", unit: "tonnes",
-      total: 213076213,
+      total: 101616902,
       data: [["India",37614360],["China",11759700],["Indonesia",9260387],["Ecuador",7585653],
              ["Brazil",7046345],["Nigeria",6907143],["Philippines",5641130],["Angola",5213106],
-             ["Guatemala",2843487],["Mexico",2670291],["Colombia",2638064],["Rwanda",2437236],
-             ["Rest of world",111459311]],
-      options: ["Rice production, 2024", "Mango production, 2024",
-                "Banana production, 2024", "Sugarcane production, 2024"],
-      answer: 2,
+             ["Guatemala",2843487],["Mexico",2670291],["Colombia",2638064],["Rwanda",2437236]],
+      answer: "Banana production, 2024",
+      decoys: [
+        "Mango production, 2024",
+        "Rice production, 2024",
+        "Sugarcane production, 2024",
+        "Cassava production, 2024",
+        "Sweet potato production, 2024",
+        "Coconut production, 2024",
+        "Orange production, 2024"
+      ],
       hints: ["Ecuador ranks fourth, despite being far smaller than everything above it.",
               "Ecuador exports more of this than anyone on earth, but Angola in eighth and Rwanda in twelfth eat theirs at home, a starch at every meal rather than a snack.",
-              "Measured in tonnes. India alone grows nearly a fifth of the world's supply.",
+              "Measured in tonnes. India alone grows more than the next three put together.",
               "It is yellow, and botanically it is a berry."],
       why: "The top four look like a population ranking, which is the trap. Ecuador in fourth and Angola in eighth are what separate it from rice or sugarcane, both of which would put Thailand, Vietnam or Bangladesh high and leave Ecuador nowhere.",
       slug: "banana-production"
@@ -904,9 +926,16 @@ td b { color: var(--ink); font-weight: 500; }
              ["Egypt",42.8],["Qatar",42.4],
              ["United States",41.8],["United Kingdom",29.2],["France",12.5],["Japan",5.2],
              ["Cambodia",4.9],["Madagascar",4.1],["Ethiopia",2.5],["Vietnam",2.5]],
-      options: ["Share of adults with diabetes", "Share of adults who are obese",
-                "Share of adults with high blood pressure", "Share of adults who own a car"],
-      answer: 1,
+      answer: "Share of adults who are obese",
+      decoys: [
+        "Share of adults with diabetes",
+        "Share of adults with high blood pressure",
+        "Share of adults who own a car",
+        "Share of adults who smoke",
+        "Share of adults who are physically inactive",
+        "Share of adults with high cholesterol",
+        "Share of adults who drink alcohol every week"
+      ],
       hints: ["The top of this list is almost entirely Pacific islands. The bottom is almost entirely South-East Asia and East Africa.",
               "Japan and Vietnam sit under 6% while the United States is above 40%, a gap far too wide for anything mainly genetic.",
               "Measured as a share of adults, using a threshold on a simple height-and-weight formula.",
@@ -922,9 +951,16 @@ td b { color: var(--ink); font-weight: 500; }
              ["Saudi Arabia",6.5],["Azerbaijan",6.5],["Armenia",6.1],["Oman",5.7],
              ["Kuwait",4.7],["Jordan",4.6],["Poland",4.5],["United States",3.1],
              ["United Kingdom",2.4],["Germany",2.3],["China",1.7],["Japan",1.4]],
-      options: ["Share of GDP spent on education", "Share of GDP spent on health by government",
-                "Military spending as a share of GDP", "Share of the workforce employed by the state"],
-      answer: 2,
+      answer: "Military spending as a share of GDP",
+      decoys: [
+        "Share of GDP spent on education",
+        "Share of GDP spent on health by government",
+        "Share of the workforce employed by the state",
+        "Share of GDP spent on pensions",
+        "Share of GDP earned from tourism",
+        "Share of GDP spent on debt interest",
+        "Share of GDP spent on new infrastructure"
+      ],
       hints: ["One country here is roughly five times any other. It was invaded three years ago.",
               "The Gulf states all sit above the line while Japan and China sit below it, despite being enormous economies, so this is a share of something rather than a total.",
               "The line everything is measured against is a target that one alliance asks its members to meet.",
@@ -933,22 +969,26 @@ td b { color: var(--ink); font-weight: 500; }
       slug: "military-expenditure-as-a-share-of-gdp"
     },
     {
-      family: "Ranking", form: "Lollipop · 2023", exhibit: "Exhibit N",
-      type: "lollipop", diff: 5,
-      truth: "Meat eaten per person, 2023", period: "2023", unit: "kilograms per person per year",
-      data: [["Tonga",156.9],["Mongolia",136.1],["Marshall Islands",125.6],
-             ["United States",122.1],["Australia",116.8],["Argentina",114.9],
-             ["Bahamas",114.9],["Nauru",109.2],["Samoa",109],["Israel",108.7],
-             ["United Kingdom",84.4],["Japan",59.9],["India",8.1],["Nigeria",7.1],
-             ["Ethiopia",6.9]],
-      options: ["Kilograms of meat eaten per person a year",
-                "Kilograms of sugar consumed per person a year",
-                "Kilograms of seafood eaten per person a year",
-                "Kilograms of grain eaten per person a year"],
-      answer: 0,
-      hints: ["Second place is a country of vast grassland, where almost nothing will grow.",
+      family: "Distribution", form: "Beeswarm · every country, 2023", exhibit: "Exhibit N",
+      type: "beeswarm", diff: 5,
+      truth: "Kilograms of meat eaten per person, 2023", period: "2023", unit: "kilograms per person per year",
+      data: [["Afghanistan",6.4],["Albania",56.7],["Algeria",22.3],["Angola",18.6],["Antigua and Barbuda",96.4],["Argentina",114.9],["Armenia",54.7],["Australia",116.8],["Austria",73.7],["Azerbaijan",39.4],["Bahamas",114.9],["Bahrain",76.3],["Bangladesh",4.5],["Barbados",76.2],["Belarus",111.7],["Belgium",60],["Belize",68.2],["Benin",17.3],["Bhutan",14.7],["Bolivia",84.4],["Bosnia and Herzegovina",51.9],["Botswana",43.3],["Brazil",104.6],["Bulgaria",63.7],["Burkina Faso",23.1],["Burundi",3.6],["Cambodia",16.1],["Cameroon",14.8],["Canada",94.8],["Cape Verde",43.8],["Central African Republic",39.1],["Chad",47],["Chile",98.5],["China",73.5],["Colombia",62.6],["Comoros",26.6],["Congo",55.8],["Costa Rica",64.1],["Cote d'Ivoire",12],["Croatia",99.7],["Cuba",65.7],["Cyprus",77.9],["Czechia",82.3],["Democratic Republic of Congo",3.5],["Denmark",101.3],["Djibouti",14.1],["Dominica",86.4],["Dominican Republic",61.6],["East Timor",31.8],["Ecuador",56.2],["Egypt",27.6],["El Salvador",45.6],["Estonia",64.7],["Eswatini",22.4],["Ethiopia",6.9],["Fiji",63.2],["Finland",69.4],["France",80.3],["Gabon",63.1],["Gambia",19.1],["Georgia",45.4],["Germany",70.7],["Ghana",17.4],["Greece",82],["Grenada",80.5],["Guatemala",54.3],["Guinea",15.2],["Guinea-Bissau",14],["Guyana",88.7],["Haiti",20.7],["Honduras",37.7],["Hungary",76.3],["Iceland",98.1],["India",8.1],["Indonesia",20],["Iran",29.9],["Iraq",21.1],["Ireland",98.4],["Israel",108.7],["Italy",71.2],["Jamaica",67],["Japan",59.9],["Jordan",35.1],["Kazakhstan",64.9],["Kenya",10.2],["Kiribati",45.1],["Kuwait",62.5],["Kyrgyzstan",40],["Laos",31.1],["Latvia",82.7],["Lebanon",38.2],["Lesotho",18.8],["Liberia",12.3],["Libya",43.7],["Lithuania",80.9],["Luxembourg",83],["Madagascar",5.3],["Malawi",28.2],["Malaysia",69.1],["Maldives",29.6],["Mali",7.5],["Malta",71.8],["Marshall Islands",125.6],["Mauritania",36.5],["Mauritius",64.5],["Mexico",78.2],["Micronesia",64],["Moldova",33.9],["Mongolia",136.1],["Montenegro",96.9],["Morocco",32.8],["Mozambique",10.3],["Myanmar",20.9],["Namibia",24.2],["Nauru",109.2],["Nepal",14.5],["Netherlands",71.6],["New Caledonia",89.6],["New Zealand",79.5],["Nicaragua",36.3],["Niger",7.7],["Nigeria",7.1],["North Korea",13.8],["North Macedonia",51.5],["Norway",70.4],["Oman",37.6],["Pakistan",21.2],["Panama",78],["Papua New Guinea",58.5],["Paraguay",26.9],["Peru",55.4],["Philippines",33.6],["Poland",83.3],["Portugal",99.3],["Qatar",71.4],["Romania",72.4],["Russia",84.8],["Rwanda",6.4],["Saint Kitts and Nevis",88.8],["Saint Lucia",90.3],["Saint Vincent and the Grenadines",118.5],["Samoa",109],["Sao Tome and Principe",25.2],["Saudi Arabia",58.1],["Senegal",20],["Serbia",84.2],["Seychelles",70.7],["Sierra Leone",10.8],["Slovakia",70],["Slovenia",60.4],["Solomon Islands",15.6],["Somalia",11.1],["South Africa",58.3],["South Korea",84],["South Sudan",21.4],["Spain",100.8],["Sri Lanka",11.6],["Sudan",18.4],["Suriname",48.5],["Sweden",68.3],["Switzerland",64],["Syria",16.2],["Taiwan",91.5],["Tajikistan",32.9],["Tanzania",12.2],["Thailand",24.5],["Togo",11.7],["Tonga",156.9],["Trinidad and Tobago",65.7],["Tunisia",30.9],["Turkey",49.4],["Turkmenistan",51.2],["Tuvalu",85.1],["Uganda",10.8],["Ukraine",49.5],["United Arab Emirates",67.8],["United Kingdom",84.4],["United States",122.1],["Uruguay",69.3],["Uzbekistan",47.4],["Vanuatu",41],["Venezuela",38],["Vietnam",60.5],["Yemen",13.7],["Zambia",17.6],["Zimbabwe",57.6]],
+      label: ["India", "Nigeria", "Japan", "China", "United Kingdom",
+              "Brazil", "United States", "Mongolia", "Tonga"],
+      labelSm: ["India", "Japan", "United Kingdom", "United States", "Tonga"],
+      answer: "Kilograms of meat eaten per person a year",
+      decoys: [
+        "Kilograms of seafood eaten per person a year",
+        "Kilograms of sugar consumed per person a year",
+        "Kilograms of grain eaten per person a year",
+        "Kilograms of dairy consumed per person a year",
+        "Kilograms of vegetables eaten per person a year",
+        "Kilograms of fruit eaten per person a year",
+        "Kilograms of bread eaten per person a year"
+      ],
+      hints: ["The two loneliest dots on the right are a Pacific island and a country of vast grassland where almost nothing else will grow.",
               "India sits near the very bottom, far below its poorer neighbours. That is a choice, not a shortage.",
-              "Measured in kilograms per person per year. Small Pacific islands and big cattle countries share the top.",
+              "Measured in kilograms per person per year. The bulge in the middle is most of Europe.",
               "Beef, pork, chicken and lamb, added together."],
       why: "Mongolia in second and India near the bottom is the pair that settles it: Mongolia's grassland diet and India's vegetarianism. Seafood would put Iceland, the Maldives and Japan on top, and Japan is twelfth here.",
       slug: "meat-supply-per-person"
@@ -956,17 +996,22 @@ td b { color: var(--ink); font-weight: 500; }
     {
       family: "Change over time", form: "Dumbbell · 1950 → 2023", exhibit: "Exhibit O",
       type: "dumbbell", diff: 2,
-      truth: "Life expectancy at birth, 1950 vs 2023", period: "1950 → 2023", unit: "years",
+      truth: "Years a newborn can expect to live, 1950 vs 2023", period: "1950 → 2023", unit: "years",
       leftYear: 1950, rightYear: 2023,
       data: [["Nigeria",35.5,54.5],["Ethiopia",35.5,67.3],["India",41.2,72],
              ["Russia",55.5,73.2],["Mexico",43.8,75.1],["Brazil",48.5,75.8],
              ["Turkey",47.3,77.2],["China",43.8,78],["United States",68.1,79.3],
              ["United Kingdom",68.6,81.3],["South Korea",22.2,84.3],["Japan",59.3,84.7]],
-      options: ["The average age of the population",
-                "Years a newborn can expect to live",
-                "The age at which people stop working",
-                "Years of schooling a typical adult completed"],
-      answer: 1,
+      answer: "Years a newborn can expect to live",
+      decoys: [
+        "The average age of the population",
+        "The age at which people stop working",
+        "Years of schooling a typical adult completed",
+        "The age at which people marry",
+        "Years a person spends in paid work",
+        "The average age of a member of parliament",
+        "The age at which people leave their parents' home"
+      ],
       hints: ["One country starts at twenty-two. In 1950 it was in the middle of a war that killed roughly a tenth of its people.",
               "Britain and the United States begin far ahead of everyone else and finish in the middle of the pack. They improved least because they started highest.",
               "Measured in years, counted from birth.",
@@ -976,23 +1021,59 @@ td b { color: var(--ink); font-weight: 500; }
     }
   ];
 
-  /* Fifteen puzzles, dealt into three runs of five. Difficulty is deliberately
-     mixed inside each run, and no two neighbouring charts share a form. */
+  /* Fifteen puzzles, dealt into three runs of five. Each run climbs in intrinsic
+     difficulty so it rises with the option count, and no two neighbouring charts
+     share a form. */
   var RUNS = [
     [5, 0, 2, 12, 3],
     [6, 7, 11, 1, 10],
-    [8, 14, 9, 4, 13]
+    [14, 4, 8, 9, 13]
   ];
 
-  /* Scoring. Points come only from how few hints were spent — never from speed,
-     because a clock would push players to guess rather than read the chart. */
-  var POINTS = [100, 60, 30, 15];
+  /* The run gets harder as it goes: four options on the first chart, eight on the
+     last. A right answer is worth more when there was more to eliminate, so each
+     position carries a multiplier. Base 100 x (1 + 1.5 + 2 + 2.5 + 3) = 1000. */
+  var OPTION_COUNT = [4, 5, 6, 7, 8];
+  var MULTIPLIER   = [1, 1.5, 2, 2.5, 3];
+
+  /* Points fall with every mistake, whether that was a wrong guess or a bought
+     hint. With eight options the answer can always be found by elimination, so
+     the ladder has to reach zero: brute force must not pay. */
+  var POINTS = [100, 60, 30, 15, 5, 0, 0, 0];
   var MARKS = ["🟩", "🟨", "🟧", "🟦"];
   var MISS = "🟥";
-  var PERFECT_BONUS = 100;
-  var RUN_MAX = POINTS[0] * 5;
+  var PERFECT_BONUS = 200;
+  var RUN_MAX = MULTIPLIER.reduce(function (a, m) { return a + m * 100; }, 0);
 
-  var LETTERS = ["A", "B", "C", "D"];
+  /* The escalation is the point of the run, so say it plainly on every chart
+     rather than leaving it to a multiplier symbol in the corner. */
+  var RAMP_WORDS = [
+    "Four options to start. Points at face value.",
+    "Five options now, and worth half as much again.",
+    "Six options, and worth double.",
+    "Seven options, and worth two and a half times.",
+    "Eight options, the hardest of the day. Worth triple."
+  ];
+  function rampLine(i) { return RAMP_WORDS[Math.min(i, RAMP_WORDS.length - 1)]; }
+
+  function optionsAt(i) { return OPTION_COUNT[Math.min(i, OPTION_COUNT.length - 1)]; }
+  function multiplierAt(i) { return MULTIPLIER[Math.min(i, MULTIPLIER.length - 1)]; }
+  function markFor(r) { return r.missed ? MISS : MARKS[Math.min(r.tier, MARKS.length - 1)]; }
+  function tierClass(r) { return r.missed ? "rMiss" : "r" + Math.min(r.tier, 4); }
+
+  /* Everyone playing the same run must see the same options in the same order,
+     and there is no server to agree it. A seeded shuffle gives that for free. */
+  function seededShuffle(list, seed) {
+    var a = list.slice(), st = seed >>> 0, i, j, t;
+    function rnd() { st = (st * 1664525 + 1013904223) >>> 0; return st / 4294967296; }
+    for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(rnd() * (i + 1));
+      t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  var LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
   /* ============================ SHARED DRAWING ============================ */
 
@@ -1056,6 +1137,28 @@ td b { color: var(--ink); font-weight: 500; }
     var w = (box && box.clientWidth) || 720;
     w = Math.max(300, Math.min(720, Math.round(w)));
     return { W: w, compact: w < 560 };
+  }
+
+  /* Axis ticks have to land on round numbers. Dividing the maximum into five
+     equal parts gives 14.46, 28.92, 43.38: arithmetically correct and
+     unreadable. Snap the step to 1, 2, 2.5 or 5 times a power of ten instead,
+     and let the axis top out on a tick rather than on the largest value. */
+  function niceScale(maxValue, targetTicks) {
+    var raw = maxValue / targetTicks;
+    var mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    var n = raw / mag;
+    var step = (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * mag;
+    var top = Math.ceil(maxValue / step) * step;
+    var out = [], v;
+    for (v = 0; v <= top + step / 1000; v += step) out.push(Math.round(v * 1000) / 1000);
+    return { ticks: out, top: top };
+  }
+
+  /* Decimals should follow the range, not be fixed. Two decimals reads sensibly
+     on a fertility rate of 0.72 and absurdly on an internet share of 100.00. */
+  function valueFmt(top) {
+    return top >= 20 ? function (v) { return String(Math.round(v)); }
+                     : function (v) { return v.toFixed(2); };
   }
 
   /* --------- Part-to-whole: squarified treemap --------- */
@@ -1235,7 +1338,9 @@ td b { color: var(--ink); font-weight: 500; }
     var plotW = W - gutter - right;
     var max = 0;
     rows.forEach(function (r) { max = Math.max(max, r[1], r[2]); });
-    var top = Math.ceil(max);
+    var scale = niceScale(max, m.compact ? 3 : 5);
+    var top = scale.top;
+    var label = valueFmt(top);
 
     function X(v) { return gutter + (v / top) * plotW; }
 
@@ -1245,9 +1350,7 @@ td b { color: var(--ink); font-weight: 500; }
     });
 
     // scale ticks — numbers shown, unit withheld
-    var t;
-    var tStep = m.compact ? 2 : 1;
-    for (t = 0; t <= top; t += tStep) {
+    scale.ticks.forEach(function (t) {
       svg.appendChild(el("line", {
         x1: X(t), y1: mT - 10, x2: X(t), y2: mT + rows.length * rowH - 8,
         stroke: "var(--grid)", "stroke-width": "1"
@@ -1255,8 +1358,8 @@ td b { color: var(--ink); font-weight: 500; }
       svg.appendChild(txt(el("text", {
         x: X(t), y: mT - 18, "text-anchor": "middle", fill: "var(--muted)",
         "font-size": "11", "font-family": MONO
-      }), String(t)));
-    }
+      }), label(t)));
+    });
 
     rows.forEach(function (r, i) {
       var name = r[0], a = r[1], b = r[2];
@@ -1291,7 +1394,7 @@ td b { color: var(--ink); font-weight: 500; }
       svg.appendChild(txt(el("text", {
         x: W - right + 12, y: y, "dominant-baseline": "middle",
         fill: "var(--muted)", "font-size": "11.5", "font-family": MONO
-      }), b.toFixed(2)));
+      }), label(b)));
     });
 
     // legend — two dates are two series, so identity is never colour-alone
@@ -1503,8 +1606,8 @@ td b { color: var(--ink); font-weight: 500; }
       "aria-label": "Beeswarm. Every country is one dot, positioned by its value. The measure is withheld."
     });
 
-    var t;
-    for (t = 0; t <= top; t += (m.compact ? 4 : 2)) {
+    niceScale(top, m.compact ? 3 : 6).ticks.forEach(function (t) {
+      if (t > top) return;
       svg.appendChild(el("line", {
         x1: X(t), y1: mT - 6, x2: X(t), y2: H - mB + 6,
         stroke: "var(--grid)", "stroke-width": "1"
@@ -1513,18 +1616,18 @@ td b { color: var(--ink); font-weight: 500; }
         x: X(t), y: H - mB + 22, "text-anchor": "middle",
         fill: "var(--muted)", "font-size": "11", "font-family": MONO
       }), String(t)));
-    }
+    });
 
     pts.forEach(function (pt) {
       var named = labelSet[pt.name];
       var c = el("circle", {
         cx: pt.x.toFixed(1), cy: (mid + pt.y).toFixed(1), r: named ? R + 1 : R,
-        fill: named ? "var(--s2)" : "var(--r5)",
+        fill: named ? "var(--s2)" : "var(--s1)",
         stroke: "var(--panel)", "stroke-width": named ? "2" : "1.2",
         opacity: named ? "1" : "0.9"
       });
       hoverable(c, '<div class="tt-row"><span class="sw" style="background:' +
-        (named ? "var(--s2)" : "var(--r5)") + '"></span>' + pt.name +
+        (named ? "var(--s2)" : "var(--s1)") + '"></span>' + pt.name +
         " &nbsp;<b>" + pt.v + "</b></div>");
       svg.appendChild(c);
     });
@@ -1593,21 +1696,6 @@ td b { color: var(--ink); font-weight: 500; }
     /* A log axis is the only honest way to show a range spanning four orders of
        magnitude — on a linear scale everything below the leader collapses onto
        the baseline and the chart says nothing. */
-    /* Axis ticks have to land on round numbers. Dividing the maximum into five
-       equal parts gives 14.46, 28.92, 43.38 — arithmetically correct and
-       unreadable. Snap the step to 1, 2, 2.5 or 5 times a power of ten instead,
-       and let the axis top out on a tick rather than on the largest value. */
-    function niceScale(maxValue, targetTicks) {
-      var raw = maxValue / targetTicks;
-      var mag = Math.pow(10, Math.floor(Math.log10(raw)));
-      var n = raw / mag;
-      var step = (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * mag;
-      var top = Math.ceil(maxValue / step) * step;
-      var out = [], v;
-      for (v = 0; v <= top + step / 1000; v += step) out.push(Math.round(v * 1000) / 1000);
-      return { ticks: out, top: top };
-    }
-
     /* Big numbers need units, not more digits: "93,759,300" clips out of the
        margin and "20000k" is nonsense. Pick one unit for the whole chart from
        its largest value, so every label is directly comparable. */
@@ -1790,17 +1878,30 @@ td b { color: var(--ink); font-weight: 500; }
 
   /* ============================ GAME STATE ============================ */
 
-  var idx = 0, wrong = 0, revealed = 0, done = false;
+  var idx = 0, wrong = 0, revealed = 0, cost = 0, done = false;
+  var shown = [], answerIdx = 0;
   var results = [];
   var ACTIVE = [];
   var $ = function (id) { return document.getElementById(id); };
 
+  /* ==================== SETTINGS ====================
+     Set this to the day you actually go live. Everyone playing on that date sees
+     "Run #1", and the number climbs by one a day from there. Leave it in the past
+     and your first players will open the game on Run #47, which means nothing to
+     anyone. Format: year, month (January is 0), day.                          */
+  var LAUNCH = new Date(2026, 7, 27);     // Thursday 27 August 2026
+  /* ================================================== */
+
   /* The run number comes from the player's OWN local date, like Wordle. Someone
-     in Auckland gets run #40 while London is still on #39 — which is why players
+     in Auckland gets run #40 while London is still on #39, which is why players
      compare run numbers rather than dates. No server is involved. */
-  var LAUNCH = new Date(2026, 7, 25);
   function startOfDay(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime(); }
-  var runNo = Math.floor((startOfDay(new Date()) - startOfDay(LAUNCH)) / 86400000) + 1;
+  var todayRun = Math.max(1, Math.floor((startOfDay(new Date()) - startOfDay(LAUNCH)) / 86400000) + 1);
+  var runNo = todayRun;
+
+  /* Extra runs played in one sitting are practice: they must not inflate the
+     shared run number, or one player's "Run #4" means nothing to another's. */
+  var practice = false;
 
   /* A daily game gets played on a phone, which means it gets interrupted — a
      call, a discarded tab, a locked screen. Losing four solved charts to that is
@@ -1809,6 +1910,9 @@ td b { color: var(--ink); font-weight: 500; }
   var PROG = "mysterychart.progress";
 
   function saveProgress() {
+    /* Practice runs are throwaway. Checkpointing one would overwrite a half
+       finished daily run that the player still wants to come back to. */
+    if (practice) return;
     var wrongPicks = [];
     Array.prototype.forEach.call($("options").children, function (b, j) {
       if (b.classList.contains("is-wrong")) wrongPicks.push(j);
@@ -1816,7 +1920,7 @@ td b { color: var(--ink); font-weight: 500; }
     try {
       localStorage.setItem(PROG, JSON.stringify({
         runNo: runNo, idx: idx, results: results,
-        cur: { wrongPicks: wrongPicks, revealed: revealed, done: done }
+        cur: { wrongPicks: wrongPicks, revealed: revealed, cost: cost, done: done }
       }));
     } catch (e) { /* fine */ }
   }
@@ -1832,9 +1936,7 @@ td b { color: var(--ink); font-weight: 500; }
          increases past anything stored, so yesterday's half-finished game is
          correctly abandoned rather than resumed — while the prototype's "Next
          run" button, which jumps ahead of the date, still survives a reload. */
-      if (!v || typeof v.idx !== "number" || !(v.runNo >= runNo)) return null;
-      runNo = v.runNo;
-      loadRun(runNo);
+      if (!v || typeof v.idx !== "number" || v.runNo !== todayRun) return null;
       return v;
     } catch (e) { return null; }
   }
@@ -1849,9 +1951,10 @@ td b { color: var(--ink); font-weight: 500; }
       var b = $("options").children[j];
       if (b) { b.classList.add("is-wrong"); b.disabled = true; wrong++; }
     });
-    while (revealed < (cur.revealed || 0)) showHint();
+    while (revealed < (cur.revealed || 0)) showHint(true);
+    cost = cur.cost || wrong;
     if (cur.done) {
-      var b = $("options").children[ACTIVE[idx].answer];
+      var b = $("options").children[answerIdx];
       if (b) b.classList.add("is-right");
       reveal(true);
     }
@@ -1879,23 +1982,34 @@ td b { color: var(--ink); font-weight: 500; }
 
   function render() {
     var p = ACTIVE[idx];
-    wrong = 0; revealed = 0; done = false;
+    wrong = 0; revealed = 0; cost = 0; done = false;
+
+    var n = optionsAt(idx);
+    shown = seededShuffle([p.answer].concat(p.decoys.slice(0, n - 1)), runNo * 9176 + idx * 31);
+    answerIdx = shown.indexOf(p.answer);
 
     $("pnum").textContent = idx + 1;
     $("ptotal").textContent = ACTIVE.length;
-    $("runno").textContent = runNo;
+    $("runlabel").textContent = practice ? "Practice" : "Run #" + runNo;
     drawProgress();
     $("period").textContent = p.period || "";
     $("truth").textContent = p.truth;
-    $("redaction").classList.remove("lifted");
+    var red = $("redaction");
+    red.classList.add("snap");
+    red.classList.remove("lifted");
+    void red.offsetWidth;            // force the un-lifted state to apply now
+    red.classList.remove("snap");
     $("hints").innerHTML = "";
     $("outcome").classList.remove("show");
 
     renderChart();
 
+    $("mult").textContent = "x" + multiplierAt(idx);
+    $("ramp").textContent = rampLine(idx);
+
     var box = $("options");
     box.innerHTML = "";
-    p.options.forEach(function (text, i) {
+    shown.forEach(function (text, i) {
       var b = document.createElement("button");
       b.className = "opt";
       b.innerHTML = '<span class="key">' + LETTERS[i] + '</span><span class="label">' + text + "</span>";
@@ -1925,18 +2039,36 @@ td b { color: var(--ink); font-weight: 500; }
     // gone once the chart is solved, rather than lingering greyed-out
     btn.style.display = done ? "none" : "";
     btn.disabled = left <= 0;
-    btn.querySelector("span").textContent = left <= 0
-      ? "" : "−" + (POINTS[Math.min(revealed, POINTS.length - 1)] -
-                          POINTS[Math.min(revealed + 1, POINTS.length - 1)]);
+    var drop = (POINTS[Math.min(cost, POINTS.length - 1)] -
+                POINTS[Math.min(cost + 1, POINTS.length - 1)]) * multiplierAt(idx);
+    btn.querySelector("span").textContent = left <= 0 ? "" : "−" + Math.round(drop);
   }
 
-  function showHint() {
+  function showHint(alreadyCharged) {
     var p = ACTIVE[idx];
     if (done || revealed >= p.hints.length) return;
+    if (!alreadyCharged) { cost++; updateScore(); }
     var h = document.createElement("div");
     h.className = "hint";
     h.innerHTML = '<span class="n">Hint ' + (revealed + 1) + "</span><p>" + p.hints[revealed] + "</p>";
     $("hints").appendChild(h);
+    /* The hint sits above the options, so a player scrolled down to choose can
+       easily miss it arriving. Only scroll when it is actually out of view, and
+       centre it when we do, rather than trusting "nearest" to decide. */
+    if (!alreadyCharged && h.getBoundingClientRect) {
+      /* Inserting the hint pushes the options down, so measure on the next frame
+         once that reflow has happened. Measuring immediately reads the old
+         layout and concludes, wrongly, that no scroll is needed. */
+      requestAnimationFrame(function () {
+        var r = h.getBoundingClientRect();
+        if (r.top < 0 || r.bottom > window.innerHeight) {
+          h.scrollIntoView({
+            behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+            block: "center"
+          });
+        }
+      });
+    }
     revealed++;
     syncHintBtn();
     saveProgress();
@@ -1960,13 +2092,26 @@ td b { color: var(--ink); font-weight: 500; }
     }, 180);
   });
 
+  /* Anonymous counts only: no cookies, no identifiers, nothing about who anyone is.
+     Wrapped so that a blocked script, an ad-blocker or an unset code can never
+     break the game; analytics failing must be invisible to the player. */
+  function track(path, title) {
+    try {
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({ path: path, title: title, event: true });
+      }
+    } catch (e) { /* never let counting break play */ }
+  }
+
+  var TIERS = ["first", "hint1", "hint2", "hint3", "missed"];
+
   function drawProgress() {
     var box = $("progress");
     box.innerHTML = "";
     ACTIVE.forEach(function (_, i) {
       var s = document.createElement("span");
       var r = results[i];
-      s.className = "pip" + (r ? " done r" + r.tier : i === idx ? " now" : "");
+      s.className = "pip" + (r ? " done " + tierClass(r) : i === idx ? " now" : "");
       s.title = r ? r.points + " pts" : "Chart " + (i + 1);
       box.appendChild(s);
     });
@@ -1976,12 +2121,18 @@ td b { color: var(--ink); font-weight: 500; }
     done = true;
     Array.prototype.forEach.call($("options").children, function (b, j) {
       b.disabled = true;
-      if (!won && j === ACTIVE[idx].answer) b.classList.add("is-right");
+      if (!won && j === answerIdx) b.classList.add("is-right");
     });
     $("redaction").classList.add("lifted");
 
-    var tier = won ? Math.min(revealed, POINTS.length - 1) : 4;
-    results[idx] = { tier: tier, points: won ? POINTS[tier] : 0 };
+    var tier = Math.min(cost, POINTS.length - 1);
+    results[idx] = {
+      tier: tier,
+      missed: !won,
+      points: won ? Math.round(POINTS[tier] * multiplierAt(idx)) : 0
+    };
+    track("chart/" + ACTIVE[idx].slug + "/" + (won ? TIERS[Math.min(tier, 3)] : "missed"),
+          ACTIVE[idx].truth);
     drawProgress();
     updateScore();
     syncHintBtn();
@@ -1992,7 +2143,7 @@ td b { color: var(--ink); font-weight: 500; }
     if (done || btn.disabled) return;
     var p = ACTIVE[idx];
 
-    if (i === p.answer) {
+    if (i === answerIdx) {
       btn.classList.add("is-right");
       reveal(true);
       return;
@@ -2000,15 +2151,20 @@ td b { color: var(--ink); font-weight: 500; }
 
     btn.classList.add("is-wrong");
     btn.disabled = true;
-    wrong++;
+    wrong++; cost++;
 
-    if (p.options.length - 1 - wrong === 0) { reveal(false); return; }
+    // only the answer left standing: nothing to deduce, so end it
+    if (shown.length - 1 - wrong === 0) { reveal(false); return; }
 
-    showHint();
+    if (revealed < p.hints.length) showHint(true);
+    updateScore();
     saveProgress();
   }
 
-  $("hintbtn").addEventListener("click", showHint);
+  /* Not `addEventListener("click", showHint)`: that hands the click event in as
+     the first argument, which showHint reads as "already charged for". Buying a
+     hint then cost nothing and never scrolled into view. */
+  $("hintbtn").addEventListener("click", function () { showHint(); });
 
   function finish(won) {
     var p = ACTIVE[idx];
@@ -2017,7 +2173,7 @@ td b { color: var(--ink); font-weight: 500; }
       ? (wrong === 0 ? "Solved, first look." : wrong === 1 ? "Solved, one hint spent." : "Solved, with help.")
       : "Not this time.";
     $("pts").textContent = "+" + pts;
-    $("pts").className = "pts r" + results[idx].tier;
+    $("pts").className = "pts " + tierClass(results[idx]);
     $("why").textContent = p.why + " Measured in " + p.unit + ".";
     $("src").innerHTML = 'Source: Our World in Data · <a href="https://ourworldindata.org/grapher/' +
       p.slug + '" target="_blank" rel="noopener">' + p.slug + "</a> · CC BY 4.0";
@@ -2031,16 +2187,17 @@ td b { color: var(--ink); font-weight: 500; }
 
   function runTotals() {
     var base = results.reduce(function (a, r) { return a + r.points; }, 0);
-    var perfect = results.every(function (r) { return r && r.tier === 0; });
+    var perfect = results.every(function (r) { return r && !r.missed && r.tier === 0; });
     return { base: base, perfect: perfect, total: base + (perfect ? PERFECT_BONUS : 0) };
   }
 
   function shareText() {
     var t = runTotals();
     var grid = results.map(function (r) {
-      return r.tier >= MARKS.length ? MISS : MARKS[r.tier];
+      return markFor(r);
     }).join("");
-    var lines = ["Mystery Chart #" + runNo + " · " + t.total + "/" + RUN_MAX, grid];
+    var lines = [(practice ? "Mystery Chart practice · " : "Mystery Chart #" + runNo + " · ")
+                 + t.total + "/" + RUN_MAX, grid];
     if (t.perfect) lines[1] += "  perfect run";
     var stats = loadStats();
     if (stats.streak > 1) lines.push("🔥 " + stats.streak + "-day streak");
@@ -2052,7 +2209,7 @@ td b { color: var(--ink); font-weight: 500; }
     var t = runTotals();
 
     var stats = loadStats();
-    if (stats.lastRun !== runNo) {
+    if (!practice && stats.lastRun !== runNo) {
       stats.streak = (stats.lastRun === runNo - 1) ? (stats.streak || 0) + 1 : 1;
       stats.lastRun = runNo;
       stats.best = Math.max(stats.best || 0, t.total);
@@ -2060,8 +2217,14 @@ td b { color: var(--ink); font-weight: 500; }
       saveStats(stats);
     }
 
+    var band = t.total >= 600 ? "600" : (Math.floor(t.total / 100) * 100) + "s";
+    track("play/complete", "Run completed");
+    track("score/" + band, "Score " + band);
+
     $("game").style.display = "none";
-    $("results-runno").textContent = runNo;
+    $("results-head").textContent = practice
+      ? "Mystery Chart · practice run complete"
+      : "Mystery Chart · run #" + runNo + " complete";
     $("score-total").textContent = t.total;
     $("score-max").textContent = "/ " + RUN_MAX + (t.perfect ? " + " + PERFECT_BONUS + " perfect-run bonus" : "");
 
@@ -2069,9 +2232,11 @@ td b { color: var(--ink); font-weight: 500; }
     strip.innerHTML = "";
     results.forEach(function (r, i) {
       var cell = document.createElement("div");
-      cell.className = "cell r" + r.tier;
-      cell.innerHTML = "<b>" + (r.tier >= MARKS.length ? MISS : MARKS[r.tier]) + "</b><span>" +
-        ACTIVE[i].form.split(" ·")[0] + "</span><em>" + r.points + "</em>";
+      cell.className = "cell " + tierClass(r);
+      cell.innerHTML = "<b>" + markFor(r) + "</b>" +
+        "<strong>" + ACTIVE[i].truth + "</strong>" +
+        "<span>x" + multiplierAt(i) + "</span>" +
+        "<em>" + r.points + "</em>";
       strip.appendChild(cell);
     });
 
@@ -2107,6 +2272,7 @@ td b { color: var(--ink); font-weight: 500; }
     $("game").style.display = "flex";
     markPlayed();
     renderChart();
+    track("play/start", "Run started");
   }
 
   $("start").addEventListener("click", hideIntro);
@@ -2116,20 +2282,23 @@ td b { color: var(--ink); font-weight: 500; }
     showIntro();
   });
 
-  /* Keyboard: 1-4 or A-D picks an option, H buys a hint, Enter advances. */
+  /* Keyboard: 1-8 or A-H picks an option, "?" buys a hint, Enter advances. */
   document.addEventListener("keydown", function (ev) {
     if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
     if (/^(INPUT|TEXTAREA)$/.test((ev.target.tagName || ""))) return;
     if ($("game").style.display === "none") return;
 
     var k = ev.key.toUpperCase();
-    var n = "1234".indexOf(k) >= 0 ? "1234".indexOf(k) : LETTERS.indexOf(k);
+    var n = "12345678".indexOf(k) >= 0 ? "12345678".indexOf(k) : LETTERS.indexOf(k);
     if (n >= 0) {
       var b = $("options").children[n];
       if (b && !b.disabled) { ev.preventDefault(); guess(n, b); }
       return;
     }
-    if (k === "H" && !$("hintbtn").disabled) { ev.preventDefault(); showHint(); }
+    // "H" now belongs to option H, so the hint shortcut moved to "?"
+    if ((k === "?" || ev.key === "/") && !$("hintbtn").disabled) {
+      ev.preventDefault(); showHint();
+    }
     if (ev.key === "Enter" && done) { ev.preventDefault(); $("next").click(); }
   });
 
@@ -2169,6 +2338,7 @@ td b { color: var(--ink); font-weight: 500; }
   /* "Next run" rather than "replay": with fifteen puzzles there are three runs,
      so Tim can play a proper stretch in one sitting rather than waiting a day. */
   $("replay").addEventListener("click", function () {
+    practice = true;
     runNo++;
     loadRun(runNo);
     clearProgress();
