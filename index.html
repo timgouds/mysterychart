@@ -484,14 +484,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 </style>
-</head>
-<body>
-<noscript>
-  <p style="max-width:34rem;margin:3rem auto;padding:0 1.5rem;font:16px/1.6 Archivo,Helvetica,Arial,sans-serif">
-    Mystery Chart needs JavaScript, because it draws each chart in your browser rather than
-    sending you a picture. Switch it on for this page and the game will load.
-  </p>
-</noscript>
+
 <div class="wrap">
 
   <section class="intro" id="intro">
@@ -579,7 +572,6 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     <div class="score-grid" id="score-grid"></div>
     <div class="controls">
       <button class="btn" id="copy">Copy result</button>
-      <button class="btn ghost" id="replay">Play a practice run</button>
     </div>
     <textarea id="share-fallback" readonly rows="5" aria-label="Your result, ready to copy"></textarea>
     <p class="score-note">Your result copies as plain text, so it pastes into WhatsApp, Discord or a group chat without an image or a login. The squares say how many hints each chart cost you, without giving any answers away.</p>
@@ -1018,16 +1010,616 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
               "It is how long a baby born in that year could expect to live."],
       why: "South Korea's 22.2 in 1950 is the Korean War, and no other measure collapses to that level and then more than triples. The average age of a population never falls to 22 and then rises to 84.",
       slug: "life-expectancy"
+    },
+    {
+      family: "Distribution", form: "Beeswarm · every country, 2022", exhibit: "Exhibit P",
+      type: "beeswarm", diff: 3,
+      truth: "Share of adults who smoke, 2022", period: "2022", unit: "% of adults aged 15 and over",
+      data: [["Afghanistan",22.9],["Albania",22.3],["Algeria",22.1],["Andorra",35.4],["Argentina",24.3],["Armenia",26.6],["Australia",12.4],["Austria",25.3],["Azerbaijan",19.3],["Bahamas",17],["Bahrain",15.7],["Bangladesh",33.3],["Belarus",30.2],["Belgium",24],["Belize",8.8],["Benin",7.8],["Bhutan",20.2],["Bolivia",13],["Bosnia and Herzegovina",37.6],["Botswana",18.8],["Brazil",12.5],["Brunei",14.7],["Bulgaria",39.1],["Burkina Faso",12.5],["Burundi",10.9],["Cambodia",19.7],["Cameroon",6.1],["Canada",12.1],["Cape Verde",11],["Chad",7.7],["Chile",27.9],["China",23.1],["Colombia",8.3],["Comoros",10.2],["Congo",15.5],["Costa Rica",8.4],["Cote d'Ivoire",8],["Croatia",34.5],["Cuba",17.3],["Cyprus",32.8],["Czechia",28.8],["Democratic Republic of Congo",12.7],["Denmark",17],["East Timor",48.6],["Ecuador",10.4],["Egypt",24.4],["El Salvador",8.6],["Estonia",27.5],["Eswatini",11.4],["Ethiopia",5.3],["Fiji",26.4],["Finland",22.4],["France",33.7],["Gabon",13.3],["Gambia",11.7],["Georgia",32.8],["Germany",22.8],["Ghana",3.5],["Greece",31.5],["Guatemala",11.4],["Guinea-Bissau",8.6],["Guyana",12.5],["Haiti",8.2],["Honduras",12.4],["Hungary",31.3],["Iceland",10.2],["India",24.4],["Indonesia",31.2],["Iran",12.5],["Iraq",20.2],["Ireland",19.2],["Israel",21.8],["Italy",22.7],["Jamaica",11.9],["Japan",18.5],["Jordan",33.8],["Kazakhstan",22.1],["Kenya",10.2],["Kiribati",39.7],["Kuwait",19.3],["Kyrgyzstan",23],["Laos",26.8],["Latvia",35.3],["Lebanon",45.6],["Lesotho",27.7],["Liberia",5.8],["Libya",24.8],["Lithuania",32.3],["Luxembourg",24.7],["Madagascar",26.8],["Malawi",9.6],["Malaysia",17.4],["Maldives",26.6],["Mali",7.9],["Malta",25],["Marshall Islands",29.6],["Mauritania",10.4],["Mauritius",18.2],["Mexico",16.1],["Moldova",28.3],["Mongolia",29.9],["Montenegro",37.1],["Morocco",13],["Mozambique",11.5],["Myanmar",44.5],["Nauru",36.6],["Nepal",30.4],["Netherlands",21.4],["New Zealand",10.3],["Niger",7.5],["Nigeria",3.3],["North Korea",16.4],["North Macedonia",39.6],["Norway",14.4],["Oman",8.4],["Pakistan",19],["Palau",23.5],["Palestine",34.8],["Panama",5.3],["Papua New Guinea",40.5],["Paraguay",7.3],["Peru",13.4],["Philippines",20.9],["Poland",22.8],["Portugal",28],["Qatar",12.5],["Romania",30.4],["Russia",27.8],["Rwanda",11.6],["Saint Lucia",14.2],["Samoa",24.1],["Sao Tome and Principe",8.1],["Saudi Arabia",14.7],["Senegal",5.9],["Serbia",39.6],["Seychelles",17.8],["Sierra Leone",12.7],["Singapore",14.1],["Slovakia",29.6],["Slovenia",21.2],["Solomon Islands",38.6],["South Africa",23.5],["South Korea",19.6],["Spain",28.1],["Sri Lanka",21.3],["Sweden",21.8],["Switzerland",23.6],["Tanzania",8.6],["Thailand",18.4],["Togo",6.3],["Tonga",32],["Tunisia",25.2],["Turkey",31.1],["Turkmenistan",5.8],["Tuvalu",34.3],["Uganda",8.3],["Ukraine",24.9],["United Arab Emirates",9.4],["United Kingdom",14],["United States",17],["Uruguay",20.3],["Uzbekistan",17],["Vanuatu",25],["Vietnam",21.7],["Zambia",14.6],["Zimbabwe",11.6]],
+      label: ["Nigeria", "Ghana", "Australia", "United Kingdom", "United States", "Japan", "Indonesia", "France", "East Timor"],
+      labelSm: ["Nigeria", "United Kingdom", "Japan", "France", "East Timor"],
+      answer: "Share of adults who smoke",
+      decoys: [
+          "Share of adults who are obese",
+          "Share of adults who drink alcohol every week",
+          "Share of adults with a university degree",
+          "Share of adults who are out of work",
+          "Share of adults with high blood pressure",
+          "Share of adults who have never used the internet",
+          "Share of adults who hold a passport"
+        ],
+      hints: [
+          "Indonesia, Bangladesh and Jordan sit near the top while the wealthy Gulf states sit low, so money is not what sorts this list.",
+          "France stands above Germany, Britain and the United States. Nigeria and Ghana are at the very bottom, near three percent.",
+          "Measured as a share of everyone aged fifteen and over, and falling almost everywhere that is rich.",
+          "It is the share of adults who use tobacco."
+        ],
+      why: "The United States at 17% is the discriminator against obesity, where it would be near the top at about 42%. Indonesia, Bangladesh and Jordan high with Ghana and Nigeria at 3% is the tobacco pattern, and no alcohol measure puts Jordan and Palestine above Britain.",
+      slug: "share-of-adults-who-smoke"
+    },
+    {
+      family: "Change over time", form: "Dumbbell · 1960 → 2025", exhibit: "Exhibit Q",
+      type: "dumbbell", diff: 2,
+      truth: "Share of the population living in towns and cities, 1960 vs 2025", period: "1960 → 2025", unit: "% of the population",
+      leftYear: 1960, rightYear: 2025,
+      data: [
+        ["Ethiopia",7.1,24.1], ["India",17.9,35.7], ["Egypt",37.8,42.9],
+        ["Indonesia",14.6,59.4], ["Nigeria",14.2,63.8], ["China",19.7,66.3],
+        ["United States",70.0,80.2], ["Mexico",50.7,80.0], ["South Korea",27.7,81.2],
+        ["United Kingdom",78.6,83.3], ["Brazil",44.7,88.2], ["Japan",63.3,92.3]
+      ],
+      answer: "Share of the population living in towns and cities",
+      decoys: [
+          "Share of the population with electricity at home",
+          "Share of the population who can read and write",
+          "Share of the population in paid work",
+          "Share of adults who own their home",
+          "Share of the population with a bank account",
+          "Share of the population who finished secondary school",
+          "Share of the population with running water at home"
+        ],
+      hints: [
+          "One country has barely shifted in sixty-five years. It is neither the poorest here nor the richest.",
+          "Britain and the United States begin far ahead of everyone and finish only a little further on. They had almost run out of room in 1960.",
+          "Measured as a percentage of the population. Nigeria's jump from 14 to 64 happened without the country becoming notably richer.",
+          "It is simply where people live: a town or a city on one side, the countryside on the other."
+        ],
+      why: "Egypt moving from 37.8% to only 42.9% in sixty-five years is the tell. No literacy, electricity or schooling measure stalls like that, and Britain starting at 78.6% in 1960 rules out anything that was still rare then.",
+      slug: "share-of-population-urban"
+    },
+    {
+      family: "Change over time", form: "Dumbbell · 2000 → 2024", exhibit: "Exhibit R",
+      type: "dumbbell", diff: 2,
+      truth: "Share of people with electricity at home, 2000 vs 2024", period: "2000 → 2024", unit: "% of the population",
+      leftYear: 2000, rightYear: 2024,
+      data: [
+        ["Tanzania",8.7,52.4], ["Uganda",7.4,55.3], ["Ethiopia",12.7,56.6],
+        ["Nigeria",43.2,62.5], ["Rwanda",6.2,72.0], ["Kenya",15.2,77.0],
+        ["Myanmar",41.9,80.4], ["Afghanistan",4.4,87.8], ["Bangladesh",32.0,99.5],
+        ["Nepal",29.9,97.9], ["India",60.3,99.9], ["Indonesia",86.3,99.9]
+      ],
+      answer: "Share of people with electricity at home",
+      decoys: [
+          "Share of people who own a mobile phone",
+          "Share of people with clean drinking water",
+          "Share of people who can read and write",
+          "Share of children who finish primary school",
+          "Share of people with a bank account",
+          "Share of people vaccinated against measles",
+          "Share of people who own a bicycle"
+        ],
+      hints: [
+          "Indonesia already had this for most of its people in 2000, which rules out anything invented recently.",
+          "Nigeria is the laggard: it starts well above Kenya and finishes far below it, despite the oil money.",
+          "Measured as a percentage of the population. India has effectively finished the job since 2000.",
+          "It is whether the house is connected to power."
+        ],
+      why: "Indonesia at 86% in 2000 rules out mobile phones and bank accounts, both rare then. Nigeria ending at 62.5% while Bangladesh reaches 99.5% is the grid story, not the literacy one.",
+      slug: "share-of-the-population-with-access-to-electricity"
+    },
+    {
+      family: "Part-to-whole", form: "Treemap · the twelve largest growers", exhibit: "Exhibit S",
+      type: "treemap", diff: 3,
+      truth: "Rice production, 2024", period: "2024", unit: "tonnes",
+      total: 707380000,
+      data: [
+        ["India",217867870], ["China",207530000], ["Bangladesh",60570452],
+        ["Indonesia",53142730], ["Vietnam",43450450], ["Thailand",33551336],
+        ["Myanmar",27650000], ["Philippines",19087136], ["Pakistan",14585231],
+        ["Brazil",10671490], ["Japan",10142000], ["Nigeria",9129900]
+      ],
+      answer: "Rice production, 2024",
+      decoys: [
+          "Wheat production, 2024",
+          "Maize production, 2024",
+          "Sugar cane production, 2024",
+          "Soybean production, 2024",
+          "Potato production, 2024",
+          "Cotton production, 2024",
+          "Tea production, 2024"
+        ],
+      hints: [
+          "Ten of the twelve blocks are in Asia, and the two largest are neighbours who between them hold a third of humanity.",
+          "The United States, Russia and France are all missing, which rules out the grains that Europe and North America grow at scale.",
+          "Measured in tonnes as harvested. Japan appears despite having very little farmland, because this crop is the one it protects at any cost.",
+          "It is boiled, steamed or fried, and eaten with almost every meal from Lahore to Tokyo."
+        ],
+      why: "The absence of the United States, Russia, France and Ukraine rules out wheat and maize. Japan producing 10 million tonnes on very little arable land, and Bangladesh third, is the rice signature.",
+      slug: "rice-production"
+    },
+    {
+      family: "Part-to-whole", form: "Treemap · share of world total", exhibit: "Exhibit T",
+      type: "treemap", diff: 4,
+      truth: "Share of the world's forest area, 2025", period: "2025", unit: "% of the world total",
+      total: 100,
+      data: [
+        ["Russia",20.11], ["Brazil",11.74], ["Canada",8.91],
+        ["United States",7.46], ["China",5.49], ["DR Congo",3.36],
+        ["Australia",3.23], ["Indonesia",2.32], ["India",1.76],
+        ["Peru",1.62], ["Mexico",1.6], ["Angola",1.53],
+        ["Rest of world",30.87]
+      ],
+      answer: "Share of the world's forest area",
+      decoys: [
+          "Share of the world's farmland",
+          "Share of the world's fresh water",
+          "Share of the world's land area",
+          "Share of the world's coal reserves",
+          "Share of the world's cattle",
+          "Share of the world's oil reserves",
+          "Share of the world's protected land"
+        ],
+      hints: [
+          "Australia is one of the largest countries on earth and gets a small tile. Indonesia is a fraction of its size and gets almost as much.",
+          "India, with a seventh of the world's people and a great deal of land under the plough, holds under two percent of this.",
+          "The five biggest tiles are all countries with vast cold or wet interiors that nobody has cleared.",
+          "It is where the world's trees are."
+        ],
+      why: "Russia at 20% with Canada third is the boreal signature. Farmland would put India and the United States near the top rather than India at 1.8%, and by land area Russia is 11% of the world, not 20%.",
+      slug: "share-global-forest"
+    },
+    {
+      family: "Ranking", form: "Rank slope · 1990 → 2024", exhibit: "Exhibit U",
+      type: "slope", diff: 4,
+      truth: "World ranking of carbon dioxide emitters, 1990 vs 2024", period: "1990 → 2024", unit: "rank by tonnes emitted in a year",
+      leftYear: 1990, rightYear: 2024,
+      ranks: [
+        ["China",3,1], ["United States",1,2], ["India",7,3],
+        ["Russia",2,4], ["Japan",4,5], ["Indonesia",12,6],
+        ["Iran",10,7], ["Saudi Arabia",11,8], ["South Korea",8,9],
+        ["Germany",5,10], ["Brazil",9,11], ["United Kingdom",6,12]
+      ],
+      answer: "World ranking of carbon dioxide emitters",
+      decoys: [
+          "World ranking of steel-producing countries",
+          "World ranking of countries by electricity generated",
+          "World ranking of countries by number of cars on the road",
+          "World ranking of countries by total economic output",
+          "World ranking of oil-consuming countries",
+          "World ranking of countries by cement produced",
+          "World ranking of countries by energy imported"
+        ],
+      hints: [
+          "Britain started the thing that put it sixth in 1990. It is now last of the twelve.",
+          "Germany falls five places while Iran and Saudi Arabia climb. Population is not what moves these lines.",
+          "One country roughly quintuples and takes first place. This is ranked on an annual national total, not a figure per person.",
+          "It is measured in tonnes released into the atmosphere."
+        ],
+      why: "Britain's fall from 6th to 12th while Saudi Arabia climbs to 8th is the discriminator: on total economic output Britain would still be near the top and Saudi Arabia nowhere near it. China rising from third to first at roughly five times its 1990 figure fits emissions rather than any slower-moving ranking.",
+      slug: "annual-co2-emissions-per-country"
+    },
+    {
+      family: "Ranking", form: "Rank slope · 1975 → 2023", exhibit: "Exhibit V",
+      type: "slope", diff: 3,
+      truth: "World ranking of the most populous countries, 1975 vs 2023", period: "1975 → 2023", unit: "rank by number of people",
+      leftYear: 1975, rightYear: 2023,
+      ranks: [
+        ["India",2,1], ["China",1,2], ["United States",3,3],
+        ["Indonesia",5,4], ["Pakistan",9,5], ["Nigeria",10,6],
+        ["Brazil",7,7], ["Bangladesh",8,8], ["Russia",4,9],
+        ["Mexico",11,10], ["Ethiopia",12,11], ["Japan",6,12]
+      ],
+      answer: "World ranking of the most populous countries",
+      decoys: [
+          "World ranking of countries by total economic output",
+          "World ranking of countries by number of mobile phones",
+          "World ranking of countries by area of farmland",
+          "World ranking of countries by births each year",
+          "World ranking of countries by size of armed forces",
+          "World ranking of countries by electricity generated",
+          "World ranking of countries by number of internet users"
+        ],
+      hints: [
+          "Two lines cross at the very top in the early 2020s, and it made headlines when they did.",
+          "Japan falls six places without anything happening to Japan. Everyone else simply grew.",
+          "Brazil and Bangladesh do not move at all across half a century, which is unusual on any ranking.",
+          "It counts heads."
+        ],
+      why: "India overtaking China, with Japan sliding from 6th to 12th while still holding one of the largest economies, is the population signature. On economic output Japan would remain in the top three and Ethiopia would not appear at all.",
+      slug: "population"
+    },
+    {
+      family: "Distribution", form: "Beeswarm · every country, 2024", exhibit: "Exhibit W",
+      type: "beeswarm", diff: 4,
+      truth: "Mobile phone subscriptions per 100 people, 2024", period: "2024", unit: "active subscriptions per 100 people",
+      data: [["Afghanistan",60.1],["Albania",89.1],["Algeria",115.5],["Andorra",155.7],["Angola",69.7],["Antigua and Barbuda",200.5],["Argentina",140.2],["Armenia",134.9],["Australia",112.6],["Austria",124.5],["Azerbaijan",109.5],["Bahamas",96.7],["Bahrain",159.5],["Bangladesh",108.1],["Barbados",114.6],["Belarus",131.1],["Belgium",103.9],["Belize",67.2],["Benin",125.9],["Bhutan",99.8],["Bolivia",98],["Bosnia and Herzegovina",121.2],["Botswana",164],["Brazil",101.9],["Brunei",118.1],["Bulgaria",118.1],["Burkina Faso",116.6],["Burundi",63.2],["Cambodia",116.1],["Cameroon",108.2],["Canada",94.1],["Cape Verde",111.8],["Central African Republic",38.8],["Chad",72.9],["Chile",132.7],["China",131.8],["Colombia",174.1],["Comoros",109.9],["Congo",95.5],["Costa Rica",136],["Cote d'Ivoire",183.9],["Croatia",121.7],["Cuba",72.9],["Cyprus",156.2],["Czechia",126.6],["Democratic Republic of Congo",58.5],["Denmark",126.7],["Djibouti",48.5],["Dominica",85.2],["Dominican Republic",93.7],["East Timor",116.4],["Ecuador",101.6],["Egypt",97.1],["El Salvador",176.5],["Equatorial Guinea",49.5],["Eritrea",59.1],["Estonia",151.1],["Eswatini",139.8],["Ethiopia",65.1],["Finland",125.9],["France",116.7],["Gabon",125.3],["Gambia",126.2],["Georgia",161.2],["Germany",129.2],["Ghana",113.6],["Greece",113.6],["Greenland",118.6],["Grenada",95.8],["Guatemala",112.5],["Guinea",97.9],["Guinea-Bissau",147.2],["Guyana",112.6],["Haiti",65.2],["Honduras",70.9],["Hungary",104.6],["Iceland",120.9],["India",79.4],["Indonesia",122.5],["Iran",174.1],["Iraq",100.1],["Ireland",112.6],["Israel",177.4],["Italy",132.6],["Jamaica",117.7],["Japan",178.4],["Jordan",69.6],["Kazakhstan",127.1],["Kenya",126.5],["Kiribati",53.5],["Kosovo",34.5],["Kuwait",167.7],["Kyrgyzstan",107.5],["Laos",64.8],["Latvia",121.3],["Lebanon",74],["Lesotho",70.3],["Liberia",32.1],["Libya",193],["Liechtenstein",128.9],["Lithuania",138.7],["Luxembourg",144.5],["Madagascar",75.5],["Malawi",69.3],["Malaysia",139.7],["Maldives",148.1],["Mali",112.1],["Malta",142.1],["Marshall Islands",39.7],["Mauritania",92.1],["Mauritius",172.7],["Mexico",116.5],["Micronesia",20],["Moldova",120.1],["Monaco",107.4],["Mongolia",140.7],["Montenegro",221.7],["Morocco",153.1],["Mozambique",49.5],["Myanmar",114.3],["Namibia",85.2],["Nauru",87.2],["Nepal",99.8],["Netherlands",128.5],["New Caledonia",91.7],["New Zealand",130.1],["Nicaragua",106],["Niger",60.6],["Nigeria",70.8],["North Korea",24.1],["North Macedonia",108.4],["Norway",109.3],["Oman",120.6],["Pakistan",76.9],["Palau",135.4],["Palestine",76.7],["Panama",156.6],["Papua New Guinea",38.8],["Paraguay",126.6],["Peru",124.6],["Philippines",115.3],["Poland",138],["Portugal",124.1],["Puerto Rico",126.4],["Qatar",153.6],["Romania",119.8],["Russia",186.1],["Rwanda",93.2],["Saint Kitts and Nevis",118.9],["Saint Lucia",98.7],["Saint Vincent",108.4],["Samoa",62.4],["San Marino",120.3],["Sao Tome and Principe",62.4],["Saudi Arabia",159.5],["Senegal",123.9],["Serbia",123.8],["Seychelles",125.6],["Sierra Leone",107.9],["Singapore",170.8],["Slovakia",140],["Slovenia",130.9],["Solomon Islands",62.1],["Somalia",54],["South Africa",179.3],["South Korea",172.5],["South Sudan",46.6],["Spain",130.3],["Sri Lanka",132.5],["Sudan",70.2],["Suriname",142.1],["Sweden",140.7],["Switzerland",129.5],["Syria",71.2],["Tajikistan",76.2],["Tanzania",126.6],["Thailand",160.6],["Togo",80.8],["Tonga",61.7],["Trinidad and Tobago",118.8],["Tunisia",117.6],["Turkey",107.8],["Turkmenistan",88.2],["Tuvalu",98.9],["Uganda",83.2],["Ukraine",133.4],["United Arab Emirates",203.2],["United Kingdom",121.6],["United States",113.2],["Uruguay",145.5],["Uzbekistan",110.5],["Vanuatu",89.3],["Venezuela",71],["Vietnam",127.6],["Yemen",50.9],["Zambia",108.7],["Zimbabwe",94.2]],
+      label: ["North Korea", "Central African Republic", "India", "United States", "United Kingdom", "China", "Japan", "United Arab Emirates", "Montenegro"],
+      labelSm: ["North Korea", "India", "United Kingdom", "Japan", "United Arab Emirates"],
+      answer: "Mobile phone subscriptions per 100 people",
+      decoys: [
+          "Bank accounts per 100 adults",
+          "Internet users per 100 people",
+          "Cars per 100 people",
+          "Televisions per 100 households",
+          "Air journeys per 100 people each year",
+          "Radios per 100 people",
+          "Letters posted per 100 people each week"
+        ],
+      hints: [
+          "Most of the world sits above one hundred, so whatever this counts, people hold more than one each.",
+          "North Korea is the loneliest dot on the left at twenty-four, and the Gulf states are furthest right.",
+          "Counted per hundred people. It stopped meaning what it used to once people began keeping a second one for work.",
+          "It counts active SIM cards."
+        ],
+      why: "Values above 100 across most of the world rule out anything a person can only have one of, such as internet users or bank accounts. North Korea at 24 with the United Arab Emirates above 200 is the SIM-card pattern.",
+      slug: "mobile-cellular-subscriptions-per-100-people"
+    },
+    {
+      family: "Ranking", form: "Lollipop · highest and lowest, 2024", exhibit: "Exhibit X",
+      type: "lollipop", diff: 2,
+      truth: "Homicides per 100,000 people, 2024", period: "2024", unit: "killings per 100,000 people a year",
+      data: [
+        ["Saint Kitts and Nevis",64.2], ["Saint Vincent",51.3], ["Jamaica",49.4],
+        ["Ecuador",45.7], ["South Africa",43.7], ["Haiti",41.2],
+        ["Saint Lucia",39], ["Bahamas",32.2], ["Colombia",24.9],
+        ["Mexico",24.9], ["Brazil",19.3], ["Russia",7.8],
+        ["United States",5.8], ["India",2.8], ["France",1.4],
+        ["United Kingdom",1.1], ["Germany",0.9], ["Australia",0.9],
+        ["Japan",0.2], ["Singapore",0.1]
+      ],
+      answer: "Homicides per 100,000 people",
+      decoys: [
+          "Road deaths per 100,000 people",
+          "Drug overdose deaths per 100,000 people",
+          "Suicides per 100,000 people",
+          "Prisoners per 10,000 people",
+          "Deaths in house fires per 100,000 people",
+          "Deaths from snakebite per 100,000 people",
+          "Deaths at work per 100,000 workers"
+        ],
+      hints: [
+          "The top of this list is almost entirely small Caribbean islands, with two mainland exceptions.",
+          "The United States sits five times above Britain and France, and twelve times below Jamaica.",
+          "Counted per hundred thousand people a year, from police and coroner records.",
+          "Every one of these is a person killed on purpose by another."
+        ],
+      why: "Small Caribbean islands filling the top with Japan and Singapore near zero is the homicide signature. On prisoners per head the United States would lead everything; on road deaths the list would be led by Africa and the Gulf, not the Caribbean.",
+      slug: "homicide-rate-unodc"
+    },
+    {
+      family: "Change over time", form: "Dumbbell · 2001 → 2023", exhibit: "Exhibit Y",
+      type: "dumbbell", diff: 5,
+      truth: "Share of the population who do not get enough to eat, 2001 vs 2023", period: "2001 → 2023", unit: "% of the population",
+      leftYear: 2001, rightYear: 2023,
+      data: [
+        ["China",10.0,2.5], ["Brazil",10.5,2.5], ["Cambodia",19.7,5.2],
+        ["Vietnam",19.5,5.3], ["Ghana",14.8,6.3], ["Indonesia",18.1,6.3],
+        ["Peru",20.4,6.9], ["Bangladesh",15.5,10.4], ["India",18.1,12.0],
+        ["Ethiopia",46.1,19.7], ["Nigeria",8.7,19.9], ["Kenya",31.8,36.8]
+      ],
+      answer: "Share of the population who do not get enough to eat",
+      decoys: [
+          "Share of the population without clean drinking water",
+          "Share of adults who cannot read or write",
+          "Share of children who do not finish primary school",
+          "Share of the population without electricity",
+          "Share of the population without a toilet at home",
+          "Share of adults who are out of work",
+          "Share of the population living in the countryside"
+        ],
+      hints: [
+          "Two of the twelve are worse off than they were in 2001, and both are in Africa, though probably not the two you would guess.",
+          "Nigeria more than doubles while Ethiopia more than halves, which is the reverse of what happened to their economies.",
+          "Measured as a percentage of the population, from national food supply figures and household surveys.",
+          "It counts people whose daily calories fall short of what their body needs."
+        ],
+      why: "Nigeria rising from 8.7% to 19.9% and Kenya from 31.8% to 36.8% while Ethiopia halves is the discriminator: literacy, electricity and schooling all improved in Nigeria and Kenya over the same years. Only hunger went backwards.",
+      slug: "prevalence-of-undernourishment"
+    },
+    {
+      family: "Ranking", form: "Lollipop · 2023", exhibit: "Exhibit Z",
+      type: "lollipop", diff: 4,
+      truth: "Annual hours worked per worker, 2023", period: "2023", unit: "hours a year per person in work",
+      data: [
+        ["Colombia",2471], ["Costa Rica",2177], ["Chile",1950],
+        ["South Korea",1910], ["Greece",1893], ["Poland",1807],
+        ["United States",1789], ["Turkey",1747], ["Portugal",1735],
+        ["Italy",1701], ["Ireland",1654], ["Japan",1654],
+        ["Spain",1638], ["Mexico",1629], ["United Kingdom",1523],
+        ["France",1487], ["Netherlands",1439], ["Norway",1412],
+        ["Denmark",1380], ["Germany",1335]
+      ],
+      answer: "Annual hours worked per worker",
+      decoys: [
+          "Hours of sunshine a year",
+          "Hours a year spent watching television per person",
+          "Hours a year spent on unpaid housework per adult",
+          "Hours a year spent online per person",
+          "Hours a year spent caring for children per parent",
+          "Litres of petrol used per person a year",
+          "Cups of coffee drunk per person a year"
+        ],
+      hints: [
+          "Germany sits at the bottom and Colombia at the top, with Mexico much closer to Germany than you would expect.",
+          "Ireland is above the Netherlands and Norway is near the bottom, which rules out anything to do with the weather.",
+          "Divide any of these by fifty-two and you get a plausible week. Germany's works out at about twenty-six hours.",
+          "It is time spent on the job, averaged across everyone who has one."
+        ],
+      why: "Ireland above the Netherlands and Norway near the bottom rules out sunshine, the closest-looking alternative. Colombia and Costa Rica on top with Germany and Denmark at the bottom is the OECD hours-worked pattern, which runs almost opposite to productivity.",
+      slug: "annual-working-hours-per-worker"
+    },
+    {
+      family: "Change over time", form: "Dumbbell · 1997 → 2025", exhibit: "Exhibit AA",
+      type: "dumbbell", diff: 3,
+      truth: "Share of parliamentary seats held by women, 1997 vs 2025", period: "1997 → 2025", unit: "% of seats",
+      leftYear: 1997, rightYear: 2025,
+      data: [
+        ["India",7.2,13.8], ["Japan",4.6,15.7], ["United States",11.7,28.9],
+        ["United Kingdom",18.2,40.5], ["South Africa",25.0,44.7], ["Costa Rica",14.0,49.1],
+        ["United Arab Emirates",0.0,50.0], ["Mexico",14.2,50.2], ["Bolivia",11.5,50.8],
+        ["Nicaragua",10.8,55.0], ["Cuba",22.8,55.7], ["Rwanda",17.1,63.8]
+      ],
+      answer: "Share of parliamentary seats held by women",
+      decoys: [
+          "Share of company board seats held by women",
+          "Share of doctors who are women",
+          "Share of university students who are women",
+          "Share of the workforce who are women",
+          "Share of judges who are women",
+          "Share of school teachers who are women",
+          "Share of senior civil servants who are women"
+        ],
+      hints: [
+          "One country starts at exactly zero and finishes at exactly fifty, which is what a rule looks like rather than a trend.",
+          "The leader is Rwanda, and the reason dates to what happened there in 1994.",
+          "Britain more than doubles, the United States roughly triples, and Japan still finishes below twenty percent.",
+          "It is the share of seats in the national legislature."
+        ],
+      why: "The United Arab Emirates moving from 0% to exactly 50% is a quota, not a labour market, and Rwanda leading the world at 63.8% only makes sense for elected seats. University students would put Japan and India far above 14 to 16 percent.",
+      slug: "share-of-women-in-parliament"
+    },
+    {
+      family: "Change over time", form: "Multi-line · 2013–2025", exhibit: "Exhibit AB",
+      type: "line", diff: 2,
+      truth: "Share of new cars sold that are electric, 2013–2025", period: "2013–2025", unit: "% of new car sales",
+      startYear: 2013,
+      series: [
+        { name: "Norway", values: [5.8,15,22,29,39,49,56,75,86,89,90,92,97] },
+        { name: "China", values: [0.096,0.41,1.1,1.5,2.4,4.7,5,5.7,16,29,38,48,53] },
+        { name: "United Kingdom", values: [0.16,0.59,1.1,1.4,1.9,2.6,3.2,11,18,22,23,27,35] },
+        { name: "United States", values: [0.71,0.77,0.7,0.99,1.3,2.3,2.1,2.3,4.7,7.7,9.7,10,10] },
+        { name: "India", values: [0.016,0.038,0.017,0.026,0.031,0.03,0.024,0.12,0.41,1.4,2.1,2.1,4] }
+      ],
+      answer: "Share of new cars sold that are electric",
+      decoys: [
+          "Share of households with solar panels",
+          "Share of electricity generated by wind",
+          "Share of electricity generated by solar",
+          "Share of city buses that are electric",
+          "Share of new homes built without a gas connection",
+          "Share of adults who own a bicycle",
+          "Share of new cars sold that are diesel"
+        ],
+      hints: [
+          "One line reaches ninety-seven percent. Whatever this measures, one country has essentially finished.",
+          "That country has both oil money and hydropower, and spent the first to make the second worth using.",
+          "Every line is a share of a flow rather than of a stock, which is why they climb so steeply.",
+          "It is the share of new cars sold that plug in."
+        ],
+      why: "Norway at 97% and China at 53% while the United States stalls near 10% is the new-car-sales pattern: it moves far faster than the share of cars on the road, and no national grid runs at 97% wind or solar.",
+      slug: "electric-car-sales-share"
+    },
+    {
+      family: "Deviation", form: "Diverging bar · around zero, 2024", exhibit: "Exhibit AC",
+      type: "deviation", reference: 0, diff: 3,
+      truth: "Annual population growth, 2024", period: "2024", unit: "% change over one year, against a zero line",
+      data: [
+        ["Nigeria",2.07], ["Kenya",1.94], ["Egypt",1.65],
+        ["India",0.9], ["United Kingdom",0.62], ["United States",0.55],
+        ["Brazil",0.4], ["Spain",-0.02], ["South Korea",-0.08],
+        ["China",-0.22], ["Italy",-0.31], ["Germany",-0.34],
+        ["Japan",-0.51], ["Russia",-0.53], ["Poland",-0.9]
+      ],
+      answer: "Annual population growth",
+      decoys: [
+          "Annual economic growth",
+          "Annual change in the number of people in work",
+          "Annual inflation",
+          "Annual change in electricity demand",
+          "Annual change in carbon emissions",
+          "Annual change in the number of cars on the road",
+          "Annual change in average wages"
+        ],
+      hints: [
+          "The whole chart fits inside three percentage points, which rules out anything to do with money.",
+          "Britain and the United States are above the line largely because people arrive. Poland is furthest below it.",
+          "Measured as a percentage change over a single year, against a line at zero.",
+          "It is whether there are more people at the end of the year than at the start."
+        ],
+      why: "A range of only three points, with Poland, Russia, Japan, Germany, Italy and China all negative while Nigeria and Kenya sit near two percent, is population. India's economy grew by roughly seven percent in 2024, far outside this chart.",
+      slug: "population-growth-rates"
+    },
+    {
+      family: "Part-to-whole", form: "Treemap · share of world total", exhibit: "Exhibit AD",
+      type: "treemap", diff: 1,
+      truth: "Oil production, 2025", period: "2025", unit: "share of world output",
+      total: 54015,
+      data: [
+        ["Rest of world",13877], ["United States",10350], ["Saudi Arabia",6232],
+        ["Russia",6085], ["Canada",3514], ["Iran",2816],
+        ["China",2513], ["Iraq",2496], ["Brazil",2367],
+        ["UAE",2199], ["Kuwait",1566]
+      ],
+      answer: "Oil production, 2025",
+      decoys: [
+          "Natural gas production, 2025",
+          "Coal production, 2025",
+          "Steel production, 2025",
+          "Electricity generation, 2025",
+          "Copper production, 2025",
+          "Wheat production, 2025",
+          "Car production, 2025"
+        ],
+      hints: [
+          "Kuwait is on this chart and India, Germany and Japan are not, which is unusual for anything measured by volume.",
+          "Five of the ten named blocks are in the Gulf, and Europe does not appear at all.",
+          "The United States, Saudi Arabia and Russia between them are about two fifths of the world total.",
+          "It comes out of the ground as a black liquid."
+        ],
+      why: "Kuwait, Iraq and the United Arab Emirates present while India, Germany and Japan are absent rules out coal, steel and electricity, where China alone would take more than half the square and India would rank third.",
+      slug: "oil-production-by-country"
+    },
+    {
+      family: "Part-to-whole", form: "Treemap · the twelve largest growers", exhibit: "Exhibit AE",
+      type: "treemap", diff: 3,
+      truth: "Sugar cane production, 2024", period: "2024", unit: "tonnes",
+      total: 1686700000,
+      data: [
+        ["Brazil",759662460], ["India",453158500], ["China",102094400],
+        ["Pakistan",84235450], ["Thailand",82435400], ["Mexico",53051360],
+        ["Indonesia",32000000], ["Colombia",31856922], ["Australia",29855156],
+        ["Guatemala",22907870], ["Philippines",18694654], ["South Africa",16741000]
+      ],
+      answer: "Sugar cane production, 2024",
+      decoys: [
+          "Maize production, 2024",
+          "Cassava production, 2024",
+          "Rice production, 2024",
+          "Orange production, 2024",
+          "Soybean production, 2024",
+          "Palm oil production, 2024",
+          "Cotton production, 2024"
+        ],
+      hints: [
+          "One country takes nearly half the square on its own, and Australia and Guatemala both appear despite being nothing alike.",
+          "The United States is missing entirely, which is rare for a crop measured in hundreds of millions of tonnes.",
+          "Measured in tonnes of the raw stalk, before anything has been extracted from it.",
+          "Brazil turns much of its share into fuel for cars rather than into food."
+        ],
+      why: "Brazil at 45% with India second and Thailand fifth is the cane pattern. Rice would put India and China first and second with Brazil far down the list, and maize would be led by the United States, which is absent.",
+      slug: "sugar-cane-production"
+    },
+    {
+      family: "Ranking", form: "Lollipop · highest and lowest, 2025", exhibit: "Exhibit AF",
+      type: "lollipop", diff: 5,
+      truth: "Share of land covered by forest, 2025", period: "2025", unit: "% of land area",
+      data: [
+        ["Micronesia",92.2], ["Suriname",91.4], ["Gabon",91.4],
+        ["Palau",91], ["Solomon Islands",89.8], ["Guyana",87],
+        ["Equatorial Guinea",85.8], ["Sweden",68.6], ["Japan",68.3],
+        ["Brazil",58.2], ["Russia",50.8], ["Indonesia",50.7],
+        ["United States",33.8], ["India",24.5], ["China",24.2],
+        ["Australia",17.4], ["United Kingdom",13.6], ["Ireland",12.1]
+      ],
+      answer: "Share of land covered by forest",
+      decoys: [
+          "Share of land used for farming",
+          "Share of land that is protected",
+          "Share of land more than 500 metres above sea level",
+          "Share of the population living in the countryside",
+          "Share of land that is desert",
+          "Share of land that receives more than a metre of rain",
+          "Share of electricity from renewable sources"
+        ],
+      hints: [
+          "Japan and Sweden are almost identical here, and Britain and Ireland sit at the very bottom of the rich world.",
+          "Suriname, Gabon and Guyana are near ninety percent, while Britain is near thirteen.",
+          "Measured as a percentage of land area, which is why Russia is only halfway up despite holding a fifth of the world's total.",
+          "It is how much of the country is covered by trees."
+        ],
+      why: "Ireland below the United Kingdom, and Britain at 13.6% while Japan sits at 68%, is the forest-cover pattern: both islands cleared their woodland centuries ago. Farmland would invert most of this list and put Ireland near the top.",
+      slug: "forest-area-as-share-of-land-area"
+    },
+    {
+      family: "Distribution", form: "Beeswarm · every country, 2020", exhibit: "Exhibit AG",
+      type: "beeswarm", diff: 4,
+      truth: "Average years of schooling among adults, 2020", period: "2020", unit: "years completed, adults aged 25 and over",
+      data: [["Afghanistan",5.69],["Albania",10.32],["Algeria",8.18],["Argentina",9.86],["Armenia",10.54],["Australia",12.93],["Austria",10.39],["Bahrain",8.21],["Bangladesh",7.23],["Barbados",9.67],["Belgium",11.57],["Belize",10.71],["Benin",6.27],["Bolivia",9.06],["Botswana",10.58],["Brazil",8],["Brunei",9.28],["Bulgaria",10.75],["Burundi",5.05],["Cambodia",5.81],["Cameroon",7.37],["Canada",12.93],["Central African Republic",4.64],["Chile",10.74],["China",8.99],["Colombia",10.2],["Congo",6.74],["Costa Rica",9.12],["Cote d'Ivoire",6.05],["Croatia",12.03],["Cuba",11.61],["Cyprus",12.42],["Czechia",12.93],["Democratic Republic of Congo",4.85],["Denmark",11.69],["Dominican Republic",9.04],["Ecuador",9.07],["Egypt",8.01],["El Salvador",8.1],["Estonia",12.29],["Eswatini",6.46],["Fiji",11.52],["Finland",11.05],["France",11.89],["Gabon",10.18],["Gambia",4.92],["Germany",13.1],["Ghana",8.39],["Greece",11.86],["Guatemala",6.26],["Guyana",8.52],["Haiti",5.95],["Honduras",7.51],["Hungary",11.96],["Iceland",13.53],["India",7.8],["Indonesia",9.06],["Iran",9.8],["Iraq",8.27],["Ireland",13.74],["Israel",12.04],["Italy",11.51],["Jamaica",10.1],["Japan",12.83],["Jordan",10.81],["Kazakhstan",11.79],["Kenya",6.73],["Kuwait",6.62],["Kyrgyzstan",11.18],["Laos",6.05],["Latvia",11.96],["Lesotho",6.88],["Liberia",5.8],["Libya",9.57],["Lithuania",12.5],["Luxembourg",11.53],["Malawi",5.41],["Malaysia",11.96],["Maldives",8.06],["Mali",3.55],["Malta",12.09],["Mauritania",5.55],["Mauritius",10.4],["Mexico",10.18],["Moldova",10.84],["Mongolia",10],["Morocco",6.83],["Mozambique",4.22],["Myanmar",6.48],["Namibia",6.88],["Nepal",6.19],["Netherlands",11.82],["New Zealand",10.81],["Nicaragua",7.76],["Niger",3.04],["Norway",12.08],["Pakistan",6.41],["Panama",10.44],["Papua New Guinea",4.84],["Paraguay",8.83],["Peru",9.96],["Philippines",9.44],["Poland",12.01],["Portugal",9.56],["Qatar",8.52],["Romania",11.28],["Russia",11.6],["Rwanda",5.24],["Saudi Arabia",9.86],["Senegal",4.4],["Serbia",11.72],["Sierra Leone",4.99],["Singapore",13.06],["Slovakia",13.14],["Slovenia",12.06],["South Africa",10.47],["South Korea",13.68],["Spain",11.51],["Sri Lanka",10.33],["Sudan",4.38],["Sweden",11.93],["Switzerland",12.97],["Syria",7.92],["Taiwan",12.76],["Tajikistan",10.12],["Tanzania",6.87],["Thailand",9.32],["Togo",7.68],["Tonga",11.42],["Trinidad and Tobago",11.28],["Tunisia",9.29],["Turkey",8.49],["Uganda",6.69],["Ukraine",10.82],["United Arab Emirates",9.57],["United Kingdom",12.9],["United States",13.32],["Uruguay",8.76],["Venezuela",9.33],["Vietnam",8.35],["Yemen",5.56],["Zambia",8.37],["Zimbabwe",8.32]],
+      label: ["Niger", "Mali", "India", "Brazil", "China", "Japan", "United Kingdom", "United States", "Ireland"],
+      labelSm: ["Niger", "India", "China", "United Kingdom", "Ireland"],
+      answer: "Average years of schooling among adults",
+      decoys: [
+          "Average number of people living in one household",
+          "Average number of hours worked a day",
+          "Average number of doctors per 10,000 people",
+          "Average number of years spent retired",
+          "Average number of children born per woman",
+          "Average number of rooms in a home",
+          "Average number of years lived after the age of 65"
+        ],
+      hints: [
+          "The order runs almost exactly with national income, and the very top is Ireland, South Korea and Iceland rather than the usual large countries.",
+          "Nothing is above fourteen and nothing is below three. Whatever this counts, there is a ceiling on how much of it anyone will do.",
+          "Measured among adults aged twenty-five and over, so it lags what today's children are doing by decades.",
+          "It is counted in years, and for most people it starts at about the age of five."
+        ],
+      why: "A hard ceiling near 14 with Ireland, South Korea and Germany on top and Niger and Mali near 3 is schooling. Children per woman runs in exactly the opposite direction, with Niger highest and Ireland low.",
+      slug: "mean-years-of-schooling-long-run"
+    },
+    {
+      family: "Change over time", form: "Dumbbell · 1990 → 2024", exhibit: "Exhibit AH",
+      type: "dumbbell", diff: 3,
+      truth: "Carbon dioxide emitted per person, 1990 vs 2024", period: "1990 → 2024", unit: "tonnes per person a year",
+      leftYear: 1990, rightYear: 2024,
+      data: [
+        ["Ethiopia",0.06,0.14], ["Nigeria",0.4,0.58], ["India",0.67,2.2],
+        ["Brazil",1.47,2.28], ["United Kingdom",10.49,4.53], ["Germany",13.23,6.77],
+        ["Japan",9.36,7.77], ["China",2.15,8.66], ["United States",20.25,14.2],
+        ["Australia",16.24,14.48], ["Saudi Arabia",17.1,20.38], ["Qatar",25.96,41.27]
+      ],
+      answer: "Carbon dioxide emitted per person",
+      decoys: [
+          "Kilowatt-hours of electricity used per person each day",
+          "Litres of petrol burned per person each week",
+          "Kilograms of household waste thrown away per person each week",
+          "Kilograms of plastic used per person each month",
+          "Kilograms of meat eaten per person each month",
+          "Cubic metres of water used per person each week",
+          "Kilograms of steel used per person each month"
+        ],
+      hints: [
+          "Britain and Germany both roughly halve, which is not something rich countries usually do to their own consumption of anything.",
+          "Qatar's figure is nearly three hundred times Ethiopia's, and unlike most of the rich world it went up.",
+          "Measured in tonnes, per person, per year.",
+          "It is the greenhouse gas, divided by the population."
+        ],
+      why: "Britain halving from 10.5 to 4.5 while China quadruples is the emissions story, and it happened because Britain closed its coal power stations. Electricity or petrol use per person did not halve in Britain over the same period.",
+      slug: "co-emissions-per-capita"
+    },
+    {
+      family: "Change over time", form: "Dumbbell · 1990 → 2025", exhibit: "Exhibit AI",
+      type: "dumbbell", diff: 2,
+      truth: "Share of people living in extreme poverty, 1990 vs 2025", period: "1990 → 2025", unit: "% below the international poverty line",
+      leftYear: 1990, rightYear: 2025,
+      data: [
+        ["China",83.1,0.0], ["Vietnam",57.5,1.6], ["Nepal",71.1,2.4],
+        ["Brazil",30.3,3.0], ["Indonesia",78.6,4.0], ["India",47.5,5.3],
+        ["Bangladesh",51.2,5.9], ["Pakistan",79.5,23.0], ["Ethiopia",73.5,38.6],
+        ["Nigeria",55.2,41.8], ["Kenya",32.0,45.5], ["Zambia",63.0,71.7]
+      ],
+      answer: "Share of people living in extreme poverty",
+      decoys: [
+          "Share of the population without electricity",
+          "Share of adults who cannot read or write",
+          "Share of the population living in the countryside",
+          "Share of the workforce employed in farming",
+          "Share of children not in school",
+          "Share of the population without a mobile phone",
+          "Share of the population aged under fifteen"
+        ],
+      hints: [
+          "One country goes from more than four fifths to effectively nothing in thirty-five years, and it is the largest on the chart.",
+          "Two countries move backwards, and both are in Africa. One of them is worse off today than it was in 1990.",
+          "Measured as a percentage of the population, against a line that is the same everywhere once local prices are adjusted for.",
+          "The line is a few dollars a day."
+        ],
+      why: "China falling to effectively zero while Zambia rises from 63% to 72% is the poverty pattern. Rural population and the share aged under fifteen never collapse to zero, and no measure of literacy went backwards in Kenya over these years.",
+      slug: "share-of-population-in-extreme-poverty"
     }
   ];
 
-  /* Fifteen puzzles, dealt into three runs of five. Each run climbs in intrinsic
-     difficulty so it rises with the option count, and no two neighbouring charts
-     share a form. */
+  /* Thirty-five puzzles, dealt into seven runs of five, so the game runs a full
+     week before anything repeats. Each run climbs in intrinsic difficulty so it
+     rises with the option count, no two neighbouring charts share a form, and no
+     run leans on one form more than twice. */
   var RUNS = [
-    [5, 0, 2, 12, 3],
-    [6, 7, 11, 1, 10],
-    [14, 4, 8, 9, 13]
+    [7, 8, 28, 3, 31],
+    [5, 2, 9, 12, 19],
+    [16, 23, 21, 26, 10],
+    [17, 1, 30, 33, 13],
+    [0, 14, 27, 32, 24],
+    [29, 4, 6, 20, 22],
+    [34, 11, 15, 18, 25]
   ];
 
   /* The run gets harder as it goes: four options on the first chart, eight on the
@@ -1899,20 +2491,31 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   var todayRun = Math.max(1, Math.floor((startOfDay(new Date()) - startOfDay(LAUNCH)) / 86400000) + 1);
   var runNo = todayRun;
 
-  /* Extra runs played in one sitting are practice: they must not inflate the
-     shared run number, or one player's "Run #4" means nothing to another's. */
-  var practice = false;
+  /* One run a day, and today's result is final. Fifteen puzzles only stretch to
+     three days, so letting people burn through all of them in one sitting made
+     the game shorter, not longer. */
+  var finishedToday = false;
 
   /* A daily game gets played on a phone, which means it gets interrupted — a
      call, a discarded tab, a locked screen. Losing four solved charts to that is
      the kind of thing that stops someone coming back, so the run is checkpointed
      after every meaningful action and restored if it belongs to the same day. */
   var PROG = "mysterychart.progress";
+  var DONE = "mysterychart.done";
+
+  function saveDone() {
+    try {
+      localStorage.setItem(DONE, JSON.stringify({ runNo: runNo, results: results }));
+    } catch (e) { /* fine */ }
+  }
+  function readDone() {
+    try {
+      var v = JSON.parse(localStorage.getItem(DONE));
+      return (v && v.runNo === todayRun && v.results && v.results.length) ? v : null;
+    } catch (e) { return null; }
+  }
 
   function saveProgress() {
-    /* Practice runs are throwaway. Checkpointing one would overwrite a half
-       finished daily run that the player still wants to come back to. */
-    if (practice) return;
     var wrongPicks = [];
     Array.prototype.forEach.call($("options").children, function (b, j) {
       if (b.classList.contains("is-wrong")) wrongPicks.push(j);
@@ -1990,7 +2593,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 
     $("pnum").textContent = idx + 1;
     $("ptotal").textContent = ACTIVE.length;
-    $("runlabel").textContent = practice ? "Practice" : "Run #" + runNo;
+    $("runlabel").textContent = "Run #" + runNo;
     drawProgress();
     $("period").textContent = p.period || "";
     $("truth").textContent = p.truth;
@@ -2196,8 +2799,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     var grid = results.map(function (r) {
       return markFor(r);
     }).join("");
-    var lines = [(practice ? "Mystery Chart practice · " : "Mystery Chart #" + runNo + " · ")
-                 + t.total + "/" + RUN_MAX, grid];
+    var lines = ["Mystery Chart #" + runNo + " · " + t.total + "/" + RUN_MAX, grid];
     if (t.perfect) lines[1] += "  perfect run";
     var stats = loadStats();
     if (stats.streak > 1) lines.push("🔥 " + stats.streak + "-day streak");
@@ -2205,11 +2807,13 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return lines.join("\n");
   }
 
-  function showResults() {
+  function showResults(replaying) {
     var t = runTotals();
+    finishedToday = true;
+    if (!replaying) { saveDone(); }
 
     var stats = loadStats();
-    if (!practice && stats.lastRun !== runNo) {
+    if (stats.lastRun !== runNo) {
       stats.streak = (stats.lastRun === runNo - 1) ? (stats.streak || 0) + 1 : 1;
       stats.lastRun = runNo;
       stats.best = Math.max(stats.best || 0, t.total);
@@ -2217,14 +2821,14 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       saveStats(stats);
     }
 
-    var band = t.total >= 600 ? "600" : (Math.floor(t.total / 100) * 100) + "s";
-    track("play/complete", "Run completed");
-    track("score/" + band, "Score " + band);
+    if (!replaying) {
+      var band = t.total >= 600 ? "600" : (Math.floor(t.total / 100) * 100) + "s";
+      track("play/complete", "Run completed");
+      track("score/" + band, "Score " + band);
+    }
 
     $("game").style.display = "none";
-    $("results-head").textContent = practice
-      ? "Mystery Chart · practice run complete"
-      : "Mystery Chart · run #" + runNo + " complete";
+    $("results-head").textContent = "Mystery Chart · run #" + runNo + " complete";
     $("score-total").textContent = t.total;
     $("score-max").textContent = "/ " + RUN_MAX + (t.perfect ? " + " + PERFECT_BONUS + " perfect-run bonus" : "");
 
@@ -2253,15 +2857,8 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   /* Shown on a first visit, and on demand from the ? button. A returning player
      shouldn't have to dismiss the rules every day, but should always be able to
      get them back. */
-  var SEEN = "mysterychart.seen";
-  function hasPlayedBefore() {
-    try { return !!localStorage.getItem(SEEN); } catch (e) { return false; }
-  }
-  function markPlayed() {
-    try { localStorage.setItem(SEEN, "1"); } catch (e) { /* fine */ }
-  }
-
-  function showIntro() {
+  function showIntro(label) {
+    if (label) $("start").textContent = label;
     $("intro").classList.add("show");
     $("game").style.display = "none";
     $("results").style.display = "none";
@@ -2269,17 +2866,16 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   }
   function hideIntro() {
     $("intro").classList.remove("show");
+    if (finishedToday) { $("results").style.display = "flex"; return; }
     $("game").style.display = "flex";
-    markPlayed();
     renderChart();
     track("play/start", "Run started");
   }
 
   $("start").addEventListener("click", hideIntro);
   $("help").addEventListener("click", function () {
-    $("start").textContent = (idx > 0 || wrong > 0 || revealed > 0 || done)
-      ? "Back to the chart" : "Start today's run";
-    showIntro();
+    showIntro((idx > 0 || wrong > 0 || revealed > 0 || done)
+      ? "Back to the chart" : "Start today's run");
   });
 
   /* Keyboard: 1-8 or A-H picks an option, "?" buys a hint, Enter advances. */
@@ -2337,30 +2933,29 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 
   /* "Next run" rather than "replay": with fifteen puzzles there are three runs,
      so Tim can play a proper stretch in one sitting rather than waiting a day. */
-  $("replay").addEventListener("click", function () {
-    practice = true;
-    runNo++;
-    loadRun(runNo);
-    clearProgress();
-    idx = 0; results = [];
-    $("results").style.display = "none";
-    $("game").style.display = "flex";
-    render();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
 
-  var saved = readProgress();
-  if (saved) {
-    restoreProgress(saved);
-    $("intro").classList.remove("show");
-    $("game").style.display = "flex";
-    renderChart();
-  } else {
+  var done = readDone();
+  var label = "Start today's run";
+  if (done) {
+    results = done.results;
     render();
-    if (hasPlayedBefore()) { $("game").style.display = "flex"; renderChart(); }
-    else showIntro();
+    showResults(true);
+    $("results").style.display = "none";
+    label = "See today's result";
+  } else {
+    var saved = readProgress();
+    if (saved) {
+      restoreProgress(saved);
+      if (saved.idx > 0 || (saved.cur && (saved.cur.revealed || (saved.cur.wrongPicks || []).length))) {
+        label = "Continue today's run";
+      }
+    } else {
+      render();
+    }
   }
+  showIntro(label);
 })();
 </script>
+<noscript><p style="font-family:system-ui,sans-serif;max-width:32rem;margin:4rem auto;padding:0 1.25rem;line-height:1.6">Mystery Chart draws its charts in the browser, so it needs JavaScript switched on.</p></noscript>
 </body>
 </html>
