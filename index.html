@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mystery Chart — coming soon</title>
+<meta name="description" content="Mystery Chart — a daily chart-guessing game. Five real charts a day, titles blacked out. Coming soon.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%2312161C'/><rect x='18' y='42' width='64' height='16' rx='3' fill='%23EFEEE9'/></svg>">
+<style>
+  :root {
+    color-scheme: light;
+    --plane: #EFEEE9;
+    --ink:   #12161C;
+    --ink-2: #4A5058;
+    --muted: #878C93;
+    --rule:  #DCDAD2;
+    --accent:#A2650F;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --plane: #0C0E11;
+      --ink:   #F2F1ED;
+      --ink-2: #AEB3BA;
+      --muted: #7E838B;
+      --rule:  #2A2E35;
+      --accent:#E0A344;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--plane);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    display: grid;
+    place-items: center;
+    padding: 32px;
+  }
+  main { max-width: 30rem; display: flex; flex-direction: column; gap: 20px; }
+  .eyebrow {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin: 0;
+  }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    font-size: clamp(2rem, 8vw, 2.9rem);
+    line-height: 1.05; letter-spacing: -0.015em;
+    margin: 0; text-wrap: balance;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .bar {
+    display: inline-flex; align-items: center;
+    background: var(--ink); color: var(--plane);
+    border-radius: 2px; padding: 4px 12px;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 10px; letter-spacing: 0.34em;
+    align-self: flex-start;
+  }
+  p.body { margin: 0; color: var(--ink-2); line-height: 1.6; }
+  footer {
+    margin-top: 8px; padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 11px; color: var(--muted); line-height: 1.7;
+  }
+  footer a { color: var(--muted); text-underline-offset: 3px; }
+</style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Mystery Chart · coming soon</p>
+    <h1>The chart is real.<br>Its title is <em>blacked out</em>.</h1>
+    <span class="bar">CLASSIFIED</span>
+    <p class="body">A daily guessing game. Five real charts a day, built from live public data, with the one label that tells you what you're looking at taken away. Read the evidence, name the subject.</p>
+    <footer>
+      Under construction.<br>
+      Data from <a href="https://ourworldindata.org" rel="noopener">Our World in Data</a>, CC&nbsp;BY&nbsp;4.0.
+    </footer>
+  </main>
+</body>
+</html>
