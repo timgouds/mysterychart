@@ -507,14 +507,14 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       </li>
       <li>
         <b>The harder charts are worth more.</b>
-        <span>Naming a chart straight away scores 100 on the first, and triple that on the last. Every mistake or hint costs you. All five first time earns a bonus, for 1,200 out of a possible 1,000. There's no clock: this rewards reading carefully, not clicking fast.</span>
+        <span>Naming a chart straight away scores 100 on the first, and triple that on the last. Every mistake or hint costs you. Getting all five first time adds a 200-point bonus on top of the 1,000, for a perfect 1,200. There's no clock: this rewards reading carefully, not clicking fast.</span>
       </li>
     </ol>
 
     <div class="controls">
       <button class="btn" id="start">Start today's run</button>
     </div>
-    <p class="score-note">Data from Our World in Data, CC BY 4.0. No cookies, no accounts, no sign-in. Anonymous counts only.</p>
+    <p class="score-note">Data from Our World in Data, CC BY 4.0. No cookies, no accounts, no sign-in. Anonymous counts only. <span id="build"></span></p>
   </section>
 
   <div id="game" class="game">
@@ -601,10 +601,10 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       unit: "tonnes",
       total: 5223191,
       data: [
-        ["Côte d'Ivoire", 1890442], ["Indonesia", 632702], ["Ghana", 530000],
-        ["Ecuador", 403699], ["Nigeria", 350000], ["Cameroon", 320000],
-        ["Brazil", 297509], ["Peru", 157253], ["Sierra Leone", 93750],
-        ["Colombia", 67678], ["Rest of world", 480159]
+        ["Côte d'Ivoire",1890442], ["Indonesia",632702], ["Ghana",530000],
+        ["Rest of world",480159], ["Ecuador",403699], ["Nigeria",350000],
+        ["Cameroon",320000], ["Brazil",297509], ["Peru",157253],
+        ["Sierra Leone",93750], ["Colombia",67678]
       ],
       answer: "Cocoa bean production, 2024",
       decoys: [
@@ -810,10 +810,13 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       type: "treemap", diff: 2,
       truth: "Wine production, 2023", period: "2023", unit: "tonnes",
       total: 22897819,
-      data: [["France",4762507],["Italy",4249948],["Spain",2849589],["United States",2083125],
-             ["China",1761139],["Chile",1103023],["Australia",964000],["South Africa",922185],
-             ["Argentina",881305],["Portugal",737257],["Russia",481907],["Germany",472196],
-             ["Rest of world",1629638]],
+      data: [
+        ["France",4762507], ["Italy",4249948], ["Spain",2849589],
+        ["United States",2083125], ["China",1761139], ["Rest of world",1629638],
+        ["Chile",1103023], ["Australia",964000], ["South Africa",922185],
+        ["Argentina",881305], ["Portugal",737257], ["Russia",481907],
+        ["Germany",472196]
+      ],
       answer: "Wine production, 2023",
       decoys: [
         "Olive oil production, 2023",
@@ -1133,11 +1136,11 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       truth: "Share of the world's forest area, 2025", period: "2025", unit: "% of the world total",
       total: 100,
       data: [
-        ["Russia",20.11], ["Brazil",11.74], ["Canada",8.91],
-        ["United States",7.46], ["China",5.49], ["DR Congo",3.36],
-        ["Australia",3.23], ["Indonesia",2.32], ["India",1.76],
-        ["Peru",1.62], ["Mexico",1.6], ["Angola",1.53],
-        ["Rest of world",30.87]
+        ["Rest of world",30.87], ["Russia",20.11], ["Brazil",11.74],
+        ["Canada",8.91], ["United States",7.46], ["China",5.49],
+        ["DR Congo",3.36], ["Australia",3.23], ["Indonesia",2.32],
+        ["India",1.76], ["Peru",1.62], ["Mexico",1.6],
+        ["Angola",1.53]
       ],
       answer: "Share of the world's forest area",
       decoys: [
@@ -1460,15 +1463,14 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       slug: "oil-production-by-country"
     },
     {
-      family: "Part-to-whole", form: "Treemap · the twelve largest growers", exhibit: "Exhibit AE",
+      family: "Part-to-whole", form: "Treemap · the eight largest growers", exhibit: "Exhibit AE",
       type: "treemap", diff: 3,
       truth: "Sugar cane production, 2024", period: "2024", unit: "tonnes",
-      total: 1686700000,
+      total: 1598494492,
       data: [
         ["Brazil",759662460], ["India",453158500], ["China",102094400],
         ["Pakistan",84235450], ["Thailand",82435400], ["Mexico",53051360],
-        ["Indonesia",32000000], ["Colombia",31856922], ["Australia",29855156],
-        ["Guatemala",22907870], ["Philippines",18694654], ["South Africa",16741000]
+        ["Indonesia",32000000], ["Colombia",31856922]
       ],
       answer: "Sugar cane production, 2024",
       decoys: [
@@ -1481,12 +1483,12 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
           "Cotton production, 2024"
         ],
       hints: [
-          "One country takes nearly half the square on its own, and Australia and Guatemala both appear despite being nothing alike.",
+          "Two countries take three quarters of the square between them, and no European country appears at all.",
           "The United States is missing entirely, which is rare for a crop measured in hundreds of millions of tonnes.",
           "Measured in tonnes of the raw stalk, before anything has been extracted from it.",
           "Brazil turns much of its share into fuel for cars rather than into food."
         ],
-      why: "Brazil at 45% with India second and Thailand fifth is the cane pattern. Rice would put India and China first and second with Brazil far down the list, and maize would be led by the United States, which is absent.",
+      why: "Brazil at nearly half with India second and Thailand fifth is the cane pattern. Rice would put India and China first and second with Brazil far down the list, and maize would be led by the United States, which is absent.",
       slug: "sugar-cane-production"
     },
     {
@@ -1792,7 +1794,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   }
 
   function drawTreemap(p) {
-    var m = metrics(), W = m.W, H = m.compact ? 400 : 420;
+    var m = metrics(), W = m.W, H = m.compact ? 470 : 420;
     var total = p.total;
     var nodes = p.data.map(function (d, i) {
       return { name: d[0], value: d[1], rank: i };
@@ -1826,17 +1828,46 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
         '"></span>' + c.d.name + " &nbsp;<b>" + fmt(c.d.value) + "</b> · " + pct.toFixed(1) + "%</div>");
       g.appendChild(rect);
 
-      // direct labels where the block can hold them; ink flips on the pale steps
-      if (c.w > (m.compact ? 62 : 74) && c.h > (m.compact ? 30 : 34)) {
-        var ink = "var(--tm-ink)";
-        g.appendChild(txt(el("text", {
-          x: (c.x + 11).toFixed(1), y: (c.y + 22).toFixed(1),
-          fill: ink, "font-size": c.w > 190 ? "15" : (m.compact ? "11.5" : "12.5"),
-          "font-family": SANS, "font-weight": "500"
-        }), c.d.name));
-        if (c.h > (m.compact ? 46 : 52)) {
+      /* Direct labels where the block can hold them. On a phone the smaller
+         blocks are narrow rather than short, so the type steps down and the name
+         is clipped to what fits rather than dropped altogether: a tile reading
+         "Indonesi..." is evidence, and a blank tile is not. Below about eight
+         legible characters even that stops being worth it, and the block is left
+         plain. Ink flips on the pale steps. */
+      var pad = m.compact ? 7 : 11;
+      var fs = c.w > 190 ? 15 : (c.w > (m.compact ? 104 : 130) ? (m.compact ? 11.5 : 12.5) : 10);
+      var room = Math.floor((c.w - pad * 2) / (fs * 0.56));
+      var name = c.d.name.length > room
+        ? (room >= 6 ? c.d.name.slice(0, room - 1) + "\u2026" : "")
+        : c.d.name;
+      /* A tall, narrow sliver has room for the name down its side rather than
+         across it. Turning the label is how a newspaper handles the same block,
+         and it is the difference between a labelled tile and an anonymous one. */
+      if (!name && c.h > 62 && c.w > 15) {
+        var vRoom = Math.floor((c.h - 16) / (10 * 0.56));
+        var vName = c.d.name.length > vRoom
+          ? (vRoom >= 6 ? c.d.name.slice(0, vRoom - 1) + "\u2026" : "")
+          : c.d.name;
+        if (vName) {
+          var vx = (c.x + c.w / 2 + 3.5).toFixed(1), vy = (c.y + c.h - 8).toFixed(1);
           g.appendChild(txt(el("text", {
-            x: (c.x + 11).toFixed(1), y: (c.y + 40).toFixed(1),
+            x: vx, y: vy, fill: "var(--tm-ink)", "font-size": "10",
+            "font-family": SANS, "font-weight": "500",
+            transform: "rotate(-90 " + vx + " " + vy + ")"
+          }), vName));
+        }
+      }
+      if (name && c.h > (m.compact ? 20 : 26)) {
+        var ink = "var(--tm-ink)";
+        var baseline = c.h > 34 ? 22 : 14;
+        g.appendChild(txt(el("text", {
+          x: (c.x + pad).toFixed(1), y: (c.y + baseline).toFixed(1),
+          fill: ink, "font-size": String(fs),
+          "font-family": SANS, "font-weight": "500"
+        }), name));
+        if (c.h > (m.compact ? 44 : 52)) {
+          g.appendChild(txt(el("text", {
+            x: (c.x + pad).toFixed(1), y: (c.y + baseline + 18).toFixed(1),
             fill: ink, "font-size": "11.5", "font-family": MONO, opacity: "0.78"
           }), pct.toFixed(1) + "%"));
         }
@@ -2481,7 +2512,13 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      "Run #1", and the number climbs by one a day from there. Leave it in the past
      and your first players will open the game on Run #47, which means nothing to
      anyone. Format: year, month (January is 0), day.                          */
-  var LAUNCH = new Date(2026, 7, 27);     // Thursday 27 August 2026
+  var LAUNCH = new Date(2026, 7, 26);     // Wednesday 26 August 2026
+
+  /* A build stamp, printed small on the home screen. It exists so you can tell at
+     a glance which version a browser is actually showing you: GitHub Pages and the
+     browser cache will both happily serve yesterday's file. Bump the date whenever
+     you upload a new one. The chart count is counted, not typed, so it cannot lie. */
+  var BUILD = "27 Aug 2026";
   /* ================================================== */
 
   /* The run number comes from the player's OWN local date, like Wordle. Someone
@@ -2952,6 +2989,9 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     } else {
       render();
     }
+  }
+  if ($("build")) {
+    $("build").textContent = "Build " + BUILD + " \u00b7 " + PUZZLES.length + " charts.";
   }
   showIntro(label);
 })();
