@@ -43,8 +43,8 @@
 
   --r1: #003e8b; --r2: #0052b4; --r3: #0067df;
 
-  --past:  #0077fe;
-  --now:   #003e8b;
+  --past:  #d81e2c;
+  --now:   #0a63d6;
 
   --grid: #E8EAED;
   --axis: #C6CACE;
@@ -71,8 +71,8 @@
   
     --r1: #c0d9ff; --r2: #95c0ff; --r3: #68a5ff;
   
-    --past:  #0077fe;
-    --now:   #c0d9ff;
+    --past:  #ff8a8a;
+    --now:   #3b82f6;
   
     --grid: #2A2A2C;
     --axis: #3A3A3C;
@@ -99,8 +99,8 @@
 
   --r1: #c0d9ff; --r2: #95c0ff; --r3: #68a5ff;
 
-  --past:  #0077fe;
-  --now:   #c0d9ff;
+  --past:  #ff8a8a;
+  --now:   #3b82f6;
 
   --grid: #2A2A2C;
   --axis: #3A3A3C;
@@ -344,6 +344,28 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 
 .game { display: flex; flex-direction: column; gap: 28px; }
 
+/* The chart is evidence and the options are the question about it, so on a
+   narrow screen they stack and you scroll between them. That scroll is the
+   whole friction: you cannot look at Ireland's dot and read option C at the
+   same time. Above 68rem there is room to put them side by side, and the
+   chart sticks so it stays under your eye while you work down the list.
+   Below that the three wrappers dissolve with display: contents, and the
+   layout is byte-for-byte what it was before. */
+.play, .play-chart, .play-ask { display: contents; }
+
+@media (min-width: 68rem) {
+  .wrap { max-width: 1180px; }
+  .play {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 24rem);
+    gap: 34px;
+    align-items: start;
+  }
+  .play-chart, .play-ask { display: flex; flex-direction: column; gap: 22px; }
+  .play-chart { position: sticky; top: 24px; }
+  .outcome .why { max-width: none; }
+}
+
 .progress { display: flex; gap: 6px; margin-top: 4px; }
 .pip {
   width: 34px; height: 5px; border-radius: 3px;
@@ -499,7 +521,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       </li>
       <li>
         <b>It gets harder as you go.</b>
-        <span>Chart one offers four options. Chart two, five. By the last chart there are eight, and the wrong ones are chosen to be tempting.</span>
+        <span>The first three charts offer four options each, but the charts themselves get harder. The last two offer six, and the wrong ones are chosen to be tempting.</span>
       </li>
       <li>
         <b>Wrong answers buy hints.</b>
@@ -529,6 +551,9 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   </header>
   <div class="progress" id="progress" aria-label="Run progress"></div>
 
+  <div class="play">
+  <div class="play-chart">
+
   <section class="doc">
     <div class="redaction" id="redaction">
       <span class="truth" id="truth"></span>
@@ -537,6 +562,9 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     <div class="chart-frame" id="chart"></div>
     <p class="period" id="period"></p>
   </section>
+
+  </div>
+  <div class="play-ask">
 
   <div class="prompt-row">
     <div>
@@ -560,6 +588,9 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       <button class="btn" id="next">Next chart</button>
     </div>
   </section>
+
+  </div>
+  </div>
 
   </div>
 
@@ -916,6 +947,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       family: "Ranking", form: "Lollipop · highest and lowest, 2024", exhibit: "Exhibit L",
       type: "lollipop", diff: 3, breakAfter: 10,
       truth: "Share of adults who are obese, 2024", period: "2024", unit: "% of adults",
+      suffix: "%",
       data: [["Tonga",72.3],["Nauru",71.4],["Tuvalu",64.7],["Samoa",63.2],["Bahamas",48.4],
              ["Saint Kitts and Nevis",47.9],["Micronesia",46.8],["Kiribati",45.3],
              ["Egypt",42.8],["Qatar",42.4],
@@ -1018,6 +1050,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       family: "Distribution", form: "Beeswarm · every country, 2022", exhibit: "Exhibit P",
       type: "beeswarm", diff: 3,
       truth: "Share of adults who smoke, 2022", period: "2022", unit: "% of adults aged 15 and over",
+      suffix: "%",
       data: [["Afghanistan",22.9],["Albania",22.3],["Algeria",22.1],["Andorra",35.4],["Argentina",24.3],["Armenia",26.6],["Australia",12.4],["Austria",25.3],["Azerbaijan",19.3],["Bahamas",17],["Bahrain",15.7],["Bangladesh",33.3],["Belarus",30.2],["Belgium",24],["Belize",8.8],["Benin",7.8],["Bhutan",20.2],["Bolivia",13],["Bosnia and Herzegovina",37.6],["Botswana",18.8],["Brazil",12.5],["Brunei",14.7],["Bulgaria",39.1],["Burkina Faso",12.5],["Burundi",10.9],["Cambodia",19.7],["Cameroon",6.1],["Canada",12.1],["Cape Verde",11],["Chad",7.7],["Chile",27.9],["China",23.1],["Colombia",8.3],["Comoros",10.2],["Congo",15.5],["Costa Rica",8.4],["Cote d'Ivoire",8],["Croatia",34.5],["Cuba",17.3],["Cyprus",32.8],["Czechia",28.8],["Democratic Republic of Congo",12.7],["Denmark",17],["East Timor",48.6],["Ecuador",10.4],["Egypt",24.4],["El Salvador",8.6],["Estonia",27.5],["Eswatini",11.4],["Ethiopia",5.3],["Fiji",26.4],["Finland",22.4],["France",33.7],["Gabon",13.3],["Gambia",11.7],["Georgia",32.8],["Germany",22.8],["Ghana",3.5],["Greece",31.5],["Guatemala",11.4],["Guinea-Bissau",8.6],["Guyana",12.5],["Haiti",8.2],["Honduras",12.4],["Hungary",31.3],["Iceland",10.2],["India",24.4],["Indonesia",31.2],["Iran",12.5],["Iraq",20.2],["Ireland",19.2],["Israel",21.8],["Italy",22.7],["Jamaica",11.9],["Japan",18.5],["Jordan",33.8],["Kazakhstan",22.1],["Kenya",10.2],["Kiribati",39.7],["Kuwait",19.3],["Kyrgyzstan",23],["Laos",26.8],["Latvia",35.3],["Lebanon",45.6],["Lesotho",27.7],["Liberia",5.8],["Libya",24.8],["Lithuania",32.3],["Luxembourg",24.7],["Madagascar",26.8],["Malawi",9.6],["Malaysia",17.4],["Maldives",26.6],["Mali",7.9],["Malta",25],["Marshall Islands",29.6],["Mauritania",10.4],["Mauritius",18.2],["Mexico",16.1],["Moldova",28.3],["Mongolia",29.9],["Montenegro",37.1],["Morocco",13],["Mozambique",11.5],["Myanmar",44.5],["Nauru",36.6],["Nepal",30.4],["Netherlands",21.4],["New Zealand",10.3],["Niger",7.5],["Nigeria",3.3],["North Korea",16.4],["North Macedonia",39.6],["Norway",14.4],["Oman",8.4],["Pakistan",19],["Palau",23.5],["Palestine",34.8],["Panama",5.3],["Papua New Guinea",40.5],["Paraguay",7.3],["Peru",13.4],["Philippines",20.9],["Poland",22.8],["Portugal",28],["Qatar",12.5],["Romania",30.4],["Russia",27.8],["Rwanda",11.6],["Saint Lucia",14.2],["Samoa",24.1],["Sao Tome and Principe",8.1],["Saudi Arabia",14.7],["Senegal",5.9],["Serbia",39.6],["Seychelles",17.8],["Sierra Leone",12.7],["Singapore",14.1],["Slovakia",29.6],["Slovenia",21.2],["Solomon Islands",38.6],["South Africa",23.5],["South Korea",19.6],["Spain",28.1],["Sri Lanka",21.3],["Sweden",21.8],["Switzerland",23.6],["Tanzania",8.6],["Thailand",18.4],["Togo",6.3],["Tonga",32],["Tunisia",25.2],["Turkey",31.1],["Turkmenistan",5.8],["Tuvalu",34.3],["Uganda",8.3],["Ukraine",24.9],["United Arab Emirates",9.4],["United Kingdom",14],["United States",17],["Uruguay",20.3],["Uzbekistan",17],["Vanuatu",25],["Vietnam",21.7],["Zambia",14.6],["Zimbabwe",11.6]],
       label: ["Nigeria", "Ghana", "Australia", "United Kingdom", "United States", "Japan", "Indonesia", "France", "East Timor"],
       labelSm: ["Nigeria", "United Kingdom", "Japan", "France", "East Timor"],
@@ -1044,6 +1077,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       family: "Change over time", form: "Dumbbell · 1960 → 2025", exhibit: "Exhibit Q",
       type: "dumbbell", diff: 2,
       truth: "Share of the population living in towns and cities, 1960 vs 2025", period: "1960 → 2025", unit: "% of the population",
+      suffix: "%",
       leftYear: 1960, rightYear: 2025,
       data: [
         ["Ethiopia",7.1,24.1], ["India",17.9,35.7], ["Egypt",37.8,42.9],
@@ -1074,6 +1108,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       family: "Change over time", form: "Dumbbell · 2000 → 2024", exhibit: "Exhibit R",
       type: "dumbbell", diff: 2,
       truth: "Share of people with electricity at home, 2000 vs 2024", period: "2000 → 2024", unit: "% of the population",
+      suffix: "%",
       leftYear: 2000, rightYear: 2024,
       data: [
         ["Tanzania",8.7,52.4], ["Uganda",7.4,55.3], ["Ethiopia",12.7,56.6],
@@ -1283,6 +1318,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       family: "Change over time", form: "Dumbbell · 2001 → 2023", exhibit: "Exhibit Y",
       type: "dumbbell", diff: 5,
       truth: "Share of the population who do not get enough to eat, 2001 vs 2023", period: "2001 → 2023", unit: "% of the population",
+      suffix: "%",
       leftYear: 2001, rightYear: 2023,
       data: [
         ["China",10.0,2.5], ["Brazil",10.5,2.5], ["Cambodia",19.7,5.2],
@@ -1345,6 +1381,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       family: "Change over time", form: "Dumbbell · 1997 → 2025", exhibit: "Exhibit AA",
       type: "dumbbell", diff: 3,
       truth: "Share of parliamentary seats held by women, 1997 vs 2025", period: "1997 → 2025", unit: "% of seats",
+      suffix: "%",
       leftYear: 1997, rightYear: 2025,
       data: [
         ["India",7.2,13.8], ["Japan",4.6,15.7], ["United States",11.7,28.9],
@@ -1375,6 +1412,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       family: "Change over time", form: "Multi-line · 2013–2025", exhibit: "Exhibit AB",
       type: "line", diff: 2,
       truth: "Share of new cars sold that are electric, 2013–2025", period: "2013–2025", unit: "% of new car sales",
+      suffix: "%",
       startYear: 2013,
       series: [
         { name: "Norway", values: [5.8,15,22,29,39,49,56,75,86,89,90,92,97] },
@@ -1495,6 +1533,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       family: "Ranking", form: "Lollipop · highest and lowest, 2025", exhibit: "Exhibit AF",
       type: "lollipop", diff: 5,
       truth: "Share of land covered by forest, 2025", period: "2025", unit: "% of land area",
+      suffix: "%",
       data: [
         ["Micronesia",92.2], ["Suriname",91.4], ["Gabon",91.4],
         ["Palau",91], ["Solomon Islands",89.8], ["Guyana",87],
@@ -1582,6 +1621,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       family: "Change over time", form: "Dumbbell · 1990 → 2025", exhibit: "Exhibit AI",
       type: "dumbbell", diff: 2,
       truth: "Share of people living in extreme poverty, 1990 vs 2025", period: "1990 → 2025", unit: "% below the international poverty line",
+      suffix: "%",
       leftYear: 1990, rightYear: 2025,
       data: [
         ["China",83.1,0.0], ["Vietnam",57.5,1.6], ["Nepal",71.1,2.4],
@@ -1607,27 +1647,506 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
         ],
       why: "China falling to effectively zero while Zambia rises from 63% to 72% is the poverty pattern. Rural population and the share aged under fifteen never collapse to zero, and no measure of literacy went backwards in Kenya over these years.",
       slug: "share-of-population-in-extreme-poverty"
+    },
+    {
+      family: "Distribution", form: "Beeswarm · every country, 2020", exhibit: "Exhibit AJ",
+      type: "beeswarm", diff: 4,
+      truth: "Hospital beds per 1,000 people, 2020", period: "2020", unit: "beds per 1,000 people",
+      data: [["Afghanistan",0.33],["Albania",2.9],["Antigua and Barbuda",3.32],["Argentina",3.19],["Armenia",4.45],["Austria",7.05],["Azerbaijan",4.35],["Bahamas",2.76],["Bahrain",1.99],["Bangladesh",0.97],["Barbados",5.64],["Belarus",10.09],["Belgium",5.53],["Belize",0.98],["Benin",0.45],["Bhutan",2.13],["Bolivia",1.37],["Botswana",2.43],["Brazil",2.49],["Brunei",3.84],["Bulgaria",7.82],["Burkina Faso",0.2],["Canada",2.54],["Chad",0.15],["Chile",2.02],["China",5],["Colombia",1.7],["Costa Rica",1.17],["Croatia",5.8],["Cuba",4.23],["Cyprus",2.17],["Czechia",6.63],["Denmark",2.59],["Dominica",3.2],["Dominican Republic",1.42],["East Timor",0.4],["Ecuador",1.32],["Egypt",1.11],["El Salvador",1.09],["Eritrea",1.08],["Estonia",4.46],["Finland",2.75],["France",5.86],["Gambia",1.14],["Georgia",4.9],["Germany",7.77],["Greece",4.2],["Guatemala",0.43],["Guyana",2.22],["Haiti",5.06],["Honduras",0.71],["Hungary",6.76],["Iceland",2.83],["India",1.61],["Indonesia",1.38],["Ireland",2.89],["Israel",3.06],["Italy",3.16],["Jamaica",1.71],["Japan",12.62],["Jordan",1.38],["Kazakhstan",6.54],["Kuwait",2.33],["Kyrgyzstan",4.04],["Laos",1.27],["Latvia",5.28],["Lebanon",2.73],["Libya",3.2],["Lithuania",6.01],["Luxembourg",4.19],["Malaysia",1.93],["Maldives",5.04],["Malta",4.36],["Mauritius",3.68],["Mexico",1],["Moldova",5.59],["Mongolia",8.23],["Montenegro",3.94],["Morocco",0.74],["Mozambique",0.71],["Myanmar",1.07],["Nepal",0.28],["Netherlands",2.88],["New Zealand",2.5],["Nicaragua",0.97],["Niger",0.28],["North Macedonia",4.76],["Norway",3.4],["Oman",1.16],["Pakistan",0.63],["Palestine",1.28],["Panama",1.92],["Paraguay",1.01],["Peru",1.67],["Philippines",0.99],["Poland",6.15],["Portugal",3.47],["Romania",7.07],["Russia",7.05],["Rwanda",0.74],["Saint Kitts and Nevis",4.39],["Saint Lucia",1.75],["Saint Vincent",4.02],["Saudi Arabia",2.54],["Serbia",5.69],["Seychelles",2.8],["Singapore",2.77],["Slovakia",5.69],["Slovenia",4.28],["South Korea",12.65],["Spain",2.94],["Sri Lanka",3.87],["Sudan",0.66],["Suriname",2.87],["Sweden",2.05],["Switzerland",4.48],["Syria",1.39],["Tajikistan",4.26],["Tanzania",0.64],["Thailand",2.32],["Togo",0.37],["Trinidad and Tobago",1.97],["Tunisia",2.42],["Turkey",2.92],["Turkmenistan",3.68],["Ukraine",6.15],["United Arab Emirates",1.91],["United Kingdom",2.42],["United States",2.71],["Uruguay",2.52],["Uzbekistan",4.77],["Venezuela",0.99]],
+      label: ["Nepal", "Mexico", "India", "United Kingdom", "United States", "France", "Germany", "Belarus", "South Korea"],
+      labelSm: ["Nepal", "United Kingdom", "Germany", "Belarus", "South Korea"],
+      answer: "Hospital beds per 1,000 people",
+      decoys: [
+          "Doctors per 1,000 people",
+          "Nurses per 1,000 people",
+          "Deaths per 1,000 people each year",
+          "Rooms per person in the average home",
+          "Pharmacies per 10,000 people",
+          "Cars per 10 people",
+          "Ambulances per 100,000 people"
+        ],
+      hints: [
+          "South Korea and Japan are more than four times Britain and America, and Sweden sits near the bottom of Europe.",
+          "Belarus, Bulgaria and Romania are high while the Nordics are low. This is one of the few measures where the old Eastern bloc still leads.",
+          "Counted per thousand people. Rich countries are scattered across the whole range, so this is a decision about how care is organised rather than how much money there is.",
+          "It is what a health service has when you need to stay the night."
+        ],
+      why: "South Korea at 12.65 and Japan at 12.62 with Sweden at 2.05 is the giveaway, because wealth does not sort this list at all: Sweden treats people at home, Japan keeps them in. Doctors per head would put Greece and Cuba on top, and neither leads here.",
+      slug: "SH.MED.BEDS.ZS",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SH.MED.BEDS.ZS"
+    },
+    {
+      family: "Deviation", form: "Diverging bar · around zero, 2023", exhibit: "Exhibit AK",
+      type: "deviation", reference: 0, diff: 3,
+      truth: "Net migration, 2023", period: "2023", unit: "people, arrivals minus departures, against a zero line",
+      data: [
+        ["United States",1322668], ["Syria",757309], ["Germany",609553],
+        ["United Kingdom",445523], ["Canada",433842], ["Egypt",305006],
+        ["Japan",175003], ["Italy",150189], ["Australia",140232],
+        ["Spain",119099], ["Russia",27807], ["Poland",-7824],
+        ["Mexico",-101044], ["Venezuela",-112899], ["Philippines",-164284],
+        ["Ukraine",-299961], ["Turkey",-318070], ["Nepal",-409782],
+        ["India",-979179], ["Pakistan",-1619557]
+      ],
+      answer: "Net migration over one year",
+      decoys: [
+          "Change in population over one year",
+          "Number of refugees newly recognised in a year",
+          "Change in the number of people in work over one year",
+          "Number of students who moved abroad to study",
+          "Change in the number of people aged over 65",
+          "Number of passports issued in a year",
+          "Change in the number of births against a decade earlier"
+        ],
+      hints: [
+          "Pakistan is furthest below the line and India is next, yet both countries grew by millions of people that year.",
+          "Syria is near the top, which is the opposite of what a decade of headlines would lead you to expect.",
+          "Measured as a number of people across a single year, and it can fall below zero, which rules out anything that only counts arrivals.",
+          "It is arrivals minus departures."
+        ],
+      why: "Pakistan at minus 1.6 million and India at minus 979,000 while both populations still grew is the tell: this counts movement across a border in both directions, not population change. Anything that only counted arrivals could never go below the line.",
+      slug: "SM.POP.NETM",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SM.POP.NETM"
+    },
+    {
+      family: "Ranking", form: "Lollipop · 2023", exhibit: "Exhibit AL",
+      type: "lollipop", diff: 2,
+      truth: "Passengers carried by a country's own airlines, 2023", period: "2023", unit: "passengers carried in a year",
+      data: [
+        ["United States",941557000], ["China",619215886], ["Ireland",192528432],
+        ["India",180415784], ["Turkey",125940241], ["Japan",120305972],
+        ["United Kingdom",118945920], ["Russia",98872628], ["Indonesia",97045785],
+        ["Brazil",95398485], ["Spain",94101520], ["Canada",88618000],
+        ["Germany",80199572], ["Mexico",78763320], ["Australia",68958577],
+        ["France",64644716], ["Vietnam",55114832], ["Colombia",42399044]
+      ],
+      answer: "Passengers carried by a country's own airlines",
+      decoys: [
+          "Passengers passing through a country's airports",
+          "Tourists arriving from abroad each year",
+          "International air journeys taken by residents",
+          "Flights taking off each year",
+          "Tonnes of air freight carried in a year",
+          "Passport holders in each country",
+          "Rail passengers carried each year"
+        ],
+      hints: [
+          "One country on this chart has five million residents and sits third, above India.",
+          "That country is not a destination. It is where a very large low-cost fleet happens to be registered.",
+          "Counted in passengers a year and attributed to the airline's home country rather than to the airport it flew from.",
+          "It counts everyone who flew with that country's own carriers."
+        ],
+      why: "Ireland third, above India and Japan, is the whole puzzle: Ryanair's fleet is Irish-registered, so its passengers are counted as Ireland's. Airport traffic would put Germany and Britain far above Ireland, and tourist arrivals would be led by France and Spain.",
+      slug: "IS.AIR.PSGR",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/IS.AIR.PSGR"
+    },
+    {
+      family: "Ranking", form: "Lollipop · Europe, 2024", exhibit: "Exhibit AM",
+      type: "lollipop", diff: 2,
+      truth: "Age at which young Europeans leave their parents\' home, 2024", period: "2024", unit: "years old, national average",
+      data: [
+        ["Croatia",31.3], ["Slovakia",30.9], ["Greece",30.7],
+        ["Serbia",30.2], ["Italy",30.1], ["Spain",30],
+        ["Portugal",28.9], ["Bulgaria",28.2], ["Malta",28.1],
+        ["Ireland",26.8], ["Poland",26.7], ["Belgium",26.2],
+        ["Austria",25.3], ["Germany",23.9], ["France",23.5],
+        ["Netherlands",23.2], ["Estonia",22.4], ["Sweden",21.9],
+        ["Denmark",21.7], ["Finland",21.4]
+      ],
+      answer: "Age at which young Europeans leave their parents\' home",
+      decoys: [
+          "Age at which Europeans first marry",
+          "Age of European mothers at a first birth",
+          "Age at which Europeans buy a first home",
+          "Age at which Europeans start a first full-time job",
+          "Age at which Europeans pass a driving test",
+          "Age at which Europeans first vote in an election",
+          "Age at which Europeans buy a first car"
+        ],
+      hints: [
+          "The Nordic countries sit at the very bottom of this chart and the Mediterranean at the very top, the reverse of how most league tables on this continent run.",
+          "Croatia and Finland are ten years apart. Whatever this is, it happens once, and in some countries the state pays for it while in others the family does.",
+          "Measured in years as a national average. Nothing here is below twenty-one or above thirty-two.",
+          "It is when they finally move out."
+        ],
+      why: "Finland at 21.4 and Croatia at 31.3, with the whole Nordic bloc low and southern and eastern Europe high, is the leaving-home pattern. Age at first marriage runs the other way, with Sweden and Denmark among the latest in Europe.",
+      slug: "yth_demo_030",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/yth_demo_030/default/table"
+    },
+    {
+      family: "Ranking", form: "Lollipop · highest and lowest, 2024", exhibit: "Exhibit AN",
+      type: "lollipop", diff: 3,
+      truth: "Share of women in work or looking for work, 2024", period: "2024", unit: "% of women aged 15 and over",
+      suffix: "%",
+      data: [
+        ["Madagascar",82.9], ["Tanzania",80.3], ["Iceland",70.3],
+        ["Vietnam",68.9], ["Netherlands",62.9], ["Sweden",61.7],
+        ["China",59.4], ["United Kingdom",57.5], ["Rwanda",57.1],
+        ["United States",56.6], ["Japan",55.6], ["Brazil",53.6],
+        ["Mexico",47.4], ["Italy",41], ["Turkey",36.8],
+        ["India",32.4], ["Pakistan",24], ["Egypt",18.5],
+        ["Algeria",14.3], ["Iraq",11], ["Afghanistan",5.1],
+        ["Yemen",4.7]
+      ],
+      answer: "Share of women in work or looking for work",
+      decoys: [
+          "Share of women who can read and write",
+          "Share of women who have a bank account",
+          "Share of women who finished secondary school",
+          "Share of women who own a mobile phone",
+          "Share of women who vote in national elections",
+          "Share of women who are married by thirty",
+          "Share of women who have given birth"
+        ],
+      hints: [
+          "Madagascar and Tanzania are at the top, above Iceland and Sweden, so money is not what sorts this list.",
+          "Italy sits twenty points below the Netherlands, closer to Turkey than to any other country in western Europe.",
+          "Measured as a share of all women aged fifteen and over, from modelled labour statistics.",
+          "It is whether she has a job, or is looking for one."
+        ],
+      why: "Madagascar and Tanzania above Iceland and Sweden is the participation pattern: in the poorest economies almost nobody can afford not to work. Literacy or bank accounts would put the Nordic countries on top and Madagascar near the bottom.",
+      slug: "SL.TLF.CACT.FE.ZS",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SL.TLF.CACT.FE.ZS"
+    },
+    {
+      family: "Ranking", form: "Lollipop · 2023", exhibit: "Exhibit AO",
+      type: "lollipop", diff: 4,
+      truth: "Share of a country's city dwellers who live in its largest city, 2023", period: "2023", unit: "% of the urban population",
+      suffix: "%",
+      data: [
+        ["Mongolia",68.21], ["Panama",67.32], ["Uruguay",54.81],
+        ["Latvia",48.25], ["Chile",39.54], ["Ireland",37.3],
+        ["Argentina",36.9], ["Japan",32.44], ["Denmark",26.22],
+        ["France",20.81], ["Canada",19.28], ["Spain",17.43],
+        ["United Kingdom",16.93], ["Italy",10.52], ["Poland",8.18],
+        ["United States",7.02], ["Germany",5.24], ["China",3.16]
+      ],
+      answer: "Share of a country's city dwellers who live in its largest city",
+      decoys: [
+          "Share of the population that lives in cities",
+          "Share of the population born abroad",
+          "Share of the population who own their home",
+          "Share of the population living within 50km of the coast",
+          "Share of national income earned in the largest city",
+          "Share of the workforce in public administration",
+          "Share of the population who commute by train"
+        ],
+      hints: [
+          "Mongolia and Panama are at the top and Germany and China are at the bottom, which is nothing to do with how rich or how crowded they are.",
+          "Germany is near the floor not because Germans avoid towns, but because it has no single dominant one. Berlin, Hamburg, Munich and Cologne share the load.",
+          "It is a share of one group within another, and the denominator is the point: the countries at the bottom are not rural.",
+          "One city, as a fraction of everyone in that country who lives in a city at all."
+        ],
+      why: "Germany at 5.2% and China at 3.2% beside Mongolia at 68% is the tell: neither is a rural country, they simply have no dominant city. A share of the whole population living in cities would put Germany near 80%.",
+      slug: "EN.URB.LCTY.UR.ZS",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/EN.URB.LCTY.UR.ZS"
+    },
+    {
+      family: "Ranking", form: "Lollipop · 2022", exhibit: "Exhibit AP",
+      type: "lollipop", diff: 2,
+      truth: "Health spending per person, 2022", period: "2022", unit: "US dollars per person a year",
+      data: [
+        ["United States",12586], ["Switzerland",10930], ["Norway",8693],
+        ["Germany",6226], ["United Kingdom",5112], ["Japan",4202],
+        ["South Korea",3079], ["Poland",1219], ["Brazil",871],
+        ["China",755], ["Mexico",651], ["Indonesia",127],
+        ["Nigeria",90], ["India",82], ["Pakistan",39],
+        ["Ethiopia",27]
+      ],
+      answer: "Health spending per person, in dollars",
+      decoys: [
+          "Government spending per person on education, in dollars",
+          "Spending on food per person a year, in dollars",
+          "Average annual rent, in dollars",
+          "Income tax paid per person a year, in dollars",
+          "Spending on transport per person a year, in dollars",
+          "Value of exports per person, in dollars",
+          "Savings per person a year, in dollars"
+        ],
+      hints: [
+          "The United States is not merely first here. It is a fifth clear of Switzerland and double Germany, and on almost every other measure of this kind those three sit close together.",
+          "Six countries are pinned flat against the axis. Ethiopia is at twenty-seven a year against more than twelve thousand at the top, a gap of more than four hundred times.",
+          "Every figure is per person per year in current dollars, and it counts what the state and the household lay out together.",
+          "It is what a country lays out on keeping people well."
+        ],
+      why: "The United States at $12,586, a fifth clear of Switzerland and double Germany, is the health-spending signature. On education or food, America sits alongside other rich countries rather than far above them.",
+      slug: "SH.XPD.CHEX.PC.CD",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SH.XPD.CHEX.PC.CD"
+    },
+    {
+      family: "Deviation", form: "Diverging bar · around zero, 2023", exhibit: "Exhibit AQ",
+      type: "deviation", reference: 0, diff: 4,
+      truth: "Exports minus imports as a share of the economy, 2023", period: "2023", unit: "% of GDP, against a zero line",
+      suffix: "%",
+      data: [
+        ["Singapore",37.16], ["Ireland",33.4], ["Norway",15.41],
+        ["Switzerland",10.9], ["Netherlands",9.94], ["Denmark",9],
+        ["Vietnam",8.48], ["Poland",5.74], ["Germany",3.97],
+        ["Brazil",2.27], ["China",2.07], ["Italy",1.56],
+        ["United Kingdom",-1.17], ["Mexico",-1.44], ["Japan",-1.48],
+        ["India",-1.61], ["Turkey",-1.86], ["United States",-2.83],
+        ["Ethiopia",-7.41], ["Pakistan",-7.48]
+      ],
+      answer: "Exports minus imports as a share of the economy",
+      decoys: [
+          "Government surplus or deficit as a share of the economy",
+          "Net foreign investment as a share of the economy",
+          "Growth of the economy over the year, in per cent",
+          "Household savings as a share of income",
+          "Government debt interest as a share of the economy",
+          "Change in the value of the currency, in per cent",
+          "Share of the economy earned from tourism"
+        ],
+      hints: [
+          "Singapore and Ireland are far clear of everyone else, and both are places where goods and profits pass through rather than stop.",
+          "Britain, America, Japan and India all sit below the line, and all four have done for decades.",
+          "Measured against a line at zero, as a percentage of national income, and it is negative as often as not.",
+          "It is what a country sells abroad minus what it buys."
+        ],
+      why: "Singapore at +37% and Ireland at +33%, with the United States, Britain, Japan and India all below zero, is the trade-balance pattern: both small economies re-export heavily and book multinational profits. A budget balance would not put Ireland thirty points clear of Germany.",
+      slug: "NE.RSB.GNFS.ZS",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/NE.RSB.GNFS.ZS"
+    },
+    {
+      family: "Change over time", form: "Dumbbell · 1990 → 2024", exhibit: "Exhibit AR",
+      type: "dumbbell", diff: 3,
+      truth: "Share of the population aged 65 and over, 1990 vs 2024", period: "1990 → 2024", unit: "% of the population",
+      suffix: "%",
+      leftYear: 1990, rightYear: 2024,
+      data: [
+        ["Uganda",3.06,2.19], ["Kenya",2.16,2.97], ["Nigeria",3.14,3.05],
+        ["India",4.04,7.15], ["Turkey",4.74,10.28], ["Brazil",4.12,11.05],
+        ["China",5.35,14.67], ["United States",12.31,17.93], ["United Kingdom",15.87,19.5],
+        ["Germany",14.87,23.2], ["Italy",14.96,24.62], ["Japan",12.16,29.78]
+      ],
+      answer: "Share of the population aged 65 and over",
+      decoys: [
+          "Share of the population who have retired",
+          "Share of the population receiving a state pension",
+          "Share of the population with a long-term illness",
+          "Share of the population living alone",
+          "Share of the population who own their home outright",
+          "Share of the population who have grandchildren",
+          "Share of the population who need daily care"
+        ],
+      hints: [
+          "Japan starts below Britain, Germany and Italy and finishes ten points above all three. Nothing else about Japan moved that far in the same years.",
+          "One country here went backwards. It is in east Africa, and its birth rate is among the highest in the world.",
+          "Measured as a percentage of everyone alive, at two dates thirty-four years apart.",
+          "It is how much of a country has passed its sixty-fifth birthday."
+        ],
+      why: "Japan going from 12.2%, below Britain and Italy, to 29.8% in thirty-four years is the ageing signature, and Uganda falling from 3.1% to 2.2% is the tell: a country whose birth rate stays very high gets younger, not older.",
+      slug: "SP.POP.65UP.TO.ZS",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SP.POP.65UP.TO.ZS"
+    },
+    {
+      family: "Ranking", form: "Rank slope · 1990 → 2024", exhibit: "Exhibit AS",
+      type: "slope", diff: 3,
+      truth: "World ranking of the largest economies, 1990 vs 2024", period: "1990 → 2024", unit: "rank by GDP in current dollars",
+      leftYear: 1990, rightYear: 2024,
+      ranks: [
+        ["United States",1,1], ["China",10,2], ["Germany",3,3],
+        ["Japan",2,4], ["India",11,5], ["United Kingdom",6,6],
+        ["France",4,7], ["Italy",5,8], ["Canada",7,9],
+        ["Russia",8,10], ["Brazil",9,11], ["South Korea",12,12]
+      ],
+      answer: "World ranking of the largest economies",
+      decoys: [
+          "World ranking of countries by manufacturing output",
+          "World ranking of countries by exports",
+          "World ranking of countries by stock market value",
+          "World ranking of countries by government spending",
+          "World ranking of countries by energy used",
+          "World ranking of countries by company headquarters",
+          "World ranking of countries by patents filed"
+        ],
+      hints: [
+          "Two lines climb almost the full height of the chart, and between them those two countries hold a third of everyone alive.",
+          "The steepest faller is Japan, and it did not shrink. It stood still for thirty years while the others grew.",
+          "Ranked on an annual total in current dollars, so exchange rates move these lines as much as growth does.",
+          "It is the size of the economy."
+        ],
+      why: "China rising from tenth to second and India from eleventh to fifth while the United States holds first is the GDP pattern. On manufacturing output China was already high in 1990 and would now lead by a distance rather than sit second.",
+      slug: "NY.GDP.MKTP.CD",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD"
+    },
+    {
+      family: "Part-to-whole", form: "Treemap · the twelve largest exporters", exhibit: "Exhibit AT",
+      type: "treemap", diff: 3,
+      truth: "Value of goods exported, 2023", period: "2023", unit: "US dollars",
+      total: 12978367000000,
+      data: [
+        ["China",3379044000000], ["United States",2018059000000], ["Germany",1702278000000],
+        ["Netherlands",935047000000], ["Japan",717256000000], ["Italy",676724000000],
+        ["France",651122000000], ["South Korea",632226000000], ["Mexico",593001000000],
+        ["Belgium",578515000000], ["Canada",570079000000], ["United Kingdom",525016000000]
+      ],
+      answer: "Value of goods exported, 2023",
+      decoys: [
+          "Value of goods imported, 2023",
+          "Size of the economy, 2023",
+          "Value of services exported, 2023",
+          "Manufacturing output, 2023",
+          "Government spending, 2023",
+          "Value of oil and gas imported, 2023",
+          "Value of goods sold online, 2023"
+        ],
+      hints: [
+          "The Netherlands is fourth and Belgium tenth, both far above their weight. Look at what the two have in common on a map.",
+          "India is missing altogether, and it has a bigger economy than eight of the twelve here.",
+          "Counted in dollars for the year, and it counts things that travel in containers rather than anything done over a wire.",
+          "It is what each country sells abroad."
+        ],
+      why: "Rotterdam and Antwerp put the Netherlands fourth and Belgium tenth, far above their economic weight, because goods landing there are re-exported. On imports the United States would lead comfortably; here it is second to China.",
+      slug: "TX.VAL.MRCH.CD.WT",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/TX.VAL.MRCH.CD.WT"
+    },
+    {
+      family: "Ranking", form: "Lollipop · 2021", exhibit: "Exhibit AU",
+      type: "lollipop", diff: 2,
+      truth: "Deaths on the roads per 100,000 people, 2021", period: "2021", unit: "deaths per 100,000 people a year",
+      data: [
+        ["Zimbabwe",29.9], ["South Africa",24.5], ["Iran",20.6],
+        ["Vietnam",17.7], ["China",17.4], ["Nigeria",17.2],
+        ["India",14.6], ["United States",14.2], ["Mexico",12],
+        ["Russia",10.6], ["Australia",4.5], ["Japan",2.7],
+        ["United Kingdom",2.4], ["Sweden",2.1]
+      ],
+      answer: "Deaths on the roads per 100,000 people",
+      decoys: [
+          "Murders per 100,000 people",
+          "Deaths from air pollution per 100,000 people",
+          "Deaths at work per 100,000 workers",
+          "Deaths from drowning per 100,000 people",
+          "Deaths in fires per 100,000 people",
+          "Deaths from falls per 100,000 people",
+          "Deaths from snakebite per 100,000 people"
+        ],
+      hints: [
+          "The United States is six times Britain and Sweden here, and level with India. Very few measures of this kind put it in that company.",
+          "Sweden is lowest because of a policy its parliament adopted in 1997 and named after the number it was aiming at.",
+          "Counted per hundred thousand people a year. Top to bottom is a fourteen-fold gap.",
+          "Every one of these happened in traffic."
+        ],
+      why: "The United States at 14.2, six times Britain and level with India, is the road-death pattern rather than the murder one: America's homicide rate is under six, and Zimbabwe does not lead the world in murder. Sweden's 2.1 is Vision Zero, adopted in 1997.",
+      slug: "RS_198",
+      source: "WHO Global Health Observatory", sourceUrl: "https://www.who.int/data/gho"
+    },
+    {
+      family: "Change over time", form: "Dumbbell · 1991 → 2024", exhibit: "Exhibit AV",
+      type: "dumbbell", diff: 3,
+      truth: "Share of workers employed in farming, 1991 vs 2024", period: "1991 → 2024", unit: "% of everyone in work",
+      suffix: "%",
+      leftYear: 1991, rightYear: 2024,
+      data: [
+        ["United Kingdom",2.42,0.87], ["United States",2.94,1.57], ["Portugal",6.56,2.86],
+        ["Poland",26.27,6.5], ["Brazil",16.1,7.72], ["Turkey",46.06,14.55],
+        ["China",59.64,22.22], ["Vietnam",73.99,25.87], ["Indonesia",47.66,27.96],
+        ["India",63.13,42.35], ["Ethiopia",77.15,61.01], ["Uganda",62.38,65.41]
+      ],
+      answer: "Share of workers employed in farming",
+      decoys: [
+          "Share of the population living in the countryside",
+          "Share of workers employed in factories",
+          "Share of national income earned from farming",
+          "Share of land used for farming",
+          "Share of workers who are self-employed",
+          "Share of workers with no written contract",
+          "Share of workers who are women"
+        ],
+      hints: [
+          "One country on this chart moved the wrong way across thirty-three years, and it is in east Africa.",
+          "Vietnam fell from three quarters to a quarter inside a single working lifetime.",
+          "Measured as a share of everyone in work rather than of everyone alive, which is how Britain gets below one percent.",
+          "It counts the people who grow the food."
+        ],
+      why: "Uganda rising from 62% to 65% while Vietnam falls from 74% to 26% is the tell, and Britain at 0.87% shows this is a share of the workforce rather than of the population: far more than one percent of Britons live in the countryside.",
+      slug: "SL.AGR.EMPL.ZS",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SL.AGR.EMPL.ZS"
+    },
+    {
+      family: "Distribution", form: "Beeswarm · every country, 2023", exhibit: "Exhibit AW",
+      type: "beeswarm", diff: 3,
+      truth: "Kilograms of fish and seafood eaten per person, 2023", period: "2023", unit: "kilograms per person a year",
+      data: [["Afghanistan",0.38],["Albania",8.6],["Algeria",2.75],["Angola",14.34],["Antigua and Barbuda",54.51],["Argentina",7.11],["Armenia",4.86],["Australia",24.24],["Austria",14.12],["Azerbaijan",2.14],["Bahamas",27.68],["Bahrain",19.76],["Bangladesh",26.98],["Barbados",43.16],["Belarus",12.46],["Belgium",23.93],["Belize",16.94],["Benin",14.82],["Bhutan",6.26],["Bolivia",2.12],["Bosnia and Herzegovina",5.86],["Botswana",2.22],["Brazil",8.18],["Bulgaria",7.18],["Burkina Faso",10.49],["Burundi",2.4],["Cambodia",39.42],["Cameroon",18.12],["Canada",20.82],["Cape Verde",10.67],["Chad",5.61],["Chile",14.36],["China",41.68],["Colombia",10.31],["Comoros",16.98],["Congo",23.19],["Costa Rica",17.83],["Cote d'Ivoire",23.7],["Croatia",19.89],["Cyprus",17.96],["Czechia",10.37],["Democratic Republic of Congo",3.29],["Denmark",22.56],["Djibouti",5.31],["Dominica",25.58],["Dominican Republic",17.14],["East Timor",6.97],["Ecuador",6.45],["Egypt",20.5],["El Salvador",7.22],["Estonia",12.7],["Eswatini",3.79],["Ethiopia",0.5],["Fiji",27.95],["Finland",31.49],["France",32.64],["Gabon",27.03],["Gambia",20.17],["Georgia",10.33],["Germany",12.98],["Ghana",23.62],["Greece",19.63],["Grenada",20.33],["Guatemala",3.77],["Guinea",10.65],["Guinea-Bissau",2.35],["Guyana",24.76],["Haiti",5.42],["Honduras",4.39],["Hungary",6.46],["Iceland",83.81],["India",8.73],["Indonesia",40.42],["Iran",11.3],["Iraq",2.27],["Ireland",19.27],["Israel",24.75],["Italy",29.39],["Jamaica",27.85],["Japan",44.98],["Jordan",4.77],["Kazakhstan",3.93],["Kenya",2.86],["Kiribati",72.27],["Kuwait",12.97],["Kyrgyzstan",1.46],["Laos",28.52],["Latvia",24.49],["Lebanon",4.74],["Lesotho",1.92],["Liberia",4.75],["Libya",12.88],["Lithuania",28.51],["Luxembourg",30.29],["Madagascar",3.67],["Malawi",8.77],["Malaysia",51.03],["Maldives",79.74],["Mali",8.64],["Malta",31.1],["Marshall Islands",44.55],["Mauritania",7.6],["Mauritius",29.4],["Mexico",13.55],["Micronesia",48.98],["Moldova",16.3],["Mongolia",1.03],["Montenegro",11.92],["Morocco",16.71],["Mozambique",12.87],["Myanmar",40.35],["Namibia",9.67],["Nauru",26.02],["Nepal",4.28],["Netherlands",19.08],["New Zealand",24.61],["Nicaragua",7.34],["Niger",1.87],["Nigeria",6.9],["North Macedonia",8.01],["Norway",49.1],["Oman",28.15],["Pakistan",1.35],["Panama",14.89],["Papua New Guinea",7.1],["Paraguay",5.33],["Peru",25.94],["Philippines",26.34],["Poland",11.15],["Portugal",53.49],["Qatar",22.03],["Romania",8.7],["Russia",22.8],["Rwanda",5.15],["Saint Kitts and Nevis",36.4],["Saint Lucia",24.95],["Saint Vincent",20.05],["Samoa",46.62],["Sao Tome and Principe",26.52],["Saudi Arabia",12.92],["Senegal",13.75],["Serbia",8.45],["Seychelles",42.91],["Sierra Leone",24.45],["Slovakia",10.61],["Slovenia",11.21],["Solomon Islands",30.49],["Somalia",1.68],["South Africa",5.59],["South Korea",52.82],["South Sudan",3],["Spain",36.8],["Sri Lanka",22.73],["Sudan",0.89],["Suriname",16.67],["Sweden",30.62],["Switzerland",16.46],["Syria",0.8],["Taiwan",30.4],["Tajikistan",0.91],["Tanzania",6.4],["Thailand",28.62],["Togo",9.58],["Tonga",28.58],["Trinidad and Tobago",17.96],["Tunisia",15.88],["Turkey",5.32],["Turkmenistan",2.36],["Tuvalu",55.82],["Uganda",15.41],["Ukraine",16.86],["United Arab Emirates",23.11],["United Kingdom",17.7],["United States",21.94],["Uruguay",11.93],["Uzbekistan",5.21],["Vanuatu",30.04],["Venezuela",8.75],["Vietnam",40.06],["Yemen",2.02],["Zambia",12.89],["Zimbabwe",2.63]],
+      label: ["Mongolia", "Ethiopia", "India", "United Kingdom", "United States", "Norway", "Japan", "Portugal", "Iceland"],
+      labelSm: ["Mongolia", "India", "United Kingdom", "Japan", "Iceland"],
+      answer: "Kilograms of fish and seafood eaten per person a year",
+      decoys: [
+          "Kilograms of meat eaten per person a year",
+          "Kilograms of rice eaten per person a year",
+          "Kilograms of cheese eaten per person a year",
+          "Litres of milk drunk per person a year",
+          "Kilograms of fruit eaten per person a year",
+          "Kilograms of potatoes eaten per person a year",
+          "Kilograms of bread eaten per person a year"
+        ],
+      hints: [
+          "Iceland, the Maldives and Kiribati are the three loneliest dots on the right, and Mongolia is almost at zero.",
+          "Portugal sits above Japan, which surprises everyone except the Portuguese.",
+          "Measured in kilograms per person per year, from national food supply figures rather than from asking anyone.",
+          "It all comes out of the water."
+        ],
+      why: "Iceland at 83.8kg, the Maldives at 79.7 and Kiribati at 72.3, with landlocked Mongolia at 1.0, is the seafood pattern. Meat would put Mongolia near the very top instead of the very bottom.",
+      slug: "fish-and-seafood-consumption-per-capita"
+    },
+    {
+      family: "Ranking", form: "Lollipop · 2020", exhibit: "Exhibit AX",
+      type: "lollipop", diff: 4,
+      truth: "Share of the workforce serving in the armed forces, 2020", period: "2020", unit: "% of the total labour force",
+      suffix: "%",
+      data: [
+        ["Eritrea",13.29], ["North Korea",8.62], ["Israel",4.23],
+        ["Jordan",3.98], ["Greece",3.2], ["South Korea",2.01],
+        ["Russia",1.98], ["Singapore",1.72], ["Turkey",1.61],
+        ["France",1], ["United States",0.84], ["Brazil",0.76],
+        ["India",0.58], ["United Kingdom",0.45], ["Germany",0.42],
+        ["Japan",0.38], ["China",0.33], ["Nigeria",0.23]
+      ],
+      answer: "Share of the workforce serving in the armed forces",
+      decoys: [
+          "Share of national income spent on defence",
+          "Share of the workforce employed by the government",
+          "Share of the workforce in the police",
+          "Share of adults who have done military service",
+          "Share of the workforce working abroad",
+          "Share of the workforce in farming",
+          "Share of young men in full-time education"
+        ],
+      hints: [
+          "The United States is eleventh, below Greece and Jordan, and China is third from last.",
+          "The two countries at the top both require every young person to serve, and in one of them that service has no fixed end.",
+          "Measured as a share of everyone in work. This is a headcount, not a budget.",
+          "It counts soldiers, sailors and air crew."
+        ],
+      why: "China third from last and the United States eleventh is the giveaway that this counts people rather than money: both have enormous forces in absolute terms and enormous workforces to divide them by. On defence spending as a share of income the United States would be near the top.",
+      slug: "MS.MIL.TOTL.TF.ZS",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/MS.MIL.TOTL.TF.ZS"
     }
   ];
 
-  /* Thirty-five puzzles, dealt into seven runs of five, so the game runs a full
-     week before anything repeats. Each run climbs in intrinsic difficulty so it
-     rises with the option count, no two neighbouring charts share a form, and no
-     run leans on one form more than twice. */
+  /* Fifty puzzles, dealt into ten runs of five, so the game runs a fortnight of
+     weekdays before anything repeats. Each run climbs in intrinsic difficulty so
+     it rises with the option count, no two neighbouring charts share a form, no
+     run leans on one form more than twice, and the rarer forms (slope, diverging
+     bar, multi-line) appear at most once in any run. */
   var RUNS = [
-    [7, 8, 28, 3, 31],
-    [5, 2, 9, 12, 19],
-    [16, 23, 21, 26, 10],
-    [17, 1, 30, 33, 13],
-    [0, 14, 27, 32, 24],
-    [29, 4, 6, 20, 22],
-    [34, 11, 15, 18, 25]
+    [29, 15, 43, 3, 35],
+    [6, 27, 2, 28, 22],
+    [23, 1, 12, 48, 25],
+    [0, 41, 33, 39, 19],
+    [7, 16, 46, 42, 24],
+    [4, 9, 18, 47, 31],
+    [14, 11, 21, 10, 40],
+    [5, 26, 30, 36, 20],
+    [17, 38, 8, 32, 49],
+    [34, 37, 44, 45, 13]
   ];
 
   /* The run gets harder as it goes: four options on the first chart, eight on the
      last. A right answer is worth more when there was more to eliminate, so each
      position carries a multiplier. Base 100 x (1 + 1.5 + 2 + 2.5 + 3) = 1000. */
-  var OPTION_COUNT = [4, 5, 6, 7, 8];
+  var OPTION_COUNT = [4, 4, 4, 6, 6];
   var MULTIPLIER   = [1, 1.5, 2, 2.5, 3];
 
   /* Points fall with every mistake, whether that was a wrong guess or a bought
@@ -1643,10 +2162,10 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      rather than leaving it to a multiplier symbol in the corner. */
   var RAMP_WORDS = [
     "Four options to start. Points at face value.",
-    "Five options now, and worth half as much again.",
-    "Six options, and worth double.",
-    "Seven options, and worth two and a half times.",
-    "Eight options, the hardest of the day. Worth triple."
+    "Four options again, but a harder chart. Worth half as much again.",
+    "Still four options, harder still. Worth double.",
+    "Six options now. Worth two and a half times.",
+    "Six options, the hardest of the day. Worth triple."
   ];
   function rampLine(i) { return RAMP_WORDS[Math.min(i, RAMP_WORDS.length - 1)]; }
 
@@ -1678,7 +2197,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return n;
   }
   function txt(node, s) { node.textContent = s; return node; }
-  function fmt(n) { return n >= 1000 ? Math.round(n).toLocaleString("en-GB") : String(n); }
+  function fmt(n) { return Math.abs(n) >= 1000 ? Math.round(n).toLocaleString("en-GB") : String(n); }
 
   var FACE = "Archivo, 'Helvetica Neue', Helvetica, Arial, sans-serif";
   var MONO = FACE;
@@ -1750,9 +2269,44 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 
   /* Decimals should follow the range, not be fixed. Two decimals reads sensibly
      on a fertility rate of 0.72 and absurdly on an internet share of 100.00. */
+  /* One house style for numbers, used by every form.
+
+     A quantity is written in the largest unit that leaves it readable, to one
+     decimal, with a lone trailing zero dropped: 1.2M, 200K, 12.4K. Below ten
+     thousand the digits are worth reading in full, so it is 2,746. Percentages
+     are the exception and always carry one decimal, because a column reading
+     41.0, 36.8, 32.4 lines up and 41, 36.8, 32.4 does not. */
+  function tenth(x) {
+    var r = Math.round(x * 10) / 10;
+    return r >= 1000 ? Math.round(r).toLocaleString("en-GB") : String(r);
+  }
+  function bigNum(n) {
+    var a = Math.abs(n), sign = n < 0 ? "-" : "";
+    if (a >= 1e6) return sign + tenth(a / 1e6) + "M";
+    if (a >= 1e4) return sign + tenth(a / 1e3) + "K";
+    return fmt(n);
+  }
+  /* Axis ticks take their unit from the top of the scale rather than from each
+     tick, so a single axis never mixes K with plain digits. */
+  function tickFmt(top) {
+    var a = Math.abs(top);
+    /* Zero carries no unit: an axis reading "0M" looks like a rounding error. */
+    if (a >= 1e6) return function (v) { return v === 0 ? "0" : (v < 0 ? "-" : "") + tenth(Math.abs(v) / 1e6) + "M"; };
+    if (a >= 1e4) return function (v) { return v === 0 ? "0" : (v < 0 ? "-" : "") + tenth(Math.abs(v) / 1e3) + "K"; };
+    return fmt;
+  }
   function valueFmt(top) {
-    return top >= 20 ? function (v) { return String(Math.round(v)); }
-                     : function (v) { return v.toFixed(2); };
+    return top >= 20 ? bigNum : function (v) { return v.toFixed(2); };
+  }
+
+  /* A bare number on an axis is ambiguous: 57 could be a percentage, a count or
+     a rank. Where a puzzle's every option is a share, the per cent sign gives
+     nothing away and saves the reader guessing, so puzzles can carry a suffix
+     and every form that prints a number appends it. */
+  function withSuffix(fn, suffix) {
+    if (!suffix) return fn;
+    if (suffix === "%") return function (v) { return v.toFixed(1) + "%"; };
+    return function (v) { return fn(v) + suffix; };
   }
 
   /* --------- Part-to-whole: squarified treemap --------- */
@@ -1825,7 +2379,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
         rx: 3, ry: 3, fill: fill
       });
       hoverable(rect, '<div class="tt-row"><span class="sw" style="background:' + fill +
-        '"></span>' + c.d.name + " &nbsp;<b>" + fmt(c.d.value) + "</b> · " + pct.toFixed(1) + "%</div>");
+        '"></span>' + c.d.name + " &nbsp;<b>" + bigNum(c.d.value) + "</b> · " + pct.toFixed(1) + "%</div>");
       g.appendChild(rect);
 
       /* Direct labels where the block can hold them. On a phone the smaller
@@ -1963,7 +2517,10 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     rows.forEach(function (r) { max = Math.max(max, r[1], r[2]); });
     var scale = niceScale(max, m.compact ? 3 : 5);
     var top = scale.top;
-    var label = valueFmt(top);
+    var label = withSuffix(valueFmt(top), p.suffix);
+    /* Ticks are round by construction, so they never need the extra decimal a
+       value like 0.72 does: an axis reading 0, 2, 4, 6, 8 beats 0.00, 2.00. */
+    var tick = withSuffix(tickFmt(top), p.suffix);
 
     function X(v) { return gutter + (v / top) * plotW; }
 
@@ -1981,7 +2538,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       svg.appendChild(txt(el("text", {
         x: X(t), y: mT - 18, "text-anchor": "middle", fill: "var(--muted)",
         "font-size": "11", "font-family": MONO
-      }), label(t)));
+      }), tick(t)));
     });
 
     rows.forEach(function (r, i) {
@@ -1998,8 +2555,10 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
         stroke: "var(--axis)", "stroke-width": "2", "stroke-linecap": "round"
       }));
 
-      /* "Then" is a hollow ring, "now" is solid. Shade alone was too weak a
-         signal at this dot size, and shape survives both themes and CVD. */
+      /* The earlier date is red, the later blue. Red and blue sit at almost the
+         same lightness on white, so hue alone would fail for a colour-blind
+         reader: the earlier date stays a ring and the later one solid, and the
+         legend names both. Colour carries the distinction; shape guarantees it. */
       [[a, p.leftYear, false], [b, p.rightYear, true]].forEach(function (pt) {
         var solid = pt[2];
         var c = el("circle", {
@@ -2229,7 +2788,9 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       "aria-label": "Beeswarm. Every country is one dot, positioned by its value. The measure is withheld."
     });
 
-    niceScale(top, m.compact ? 3 : 6).ticks.forEach(function (t) {
+    var beeScale = niceScale(top, m.compact ? 3 : 6);
+    var beeTick = withSuffix(tickFmt(beeScale.top), p.suffix);
+    beeScale.ticks.forEach(function (t) {
       if (t > top) return;
       svg.appendChild(el("line", {
         x1: X(t), y1: mT - 6, x2: X(t), y2: H - mB + 6,
@@ -2238,7 +2799,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       svg.appendChild(txt(el("text", {
         x: X(t), y: H - mB + 22, "text-anchor": "middle",
         fill: "var(--muted)", "font-size": "11", "font-family": MONO
-      }), String(t)));
+      }), beeTick(t)));
     });
 
     pts.forEach(function (pt) {
@@ -2319,21 +2880,9 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     /* A log axis is the only honest way to show a range spanning four orders of
        magnitude — on a linear scale everything below the leader collapses onto
        the baseline and the chart says nothing. */
-    /* Big numbers need units, not more digits: "93,759,300" clips out of the
-       margin and "20000k" is nonsense. Pick one unit for the whole chart from
-       its largest value, so every label is directly comparable. */
-    function unitFmt(maxv) {
-      if (maxv >= 1e9) return function (v) { return v === 0 ? "0" : trimZero(v / 1e9) + "bn"; };
-      if (maxv >= 1e6) return function (v) { return v === 0 ? "0" : trimZero(v / 1e6) + "m"; };
-      if (maxv >= 1e4) return function (v) { return v === 0 ? "0" : Math.round(v / 1e3) + "k"; };
-      return fmt;
-    }
-    function trimZero(x) {
-      return String(x >= 10 ? Math.round(x) : Math.round(x * 10) / 10);
-    }
-
     var scale = p.log ? null : niceScale(max, m.compact ? 3 : 5);
-    var label = p.log ? fmt : unitFmt(max);
+    var label = withSuffix(bigNum, p.suffix);
+    var tick = withSuffix(p.log ? bigNum : tickFmt(scale.top), p.suffix);
     var lo = p.log ? Math.log10(Math.max(min, max / 100000)) : 0;
     var hi = p.log ? Math.log10(max) : 0;
     function X(v) {
@@ -2362,7 +2911,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       svg.appendChild(txt(el("text", {
         x: X(t), y: mT - 15, "text-anchor": "middle",
         fill: "var(--muted)", "font-size": "10.5", "font-family": MONO
-      }), p.log ? (t >= 1000 ? Math.round(t / 1000) + "k" : String(t)) : label(t)));
+      }), tick(t)));
     });
 
     var yOff = 0;
@@ -2396,7 +2945,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
         fill: slot, stroke: "var(--panel)", "stroke-width": "1.5"
       });
       hoverable(dot, '<div class="tt-row"><span class="sw" style="background:' + slot +
-        '"></span>' + r[0] + " &nbsp;<b>" + fmt(r[1]) + "</b></div>");
+        '"></span>' + r[0] + " &nbsp;<b>" + label(r[1]) + "</b></div>");
       svg.appendChild(dot);
 
       svg.appendChild(txt(el("text", {
@@ -2421,6 +2970,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     var H = mT + rows.length * rowH + mB;
     var plotW = W - gutter - right;
 
+    var devLabel = withSuffix(bigNum, p.suffix);
     var devs = rows.map(function (r) { return r[1] - p.reference; });
     var maxUp = Math.max.apply(null, devs.concat([0]));
     var maxDn = Math.min.apply(null, devs.concat([0]));
@@ -2483,7 +3033,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       svg.appendChild(txt(el("text", {
         x: W - right + 10, y: y, "dominant-baseline": "middle",
         fill: "var(--muted)", "font-size": m.compact ? "10" : "11", "font-family": MONO
-      }), String(r[1])));
+      }), devLabel(r[1])));
     });
 
     return svg;
@@ -2815,8 +3365,16 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     $("pts").textContent = "+" + pts;
     $("pts").className = "pts " + tierClass(results[idx]);
     $("why").textContent = p.why + " Measured in " + p.unit + ".";
-    $("src").innerHTML = 'Source: Our World in Data · <a href="https://ourworldindata.org/grapher/' +
-      p.slug + '" target="_blank" rel="noopener">' + p.slug + "</a> · CC BY 4.0";
+    /* Attribution has to follow the data, not the habit. Puzzles built from the
+       World Bank, WHO or Eurostat carry their own source and link; anything
+       without one is from Our World in Data, which is where we started. */
+    if (p.source) {
+      $("src").innerHTML = "Source: " + p.source + ' · <a href="' + p.sourceUrl +
+        '" target="_blank" rel="noopener">' + p.slug + "</a>";
+    } else {
+      $("src").innerHTML = 'Source: Our World in Data · <a href="https://ourworldindata.org/grapher/' +
+        p.slug + '" target="_blank" rel="noopener">' + p.slug + "</a> · CC BY 4.0";
+    }
     $("meta").textContent = p.form + " · " + p.family;
     $("next").textContent = idx < ACTIVE.length - 1 ? "Next chart" : "See your score";
     $("outcome").classList.add("show");
