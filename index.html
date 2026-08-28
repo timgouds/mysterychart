@@ -684,7 +684,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
         "World ranking of rice-growing countries"
       ],
       hints: [
-        "The line that climbs fifteen places belongs to a country better known in 1990 for a war it had recently finished.",
+        "The line that climbs fifteen places belongs to a country the world still associated with a war rather than with farming.",
         "Two of the fallers are in Latin America; the steepest faller is in West Africa, which switched to a more profitable bean.",
         "Ranked by tonnes, green and unroasted, before the step that makes it smell like itself.",
         "Brazil has held first place on this list for over 150 years."
@@ -809,7 +809,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
         "Trees per hectare of land"
       ],
       hints: ["You could drive across anything at the top of this list before lunch. You could not cross anything at the bottom in a week.",
-              "Bangladesh sits sixth, above every European country here. It is neither rich nor tiny, but it is crowded.",
+              "Bangladesh sits sixth, and everything above it is either an island or a city state. It is neither rich nor tiny, but it is crowded.",
               "The scale is logarithmic, because the leader is more than five thousand times the last place.",
               "It is simply how many people share each square kilometre."],
       why: "Monaco, Singapore, Bahrain, Malta and the Maldives at the top, with Australia, Canada and Russia at the bottom, is the signature of land area rather than anything economic.",
@@ -818,11 +818,16 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     {
       family: "Ranking", form: "Lollipop · 2024", exhibit: "Exhibit G",
       type: "lollipop", diff: 2,
-      truth: "People arriving from abroad, 2024", period: "2024", unit: "arrivals from abroad per year",
-      data: [["Spain",93759300],["United States",72390320],["Italy",57725000],
-             ["Turkey",50453000],["France",48395000],["Mexico",45038750],
-             ["United Kingdom",38229570],["Germany",37420000],["Japan",36870000],
-             ["Saudi Arabia",29727444],["Portugal",28970000],["Greece",27836000]],
+      truth: "People arriving from abroad, 2019", period: "2019", unit: "arrivals from abroad per year",
+      /* 2019 rather than the latest year, deliberately. Our World in Data's 2024
+         cut of this series is incomplete for several big destinations: France
+         drops from 90.9m to 48.4m and Thailand from 39.9m to 0.5m, which are
+         reporting gaps rather than real falls. 2019 is the last year the series
+         is whole, and it ranks the countries the way the world actually does. */
+      data: [["France",90914000],["Spain",83509000],["United States",79442000],
+             ["China",65725000],["Italy",64513000],["Turkey",51192000],
+             ["Mexico",45024000],["Thailand",39916000],["Germany",39563000],
+             ["United Kingdom",39418000],["Austria",31884000],["Greece",31348400]],
       answer: "Number of people arriving from abroad each year",
       decoys: [
         "Number of people born there who now live abroad",
@@ -833,11 +838,11 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
         "Number of passports issued each year",
         "Number of people employed in transport"
       ],
-      hints: ["Every country in the top six has a long coastline and a warm summer. Saudi Arabia is the odd one out.",
-              "Spain's number is roughly twice the number of people who live in Spain. Whatever this counts, it is events rather than people.",
+      hints: ["Thailand and Turkey both sit ahead of Britain and Germany, which is not how those four rank on very much else.",
+              "Spain's figure is nearly twice the number of people who live in Spain, so this counts events rather than residents.",
               "Counted in millions a year, each one crossing a border in one direction.",
               "It is how many tourists visit."],
-      why: "Spain's 94 million against a population of 48 million is the discriminator: no country has twice its population working in restaurants, or living abroad. Domestic flights would be led by the United States by an enormous margin, not by Spain.",
+      why: "France at 90.9 million against a population of 67 million, and Spain at 83.5 million against 47 million, is the discriminator: no country has more than its own population working in restaurants or living abroad. These are 2019 figures, the last year the series is complete for every major destination.",
       slug: "international-tourism-number-of-arrivals"
     },
     {
@@ -994,9 +999,9 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       ],
       hints: ["One country here is roughly five times any other. It was invaded three years ago.",
               "The Gulf states all sit above the line while Japan and China sit below it, despite being enormous economies, so this is a share of something rather than a total.",
-              "The line everything is measured against is a target that one alliance asks its members to meet.",
+              "The line everything is measured against is the figure one alliance spent two decades asking its members to reach.",
               "It is the share of national income spent on armed forces."],
-      why: "The 2% line is NATO's spending target. Ukraine at 39.6% of GDP has no parallel in any peacetime budget line, and Japan and China sitting below the line despite enormous absolute spending is the giveaway that this is a share, not a total.",
+      why: "The 2% line is the benchmark NATO set for its members in 2014. Ukraine at 39.6% of GDP has no parallel in any peacetime budget line, and Japan and China sitting below the line despite enormous absolute spending is the giveaway that this is a share, not a total.",
       slug: "military-expenditure-as-a-share-of-gdp"
     },
     {
@@ -1021,7 +1026,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
               "India sits near the very bottom, far below its poorer neighbours. That is a choice, not a shortage.",
               "Measured in kilograms per person per year. The bulge in the middle is most of Europe.",
               "Beef, pork, chicken and lamb, added together."],
-      why: "Mongolia in second and India near the bottom is the pair that settles it: Mongolia's grassland diet and India's vegetarianism. Seafood would put Iceland, the Maldives and Japan on top, and Japan is twelfth here.",
+      why: "Mongolia in second and India near the bottom is the pair that settles it: Mongolia's grassland diet and India's vegetarianism. Seafood would put Iceland, the Maldives and Kiribati on top instead, with Mongolia close to last.",
       slug: "meat-supply-per-person"
     },
     {
@@ -1086,7 +1091,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       data: [
         ["Ethiopia",7.1,24.1], ["India",17.9,35.7], ["Egypt",37.8,42.9],
         ["Indonesia",14.6,59.4], ["Nigeria",14.2,63.8], ["China",19.7,66.3],
-        ["United States",70.0,80.2], ["Mexico",50.7,80.0], ["South Korea",27.7,81.2],
+        ["Mexico",50.7,80.0], ["United States",70.0,80.2], ["South Korea",27.7,81.2],
         ["United Kingdom",78.6,83.3], ["Brazil",44.7,88.2], ["Japan",63.3,92.3]
       ],
       answer: "Share of the population living in towns and cities",
@@ -1117,8 +1122,8 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       data: [
         ["Tanzania",8.7,52.4], ["Uganda",7.4,55.3], ["Ethiopia",12.7,56.6],
         ["Nigeria",43.2,62.5], ["Rwanda",6.2,72.0], ["Kenya",15.2,77.0],
-        ["Myanmar",41.9,80.4], ["Afghanistan",4.4,87.8], ["Bangladesh",32.0,99.5],
-        ["Nepal",29.9,97.9], ["India",60.3,99.9], ["Indonesia",86.3,99.9]
+        ["Myanmar",41.9,80.4], ["Afghanistan",4.4,87.8], ["Nepal",29.9,97.9],
+        ["Bangladesh",32.0,99.5], ["India",60.3,99.9], ["Indonesia",86.3,99.9]
       ],
       answer: "Share of people with electricity at home",
       decoys: [
@@ -1192,7 +1197,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
           "Share of the world's protected land"
         ],
       hints: [
-          "Australia is one of the largest countries on earth and gets a small tile. Indonesia is a fraction of its size and gets almost as much.",
+          "Australia is one of the largest countries on earth and gets a small tile. Indonesia, a fraction of its size, is not far behind it.",
           "India, with a seventh of the world's people and a great deal of land under the plough, holds under two percent of this.",
           "The five biggest tiles are all countries with vast cold or wet interiors that nobody has cleared.",
           "It is where the world's trees are."
@@ -1311,7 +1316,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
         ],
       hints: [
           "The top of this list is almost entirely small Caribbean islands, with two mainland exceptions.",
-          "The United States sits five times above Britain and France, and twelve times below Jamaica.",
+          "The United States sits five times above Britain and France, and eight times below Jamaica.",
           "Counted per hundred thousand people a year, from police and coroner records.",
           "Every one of these is a person killed on purpose by another."
         ],
@@ -1530,7 +1535,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
           "Measured in tonnes of the raw stalk, before anything has been extracted from it.",
           "Brazil turns much of its share into fuel for cars rather than into food."
         ],
-      why: "Brazil at nearly half with India second and Thailand fifth is the cane pattern. Rice would put India and China first and second with Brazil far down the list, and maize would be led by the United States, which is absent.",
+      why: "Brazil alone is nearly half of everything the eight largest growers produce, with India second and Thailand fifth, which is the cane pattern. Rice would put India and China first and second with Brazil far down the list, and maize would be led by the United States, which is absent.",
       slug: "sugar-cane-production"
     },
     {
@@ -1541,7 +1546,8 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       data: [
         ["Micronesia",92.2], ["Suriname",91.4], ["Gabon",91.4],
         ["Palau",91], ["Solomon Islands",89.8], ["Guyana",87],
-        ["Equatorial Guinea",85.8], ["Sweden",68.6], ["Japan",68.3],
+        ["Equatorial Guinea",85.8], ["Finland",74.2], ["Sweden",68.6],
+        ["Japan",68.3],
         ["Brazil",58.2], ["Russia",50.8], ["Indonesia",50.7],
         ["United States",33.8], ["India",24.5], ["China",24.2],
         ["Australia",17.4], ["United Kingdom",13.6], ["Ireland",12.1]
@@ -1588,7 +1594,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
           "Measured among adults aged twenty-five and over, so it lags what today's children are doing by decades.",
           "It is counted in years, and for most people it starts at about the age of five."
         ],
-      why: "A hard ceiling near 14 with Ireland, South Korea and Germany on top and Niger and Mali near 3 is schooling. Children per woman runs in exactly the opposite direction, with Niger highest and Ireland low.",
+      why: "A hard ceiling near 14 with Ireland, South Korea and Iceland on top and Niger and Mali near 3 is schooling. Children per woman runs in exactly the opposite direction, with Niger highest and Ireland low.",
       slug: "mean-years-of-schooling-long-run"
     },
     {
@@ -1868,12 +1874,12 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
           "Savings per person a year, in dollars"
         ],
       hints: [
-          "The United States is not merely first here. It is a fifth clear of Switzerland and double Germany, and on almost every other measure of this kind those three sit close together.",
+          "The United States is not merely first here. It is about fifteen per cent clear of Switzerland and double Germany, and on almost every other measure of this kind those three sit close together.",
           "Six countries are pinned flat against the axis. Ethiopia is at twenty-seven a year against more than twelve thousand at the top, a gap of more than four hundred times.",
           "Every figure is per person per year in current dollars, and it counts what the state and the household lay out together.",
           "It is what a country lays out on keeping people well."
         ],
-      why: "The United States at $12,586, a fifth clear of Switzerland and double Germany, is the health-spending signature. On education or food, America sits alongside other rich countries rather than far above them.",
+      why: "The United States at $12,586, about fifteen per cent clear of Switzerland and double Germany, is the health-spending signature. On education or food, America sits alongside other rich countries rather than far above them.",
       slug: "SH.XPD.CHEX.PC.CD",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SH.XPD.CHEX.PC.CD"
     },
@@ -2118,12 +2124,12 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
           "Share of young men in full-time education"
         ],
       hints: [
-          "The United States is eleventh, below Greece and Jordan, and China is third from last.",
+          "The United States is eleventh, below Greece and Jordan, and China is second from last.",
           "The two countries at the top both require every young person to serve, and in one of them that service has no fixed end.",
           "Measured as a share of everyone in work. This is a headcount, not a budget.",
           "It counts soldiers, sailors and air crew."
         ],
-      why: "China third from last and the United States eleventh is the giveaway that this counts people rather than money: both have enormous forces in absolute terms and enormous workforces to divide them by. On defence spending as a share of income the United States would be near the top.",
+      why: "China second from last and the United States eleventh is the giveaway that this counts people rather than money: both have enormous forces in absolute terms and enormous workforces to divide them by. On defence spending as a share of income the United States would be near the top.",
       slug: "MS.MIL.TOTL.TF.ZS",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/MS.MIL.TOTL.TF.ZS"
     }
