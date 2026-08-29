@@ -479,6 +479,13 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 }
 .score-note { margin: 0; color: var(--muted); font-size: 0.85rem; max-width: 58ch; }
 
+/* The share button is the one thing to press on this screen, so it is sized to
+   its own label and centred rather than stretching to the width of the score
+   rows above it. A full-width bar reads as a container, not a button. */
+.results .controls { justify-content: center; }
+.results .controls .btn { flex: 0 0 auto; padding: 11px 30px; font-size: 0.95rem; }
+.results .score-note { text-align: center; max-width: 34ch; margin: 0 auto; }
+
 /* ---------- hint button ---------- */
 
 .prompt-row {
@@ -662,7 +669,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       <button class="btn" id="copy">Copy result</button>
     </div>
     <textarea id="share-fallback" readonly rows="5" aria-label="Your result, ready to copy"></textarea>
-    <p class="score-note">Your result copies as plain text, so it pastes into WhatsApp, Discord or a group chat without an image or a login. The squares say how many hints each chart cost you, without giving any answers away.</p>
+    <p class="score-note">Go on, put it in the group chat. It spoils nothing and settles everything.</p>
   </section>
 
 
@@ -2292,6 +2299,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   var POINTS = [100, 60, 30, 15, 5, 0, 0, 0];
   var MARKS = ["🟩", "🟨", "🟧", "🟦"];
   var MISS = "🟥";
+  var BLANK = "⬜";
   var PERFECT_BONUS = 200;
   var RUN_MAX = MULTIPLIER.reduce(function (a, m) { return a + m * 100; }, 0);
 
@@ -3557,16 +3565,24 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return { base: base, perfect: perfect, total: base + (perfect ? PERFECT_BONUS : 0) };
   }
 
+  /* One row per chart, Wordle-style: a blank square for every wrong answer or
+     hint, then the square that says how it ended. A single row of five said
+     nothing the score did not, so people retyped the number instead of pasting
+     it. Row length is the information; the colour is only continuity with the
+     pips on the results page. */
+  function shareRow(r) {
+    if (!r) return "";
+    var n = Math.min(r.tier, 5), row = "";
+    while (n--) row += BLANK;
+    return row + markFor(r);
+  }
+
   function shareText() {
     var t = runTotals();
-    var grid = results.map(function (r) {
-      return markFor(r);
-    }).join("");
-    /* The band name travels with the score, so a group chat has something to
-       argue about beyond the number. It replaces the old "perfect run" suffix,
-       which said less than "Immaculate" does. */
-    var lines = ["Mystery Chart #" + runNo + " · " + t.total + "/" + RUN_MAX,
-                 bandFor(t.total, t.perfect).title, grid];
+    var grid = results.map(shareRow).join("\n");
+    /* The band name used to travel with the score. It read as filler next to the
+       number and the grid, so the paste is now just those two. */
+    var lines = ["Mystery Chart #" + runNo + " · " + t.total + "/" + RUN_MAX, grid];
     var stats = loadStats();
     if (stats.streak > 1) lines.push("🔥 " + stats.streak + "-day streak");
     lines.push(SITE);
@@ -3674,16 +3690,28 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     document.querySelector(".doc").scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
+  /* On a phone the clipboard is the long way round: copy, leave the game, find
+     the chat, paste. navigator.share hands the text straight to the share sheet,
+     so it is two taps into WhatsApp. Desktop keeps the clipboard. */
+  function canShare(text) {
+    if (!navigator.share) return false;
+    try { return !navigator.canShare || navigator.canShare({ text: text }); }
+    catch (e) { return false; }
+  }
+  var SHARE_LABEL = navigator.share ? "Share" : "Copy result";
+
   $("copy").addEventListener("click", function () {
     var btn = $("copy");
     var text = shareText();
-    var ok = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy result"; }, 1800); };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(ok, function () { $("share-fallback").value = text; $("share-fallback").style.display = "block"; });
-    } else {
-      $("share-fallback").value = text;
-      $("share-fallback").style.display = "block";
+    if (canShare(text)) {
+      navigator.share({ text: text }).catch(function (err) {
+        // Cancelling the sheet is not a failure; anything else falls back.
+        if (err && err.name === "AbortError") return;
+        copyTo(btn, text, SHARE_LABEL);
+      });
+      return;
     }
+    copyTo(btn, text, SHARE_LABEL);
   });
 
   function copyTo(btn, text, label) {
@@ -3722,6 +3750,8 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       render();
     }
   }
+  $("copy").textContent = SHARE_LABEL;
+
   if ($("build")) {
     $("build").textContent = "Build " + BUILD + " \u00b7 " + PUZZLES.length + " charts.";
   }
