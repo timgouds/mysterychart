@@ -3243,9 +3243,9 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      browser cache will both happily serve yesterday's file. Bump the date whenever
      you upload a new one. The chart count is counted, not typed, so it cannot lie. */
   var BUILD = "27 Aug 2026";
-  // Shared results must name the game's own domain, not the origin the
-  // player happens to be on (github.io, a local file, a preview URL).
-  var SITE = "https://mysterychart.net";
+  // The link that travels with a score. Not the origin the player happens
+  // to be on (github.io, a local file), and not the root, which unfurls big.
+  var SHARE_URL = "https://mysterychart.net/play/";
   /* ================================================== */
 
   /* The run number comes from the player's OWN local date, like Wordle. Someone
@@ -3565,16 +3565,18 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return { base: base, perfect: perfect, total: base + (perfect ? PERFECT_BONUS : 0) };
   }
 
-  /* One row per chart, Wordle-style: a blank square for every wrong answer or
-     hint, then the square that says how it ended. A single row of five said
-     nothing the score did not, so people retyped the number instead of pasting
-     it. Row length is the information; the colour is only continuity with the
-     pips on the results page. */
+  /* One row per chart, every row the same width, so the five stack into a block
+     and the position of the colour is the whole story: first cell means named
+     first time, last cell means it cost three or more. Ragged rows read as a
+     mess in a chat; a rectangle reads as a score. Four cells matches the four
+     marks, so a chart that ran past three costs lands in the last cell the same
+     way its colour already caps at the fourth mark. */
+  var SHARE_ROW = 4;
   function shareRow(r) {
     if (!r) return "";
-    var n = Math.min(r.tier, 5), row = "";
-    while (n--) row += BLANK;
-    return row + markFor(r);
+    var at = Math.min(r.tier, SHARE_ROW - 1), row = "", i;
+    for (i = 0; i < SHARE_ROW; i++) row += (i === at ? markFor(r) : BLANK);
+    return row;
   }
 
   function shareText() {
@@ -3585,7 +3587,11 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     var lines = ["Mystery Chart #" + runNo + " · " + t.total + "/" + RUN_MAX, grid];
     var stats = loadStats();
     if (stats.streak > 1) lines.push("🔥 " + stats.streak + "-day streak");
-    lines.push(SITE);
+    /* A shared score links to /play/ rather than the root. That page carries no
+       og:image, so a chat unfurls three lines of text instead of a card that
+       swallows the screen, and the big card still appears when somebody shares
+       the site itself. */
+    lines.push(SHARE_URL);
     return lines.join("\n");
   }
 
