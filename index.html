@@ -3413,7 +3413,12 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   function showHint(alreadyCharged) {
     var p = ACTIVE[idx];
     if (done || revealed >= p.hints.length) return;
-    if (!alreadyCharged) { cost++; updateScore(); }
+    /* Only a hint the player asked for. A clue that arrives after a wrong answer
+       comes through showHint(true), as does replaying a saved run. */
+    if (!alreadyCharged) {
+      cost++; updateScore();
+      track("hint/requested/chart-" + (idx + 1), "Hint requested · chart " + (idx + 1));
+    }
     var h = document.createElement("div");
     h.className = "hint";
     h.innerHTML = '<span class="n">Hint ' + (revealed + 1) + "</span><p>" + p.hints[revealed] + "</p>";
@@ -3468,6 +3473,12 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       }
     } catch (e) { /* never let counting break play */ }
   }
+
+  /* hideIntro() runs every time the intro is dismissed, and the ? button brings
+     the intro back mid-run, so counting there once per press inflated starts.
+     Set for the life of the page, and set up front when we are resuming a run
+     that was already begun, so a reload is not a second start either. */
+  var runStartTracked = false;
 
   var TIERS = ["first", "hint1", "hint2", "hint3", "missed"];
 
@@ -3601,6 +3612,13 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     if (!replaying) { saveDone(); }
 
     var stats = loadStats();
+    /* Read before the counter below is bumped. Anonymous: this only asks whether
+       this browser has ever finished a run, and stores no identifier. */
+    if (!replaying) {
+      track(stats.played > 0 ? "player/returning" : "player/first-completion",
+            stats.played > 0 ? "Returning player" : "First completed run");
+    }
+
     if (stats.lastRun !== runNo) {
       stats.streak = (stats.lastRun === runNo - 1) ? (stats.streak || 0) + 1 : 1;
       stats.lastRun = runNo;
@@ -3660,7 +3678,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     if (finishedToday) { $("results").style.display = "flex"; return; }
     $("game").style.display = "flex";
     renderChart();
-    track("play/start", "Run started");
+    if (!runStartTracked) { runStartTracked = true; track("play/start", "Run started"); }
   }
 
   $("start").addEventListener("click", hideIntro);
@@ -3710,9 +3728,15 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     var btn = $("copy");
     var text = shareText();
     if (canShare(text)) {
-      navigator.share({ text: text }).catch(function (err) {
-        // Cancelling the sheet is not a failure; anything else falls back.
-        if (err && err.name === "AbortError") return;
+      navigator.share({ text: text }).then(function () {
+        track("share/sheet", "Result shared from the share sheet");
+      }, function (err) {
+        // Cancelling the sheet is a real signal, not a failure. Anything else
+        // falls back to the clipboard, which counts itself.
+        if (err && err.name === "AbortError") {
+          track("share/cancelled", "Share sheet dismissed");
+          return;
+        }
         copyTo(btn, text, SHARE_LABEL);
       });
       return;
@@ -3724,6 +3748,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     var restore = function () { setTimeout(function () { btn.textContent = label; }, 1800); };
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(function () {
+        track("share/copy", "Result copied to the clipboard");
         btn.textContent = "Copied"; restore();
       }, function () {
         $("share-fallback").value = text; $("share-fallback").style.display = "block";
@@ -3740,6 +3765,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   var done = readDone();
   var label = "Start today's run";
   if (done) {
+    runStartTracked = true;
     results = done.results;
     render();
     showResults(true);
@@ -3751,6 +3777,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       restoreProgress(saved);
       if (saved.idx > 0 || (saved.cur && (saved.cur.revealed || (saved.cur.wrongPicks || []).length))) {
         label = "Continue today's run";
+        runStartTracked = true;
       }
     } else {
       render();
