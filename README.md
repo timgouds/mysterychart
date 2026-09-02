@@ -1,46 +1,35 @@
-# src/
+# Mystery Chart
 
-The game is built from two files. Never edit `index.html` at the repo root by
-hand: it is generated, and the next build will overwrite whatever you typed.
+A daily chart guessing game. Five real charts a day, built from public data.
+The title is blacked out; you work out what the chart measures from the
+countries, the years and the numbers, which are all exactly as published.
 
-| File | What it holds |
+**Play: https://mysterychart.net**
+
+## Repo layout
+
+| Path | What it is |
 |---|---|
-| `engine.html` | The page, the chart renderers, the dealer, scoring, the chrome. |
-| `puzzles.js` | The puzzle pool, and nothing else. |
+| `index.html` | The built game. Generated. Do not edit by hand. |
+| `src/engine.html` | Page, chart renderers, dealer, scoring. |
+| `src/puzzles.js` | The puzzle pool, and nothing else. |
+| `build.py` | Assembles `index.html` from the two source files. |
+| `preflight.mjs` | Content and dealer checks. Exit 1 blocks a ship. |
 
-`build.py` substitutes `puzzles.js` into the `/* @@PUZZLE-DATA@@ */` marker in
-`engine.html` and writes `../index.html`.
-
-## Why they are separate
-
-Adding puzzles must never be able to touch renderer code. In doc 20 a generator
-emitted a stray comma into a series array and one chart silently failed to
-render on day 5 only. It was found by an eight-day sweep, not by reading the
-file. With the data in its own file that whole class of bug cannot reach the
-machinery.
-
-## To ship a change
+## Shipping a change
 
 ```
-python3 build.py        # assemble index.html and report
-node preflight.mjs      # 12 content and dealer checks; exit 1 blocks the ship
+python3 build.py        # assemble index.html
+node preflight.mjs      # 12 checks; must pass
 ```
 
-Then upload `index.html` to the repo root. `python3 build.py --check` tells you
-whether the committed `index.html` still matches the sources without writing.
+Then commit `index.html` along with the changed source. `python3 build.py --check`
+reports whether the committed `index.html` still matches the sources.
 
-## Adding puzzles
+See `src/README.md` for why the sources are split and how to add puzzles.
 
-Append to the end of `PUZZLES` in `puzzles.js`. Never insert or reorder: the
-broadcast history in `engine.html` is keyed on slug so a reorder will not
-corrupt it silently, but the dealer treats position as stable and there is no
-reason to disturb it.
+## Data
 
-Each puzzle needs a unique `slug`, a `truth`, a `period`, exactly seven
-`decoys` ordered strongest first, exactly four `hints`, a `diff` of 1 to 5, and
-the fields its chart form requires. `preflight.mjs` checks all of that.
-
-## After a batch
-
-The deal is a function of the whole pool, so adding puzzles moves every future
-run. Regenerate the catalogue spreadsheet and re-record the runway.
+Charts are drawn from Our World in Data, the World Bank, WHO and Eurostat.
+OWID and World Bank data are CC BY 4.0; each chart carries its own source and
+link on the results screen.
