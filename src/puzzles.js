@@ -472,7 +472,7 @@
       ],
       answer: "Share of the population living in towns and cities",
       decoys: [
-          "Share of the population with electricity at home",
+          "Share of the population with access to electricity",
           "Share of the population who can read and write",
           "Share of the population in paid work",
           "Share of adults who own their home",
@@ -492,7 +492,7 @@
     {
       family: "Change over time", form: "Dumbbell · 2000 → 2024", exhibit: "Exhibit R",
       type: "dumbbell", diff: 2,
-      truth: "Share of people with electricity at home, 2000 vs 2024", period: "2000 → 2024", unit: "% of the population",
+      truth: "Share of people with access to electricity, 2000 vs 2024", period: "2000 → 2024", unit: "% of the population",
       suffix: "%",
       leftYear: 2000, rightYear: 2024,
       data: [
@@ -501,10 +501,10 @@
         ["Myanmar",41.9,80.4], ["Afghanistan",4.4,87.8], ["Nepal",29.9,97.9],
         ["Bangladesh",32.0,99.5], ["India",60.3,99.9], ["Indonesia",86.3,99.9]
       ],
-      answer: "Share of people with electricity at home",
+      answer: "Share of people with access to electricity",
       decoys: [
           "Share of people who own a mobile phone",
-          "Share of people with clean drinking water",
+          "Share of people with access to clean drinking water",
           "Share of people who can read and write",
           "Share of children who finish primary school",
           "Share of people with a bank account",
@@ -716,7 +716,7 @@
           "Share of the population without clean drinking water",
           "Share of adults who cannot read or write",
           "Share of children who do not finish primary school",
-          "Share of the population without electricity",
+          "Share of the population without access to electricity",
           "Share of the population without a toilet at home",
           "Share of adults who are out of work",
           "Share of the population living in the countryside"
@@ -1017,7 +1017,7 @@
       ],
       answer: "Share of people living in extreme poverty",
       decoys: [
-          "Share of the population without electricity",
+          "Share of the population without access to electricity",
           "Share of adults who cannot read or write",
           "Share of the population living in the countryside",
           "Share of the workforce employed in farming",
