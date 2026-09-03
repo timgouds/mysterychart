@@ -733,12 +733,12 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      Append a run here only once it has aired. Never edit an existing row.
      --------------------------------------------------------------------- */
   var HISTORY_SLUGS = [
-    ["homicide-rate-unodc", "military-expenditure-as-a-share-of-gdp", "TX.VAL.MRCH.CD.WT", "SL.AGR.EMPL.ZS", "EN.URB.LCTY.UR.ZS"],
-    ["yth_demo_030", "coffee-bean-production", "share-of-women-in-parliament", "mobile-cellular-subscriptions-per-100-people", "MS.MIL.TOTL.TF.ZS"],
-    ["share-of-population-urban", "IS.AIR.PSGR", "rice-production", "fish-and-seafood-consumption-per-capita", "prevalence-of-undernourishment"],
-    ["wine-production", "SH.XPD.CHEX.PC.CD", "share-of-adults-who-smoke", "population", "forest-area-as-share-of-land-area"],
-    ["population-density", "NY.GDP.MKTP.CD", "share-global-forest", "SH.MED.BEDS.ZS", "NE.RSB.GNFS.ZS"],
-    ["cocoa-bean-production", "share-of-individuals-using-the-internet", "sugar-cane-production", "SP.POP.65UP.TO.ZS", "annual-co2-emissions-per-country"]
+    ["homicide-rate-unodc", "military-expenditure-as-a-share-of-gdp", "goods-exports", "farm-employment", "city-dwellers-in-largest-city"],
+    ["age-leaving-parents-home", "coffee-bean-production", "share-of-women-in-parliament", "mobile-cellular-subscriptions-per-100-people", "armed-forces-share-of-workforce"],
+    ["share-of-population-urban", "airline-passengers", "rice-production", "fish-and-seafood-consumption-per-capita", "prevalence-of-undernourishment"],
+    ["wine-production", "health-spending-per-person", "share-of-adults-who-smoke", "population", "forest-area-as-share-of-land-area"],
+    ["population-density", "largest-economies-ranking", "share-global-forest", "hospital-beds-per-1000", "trade-balance"],
+    ["cocoa-bean-production", "share-of-individuals-using-the-internet", "sugar-cane-production", "population-over-65", "annual-co2-emissions-per-country"]
   ];
 
   var SLUG_INDEX = (function () {
@@ -2357,9 +2357,23 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     }
 
     if (!replaying) {
-      var bucket = t.total >= 600 ? "600" : (Math.floor(t.total / 100) * 100) + "s";
+      /* Bands of 100 across the whole range, plus a separate marker for a
+         perfect run.
+
+         This used to read `t.total >= 600 ? "600" : ...`, a ceiling left over
+         from doc 04 when a run was worth 600. Doc 15 raised the maximum to
+         RUN_MAX + PERFECT_BONUS (1,200) and this line was never updated, so
+         everything from 600 upwards collapsed into one bucket: 56% of all
+         completed runs, indistinguishable from each other. The entire top half
+         of the difficulty signal was invisible for the whole soft launch.
+
+         The bands still sum to the number of completed runs, so a band count
+         divided by play/complete is a share. score/perfect is an extra event
+         on top of the band, not instead of it, so it does not disturb that. */
+      var bucket = (Math.floor(t.total / 100) * 100) + "s";
       track("play/complete", "Run completed");
       track("score/" + bucket, "Score " + bucket);
+      if (t.perfect) { track("score/perfect", "Perfect run"); }
     }
 
     $("game").style.display = "none";

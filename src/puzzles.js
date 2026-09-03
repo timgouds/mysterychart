@@ -1058,7 +1058,7 @@
           "It is what a health service has when you need to stay the night."
         ],
       why: "South Korea at 12.65 and Japan at 12.62 with Sweden at 2.05 is the giveaway, because wealth does not sort this list at all: Sweden treats people at home, Japan keeps them in. Doctors per head would put Greece and Cuba on top, and neither leads here.",
-      slug: "SH.MED.BEDS.ZS",
+      slug: "hospital-beds-per-1000",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SH.MED.BEDS.ZS"
     },
     {
@@ -1091,7 +1091,7 @@
           "It is arrivals minus departures."
         ],
       why: "Pakistan at minus 1.6 million and India at minus 979,000 while both populations still grew is the tell: this counts movement across a border in both directions, not population change. Anything that only counted arrivals could never go below the line.",
-      slug: "SM.POP.NETM",
+      slug: "net-migration",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SM.POP.NETM"
     },
     {
@@ -1123,7 +1123,7 @@
           "It counts everyone who flew with that country's own carriers."
         ],
       why: "Ireland third, above India and Japan, is the whole puzzle: Ryanair's fleet is Irish-registered, so its passengers are counted as Ireland's. Airport traffic would put Germany and Britain far above Ireland, and tourist arrivals would be led by France and Spain.",
-      slug: "IS.AIR.PSGR",
+      slug: "airline-passengers",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/IS.AIR.PSGR"
     },
     {
@@ -1156,7 +1156,7 @@
           "It is when they finally move out."
         ],
       why: "Finland at 21.4 and Croatia at 31.3, with the whole Nordic bloc low and southern and eastern Europe high, is the leaving-home pattern. Age at first marriage runs the other way, with Sweden and Denmark among the latest in Europe.",
-      slug: "yth_demo_030",
+      slug: "age-leaving-parents-home",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/yth_demo_030/default/table"
     },
     {
@@ -1191,7 +1191,7 @@
           "It is whether she has a job, or is looking for one."
         ],
       why: "Madagascar and Tanzania above Iceland and Sweden is the participation pattern: in the poorest economies almost nobody can afford not to work. Literacy or bank accounts would put the Nordic countries on top and Madagascar near the bottom.",
-      slug: "SL.TLF.CACT.FE.ZS",
+      slug: "female-labour-force-participation",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SL.TLF.CACT.FE.ZS"
     },
     {
@@ -1224,7 +1224,7 @@
           "One city, as a fraction of everyone in that country who lives in a city at all."
         ],
       why: "Germany at 5.2% and China at 3.2% beside Mongolia at 68% is the tell: neither is a rural country, they simply have no dominant city. A share of the whole population living in cities would put Germany near 80%.",
-      slug: "EN.URB.LCTY.UR.ZS",
+      slug: "city-dwellers-in-largest-city",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/EN.URB.LCTY.UR.ZS"
     },
     {
@@ -1256,7 +1256,7 @@
           "It is what a country lays out on keeping people well."
         ],
       why: "The United States at $12,586, about fifteen per cent clear of Switzerland and double Germany, is the health-spending signature. On education or food, America sits alongside other rich countries rather than far above them.",
-      slug: "SH.XPD.CHEX.PC.CD",
+      slug: "health-spending-per-person",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SH.XPD.CHEX.PC.CD"
     },
     {
@@ -1290,7 +1290,7 @@
           "It is what a country sells abroad minus what it buys."
         ],
       why: "Singapore at +37% and Ireland at +33%, with the United States, Britain, Japan and India all below zero, is the trade-balance pattern: both small economies re-export heavily and book multinational profits. A budget balance would not put Ireland thirty points clear of Germany.",
-      slug: "NE.RSB.GNFS.ZS",
+      slug: "trade-balance",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/NE.RSB.GNFS.ZS"
     },
     {
@@ -1322,7 +1322,7 @@
           "It is how much of a country has passed its sixty-fifth birthday."
         ],
       why: "Japan going from 12.2%, below Britain and Italy, to 29.8% in thirty-four years is the ageing signature, and Uganda falling from 3.1% to 2.2% is the tell: a country whose birth rate stays very high gets younger, not older.",
-      slug: "SP.POP.65UP.TO.ZS",
+      slug: "population-over-65",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SP.POP.65UP.TO.ZS"
     },
     {
@@ -1353,7 +1353,7 @@
           "It is the size of the economy."
         ],
       why: "China rising from tenth to second and India from eleventh to fifth while the United States holds first is the GDP pattern. On manufacturing output China was already high in 1990 and would now lead by a distance rather than sit second.",
-      slug: "NY.GDP.MKTP.CD",
+      slug: "largest-economies-ranking",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD"
     },
     {
@@ -1384,7 +1384,7 @@
           "It is what each country sells abroad."
         ],
       why: "Rotterdam and Antwerp put the Netherlands fourth and Belgium tenth, far above their economic weight, because goods landing there are re-exported. On imports the United States would lead comfortably; here it is second to China.",
-      slug: "TX.VAL.MRCH.CD.WT",
+      slug: "goods-exports",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/TX.VAL.MRCH.CD.WT"
     },
     {
@@ -1415,7 +1415,7 @@
           "Every one of these happened in traffic."
         ],
       why: "The United States at 14.2, six times Britain and level with India, is the road-death pattern rather than the murder one: America's homicide rate is under six, and Zimbabwe does not lead the world in murder. Sweden's 2.1 is Vision Zero, adopted in 1997.",
-      slug: "RS_198",
+      slug: "road-deaths-per-100000",
       source: "WHO Global Health Observatory", sourceUrl: "https://www.who.int/data/gho"
     },
     {
@@ -1447,7 +1447,7 @@
           "It counts the people who grow the food."
         ],
       why: "Uganda rising from 62% to 65% while Vietnam falls from 74% to 26% is the tell, and Britain at 0.87% shows this is a share of the workforce rather than of the population: far more than one percent of Britons live in the countryside.",
-      slug: "SL.AGR.EMPL.ZS",
+      slug: "farm-employment",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SL.AGR.EMPL.ZS"
     },
     {
@@ -1506,7 +1506,7 @@
           "It counts soldiers, sailors and air crew."
         ],
       why: "China second from last and the United States eleventh is the giveaway that this counts people rather than money: both have enormous forces in absolute terms and enormous workforces to divide them by. On defence spending as a share of income the United States would be near the top.",
-      slug: "MS.MIL.TOTL.TF.ZS",
+      slug: "armed-forces-share-of-workforce",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/MS.MIL.TOTL.TF.ZS"
     },
     {
@@ -1541,7 +1541,7 @@
         "It sits in the hall, it is attached to the wall, and almost nobody under thirty has one."
       ],
       why: "The United States falls from 68 to 25 while France holds at 56, and Kenya and Nigeria finish at effectively zero. Only a superseded technology produces both patterns at once: computers, broadband and televisions all rose in Africa over the same period.",
-      slug: "IT.MLT.MAIN.P2",
+      slug: "landlines-per-100",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/IT.MLT.MAIN.P2"
     },
     {
@@ -1577,7 +1577,7 @@
         "It is what a nurse in the Gulf and a builder in Spain wire back to their families each month."
       ],
       why: "Aid would put the poorest countries on top and these are middle income; tourism cannot explain landlocked Nepal at 26 per cent; and the United States and Germany at the bottom rule out anything measuring economic activity in general. Only earnings made abroad and sent back fit all three ends of the chart.",
-      slug: "BX.TRF.PWKR.DT.GD.ZS",
+      slug: "remittances-received",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/BX.TRF.PWKR.DT.GD.ZS"
     },
     {
@@ -1612,7 +1612,7 @@
         "It is the teenage birth rate, and India’s collapse is the largest of any big country."
       ],
       why: "Latin America above South Asia is the tell. On every mortality, schooling or poverty measure India in 2023 sits above Mexico and Brazil; here it is a tenth of them. South Korea at 0.5 also rules out infant mortality, which has a floor near 2 even in the richest countries.",
-      slug: "SP.ADO.TFRT",
+      slug: "teenage-birth-rate",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SP.ADO.TFRT"
     },
     {
@@ -1647,7 +1647,7 @@
         "It is what a mask filters out, and what turns a Delhi winter sky brown."
       ],
       why: "Saudi Arabia above India, and the United States below Poland, breaks every emissions and energy reading: on carbon dioxide per person the Americans and Australians would lead and Bangladesh would be last. Desert dust and cooking fires put the same particles in the air as coal does, which is why the ranking looks nothing like an industrial one.",
-      slug: "EN.ATM.PM25.MC.M3",
+      slug: "air-pollution-pm25",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/EN.ATM.PM25.MC.M3"
     },
     {
@@ -1723,7 +1723,7 @@
         "It counts market traders, smallholders and anyone else with no employer above them."
       ],
       why: "Qatar, Bahrain and Kuwait at the very bottom is the discriminator: their workforces are overwhelmingly migrant employees, so any measure of exclusion or informality would put them high, not last. Norway at 4.9 also rules out government employment, where it would be among the highest in the world.",
-      slug: "SL.EMP.SELF.ZS",
+      slug: "self-employment",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SL.EMP.SELF.ZS"
     },
     {
@@ -1785,7 +1785,7 @@
         "Cuba trains more of them than it needs and sends them abroad as a matter of foreign policy."
       ],
       why: "Cuba alone at 9.5 with Greece second is the signature of this particular series and of almost nothing else. Nurses would put Norway, Switzerland and Finland at the front; anything tracking national income would put the United States far higher than the middle of the pack.",
-      slug: "SH.MED.PHYS.ZS",
+      slug: "doctors-per-1000",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SH.MED.PHYS.ZS"
     },
     {
@@ -1819,7 +1819,7 @@
         "Each one is lifted off a ship by a gantry crane, and about a third of them pass through China."
       ],
       why: "China takes a third of the world’s boxes because it holds seven of the ten busiest container ports on earth: Shanghai alone handles almost as many as the entire United States. Singapore and the Netherlands above Germany is the other giveaway. Both are transhipment hubs, where boxes come off one ship and go straight onto another without the country making or consuming anything, so any measure of what a country actually produces would put Germany and Japan far ahead of them.",
-      slug: "IS.SHP.GOOD.TU",
+      slug: "port-container-traffic",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/IS.SHP.GOOD.TU"
     },
     {
@@ -1852,7 +1852,7 @@
         "Every one of them holds a passport issued somewhere other than where they now sleep."
       ],
       why: "The four most populous countries in the world are absent and Australia is present, which rules out anything that scales with population. Saudi Arabia and the United Arab Emirates so high rules out tourism, where Spain and France lead; and the United States first rules out the mirror-image reading of people leaving.",
-      slug: "SM.POP.TOTL",
+      slug: "foreign-born-residents",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SM.POP.TOTL"
     },
     {
@@ -1887,7 +1887,7 @@
         "In Indonesia the excise duty runs to roughly 150 per cent, which is why a bottle there costs ten times what it costs in Moldova."
       ],
       why: "France, Italy and Spain in the bottom five is the whole puzzle. They are the three largest producers on earth, so any measure of volume, output or consumption would put them at the very top. Sorted by price they fall to the bottom, because what is being ranked is really alcohol duty.",
-      slug: "SA_0000001830",
+      slug: "price-of-a-bottle-of-wine",
       source: "WHO Global Health Observatory", sourceUrl: "https://www.who.int/data/gho/data/indicators"
     },
     {
@@ -1921,7 +1921,7 @@
         "It counts everyone in uniform: soldiers, sailors and air crew, conscript or volunteer."
       ],
       why: "North Korea third with 26 million people is the single visible fact that kills almost every alternative. On spending it would not be near the top ten, and on population, workforce or students it would not appear at all. The absence of Germany, Japan and the United Kingdom rules out anything measuring money.",
-      slug: "MS.MIL.TOTL.P1",
+      slug: "armed-forces-ranking",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/MS.MIL.TOTL.P1"
     },
     {
@@ -1957,7 +1957,7 @@
         "It is the figure that jumps when a factory closes and falls when it reopens."
       ],
       why: "Japan at 2.5 rules out poverty, renting and low qualifications, none of which reaches that floor in any rich country. The 2020 needle in the American line, gone within twelve months, is the shape of a lockdown rather than of a recession, and government debt would run to 250 per cent for Japan and burst the axis.",
-      slug: "SL.UEM.TOTL.ZS",
+      slug: "unemployment-rate",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS"
     },
     {
@@ -1992,7 +1992,7 @@
         "Côte d’Ivoire cleared most of its share to plant cocoa, and it is now the world’s largest grower."
       ],
       why: "Every country on this chart grew its population between 1992 and 2022, so a negative half rules that reading out immediately. Europe positive and South East Asia negative also rules out farmland and cattle, which moved the other way. The pattern is the forest transition: countries reforest once they are rich enough to stop clearing.",
-      slug: "AG.LND.FRST.K2",
+      slug: "forest-area-change",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/AG.LND.FRST.K2"
     },
     {
@@ -2028,7 +2028,7 @@
         "The question is whether a household could pay for seven nights somewhere else, once a year."
       ],
       why: "This is an affordability question, not a poverty count: Sweden and Norway never fall below about 9 per cent, and no rich country has that share in real poverty. Bulgaria and Romania halving between 2007 and 2024 is the shape of Eastern Europe getting richer rather than of any policy aimed at holidays.",
-      slug: "ilc_mdes02",
+      slug: "cannot-afford-a-week-away",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/ilc_mdes02/default/table"
     },
     {
@@ -2063,7 +2063,7 @@
         "It is the age at which a woman first signs the register."
       ],
       why: "The window is the giveaway. Leaving home and finishing education both happen well before 25 in this group of countries, and retirement well after 55. Only two events sit in the late twenties and early thirties and move together, and the first birth in Southern Europe now comes after this figure rather than before it.",
-      slug: "demo_nind",
+      slug: "age-at-first-marriage",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/demo_nind/default/table"
     },
     {
@@ -2103,7 +2103,7 @@
         "The question asks whether most people can be relied on, or whether you cannot be too careful."
       ],
       why: "Every wellbeing rating in this survey correlates strongly with income, which is why Romania first and France near last rules them all out. This one measures a belief about other people rather than about your own circumstances, and it tracks culture rather than money.",
-      slug: "ilc_pw03",
+      slug: "trust-in-others",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/ilc_pw03/default/table"
     },
     {
@@ -2137,7 +2137,7 @@
         "It is fizzy, it is sweetened, and Belgium gets through more of it than anywhere else in Europe."
       ],
       why: "Belgium at 20.4 per cent is not a young person’s habit that drags the average up: it leads every single age band in the survey, and Belgians aged 65 to 74 report a higher daily rate (11.8 per cent) than Italians aged 15 to 24 (9.5 per cent). As for the ordering, daily alcohol would put Portugal and Spain at the very top and daily smoking would put Greece and Bulgaria there. Both are absent or low, and a northern and eastern list with the wine-growing south missing is the signature of sweetened soft drinks.",
-      slug: "hlth_ehis_fv7e",
+      slug: "daily-sugary-drinks",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/hlth_ehis_fv7e/default/table"
     },
     {
@@ -2205,7 +2205,7 @@
         "Greece has roughly one for every 800 people, which is more than any other country in Europe."
       ],
       why: "A tail at 0.01 per 10,000 is the tell: an entire country with a handful of practitioners. Midwives and pharmacists never fall that far because both are essential to basic care, and the World Health Organization records them in the hundreds even in the poorest countries. This is a profession the poorest countries go without almost entirely.",
-      slug: "HWF_0010",
+      slug: "dentists-per-10000",
       source: "WHO Global Health Observatory", sourceUrl: "https://www.who.int/data/gho/data/indicators"
     },
     {
@@ -2239,7 +2239,7 @@
         "It is cooking, cleaning, laundry, childcare and the shopping that goes with them, and nobody is paid for any of it."
       ],
       why: "Two to four hours a day is too much for eating, television or travel and far too little for paid work, which rules out the whole set by scale alone. Mexico at the top and Japan and Korea at the bottom also matches nothing about wealth: it tracks how much household work is done at home rather than bought in.",
-      slug: "DSD_TIME_USE",
+      slug: "unpaid-work-minutes",
       source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TIME_USE%40DF_TIME_USE"
     },
     {
@@ -2273,7 +2273,7 @@
         "Ukraine reached eighth in the world in 2023 for the most obvious reason imaginable."
       ],
       why: "The United States takes almost half the square on its own, spending more than the next nine countries here put together, on a scale no other state attempts: a standing force of well over a million people and a network of overseas bases nobody else maintains. Ukraine eighth and Saudi Arabia fifth is what separates this from every other kind of national spending, since on aid, research, universities or infrastructure neither country would appear at all.",
-      slug: "MS.MIL.XPND.CD",
+      slug: "military-spending",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/MS.MIL.XPND.CD"
     },
     {
@@ -2307,7 +2307,7 @@
         "It counts wheat, rice, maize and barley together, by weight, straight off the field."
       ],
       why: "France, Ukraine, Canada, Argentina and Australia all appearing while Nigeria and Ethiopia do not is the discriminator. Those five have modest populations and modest amounts of farmland but enormous yields per hectare, which is a signature of mechanised grain rather than of land, labour or livestock.",
-      slug: "AG.PRD.CREL.MT",
+      slug: "grain-production-ranking",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/AG.PRD.CREL.MT"
     },
     {
@@ -2343,7 +2343,7 @@
         "The shared spike in 2022 is what put central banks up in arms and mortgages up in price."
       ],
       why: "Japan sitting a little under zero for most of two decades rules out growth, wages, borrowing and the money supply, none of which behave that way for that long. The simultaneous 2022 lift across four unrelated economies is the signature of a global price shock rather than of anything set country by country.",
-      slug: "FP.CPI.TOTL.ZG",
+      slug: "inflation-rate",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG"
     },
     {
@@ -2379,7 +2379,7 @@
         "Guyana is at the top because it had just started pumping oil, and everyone else is where the pandemic left them."
       ],
       why: "Guyana grew by 43.5 per cent in the worst year the world economy had seen since the war for a reason that had nothing to do with the pandemic: the Stabroek oilfield off its coast produced its first oil in December 2019, so 2020 was its first full year of pumping, and a country of 800,000 people had simply become an oil exporter. Everyone else is where the pandemic left them. Arrivals from abroad fell by 70 or 80 per cent almost everywhere that year, so a chart whose worst figure is about 11 per cent cannot be measuring visitors: Spain, Italy and the United Kingdom at the bottom is the shape of economies weighted towards tourism and hospitality meeting a year of closed borders.",
-      slug: "NY.GDP.MKTP.KD.ZG",
+      slug: "economic-growth-2020",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG"
     },
     {
@@ -2415,7 +2415,7 @@
         "Guyana is the country that went from nothing to almost everything, and the reason is an oilfield the size of the country itself."
       ],
       why: "Germany near zero rules out anything about electricity or energy use, since Germany burned plenty of coal in both years. A measure where Kuwait is at 95 and Germany under 5 has to be about the composition of exports, and only one commodity dominates a national export list that completely.",
-      slug: "TX.VAL.FUEL.ZS.UN",
+      slug: "fuel-share-of-exports",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/TX.VAL.FUEL.ZS.UN"
     },
     {
@@ -2451,7 +2451,7 @@
         "They are shutting at a rate of several hundred a year across Western Europe, because almost everybody now does it on a phone."
       ],
       why: "Rich countries falling while poorer ones climb rules out pharmacies, petrol stations and post offices, which either track population or fall everywhere. Mongolia and Bulgaria high is the giveaway: both built out dense retail banking networks in the 2000s just as Western Europe began dismantling its own.",
-      slug: "FB.CBK.BRCH.P5",
+      slug: "bank-branches-per-100000",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/FB.CBK.BRCH.P5"
     },
     {
@@ -2485,7 +2485,7 @@
         "It counts the forms filed at a national office by people trying to stop somebody else copying their invention."
       ],
       why: "China moved from fifth to first and now files roughly five times as many as the United States, which is more than any measure of research spending or scientific output would show. Filings at a home office are cheap and are counted whether or not anything is granted, so the ranking reflects domestic filing habits and state targets as much as invention. Russia sixth and India seventh, above France and the United Kingdom, is the giveaway that this is not a money ranking.",
-      slug: "IP.PAT.RESD",
+      slug: "patent-applications-ranking",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/IP.PAT.RESD"
     },
     {
@@ -2518,7 +2518,7 @@
         "It is what donor governments hand over, and in 2023 one recipient took more than the next nine put together."
       ],
       why: "Ukraine received 38.7 billion dollars in 2023, roughly ten times India in second place, because Western governments were funding a state at war. That concentration is the tell: investment, remittances and exports all follow population and opportunity, so India, Mexico and China would lead them and no single country would take a tenth of the total, let alone half.",
-      slug: "DC.DAC.TOTL.CD",
+      slug: "foreign-aid-received",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/DC.DAC.TOTL.CD"
     },
     {
@@ -2551,7 +2551,7 @@
         "Peru is third because of the anchoveta, a small oily fish that mostly ends up as feed for farmed salmon and for chickens."
       ],
       why: "China leads at 13.1 million tonnes, but Peru at third is what settles it: the Humboldt Current lifts cold nutrient-rich water up the Peruvian coast and supports the largest single-species fishery on earth. Farmed fish would put Indonesia, India and Vietnam far higher and Peru nowhere, because almost nothing Peru lands is farmed.",
-      slug: "ER.FSH.CAPT.MT",
+      slug: "wild-fish-catch",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/ER.FSH.CAPT.MT"
     },
     {
@@ -2585,7 +2585,7 @@
         "It is the mirror of a chart you may have already seen: the money leaving, rather than the money arriving."
       ],
       why: "The United States sends out 98 billion dollars a year, nearly twice the United Arab Emirates behind it, simply because it hosts more foreign-born workers than any other country: the same 52 million people who make it the largest block on the migrant chart. Luxembourg seventh is the other discriminator. Nearly half the people working there commute in from Belgium, France and Germany and are paid into accounts abroad, so a country of 700,000 sends out more than China does. Aid, imports and investment would all follow the size of the economy and put Luxembourg nowhere near this list.",
-      slug: "BM.TRF.PWKR.CD.DT",
+      slug: "remittances-sent",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/BM.TRF.PWKR.CD.DT"
     },
     {
@@ -2620,7 +2620,7 @@
         "Two years is far too short for any of this to be demography. It was a pandemic."
       ],
       why: "Mexico falls by 4.8 years and Peru by 4.7, the largest peacetime falls recorded anywhere, while Australia, Japan, South Korea and Norway all rose because closed borders and low transmission also cut flu deaths and road deaths. Nothing about education, retirement or fertility moves several years in twenty-four months, which is what rules the whole decoy set out on scale alone.",
-      slug: "SP.DYN.LE00.IN-change",
+      slug: "life-expectancy-change",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SP.DYN.LE00.IN"
     },
     {
@@ -2656,7 +2656,7 @@
         "It is the difference between what a country earns from the rest of the world and what it pays out to it."
       ],
       why: "The same countries sit on the same side of this line year after year: Norway from oil, Singapore and the Netherlands from trade, Germany and Japan from manufacturing, against the deficit countries that consume more than they sell. A budget balance would look nothing like it, since Norway runs a large government surplus and Japan a very large deficit, yet both are positive here.",
-      slug: "BN.CAB.XOKA.GD.ZS",
+      slug: "current-account-balance",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/BN.CAB.XOKA.GD.ZS"
     },
     {
@@ -2694,7 +2694,7 @@
         "Free movement inside the European Union moved several million people west and south, and the countries they left are the negative bars."
       ],
       why: "Malta grew by a third and Luxembourg by a quarter, almost entirely through arrivals rather than births, while Bulgaria, Croatia and Latvia lost a tenth of their people to emigration. Births fell almost everywhere over this period, including in Malta and Ireland, so a chart with large positive bars cannot be counting them: this is migration inside a single free-movement area.",
-      slug: "demo_pjan",
+      slug: "population-change-2013-2024",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/demo_pjan/default/table"
     },
     {
@@ -2730,7 +2730,7 @@
         "Denmark is the line at the top, and the reason is standing in the North Sea with three blades on it."
       ],
       why: "France flat near 20 is what separates this from any low-carbon measure: France generates about 70 per cent of its electricity from nuclear, which is not renewable and so does not count here. Denmark rising from 15 to nearly 80 on wind, and the United Kingdom from 3 to 40, are the two fastest grid transitions in the world over this period.",
-      slug: "EG.ELC.RNEW.ZS",
+      slug: "renewable-electricity",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/EG.ELC.RNEW.ZS"
     },
     {
@@ -2766,7 +2766,7 @@
         "It is the share of babies whose parents had not been to a registry office or a church first."
       ],
       why: "Sweden flat above 54 for the whole period while Greece climbs from 4 to about 12 and Spain from 18 to 47 is a convergence story, not a social breakdown one: cohabiting parents in Sweden had already become normal by the 1990s, so there was nothing left to change. France passing 60 means an outright majority of French children are now born to unmarried parents, which is what makes the ceiling on this chart so much higher than any divorce or lone-parent measure could reach.",
-      slug: "demo_find-NMARPCT",
+      slug: "births-outside-marriage",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/demo_find/default/table"
     },
     {
@@ -2806,7 +2806,7 @@
         "In Denmark students get a state grant and move out at eighteen. In Croatia and Italy they stay in the family flat until they marry."
       ],
       why: "A range from 4 to 79 per cent is the tell: employment, study and renting all vary far less than that across Europe. The clean north-south split is the signature of housing costs and state student support, not of anything individual, and Denmark at the bottom is the country that pays its students to live independently.",
-      slug: "ilc_lvps08",
+      slug: "young-adults-living-with-parents",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvps08/default/table"
     },
     {
@@ -2841,7 +2841,7 @@
         "The survey asks how often you get together with friends or relatives, and even at the top only half of adults manage it every week."
       ],
       why: "The ceiling is the evidence. Nobody clears 51 per cent, which is far too low for eating out or speaking to a relative and far too high for volunteering or club membership. Cyprus and Malta at the top alongside Norway and Switzerland also rules out any north-south cultural reading, which is what makes this one hard.",
-      slug: "ilc_scp09",
+      slug: "weekly-socialising",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/ilc_scp09/default/table"
     },
     {
@@ -2875,7 +2875,7 @@
         "They are papers, not products: the currency is publication rather than anything anyone can sell."
       ],
       why: "The United Kingdom fifth and Italy eighth, both ahead of South Korea, is what separates this from patents or research spending, where Korea and Japan sit far higher and Britain and Italy far lower. Publication counts reward volume in English-language indexed journals, so countries with old universities and English as a working language do better here than their research budgets alone would predict.",
-      slug: "IP.JRN.ARTC.SC",
+      slug: "scientific-papers",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/IP.JRN.ARTC.SC"
     },
     {
@@ -2908,7 +2908,7 @@
         "Qatar Airways and Emirates fly other people’s cargo between other people’s countries, and it is counted against the flag on the tail."
       ],
       why: "The United States is first, at roughly 1.6 times China, because its carriers fly the largest domestic network in the world before they carry anything abroad. But Qatar third with a population of under three million is the real puzzle. This is measured by the nationality of the airline, not by what the country makes or buys, so Doha and Dubai score enormously as connecting hubs between Asia and Europe. Anything counting goods that actually enter or leave the country would put Germany and Japan far above both.",
-      slug: "IS.AIR.GOOD.MT.K1",
+      slug: "air-freight",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/IS.AIR.GOOD.MT.K1"
     },
     {
@@ -2941,7 +2941,7 @@
         "It is the pile a central bank keeps so that it can defend its own currency if it has to."
       ],
       why: "China holds 3.4 trillion dollars, roughly three times Japan, because two decades of trade surpluses were recycled into dollar assets rather than spent. The United States being unremarkable here is the tell: it prints the currency everyone else is holding, so it has little reason to stockpile anyone else’s. Switzerland fourth comes from years of buying foreign currency to stop the franc rising.",
-      slug: "FI.RES.TOTL.CD",
+      slug: "foreign-reserves",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/FI.RES.TOTL.CD"
     },
     {
@@ -2975,7 +2975,7 @@
         "It is carried by a mosquito that cannot breed in the cool highlands, which is why Ethiopia and South Africa escape the list."
       ],
       why: "Nigeria alone accounts for about a quarter of the world total, and the first two blocks together for close to half. The absence of Ethiopia and South Africa is the discriminator: both are poor enough to head a list of tuberculosis, water or child mortality, but the highlands of one and the temperate south of the other are too cool for the anopheles mosquito to breed.",
-      slug: "MALARIA_EST_CASES",
+      slug: "malaria-cases",
       source: "WHO Global Health Observatory", sourceUrl: "https://www.who.int/data/gho/data/indicators"
     },
     {
@@ -3009,7 +3009,7 @@
         "Nothing on this chart is a thing you can drop on your foot: it is banking, shipping, insurance, software licensing and tourism."
       ],
       why: "The United States sells over a trillion dollars of services abroad, nearly twice the United Kingdom, on the strength of finance, cloud computing, software licensing and university fees. China eighth is the giveaway. It is comfortably the largest exporter of goods in the world, so any chart where it sits below Ireland, Singapore and the United Kingdom cannot be counting physical trade. Ireland is fourth because so much global software and pharmaceutical licensing is booked through Dublin for tax reasons, which inflates a country of five million into the top five.",
-      slug: "BX.GSR.NFSV.CD",
+      slug: "services-exports",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/BX.GSR.NFSV.CD"
     },
     {
@@ -3051,7 +3051,7 @@
         "Take the total cost of employing someone, subtract what actually reaches their bank account, and this is what is left."
       ],
       why: "Colombia at zero is the discriminator, and it is real: a single worker on the average wage there pays no income tax and no employee social contribution, and the employer contributions are excluded from this measure. No country has a top income tax rate or a value added tax rate of zero, so any decoy of that kind dies on the left-hand end of the swarm alone.",
-      slug: "DSD_TAX_PIT",
+      slug: "tax-wedge-on-employment",
       source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_AV"
     },
     {
@@ -3129,7 +3129,7 @@
         "It is the money that comes out of a patient’s own pocket at the moment of treatment, with nothing standing between them and the bill."
       ],
       why: "The United States sitting low is what makes this hard and what settles it. American health care is famously expensive, but most of the bill is paid by insurers and by government rather than at the counter, so it scores well here. The top of the swarm is countries with no functioning insurance system at all, where treatment is bought in cash or not bought.",
-      slug: "SH.XPD.OOPC.CH.ZS",
+      slug: "out-of-pocket-health-spending",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SH.XPD.OOPC.CH.ZS"
     },
     {
@@ -3165,7 +3165,7 @@
         "The jump at the end is the pandemic, and the line at the top belongs to the country that spends most and covers fewest."
       ],
       why: "The lift in the final year is visible in all five lines at once, which points at something every country suddenly spent more on in the same year. The United States near 18 per cent, about double Britain and Japan and more than four times India, is the single most quoted statistic in health policy: it spends far more of its national income on this than anyone else without covering everybody.",
-      slug: "SH.XPD.CHEX.GD.ZS",
+      slug: "health-spending-share-of-economy",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SH.XPD.CHEX.GD.ZS"
     },
     {
@@ -3200,7 +3200,7 @@
         "South Korea is the line at the bottom, and the reason is the lowest fertility rate ever recorded anywhere."
       ],
       why: "South Korea ending under five per 1,000 is the lowest such figure recorded in any country in peacetime, and the collapse from about 13 in 2000 is far faster than deaths, marriages or migration move. Nigeria holding above 35 across the same twenty-three years is the other end of the same story: the two lines diverge, which rules out anything driven by a shared global trend.",
-      slug: "SP.DYN.CBRT.IN",
+      slug: "birth-rate",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SP.DYN.CBRT.IN"
     },
     {
@@ -3236,7 +3236,7 @@
         "It is the age at which a woman becomes a mother for the first time, and in Italy it is now over 31."
       ],
       why: "The narrow band is the evidence. Twenty-five to thirty-two is too old for leaving home or finishing education and too young for a last child, and the lines move by only two or three years across twenty years, which is the pace of a demographic trend rather than a policy. Italy above 31 is the highest in Europe, and Bulgaria the lowest, an east to west gradient that has held for the whole period.",
-      slug: "demo_find-AGEMOTH1",
+      slug: "age-at-first-child",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/demo_find/default/table"
     },
     {
@@ -3270,7 +3270,7 @@
         "The top of this list is a Mediterranean or East Asian diet, and the United States is nowhere near it."
       ],
       why: "Hong Kong first, and Spain and Italy in the top eight, is a Mediterranean and East Asian pattern rather than a wealthy one. The absence of the United States, which spends more per head on health than anyone, is what rules out the money and health-spending readings: it sits around 40th on this ranking.",
-      slug: "SP.DYN.LE00.IN-rank",
+      slug: "life-expectancy-ranking",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SP.DYN.LE00.IN"
     },
     {
@@ -3306,7 +3306,7 @@
         "Hungary and the Baltic states more than doubled theirs, and Italy is the country that barely moved at all."
       ],
       why: "Hungary at 210 per cent against Italy at 12 is a spread no wage or price index in Europe came close to over the same nine years. Italy has had almost no house price growth since the financial crisis, while central Europe and the Baltics had the fastest on the continent, which is why this looks so much more violent than a cost of living chart. Turkey is left off deliberately: its index is nominal and lira inflation would have put it above 600 per cent, measuring the currency rather than the housing market.",
-      slug: "prc_hpi_a",
+      slug: "house-price-change",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/prc_hpi_a/default/table"
     },
     {
@@ -3385,7 +3385,7 @@
         "Europe scores highly because its national parks and nature reserves are drawn around farmland and villages, not around wilderness."
       ],
       why: "Germany and the United Kingdom sitting above Brazil is the discriminator, and it is a definitional artefact rather than a conservation triumph. European protected areas are landscape designations that include farms, roads and towns, while a Brazilian or American national park is closer to genuine wilderness. Anything measuring actual terrain would put the Europeans far below the tropics.",
-      slug: "ER.LND.PTLD.ZS",
+      slug: "protected-land",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/ER.LND.PTLD.ZS"
     },
     {
@@ -3909,7 +3909,7 @@
         "Russia has twice as much of it as the next country, and most of that is Siberia."
       ],
       why: "Russia has almost twice as much as Canada behind it, and the great bulk of that is Siberia: forest and tundra where barely anybody lives. Kazakhstan, Algeria and Saudi Arabia appearing while Japan, Germany, Nigeria and Indonesia do not is the whole thing. Three of the biggest circles are mostly steppe or desert, and the countries missing are among the most populous and richest on earth. Anything counting people, money or farmland would invert most of this list.",
-      slug: "AG.LND.TOTL.K2",
+      slug: "land-area",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/AG.LND.TOTL.K2"
     },
     {
@@ -3988,7 +3988,7 @@
         "Niger has nearly half its people below the age at which British children finish secondary school."
       ],
       why: "The band from 11 to 49 per cent is the evidence: it never reaches zero and never approaches a hundred, which rules out schooling, electricity and literacy, all of which run from near nothing to near everything across this same set of countries. Japan and Italy at the bottom with Niger and Chad at the top is what a birth rate looks like carried forward fifteen years.",
-      slug: "SP.POP.0014.TO.ZS",
+      slug: "population-under-fifteen",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SP.POP.0014.TO.ZS"
     },
     {
@@ -4171,7 +4171,7 @@
         "Niger has gone from eleven million people to twenty-six, and Ukraine has gone the other way."
       ],
       why: "Very few economies shrank between 2000 and 2023, so a chart with eight countries below the line rules out income, output and employment straight away. The ceiling is the other half: money measures would show several countries up by three or four hundred per cent over that span, and nothing here passes 130. This is headcount, and Japan, Italy and eastern Europe are all shrinking.",
-      slug: "SP.POP.TOTL",
+      slug: "population-change-since-2000",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SP.POP.TOTL"
     },
     {
@@ -4207,7 +4207,7 @@
         "Lesotho is high because most of what it collects arrives through a customs union with South Africa."
       ],
       why: "This is a narrower thing than it looks, which is what makes it hard: it counts only what central government collects, so federal countries and those with separate social insurance funds score far lower than their real tax burden. That is why Germany and France are missing while Lesotho and Namibia are near the top, both of them collecting most of their revenue as customs receipts through the Southern African Customs Union.",
-      slug: "GC.TAX.TOTL.GD.ZS",
+      slug: "tax-revenue",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/GC.TAX.TOTL.GD.ZS"
     },
     {
@@ -4286,7 +4286,7 @@
         "Denmark is small and almost entirely flat and fertile, so nearly two thirds of it is under the plough."
       ],
       why: "Brazil and Russia near the bottom is the discriminator, and it catches almost everybody: both are agricultural giants, but they are also enormous, so the fraction of their land under crops is small. Denmark and Bangladesh top it by being small, flat and fertile with nothing else to do with the space. Workers in farming would invert the list entirely and put Denmark near the bottom.",
-      slug: "AG.LND.ARBL.ZS",
+      slug: "arable-land",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/AG.LND.ARBL.ZS"
     },
     {
@@ -4322,7 +4322,7 @@
         "Singapore is above 300 because goods land there, are counted, and leave again."
       ],
       why: "A figure above 300 per cent is the whole puzzle and it rules out every decoy at a glance: nothing that is genuinely a slice of the economy can exceed 100. Imports and exports are both counted in full against a much smaller domestic economy, so Singapore, a port that re-exports most of what arrives, runs over three times its own size. China’s long fall after 2006 is its domestic market growing faster than its trade.",
-      slug: "NE.TRD.GNFS.ZS",
+      slug: "trade-share-of-economy",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/NE.TRD.GNFS.ZS"
     },
     {
@@ -4389,7 +4389,7 @@
         "Roughly seventy per cent of it goes on irrigation, which is why the dry farming countries are at the top."
       ],
       why: "Egypt, Pakistan and Iran are among the driest countries on the list and are near the top, which is the opposite of how rainfall or river flow would rank. That is because this counts what is taken out rather than what is there, and about seventy per cent of it is used to irrigate crops. India first reflects the largest irrigated area in the world drawing hard on groundwater.",
-      slug: "ER.H2O.FWTL.K3",
+      slug: "freshwater-withdrawal",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/ER.H2O.FWTL.K3"
     },
     {
@@ -4468,7 +4468,7 @@
         "It needs a river with a drop in it, which is why Norway and Nepal are at one end and Saudi Arabia at the other."
       ],
       why: "Both ends being fully occupied is what makes this readable: several countries generate essentially all their electricity this way and several generate none at all, which no fuel achieves so completely. Norway, Paraguay, Nepal and Bhutan are mountainous and wet; the Gulf states are flat and dry and sit at exactly zero. Wind would put Denmark at the top and nobody near 100.",
-      slug: "EG.ELC.HYRO.ZS",
+      slug: "hydro-electricity",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/EG.ELC.HYRO.ZS"
     }
   ];
