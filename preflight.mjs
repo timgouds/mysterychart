@@ -76,6 +76,20 @@ P.forEach((q, i) => {
 });
 check(!bad.length, 'all 50 puzzles carry their required fields', 'field problems:\n         ' + bad.join('\n         '));
 
+/* Slugs must be readable words, not raw source codes.
+ *
+ * The slug is not internal: the results screen prints it as the link text
+ * beside the source credit, so a World Bank indicator code ships to the player
+ * as "IS.SHP.GOOD.TU". It is also the analytics key, so chart/<slug>/<tier>
+ * is unreadable on the dashboard without a lookup. 70 of 122 puzzles were in
+ * this state before the batch-seven pass; the batch builders emit the source
+ * code by default, so without this check they come straight back. */
+const rawSlug = P.map((q, i) => [i, q])
+  .filter(([, q]) => q.slug && (/[._]/.test(q.slug) || /[A-Z]/.test(q.slug)))
+  .map(([i, q]) => `[${i}] "${q.slug}" (${q.truth.slice(0, 40)})`);
+check(!rawSlug.length, 'every slug is readable rather than a source code',
+  'raw source codes used as slugs:\n         ' + rawSlug.join('\n         '));
+
 /* House style: no em-dashes anywhere a player can see. doc 11 */
 const emdash = [];
 P.forEach((q, i) => {
