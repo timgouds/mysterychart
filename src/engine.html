@@ -201,10 +201,23 @@ h1 em {
 .redaction .truth {
   font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.3rem; font-weight: 600; line-height: 1.24; letter-spacing: -0.02em;
-  display: block; padding: 2px 0; opacity: 0;
-  transition: opacity 420ms ease 260ms;
+  display: block; padding: 2px 0;
+  /* visibility, not opacity. Invisible is not hidden: at opacity 0 the title
+     is still real text, and Ctrl+A lifts it straight off an unanswered
+     puzzle while a screen reader reads it aloud. visibility:hidden keeps the
+     exact layout space, so the bar is the right height and revealing shifts
+     nothing, but takes the text out of both selection and the accessibility
+     tree. The opacity transition still drives the fade on reveal. */
+  visibility: hidden; opacity: 0;
+  transition: opacity 420ms ease 260ms, visibility 0s linear 260ms;
 }
-.redaction.lifted .truth { opacity: 1; }
+.redaction.lifted .truth { visibility: visible; opacity: 1; }
+
+/* Read by assistive technology, never painted. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 
 .chart-frame { width: 100%; overflow-x: auto; }
 svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-nums; }
@@ -618,7 +631,8 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 
   <section class="doc">
     <div class="redaction" id="redaction">
-      <span class="truth" id="truth"></span>
+      <span class="sr-only" id="redaction-note">Chart title redacted. Work it out from the chart.</span>
+      <span class="truth" id="truth" aria-hidden="true"></span>
       <span class="bar"></span>
     </div>
     <div class="chart-frame" id="chart"></div>
@@ -2074,7 +2088,13 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     $("runlabel").textContent = "Run #" + runNo;
     drawProgress();
     $("period").textContent = p.period || "";
+    /* The real title goes in so the bar is sized to it and revealing shifts
+       nothing. It is concealed by visibility:hidden in CSS, which keeps it out
+       of Ctrl+A and out of the accessibility tree; aria-hidden and the note
+       below say the same thing explicitly rather than relying on that alone. */
     $("truth").textContent = p.truth;
+    $("truth").setAttribute("aria-hidden", "true");
+    $("redaction-note").textContent = "Chart title redacted. Work it out from the chart.";
     var red = $("redaction");
     red.classList.add("snap");
     red.classList.remove("lifted");
@@ -2216,6 +2236,9 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       if (!won && j === answerIdx) b.classList.add("is-right");
     });
     $("redaction").classList.add("lifted");
+    /* Answer is out: hand the title back to assistive tech and to copy-paste. */
+    $("truth").removeAttribute("aria-hidden");
+    $("redaction-note").textContent = "";
 
     var tier = Math.min(cost, POINTS.length - 1);
     results[idx] = {
