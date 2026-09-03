@@ -699,9 +699,22 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      run still plays, just with a duller mix. */
 
   var RUN_SIZE = 5;
-  /* Slope, diverging bar and multi-line are the rarest forms and the most
-     distinctive, so two in one run reads as a rut rather than as variety. */
-  var RARE_FORM = { slope: true, deviation: true, line: true };
+  /* Which forms count as rare is derived from the pool rather than fixed.
+   *
+   * This list used to be hardcoded to slope, diverging bar and multi-line,
+   * which was true of a pool of fifty. As later batches deliberately topped up
+   * exactly those forms, the penalty started firing on forms that had become
+   * ordinary, and the share of runs dealing at cost zero fell from 39/40 to
+   * 33/40 without any run actually being worse. A form is rare when it is
+   * scarce enough that two in one run really would exhaust it. */
+  var RARE_FORM = (function () {
+    var count = {}, rare = {};
+    PUZZLES.forEach(function (p) { count[p.type] = (count[p.type] || 0) + 1; });
+    Object.keys(count).forEach(function (t) {
+      if (count[t] / PUZZLES.length < 0.09) rare[t] = true;
+    });
+    return rare;
+  })();
 
   /* How many of each run's five must be charts nobody has seen before. The
      dealer hits this exactly while unseen puzzles last, then degrades to a
@@ -1360,6 +1373,12 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 
   /* --------- Change over time: multi-line --------- */
 
+  /* Five categorical slots exist, so anything past the fifth wraps rather than
+     asking for a custom property that was never defined. Wrapping repeats a
+     colour, which is why line charts are also capped at five series in
+     preflight: here it only guarantees that no series is ever invisible. */
+  function seriesColor(i) { return "var(--s" + ((i % 5) + 1) + ")"; }
+
   function drawLine(p) {
     var m = metrics(), W = m.W, H = m.compact ? 340 : 380;
     var mL = m.compact ? 32 : 44, mR = m.compact ? 78 : 108, mT = 16, mB = 34;
@@ -1369,23 +1388,35 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     var years = [], i;
     for (i = 0; i < n; i++) years.push(p.startYear + i);
 
-    var max = 0;
+    var max = 0, min = Infinity;
     p.series.forEach(function (s) {
-      s.values.forEach(function (v) { if (v > max) max = v; });
+      s.values.forEach(function (v) {
+        if (v > max) max = v;
+        if (v < min) min = v;
+      });
     });
     var top = Math.ceil(max / 10) * 10;
+    /* Optional axis floor. A zero baseline is the honest default for a share or
+       a rate, but some series live in a narrow band a long way above zero (ages
+       25 to 32, say) and drawing those from zero squeezes every line into the
+       top fifth of the chart and hides the shape entirely. Opt in per puzzle,
+       and only ever below the smallest value actually plotted. */
+    var base = 0;
+    if (typeof p.baseline === "number" && p.baseline < min) {
+      base = Math.floor(p.baseline / 2) * 2;
+    }
 
     function X(idx) { return mL + (idx / (n - 1)) * plotW; }
-    function Y(v) { return mT + plotH - (v / top) * plotH; }
+    function Y(v) { return mT + plotH - ((v - base) / (top - base)) * plotH; }
 
     var svg = el("svg", {
       viewBox: "0 0 " + W + " " + H, role: "img",
-      "aria-label": "Multi-line chart, 1970 to 2024, five countries. The measure is withheld."
+      "aria-label": "Multi-line chart over time, several countries. The measure is withheld."
     });
 
     var steps = 5, k;
     for (k = 0; k <= steps; k++) {
-      var v = (top / steps) * k, y = Y(v);
+      var v = base + ((top - base) / steps) * k, y = Y(v);
       svg.appendChild(el("line", {
         x1: mL, y1: y, x2: mL + plotW, y2: y, stroke: "var(--grid)", "stroke-width": "1"
       }));
@@ -1409,7 +1440,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
         return (vi ? "L" : "M") + X(vi).toFixed(1) + " " + Y(v).toFixed(1);
       }).join(" ");
       svg.appendChild(el("path", {
-        d: d, fill: "none", stroke: "var(--s" + (si + 1) + ")", "stroke-width": "2",
+        d: d, fill: "none", stroke: seriesColor(si), "stroke-width": "2",
         "stroke-linejoin": "round", "stroke-linecap": "round"
       }));
     });
@@ -1428,7 +1459,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     if (overflow > 0) labels.forEach(function (L) { L.y -= overflow; });
 
     labels.forEach(function (L) {
-      var color = "var(--s" + L.slot + ")";
+      var color = seriesColor(L.slot - 1);
       if (Math.abs(L.y - L.ideal) > 2) {
         svg.appendChild(el("path", {
           d: "M" + (mL + plotW) + " " + L.ideal.toFixed(1) +
@@ -1449,7 +1480,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     svg.appendChild(cross);
     var dots = p.series.map(function (s, si) {
       var c = el("circle", {
-        r: "4", fill: "var(--panel)", stroke: "var(--s" + (si + 1) + ")",
+        r: "4", fill: "var(--panel)", stroke: seriesColor(si),
         "stroke-width": "2", opacity: "0"
       });
       svg.appendChild(c);
@@ -1800,6 +1831,102 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return svg;
   }
 
+  /* ---------------------------------------------------------------------
+     PROPORTIONAL SYMBOL  ·  FT family: Magnitude
+
+     Circles sized by value, laid out on a grid and labelled underneath.
+
+     It earns its place on data a treemap cannot hold. A treemap tiles a whole
+     rectangle, so it has to account for everything, and a long tail forces a
+     "Rest of world" block. On migration that block came to half the square and
+     buried the very countries the puzzle turns on (doc 15 hit the same thing
+     with bananas at 52%). Circles have no such obligation: they show the twelve
+     largest and simply stop, with nothing implied about the remainder.
+
+     The trade-off, honestly: area is harder to compare precisely than length,
+     so this form is for "one of these dwarfs the others", not for reading a
+     ranking off the page. Where the ordering is the point, use a lollipop.
+
+     Area, not radius, is proportional to the value. Sizing by radius would make
+     a country with twice the value look four times as large, which is the
+     classic way this chart lies. */
+  function drawSymbol(p) {
+    var m = metrics(), W = m.W;
+    var rows = p.data;
+    var cols = m.compact ? 3 : 4;
+    var n = rows.length;
+    var nRows = Math.ceil(n / cols);
+    var cellW = W / cols;
+    /* Room for the widest circle, plus two lines of label beneath it. */
+    var cellH = m.compact ? 118 : 150;
+    var mT = 16, mB = 10;
+    var H = mT + nRows * cellH + mB;
+
+    var max = 0;
+    rows.forEach(function (r) { max = Math.max(max, r[1]); });
+    /* The largest circle must fit its cell with the label lane left clear. */
+    var maxR = Math.min(cellW / 2 - (m.compact ? 6 : 10), (cellH - (m.compact ? 40 : 48)) / 2);
+    function R(v) { return Math.sqrt(Math.max(v, 0) / max) * maxR; }
+
+    var svg = el("svg", {
+      viewBox: "0 0 " + W + " " + H, role: "img",
+      "aria-label": "Proportional symbols. Each circle is a country, with its area "
+        + "proportional to its value. The measure is withheld."
+    });
+
+    var totalShown = 0;
+    rows.forEach(function (r) { totalShown += r[1]; });
+
+    rows.forEach(function (r, i) {
+      var col = i % cols, row = Math.floor(i / cols);
+      var cx = col * cellW + cellW / 2;
+      /* Circles sit on a common baseline within the row rather than on their
+         own centres, so the eye compares tops against a shared floor instead of
+         judging two circles that float at different heights. */
+      var base = mT + row * cellH + (cellH - (m.compact ? 34 : 42));
+      var rad = R(r[1]);
+      var cy = base - rad;
+
+      /* Three ramp steps only, as on the treemap: area already carries the
+         magnitude, so colour is there to separate neighbours, and three steps
+         is what clears 5:1 against the label ink in both themes. */
+      var slot = Math.min(Math.floor(i / 4) + 1, 3);
+      var fill = "var(--r" + slot + ")";
+
+      var c = el("circle", {
+        cx: cx.toFixed(1), cy: cy.toFixed(1), r: Math.max(rad, 1.5).toFixed(1),
+        fill: fill, stroke: "var(--panel)", "stroke-width": "1.5"
+      });
+      hoverable(c, '<div class="tt-row"><span class="sw" style="background:' + fill +
+        '"></span>' + r[0] + " &nbsp;<b>" + bigNum(r[1]) + "</b> · " +
+        ((r[1] / totalShown) * 100).toFixed(1) + "%</div>");
+      svg.appendChild(c);
+
+      /* Names go under the circle, clipped to the cell rather than dropped: a
+         label reading "United Arab Emi..." is still evidence, a blank is not.
+         Same rule as the treemap tiles. */
+      var fs = m.compact ? 10 : 11.5;
+      var room = Math.floor((cellW - 6) / (fs * 0.56));
+      var name = r[0].length > room
+        ? (room >= 6 ? r[0].slice(0, room - 1) + "\u2026" : "")
+        : r[0];
+      if (name) {
+        svg.appendChild(txt(el("text", {
+          x: cx.toFixed(1), y: (base + (m.compact ? 14 : 17)).toFixed(1),
+          "text-anchor": "middle", fill: "var(--ink)",
+          "font-size": String(fs), "font-family": SANS, "font-weight": "500"
+        }), name));
+      }
+      svg.appendChild(txt(el("text", {
+        x: cx.toFixed(1), y: (base + (m.compact ? 27 : 32)).toFixed(1),
+        "text-anchor": "middle", fill: "var(--muted)",
+        "font-size": m.compact ? "9.5" : "11", "font-family": MONO
+      }), withSuffix(bigNum, p.suffix)(r[1])));
+    });
+
+    return svg;
+  }
+
   var DRAW = {
     lollipop: drawLollipop,
     deviation: drawDeviation,
@@ -1807,7 +1934,8 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     slope: drawSlope,
     dumbbell: drawDumbbell,
     line: drawLine,
-    beeswarm: drawBeeswarm
+    beeswarm: drawBeeswarm,
+    symbol: drawSymbol
   };
 
   /* ============================ GAME STATE ============================ */
@@ -2141,10 +2269,24 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     $("why").textContent = p.why + " Measured in " + p.unit + ".";
     /* Attribution has to follow the data, not the habit. Puzzles built from the
        World Bank, WHO or Eurostat carry their own source and link; anything
-       without one is from Our World in Data, which is where we started. */
+       without one is from Our World in Data, which is where we started.
+
+       The licence has to follow it too. This branch used to print no licence at
+       all, so every puzzle that named its own source silently dropped the
+       CC BY 4.0 notice (doc 24 recorded the gap; sixty new puzzles then landed
+       on the wrong side of it). Our World in Data and the World Bank both
+       publish under CC BY 4.0 and require visible attribution, so the notice is
+       not decoration. Sources with their own reuse terms are linked instead of
+       being labelled with a licence they do not use. */
+    var LICENCE = {
+      "Our World in Data": "CC BY 4.0",
+      "World Bank": "CC BY 4.0"
+    };
     if (p.source) {
+      var lic = LICENCE[p.source];
       $("src").innerHTML = "Source: " + p.source + ' · <a href="' + p.sourceUrl +
-        '" target="_blank" rel="noopener">' + p.slug + "</a>";
+        '" target="_blank" rel="noopener">' + p.slug + "</a>" +
+        (lic ? " · " + lic : "");
     } else {
       $("src").innerHTML = 'Source: Our World in Data · <a href="https://ourworldindata.org/grapher/' +
         p.slug + '" target="_blank" rel="noopener">' + p.slug + "</a> · CC BY 4.0";
