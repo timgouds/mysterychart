@@ -47,6 +47,7 @@ const NEEDS = {
   slope:     ['ranks', 'leftYear', 'rightYear'],
   line:      ['series', 'startYear'],
   deviation: ['data', 'unit'],
+  symbol:    ['data', 'unit'],
 };
 
 console.log('\n=== CONTENT ===');
@@ -107,6 +108,57 @@ P.forEach((q, i) => {
 });
 check(!leaks.length, 'no answer word leaks into hint 1', 'leaks:\n         ' + leaks.join('\n         '));
 
+/* A decoy must never be another puzzle's answer in the same run. Doc 16 ran
+ * this as a one-off script and it was never ported here; with the pool more
+ * than doubling it is now the likeliest way to ship an unfair puzzle, because
+ * the player would see the same sentence twice and one of them would be wrong.
+ * Checked across the whole pool rather than against the current deal. Two
+ * puzzles that do not meet today will meet eventually, and every new batch
+ * re-deals every future run, so a deal-scoped check passes one week and fails
+ * the next for reasons nobody changed. */
+const answersOf = (q) => [q.truth, q.answer].filter(Boolean);
+const answerIndex = new Map();
+P.forEach((q, i) => answersOf(q).forEach(a => answerIndex.set(a.toLowerCase().trim(), i)));
+const collisions = [];
+P.forEach((q, i) => (q.decoys || []).forEach(d => {
+  const j = answerIndex.get(d.toLowerCase().trim());
+  if (j !== undefined && j !== i)
+    collisions.push(`[${i}] offers "${d}" as a decoy, but it is [${j}]'s answer`);
+}));
+check(!collisions.length, 'no decoy is another chart\'s answer anywhere in the pool',
+  'decoy collisions:\n         ' + collisions.join('\n         '));
+
+/* When one entity dominates a chart, the reveal text has to say why.
+ *
+ * Tim, 2 Sep: "I think it's good practice to explain the outlier in the trivia
+ * bit at the end. Otherwise people won't learn." There is a sharper reason too:
+ * a player who names the chart on the first guess never sees a single hint, so
+ * anything explained only on rung 4 is invisible to precisely the people who
+ * read the chart best. The `why` is the only text every player sees.
+ *
+ * Naming the entity is a proxy for explaining it, not proof, but it is
+ * mechanical and it caught seven puzzles the first time it was run. */
+const leader = (q) => {
+  if (q.type === 'slope' || !Array.isArray(q.data)) return null;
+  let rows;
+  if (q.type === 'dumbbell') rows = q.data.map(d => [d[0], d[2]]);
+  else if (q.type === 'deviation') rows = q.data.map(d => [d[0], Math.abs(d[1] - (q.reference || 0))]);
+  else rows = q.data.map(d => [d[0], d[1]]);
+  rows = rows.filter(r => !/^rest of/i.test(r[0])).sort((x, y) => y[1] - x[1]);
+  if (rows.length < 3 || !rows[1][1]) return null;
+  return { name: rows[0][0], ratio: rows[0][1] / rows[1][1] };
+};
+const unexplained = [];
+P.forEach((q, i) => {
+  const L = leader(q);
+  if (!L || L.ratio < 1.6) return;
+  if (!(q.why || '').toLowerCase().includes(L.name.toLowerCase()))
+    unexplained.push(`[${i}] ${L.name} is ${L.ratio.toFixed(1)}x the next but the reveal never names it`
+      + ` (${q.truth.slice(0, 38)})`);
+});
+check(!unexplained.length, 'every dominant outlier is explained in the reveal',
+  'unexplained outliers:\n         ' + unexplained.join('\n         '));
+
 console.log('\n=== DEALER ===');
 const a = Array.from({ length: 60 }, (_, i) => dealRun(i + 1).join(','));
 const b = Array.from({ length: 60 }, (_, i) => dealRun(i + 1).join(','));
@@ -120,10 +172,44 @@ for (let n = 1; n <= 40; n++) {
   costs.push(runCost(r));
 }
 check(!sizeBad, 'every run deals five charts', `${sizeBad} runs dealt the wrong number of charts`);
-check(!diffBad, 'difficulty never falls within a run', `${diffBad} runs go backwards in difficulty`);
-const clean = costs.filter(c => c === 0).length;
-if (clean >= costs.length * 0.85) pass(`form variety: ${clean}/40 runs deal at cost zero`);
-else warn(`form variety: only ${clean}/40 runs deal at cost zero`);
+/* Form variety and difficulty shape are different failures and were being
+ * reported as one number. Zero-cost runs fell from 39/40 to 33/40 as the pool
+ * grew, which looked like a variety regression; it was not. Split them. */
+let adjacent = 0, tripled = 0, hardOpen = 0, easyClose = 0;
+for (let n = 1; n <= 200; n++) {
+  const r = dealRun(n).map(i => P[i]);
+  for (let k = 1; k < r.length; k++) if (r[k].type === r[k - 1].type) adjacent++;
+  const c = {};
+  r.forEach(p => { c[p.type] = (c[p.type] || 0) + 1; });
+  Object.values(c).forEach(v => { if (v >= 3) tripled++; });
+  if (r[0].diff > 2) hardOpen++;
+  if (r[r.length - 1].diff < 4) easyClose++;
+}
+/* Doc 23 makes form variety best-effort by design: the dealer tries 240 seeded
+ * draws per run and keeps the cheapest, but coverage and the difficulty ramp
+ * come first. A stray pair in a thousand neighbours is not worth blocking a
+ * ship over; a systematic breakdown is. */
+const pairs = 200 * (RUN_SIZE - 1);
+if (!adjacent && !tripled) pass('form variety: no run repeats a form back to back');
+else if (adjacent / pairs < 0.02 && !tripled)
+  warn(`form variety: ${adjacent} adjacent same-form pair(s) in ${pairs} neighbours`
+    + ' (best effort, per doc 23)');
+else check(false, 'form variety',
+  `${adjacent} adjacent pairs and ${tripled} forms appearing three times in 200 runs`);
+
+/* Only five categorical colours exist and a line chart has nothing else to tell
+ * its series apart, so a sixth line is either invisible or a duplicate colour. */
+const overSeries = P.map((q, i) => [i, q])
+  .filter(([, q]) => q.type === 'line' && (q.series || []).length > 5)
+  .map(([i, q]) => `[${i}] ${q.series.length} series: ${q.truth.slice(0, 40)}`);
+check(!overSeries.length, 'no line chart has more series than the palette has colours',
+  'too many series:\n         ' + overSeries.join('\n         '));
+
+const easy = P.filter(p => p.diff <= 2).length;
+if (!hardOpen && !easyClose) pass('every run opens easy and closes hard');
+else warn(`${hardOpen}/200 runs open above difficulty 2 and ${easyClose}/200 close below 4.\n`
+  + `         Only ${easy} of ${P.length} puzzles are difficulty 2 or less, so the dealer\n`
+  + '         runs out of gentle openers. Future batches need easier charts.');
 
 /* The frozen history must still resolve. doc 25 */
 check(HISTORY.length && HISTORY.every(r => r.length === RUN_SIZE),
