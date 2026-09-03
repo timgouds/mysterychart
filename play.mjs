@@ -66,30 +66,42 @@ for (; i < 40; i++) {
   console.log(`${String(i).padStart(2)}  ${info.nOpts} opts  ${String(Math.round(info.h)).padStart(4)}px  ` +
     (flags.length ? '⚠ ' + flags.join(', ') : 'ok') + `   ${info.sample.join(' | ').slice(0, 52)}`);
 
-  /* Answer correctly every time, so the walk reaches all twelve charts and
-     each reveal (title, source, licence line) is exercised. The redaction bar
-     already holds the true title, so no game internals are needed. */
-  const right = await page.evaluate(() => {
-    /* Options carry the year-stripped `answer`, the redaction bar carries the
-       full `truth`, and the two are not always prefixes of each other
-       ("... covered by forest, 1992 to 2022" vs "... covered by forest since
-       1992"). Score on shared content words instead of matching literally. */
-    const truth = document.getElementById('truth').textContent.toLowerCase();
-    const words = s => new Set(s.toLowerCase().replace(/[^a-z0-9\s]/g, ' ')
-      .split(/\s+/).filter(w => w.length > 3));
-    const T = words(truth);
-    const btns = [...document.querySelectorAll('#options button')];
-    let best = null, bestScore = -1;
-    btns.forEach(b => {
-      const W = words(b.textContent.replace(/^[A-H][.)\s]*/, ''));
-      let s = 0; W.forEach(w => { if (T.has(w)) s++; });
-      s = s - (W.size - s) * 0.5;
-      if (s > bestScore) { bestScore = s; best = b; }
-    });
-    (best || btns[0]).click();
-    return bestScore > 0;
+  /* Work through the options until the chart resolves, so the walk reaches
+     every chart and each reveal (title, source, licence line) is exercised.
+
+     This used to read the true title straight out of the redaction bar and
+     click the matching option. That stopped working, deliberately: the bar
+     now carries a mask until the answer is revealed, because at opacity 0 the
+     real title was being lifted by Ctrl+A and read out by screen readers on
+     an unanswered puzzle. A harness that can see the answer is the same hole
+     a player can see through, so it clicks instead of peeking. */
+  const solved = await page.evaluate(async () => {
+    const done = () => {
+      const n = document.getElementById('next');
+      return n && n.offsetParent !== null;
+    };
+    const btns = () => [...document.querySelectorAll('#options button:not([disabled])')];
+    let clicks = 0;
+    while (!done() && btns().length && clicks < 10) {
+      btns()[0].click();
+      clicks++;
+      await new Promise(r => setTimeout(r, 120));
+    }
+    return { resolved: done(), clicks };
   });
-  if (!right) { console.log('   ⚠ could not match the true option'); problems++; }
+  if (!solved.resolved) { console.log('   ⚠ chart never resolved'); problems++; }
+
+  /* The title is only in the page once the bar is off; read it now as a check
+     that the reveal actually populated it. */
+  const revealed = await page.evaluate(() => {
+    const t = document.getElementById('truth');
+    return { text: t.textContent, masked: /\u2588/.test(t.textContent),
+             aria: t.getAttribute('aria-hidden') };
+  });
+  if (revealed.masked || !revealed.text.trim() || revealed.aria === 'true') {
+    console.log('   ⚠ reveal did not restore the title: ' + JSON.stringify(revealed));
+    problems++;
+  }
 
   await page.waitForTimeout(140);
   /* The Next button lives in the outcome panel, which is revealed by class
