@@ -466,6 +466,12 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 .score-band-note { margin: 5px 0 0; color: var(--ink-2); font-size: 0.98rem; max-width: 46ch; }
 .score-streak { margin: 14px 0 0; color: var(--ink-2); font-size: 0.95rem; }
 
+/* The one place a person appears in the game. Deliberately the quietest thing
+   on the screen: same ink as the streak line, a size down, and it only shows
+   itself once someone has finished five runs. */
+.colophon { margin: 30px auto 0; color: var(--ink-2); font-size: 0.86rem; max-width: 46ch; line-height: 1.5; text-align: center; }
+.colophon a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
 /* A row per chart, not a column: the titles are the point of this screen and
    five narrow columns wrapped them to four lines each. */
 .score-grid { display: flex; flex-direction: column; gap: 6px; }
@@ -684,6 +690,10 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     </div>
     <textarea id="share-fallback" readonly rows="5" aria-label="Your result, ready to copy"></textarea>
     <p class="score-note">Go on, put it in the group chat. It spoils nothing and settles everything.</p>
+    <p class="colophon" id="colophon" hidden>
+      Mystery Chart is made by Tim, who is not a statistician and has never claimed to be.
+      <a href="https://buymeacoffee.com/timgoudswaard" target="_blank" rel="noopener">Buy him a coffee</a>
+    </p>
   </section>
 
 
@@ -6768,26 +6778,53 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
        World Bank, WHO or Eurostat carry their own source and link; anything
        without one is from Our World in Data, which is where we started.
 
-       The licence has to follow it too. This branch used to print no licence at
-       all, so every puzzle that named its own source silently dropped the
-       CC BY 4.0 notice (doc 24 recorded the gap; sixty new puzzles then landed
-       on the wrong side of it). Our World in Data and the World Bank both
-       publish under CC BY 4.0 and require visible attribution, so the notice is
-       not decoration. Sources with their own reuse terms are linked instead of
-       being labelled with a licence they do not use. */
+       The licence has to follow it too, and all four sources now carry one.
+       Every one of them requires visible attribution. CC BY 4.0 additionally
+       requires indicating that the material was changed, which is what the
+       closing clause about redrawing is for. Each label links to the terms it
+       names rather than asserting a licence the page cannot establish. */
     var LICENCE = {
-      "Our World in Data": "CC BY 4.0",
-      "World Bank": "CC BY 4.0"
+      "Our World in Data": {
+        label: "CC BY 4.0",
+        url: "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "World Bank": {
+        label: "CC BY 4.0",
+        /* The World Bank layers mandatory terms on top of CC BY 4.0 and states
+           that linking those terms of use satisfies them, so the label points
+           there rather than at the bare Creative Commons deed. */
+        url: "https://data.worldbank.org/summary-terms-of-use"
+      },
+      "WHO Global Health Observatory": {
+        /* WHO publications are CC BY-NC-SA 3.0 IGO; WHO's own dataset terms are
+           CC BY 4.0 with a mandatory citation clause. Which of the two governs a
+           given GHO indicator is not something this page can establish, so the
+           credit links WHO's terms rather than naming a licence unsupported. */
+        label: "WHO dataset terms",
+        url: "https://data.who.int/about/data/terms-and-conditions"
+      },
+      "OECD": {
+        /* OECD written content published from July 2024 is CC BY 4.0, but the
+           data carries its own terms: reuse for any purpose including
+           commercial, with attribution. Linking the terms is the safe label. */
+        label: "OECD terms of use",
+        url: "https://www.oecd.org/en/about/terms-conditions.html"
+      },
+      "Eurostat": {
+        /* Not a Creative Commons licence. Reuse is authorised under Commission
+           Decision 2011/833/EU provided the source is acknowledged. */
+        label: "\u00a9 European Union, reuse with acknowledgement",
+        url: "https://ec.europa.eu/eurostat/help/copyright-notice"
+      }
     };
-    if (p.source) {
-      var lic = LICENCE[p.source];
-      $("src").innerHTML = "Source: " + p.source + ' · <a href="' + p.sourceUrl +
-        '" target="_blank" rel="noopener">' + p.slug + "</a>" +
-        (lic ? " · " + lic : "");
-    } else {
-      $("src").innerHTML = 'Source: Our World in Data · <a href="https://ourworldindata.org/grapher/' +
-        p.slug + '" target="_blank" rel="noopener">' + p.slug + "</a> · CC BY 4.0";
-    }
+    var srcName = p.source || "Our World in Data";
+    var srcUrl = p.sourceUrl || ("https://ourworldindata.org/grapher/" + p.slug);
+    var lic = LICENCE[srcName];
+    $("src").innerHTML = "Source: " + srcName +
+      ' \u00b7 <a href="' + srcUrl + '" target="_blank" rel="noopener">' + p.slug + "</a>" +
+      (lic ? ' \u00b7 <a href="' + lic.url + '" target="_blank" rel="noopener">' +
+             lic.label + "</a>" : "") +
+      " \u00b7 Chart redrawn from the source data";
     $("meta").textContent = p.form + " · " + p.family;
     $("next").textContent = idx < ACTIVE.length - 1 ? "Next chart" : "See your score";
     $("outcome").classList.add("show");
@@ -6896,6 +6933,11 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     $("score-streak").textContent = stats.streak > 1
       ? "🔥 " + stats.streak + "-day streak · best " + stats.best
       : "Come back tomorrow to start a streak.";
+
+    /* Read at render time, not on completion: the "See today's result" path
+       deliberately skips the stats update, so gating there would make this
+       vanish when someone reopens their own result. */
+    $("colophon").hidden = !(stats.played >= 5);
 
     $("results").style.display = "flex";
     window.scrollTo({ top: 0, behavior: "smooth" });
