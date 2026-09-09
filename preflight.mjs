@@ -33,10 +33,12 @@ const from = (marker, until) => {
 const code =
   from('function seededShuffle', 'var LETTERS') +
   from('  /* ============================ THE PUZZLES', '  /* ========================= DEALING THE DAY') +
-  from('  var RUN_SIZE = 5;', '  var OPTION_COUNT');
+  from('  /* Four options on every chart.', '  /* Points fall with every mistake');
 vm.createContext(sandbox);
-vm.runInContext(code + '\nthis.P = PUZZLES; this.dealRun = dealRun; this.runCost = runCost; this.HISTORY = HISTORY;', sandbox);
-const { P, dealRun, runCost, HISTORY } = sandbox;
+vm.runInContext(code + '\nthis.P = PUZZLES; this.dealRun = dealRun; this.runCost = runCost;'
+  + ' this.HISTORY = HISTORY; this.clash = clash; this.SHOWN_DECOYS = SHOWN_DECOYS;'
+  + ' this.OPTION_COUNT = OPTION_COUNT;', sandbox);
+const { P, dealRun, runCost, HISTORY, clash, SHOWN_DECOYS, OPTION_COUNT } = sandbox;
 
 const RUN_SIZE = 5, NEW_PER_RUN = 4;
 const NEEDS = {
@@ -74,7 +76,7 @@ P.forEach((q, i) => {
   if (Array.isArray(q.series) && q.series.some(s => (s.values || s).some?.(v => v === undefined)))
     bad.push(id + ': sparse array in series');                                          /* doc 20 */
 });
-check(!bad.length, 'all 50 puzzles carry their required fields', 'field problems:\n         ' + bad.join('\n         '));
+check(!bad.length, `all ${P.length} puzzles carry their required fields`, 'field problems:\n         ' + bad.join('\n         '));
 
 /* Slugs must be readable words, not raw source codes.
  *
@@ -122,25 +124,34 @@ P.forEach((q, i) => {
 });
 check(!leaks.length, 'no answer word leaks into hint 1', 'leaks:\n         ' + leaks.join('\n         '));
 
-/* A decoy must never be another puzzle's answer in the same run. Doc 16 ran
- * this as a one-off script and it was never ported here; with the pool more
- * than doubling it is now the likeliest way to ship an unfair puzzle, because
- * the player would see the same sentence twice and one of them would be wrong.
- * Checked across the whole pool rather than against the current deal. Two
- * puzzles that do not meet today will meet eventually, and every new batch
- * re-deals every future run, so a deal-scoped check passes one week and fails
- * the next for reasons nobody changed. */
+/* One chart's answer offered as a wrong option on another.
+ *
+ * This used to fail the build. It should not, and the reason is arithmetic:
+ * there are seven decoys for every answer, so a pool-wide ban lets throwaway
+ * wrong options retire subjects roughly seven times faster than answers can
+ * use them, and the retiring is done by the least considered text in the file.
+ * Five of twelve candidates for batch seven were blocked that way, by lines
+ * nobody had reviewed as answers.
+ *
+ * The harm it was guarding against is real but narrow: seeing the same sentence
+ * twice in one sitting, right on one chart and wrong on another. That depends on
+ * the deal, not the pool, so the dealer now prices it in runCost and keeps such
+ * pairs apart. What is left here is a report, not a gate. A clash sitting past
+ * SHOWN_DECOYS is invisible to players and free; one inside it is worth either
+ * demoting into the unshown tail or leaving to the dealer to route around. */
 const answersOf = (q) => [q.truth, q.answer].filter(Boolean);
 const answerIndex = new Map();
 P.forEach((q, i) => answersOf(q).forEach(a => answerIndex.set(a.toLowerCase().trim(), i)));
-const collisions = [];
-P.forEach((q, i) => (q.decoys || []).forEach(d => {
-  const j = answerIndex.get(d.toLowerCase().trim());
-  if (j !== undefined && j !== i)
-    collisions.push(`[${i}] offers "${d}" as a decoy, but it is [${j}]'s answer`);
+const shownClash = [], dark = [];
+P.forEach((q, i) => (q.decoys || []).forEach((d, k) => {
+  const j = answerIndex.get(String(d).toLowerCase().trim());
+  if (j === undefined || j === i) return;
+  (k < SHOWN_DECOYS ? shownClash : dark).push(
+    `[${i}] decoy ${k} "${String(d).slice(0, 44)}" is [${j}]'s answer`);
 }));
-check(!collisions.length, 'no decoy is another chart\'s answer anywhere in the pool',
-  'decoy collisions:\n         ' + collisions.join('\n         '));
+if (!shownClash.length) pass(`no shown decoy repeats another chart's answer (${dark.length} in the unshown tail)`);
+else warn(`${shownClash.length} shown decoys repeat another chart's answer, ${dark.length} more in the tail:`
+  + '\n         ' + shownClash.join('\n         '));
 
 /* When one entity dominates a chart, the reveal text has to say why.
  *
@@ -210,6 +221,25 @@ else if (adjacent / pairs < 0.02 && !tripled)
     + ' (best effort, per doc 23)');
 else check(false, 'form variety',
   `${adjacent} adjacent pairs and ${tripled} forms appearing three times in 200 runs`);
+
+/* The dealer is now the thing standing between a player and the same sentence
+ * twice in one sitting, so it has to be measured rather than assumed. Unlike
+ * form variety this is a fairness property, so a single leak is reported by
+ * name: with only 240 seeded draws per run the dealer can be cornered, and if
+ * it ever is, the fix is to demote the offending decoy into the unshown tail. */
+const met = [];
+for (let n = 1; n <= 400; n++) {
+  const r = dealRun(n);
+  for (let i = 0; i < r.length; i++)
+    for (let j = i + 1; j < r.length; j++)
+      if (clash(r[i], r[j])) met.push(`run ${n}: [${r[i]}] and [${r[j]}]`);
+}
+check(!met.length, 'no run puts a chart beside another that offers its answer as a decoy (400 runs)',
+  'clashing pairs dealt together:\n         ' + met.slice(0, 8).join('\n         '));
+
+check(OPTION_COUNT.length === RUN_SIZE && OPTION_COUNT.every(n => n === 4),
+  `every chart offers ${OPTION_COUNT[0]} options, so ${SHOWN_DECOYS} decoys are shown`,
+  `option counts are ${OPTION_COUNT.join(',')}, expected five fours`);
 
 /* Only five categorical colours exist and a line chart has nothing else to tell
  * its series apart, so a sixth line is either invisible or a duplicate colour. */

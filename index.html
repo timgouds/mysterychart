@@ -466,12 +466,6 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 .score-band-note { margin: 5px 0 0; color: var(--ink-2); font-size: 0.98rem; max-width: 46ch; }
 .score-streak { margin: 14px 0 0; color: var(--ink-2); font-size: 0.95rem; }
 
-/* The one place a person appears in the game. Deliberately the quietest thing
-   on the screen: same ink as the streak line, a size down, and it only shows
-   itself once someone has finished five runs. */
-.colophon { margin: 30px auto 0; color: var(--ink-2); font-size: 0.86rem; max-width: 46ch; line-height: 1.5; text-align: center; }
-.colophon a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-
 /* A row per chart, not a column: the titles are the point of this screen and
    five narrow columns wrapped them to four lines each. */
 .score-grid { display: flex; flex-direction: column; gap: 6px; }
@@ -690,10 +684,6 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     </div>
     <textarea id="share-fallback" readonly rows="5" aria-label="Your result, ready to copy"></textarea>
     <p class="score-note">Go on, put it in the group chat. It spoils nothing and settles everything.</p>
-    <p class="colophon" id="colophon" hidden>
-      Mystery Chart is made by Tim, who is not a statistician and has never claimed to be.
-      <a href="https://buymeacoffee.com/timgoudswaard" target="_blank" rel="noopener">Buy him a coffee</a>
-    </p>
   </section>
 
 
@@ -5196,6 +5186,16 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      Form variety is best effort. If the search cannot reach a clean deal the
      run still plays, just with a duller mix. */
 
+  /* Four options on every chart. The run still escalates, but through the charts
+     themselves rather than the width of the list: the dealer sorts each run by
+     difficulty, and naming the last one is worth three times naming the first.
+     Base 100 x (1 + 1.5 + 2 + 2.5 + 3) = 1000.
+
+     This lives above the dealer, rather than with the rest of the scoring, only
+     because the dealer needs to know how many decoys a player can actually see. */
+  var OPTION_COUNT = [4, 4, 4, 4, 4];
+  var MULTIPLIER   = [1, 1.5, 2, 2.5, 3];
+
   var RUN_SIZE = 5;
   /* Which forms count as rare is derived from the pool rather than fixed.
    *
@@ -5268,16 +5268,51 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     });
   }
 
+  /* Which pairs of puzzles must not meet on the same day.
+   *
+   * One chart's answer can also be a wrong option on another. The pool used to
+   * ban that outright, which sounds tidy and was not: there are seven decoys for
+   * every answer, so throwaway wrong options were quietly retiring subjects that
+   * would have made good puzzles, and retiring them faster than the pool could
+   * add them.
+   *
+   * What actually costs a player is meeting the same sentence twice in one
+   * sitting, right on one chart and wrong on another. That is a property of the
+   * deal, not of the pool, so it is priced here instead and the dealer avoids it
+   * while it has a choice. Only decoys deep enough in the list to be shown can
+   * do the damage, so only those are counted. */
+  var SHOWN_DECOYS = Math.max.apply(null, OPTION_COUNT) - 1;
+  var CLASH = (function () {
+    var answerAt = {}, map = [], i, j, d, hit;
+    for (i = 0; i < PUZZLES.length; i++) {
+      if (PUZZLES[i].truth) answerAt[PUZZLES[i].truth.toLowerCase().trim()] = i;
+    }
+    for (i = 0; i < PUZZLES.length; i++) {
+      map[i] = null;
+      d = PUZZLES[i].decoys || [];
+      for (j = 0; j < Math.min(d.length, SHOWN_DECOYS); j++) {
+        hit = answerAt[String(d[j]).toLowerCase().trim()];
+        if (hit !== undefined && hit !== i) (map[i] = map[i] || {})[hit] = 1;
+      }
+    }
+    return map;
+  })();
+  function clash(a, b) {
+    return !!((CLASH[a] && CLASH[a][b]) || (CLASH[b] && CLASH[b][a]));
+  }
+
   /* Lower is better; zero is a clean run. The weights say what we mind most:
-     two of the same form back to back is the worst, then a rare form doubled,
-     then a form appearing three times, then a run that opens hard or never
-     gets hard. */
+     a clash is the only one that can make a chart read as unfair, so it is
+     priced above everything else. Then two of the same form back to back, then
+     a rare form doubled, then a form appearing three times, then a run that
+     opens hard or never gets hard. */
   function runCost(run) {
-    var cost = 0, counts = {}, i, t;
+    var cost = 0, counts = {}, i, j, t;
     for (i = 0; i < run.length; i++) {
       t = PUZZLES[run[i]].type;
       counts[t] = (counts[t] || 0) + 1;
       if (i && t === PUZZLES[run[i - 1]].type) cost += 6;
+      for (j = i + 1; j < run.length; j++) if (clash(run[i], run[j])) cost += 8;
     }
     for (t in counts) {
       if (counts[t] > 2) cost += 3 * (counts[t] - 2);
@@ -5385,15 +5420,10 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return Math.floor((fresh - c) / NEW_PER_RUN);
   }
 
-  /* The run gets harder as it goes: four options on the first chart, eight on the
-     last. A right answer is worth more when there was more to eliminate, so each
-     position carries a multiplier. Base 100 x (1 + 1.5 + 2 + 2.5 + 3) = 1000. */
-  var OPTION_COUNT = [4, 4, 4, 6, 6];
-  var MULTIPLIER   = [1, 1.5, 2, 2.5, 3];
-
   /* Points fall with every mistake, whether that was a wrong guess or a bought
-     hint. With eight options the answer can always be found by elimination, so
-     the ladder has to reach zero: brute force must not pay. */
+     hint. With four options the third wrong guess leaves the answer standing
+     alone and ends the chart at nothing, so elimination can never pay and the
+     foot of the ladder is reachable only by buying hints. */
   var POINTS = [100, 75, 50, 25, 5, 0, 0, 0];
   var MARKS = ["🟩", "🟨", "🟧", "🟦"];
   var MISS = "🟥";
@@ -5404,11 +5434,11 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   /* The escalation is the point of the run, so say it plainly on every chart
      rather than leaving it to a multiplier symbol in the corner. */
   var RAMP_WORDS = [
-    "Four options to start. Points at face value.",
-    "Four options again, but a harder chart. Worth half as much again.",
-    "Still four options, harder still. Worth double.",
-    "Six options now. Worth two and a half times.",
-    "Six options, the hardest of the day. Worth triple."
+    "The gentlest chart of the day. Points at face value.",
+    "A harder chart. Worth half as much again.",
+    "Harder still. Worth double.",
+    "Worth two and a half times.",
+    "The hardest of the day. Worth triple."
   ];
   /* A number on its own says nothing: 608 is meaningless until you know it is
      an ordinary day. The cut-offs are set against a simulated spread of play,
@@ -6778,53 +6808,26 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
        World Bank, WHO or Eurostat carry their own source and link; anything
        without one is from Our World in Data, which is where we started.
 
-       The licence has to follow it too, and all four sources now carry one.
-       Every one of them requires visible attribution. CC BY 4.0 additionally
-       requires indicating that the material was changed, which is what the
-       closing clause about redrawing is for. Each label links to the terms it
-       names rather than asserting a licence the page cannot establish. */
+       The licence has to follow it too. This branch used to print no licence at
+       all, so every puzzle that named its own source silently dropped the
+       CC BY 4.0 notice (doc 24 recorded the gap; sixty new puzzles then landed
+       on the wrong side of it). Our World in Data and the World Bank both
+       publish under CC BY 4.0 and require visible attribution, so the notice is
+       not decoration. Sources with their own reuse terms are linked instead of
+       being labelled with a licence they do not use. */
     var LICENCE = {
-      "Our World in Data": {
-        label: "CC BY 4.0",
-        url: "https://creativecommons.org/licenses/by/4.0/"
-      },
-      "World Bank": {
-        label: "CC BY 4.0",
-        /* The World Bank layers mandatory terms on top of CC BY 4.0 and states
-           that linking those terms of use satisfies them, so the label points
-           there rather than at the bare Creative Commons deed. */
-        url: "https://data.worldbank.org/summary-terms-of-use"
-      },
-      "WHO Global Health Observatory": {
-        /* WHO publications are CC BY-NC-SA 3.0 IGO; WHO's own dataset terms are
-           CC BY 4.0 with a mandatory citation clause. Which of the two governs a
-           given GHO indicator is not something this page can establish, so the
-           credit links WHO's terms rather than naming a licence unsupported. */
-        label: "WHO dataset terms",
-        url: "https://data.who.int/about/data/terms-and-conditions"
-      },
-      "OECD": {
-        /* OECD written content published from July 2024 is CC BY 4.0, but the
-           data carries its own terms: reuse for any purpose including
-           commercial, with attribution. Linking the terms is the safe label. */
-        label: "OECD terms of use",
-        url: "https://www.oecd.org/en/about/terms-conditions.html"
-      },
-      "Eurostat": {
-        /* Not a Creative Commons licence. Reuse is authorised under Commission
-           Decision 2011/833/EU provided the source is acknowledged. */
-        label: "\u00a9 European Union, reuse with acknowledgement",
-        url: "https://ec.europa.eu/eurostat/help/copyright-notice"
-      }
+      "Our World in Data": "CC BY 4.0",
+      "World Bank": "CC BY 4.0"
     };
-    var srcName = p.source || "Our World in Data";
-    var srcUrl = p.sourceUrl || ("https://ourworldindata.org/grapher/" + p.slug);
-    var lic = LICENCE[srcName];
-    $("src").innerHTML = "Source: " + srcName +
-      ' \u00b7 <a href="' + srcUrl + '" target="_blank" rel="noopener">' + p.slug + "</a>" +
-      (lic ? ' \u00b7 <a href="' + lic.url + '" target="_blank" rel="noopener">' +
-             lic.label + "</a>" : "") +
-      " \u00b7 Chart redrawn from the source data";
+    if (p.source) {
+      var lic = LICENCE[p.source];
+      $("src").innerHTML = "Source: " + p.source + ' · <a href="' + p.sourceUrl +
+        '" target="_blank" rel="noopener">' + p.slug + "</a>" +
+        (lic ? " · " + lic : "");
+    } else {
+      $("src").innerHTML = 'Source: Our World in Data · <a href="https://ourworldindata.org/grapher/' +
+        p.slug + '" target="_blank" rel="noopener">' + p.slug + "</a> · CC BY 4.0";
+    }
     $("meta").textContent = p.form + " · " + p.family;
     $("next").textContent = idx < ACTIVE.length - 1 ? "Next chart" : "See your score";
     $("outcome").classList.add("show");
@@ -6933,11 +6936,6 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     $("score-streak").textContent = stats.streak > 1
       ? "🔥 " + stats.streak + "-day streak · best " + stats.best
       : "Come back tomorrow to start a streak.";
-
-    /* Read at render time, not on completion: the "See today's result" path
-       deliberately skips the stats update, so gating there would make this
-       vanish when someone reopens their own result. */
-    $("colophon").hidden = !(stats.played >= 5);
 
     $("results").style.display = "flex";
     window.scrollTo({ top: 0, behavior: "smooth" });
