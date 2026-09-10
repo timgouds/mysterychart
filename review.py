@@ -47,9 +47,9 @@ sub = [
     # the deal must not be constrained by what has already aired
     (r'var HISTORY_SLUGS = \[.*?\n  \];', 'var HISTORY_SLUGS = [];'),
     # every chart in the batch gets a fair number of options
-    (r'var OPTION_COUNT = \[4, 4, 4, 6, 6\];',
-     'var OPTION_COUNT = [' + ', '.join(['4'] * 4 + ['6'] * (n - 4)) + '];'),
-    (r'var MULTIPLIER   = \[1, 1\.5, 2, 2\.5, 3\];',
+    (r'var OPTION_COUNT = \[[^\]]*\];',
+     'var OPTION_COUNT = [' + ', '.join(['4'] * n) + '];'),
+    (r'var MULTIPLIER   = \[[^\]]*\];',
      'var MULTIPLIER   = [' + ', '.join(['1'] * n) + '];'),
 ]
 for pat, rep in sub:
