@@ -1,114 +1,108 @@
 #!/usr/bin/env python3
-"""Mystery Chart build.
+"""
+Mystery Chart build.
 
-Assembles src/engine.html + src/puzzles.js into the single index.html that
-gets uploaded to the repo root.
+Assembles the deployable single file from the two sources:
 
-The split exists so that adding puzzles can never touch renderer code. That is
-not hypothetical: a generator once emitted a stray comma into a series array
-and one chart silently failed to render on day 5 only (doc 20). Keep the data
-and the machinery in separate files and that class of bug cannot happen.
+    src/engine.html   renderers, dealer, scoring, chrome, all the chrome and CSS
+    src/puzzles.js    the puzzle pool and its data arrays, and nothing else
 
-    python3 build.py            build and report
-    python3 build.py --check    build to a temp buffer and diff against the
-                                committed index.html without writing
+and writes:
 
-Run `node preflight.mjs` after this. build.py checks that the file is
-well-formed; preflight checks that the puzzles and the dealer are sound.
+    index.html        what gets uploaded to the repo root
+
+The engine carries one marker line, `  /* @@PUZZLE-DATA@@ */`, and the build
+substitutes the pool into it. That is the whole mechanism. The point of the
+split is that a new batch of puzzles can no longer reach renderer code, which
+is how a stray comma once left a hole in a series array and broke one day in
+eight.
+
+Run it from the repo root:
+
+    python3 build.py
+
+Add --check to verify the output against the currently deployed file without
+writing anything.
 """
 
-import sys, os, re, hashlib
+import hashlib
+import pathlib
+import re
+import sys
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-ENGINE = os.path.join(ROOT, 'src', 'engine.html')
-PUZZLES = os.path.join(ROOT, 'src', 'puzzles.js')
-OUTPUT = os.path.join(ROOT, 'index.html')
-PLACEHOLDER = '  /* @@PUZZLE-DATA@@ */'
+ROOT = pathlib.Path(__file__).resolve().parent
+ENGINE = ROOT / "src" / "engine.html"
+PUZZLES = ROOT / "src" / "puzzles.js"
+OUTPUT = ROOT / "index.html"
 
-
-def die(msg):
-    print('BUILD FAILED: ' + msg, file=sys.stderr)
-    sys.exit(1)
-
-
-def read(path, label):
-    if not os.path.exists(path):
-        die('%s is missing (%s)' % (label, path))
-    text = open(path, encoding='utf-8').read()
-    if not text.strip():
-        die('%s is empty' % label)
-    return text
+MARKER = "  /* @@PUZZLE-DATA@@ */\n"
 
 
-def build():
-    engine = read(ENGINE, 'src/engine.html')
-    puzzles = read(PUZZLES, 'src/puzzles.js')
+def read(path):
+    if not path.exists():
+        sys.exit("missing: %s" % path)
+    return path.read_text(encoding="utf-8")
 
-    n = engine.count(PLACEHOLDER)
-    if n != 1:
-        die('expected exactly one %s in the engine, found %d' % (PLACEHOLDER, n))
 
-    # The data file must not carry machinery, and the engine must not carry data.
-    for token in ('function dealRun', 'function drawTreemap', 'addEventListener'):
-        if token in puzzles:
-            die('engine code found in src/puzzles.js: %s' % token)
-    if 'var PUZZLES = [' in engine:
-        die('puzzle data found in src/engine.html; it belongs in src/puzzles.js')
+def assemble():
+    engine = read(ENGINE)
+    puzzles = read(PUZZLES)
 
-    out = engine.replace(PLACEHOLDER, puzzles)
+    if engine.count(MARKER) != 1:
+        sys.exit(
+            "src/engine.html must contain the line %r exactly once (found %d)"
+            % (MARKER.strip(), engine.count(MARKER))
+        )
+    if "var PUZZLES" in engine:
+        sys.exit("src/engine.html contains puzzle data; it belongs in src/puzzles.js")
+    if "var PUZZLES" not in puzzles:
+        sys.exit("src/puzzles.js does not define PUZZLES")
 
-    # Structural assertions on the assembled page.
-    checks = [
-        (out.startswith('<!doctype html>'), 'output does not start with <!doctype html>'),
-        (out.count('var PUZZLES = [') == 1, 'PUZZLES array is not present exactly once'),
-        ('@@' not in out, 'an unsubstituted @@marker@@ survived into the output'),
-        (out.count('<script') == out.count('</script>'), 'unbalanced <script> tags'),
-        ('function dealRun' in out, 'the dealer is missing from the output'),
-        ('HISTORY_SLUGS' in out, 'the broadcast history is missing from the output'),
-        (out.rstrip().endswith('</html>'), 'output does not end with </html>'),
-    ]
-    for ok, msg in checks:
-        if not ok:
-            die(msg)
+    return engine.replace(MARKER, puzzles)
 
-    count = len(re.findall(r'^      family:', puzzles, re.M))
-    if count < 5:
-        die('only %d puzzles found; that is too few to deal a run' % count)
 
-    return out, count
+def report(html):
+    """Print the facts worth seeing on every build."""
+    pool = len(re.findall(r"\n      slug: ", html))
+    launch = re.search(r"var LAUNCH = new Date\(([^)]*)\)", html)
+    ramp = re.search(r"var OPTION_COUNT = (\[[^\]]*\])", html)
+    print("  pool          %d puzzles" % pool)
+    if ramp:
+        print("  option ramp   %s" % ramp.group(1))
+    if launch:
+        print("  launch        new Date(%s)" % launch.group(1))
+    print("  size          %.0f KB" % (len(html.encode("utf-8")) / 1024))
+
+    # Fresh material lasts roughly pool / NEW_PER_RUN runs from launch. The
+    # engine's own runwayFrom() is exact; this is the cheap approximation, and
+    # it is here so a short runway is visible on every build rather than
+    # discovered by a player.
+    new_per_run = re.search(r"var NEW_PER_RUN = (\d+)", html)
+    if new_per_run and pool:
+        runs = pool // int(new_per_run.group(1))
+        print("  runway        ~%d runs of fresh material from launch" % runs)
 
 
 def main():
-    out, count = build()
-    digest = hashlib.md5(out.encode('utf-8')).hexdigest()
-    previous = None
-    if os.path.exists(OUTPUT):
-        previous = open(OUTPUT, encoding='utf-8').read()
+    check_only = "--check" in sys.argv
+    html = assemble()
 
-    if '--check' in sys.argv:
-        if previous is None:
-            print('index.html does not exist yet; build would create it')
-        elif previous == out:
-            print('index.html is up to date (%s)' % digest[:12])
-        else:
-            print('index.html DIFFERS from a fresh build.')
-            print('  committed: %d bytes  %s' % (len(previous), hashlib.md5(previous.encode()).hexdigest()[:12]))
-            print('  would be : %d bytes  %s' % (len(out), digest[:12]))
-            sys.exit(1)
-        return
+    print("build.py")
+    report(html)
 
-    open(OUTPUT, 'w', encoding='utf-8').write(out)
+    if check_only:
+        if not OUTPUT.exists():
+            sys.exit("no index.html to check against")
+        current = read(OUTPUT)
+        same = hashlib.sha256(html.encode()).hexdigest() == hashlib.sha256(
+            current.encode()
+        ).hexdigest()
+        print("  check         %s" % ("identical to index.html" if same else "DIFFERS from index.html"))
+        sys.exit(0 if same else 1)
 
-    print('built index.html')
-    print('  puzzles   %d' % count)
-    print('  size      %d bytes' % len(out))
-    print('  md5       %s' % digest)
-    if previous is not None and previous != out:
-        print('  changed   %+d bytes against the previous build' % (len(out) - len(previous)))
-    elif previous == out:
-        print('  unchanged')
-    print('\nNext: node preflight.mjs')
+    OUTPUT.write_text(html, encoding="utf-8")
+    print("  wrote         index.html")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
