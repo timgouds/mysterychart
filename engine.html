@@ -201,10 +201,23 @@ h1 em {
 .redaction .truth {
   font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.3rem; font-weight: 600; line-height: 1.24; letter-spacing: -0.02em;
-  display: block; padding: 2px 0; opacity: 0;
-  transition: opacity 420ms ease 260ms;
+  display: block; padding: 2px 0;
+  /* visibility, not opacity. Invisible is not hidden: at opacity 0 the title
+     is still real text, and Ctrl+A lifts it straight off an unanswered
+     puzzle while a screen reader reads it aloud. visibility:hidden keeps the
+     exact layout space, so the bar is the right height and revealing shifts
+     nothing, but takes the text out of both selection and the accessibility
+     tree. The opacity transition still drives the fade on reveal. */
+  visibility: hidden; opacity: 0;
+  transition: opacity 420ms ease 260ms, visibility 0s linear 260ms;
 }
-.redaction.lifted .truth { opacity: 1; }
+.redaction.lifted .truth { visibility: visible; opacity: 1; }
+
+/* Read by assistive technology, never painted. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 
 .chart-frame { width: 100%; overflow-x: auto; }
 svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-nums; }
@@ -618,7 +631,8 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 
   <section class="doc">
     <div class="redaction" id="redaction">
-      <span class="truth" id="truth"></span>
+      <span class="sr-only" id="redaction-note">Chart title redacted. Work it out from the chart.</span>
+      <span class="truth" id="truth" aria-hidden="true"></span>
       <span class="bar"></span>
     </div>
     <div class="chart-frame" id="chart"></div>
@@ -698,6 +712,16 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      Form variety is best effort. If the search cannot reach a clean deal the
      run still plays, just with a duller mix. */
 
+  /* Four options on every chart. The run still escalates, but through the charts
+     themselves rather than the width of the list: the dealer sorts each run by
+     difficulty, and naming the last one is worth three times naming the first.
+     Base 100 x (1 + 1.5 + 2 + 2.5 + 3) = 1000.
+
+     This lives above the dealer, rather than with the rest of the scoring, only
+     because the dealer needs to know how many decoys a player can actually see. */
+  var OPTION_COUNT = [4, 4, 4, 4, 4];
+  var MULTIPLIER   = [1, 1.5, 2, 2.5, 3];
+
   var RUN_SIZE = 5;
   /* Which forms count as rare is derived from the pool rather than fixed.
    *
@@ -770,16 +794,55 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     });
   }
 
+  /* Which pairs of puzzles must not meet on the same day.
+   *
+   * One chart's answer can also be a wrong option on another. The pool used to
+   * ban that outright, which sounds tidy and was not: there are seven decoys for
+   * every answer, so throwaway wrong options were quietly retiring subjects that
+   * would have made good puzzles, and retiring them faster than the pool could
+   * add them.
+   *
+   * What actually costs a player is meeting the same sentence twice in one
+   * sitting, right on one chart and wrong on another. That is a property of the
+   * deal, not of the pool, so it is priced here instead and the dealer avoids it
+   * while it has a choice. Only decoys deep enough in the list to be shown can
+   * do the damage, so only those are counted. */
+  var SHOWN_DECOYS = Math.max.apply(null, OPTION_COUNT) - 1;
+  var CLASH = (function () {
+    var answerAt = {}, map = [], i, j, d, hit;
+    for (i = 0; i < PUZZLES.length; i++) {
+      /* Index the option text as well as the revealed title. Decoys never
+         carry a year and every truth does, so keying on truth alone could
+         never match and this table was silently empty for 122 puzzles. */
+      if (PUZZLES[i].truth) answerAt[PUZZLES[i].truth.toLowerCase().trim()] = i;
+      if (PUZZLES[i].answer) answerAt[PUZZLES[i].answer.toLowerCase().trim()] = i;
+    }
+    for (i = 0; i < PUZZLES.length; i++) {
+      map[i] = null;
+      d = PUZZLES[i].decoys || [];
+      for (j = 0; j < Math.min(d.length, SHOWN_DECOYS); j++) {
+        hit = answerAt[String(d[j]).toLowerCase().trim()];
+        if (hit !== undefined && hit !== i) (map[i] = map[i] || {})[hit] = 1;
+      }
+    }
+    return map;
+  })();
+  function clash(a, b) {
+    return !!((CLASH[a] && CLASH[a][b]) || (CLASH[b] && CLASH[b][a]));
+  }
+
   /* Lower is better; zero is a clean run. The weights say what we mind most:
-     two of the same form back to back is the worst, then a rare form doubled,
-     then a form appearing three times, then a run that opens hard or never
-     gets hard. */
+     a clash is the only one that can make a chart read as unfair, so it is
+     priced above everything else. Then two of the same form back to back, then
+     a rare form doubled, then a form appearing three times, then a run that
+     opens hard or never gets hard. */
   function runCost(run) {
-    var cost = 0, counts = {}, i, t;
+    var cost = 0, counts = {}, i, j, t;
     for (i = 0; i < run.length; i++) {
       t = PUZZLES[run[i]].type;
       counts[t] = (counts[t] || 0) + 1;
       if (i && t === PUZZLES[run[i - 1]].type) cost += 6;
+      for (j = i + 1; j < run.length; j++) if (clash(run[i], run[j])) cost += 8;
     }
     for (t in counts) {
       if (counts[t] > 2) cost += 3 * (counts[t] - 2);
@@ -887,15 +950,10 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return Math.floor((fresh - c) / NEW_PER_RUN);
   }
 
-  /* The run gets harder as it goes: four options on the first chart, eight on the
-     last. A right answer is worth more when there was more to eliminate, so each
-     position carries a multiplier. Base 100 x (1 + 1.5 + 2 + 2.5 + 3) = 1000. */
-  var OPTION_COUNT = [4, 4, 4, 6, 6];
-  var MULTIPLIER   = [1, 1.5, 2, 2.5, 3];
-
   /* Points fall with every mistake, whether that was a wrong guess or a bought
-     hint. With eight options the answer can always be found by elimination, so
-     the ladder has to reach zero: brute force must not pay. */
+     hint. With four options the third wrong guess leaves the answer standing
+     alone and ends the chart at nothing, so elimination can never pay and the
+     foot of the ladder is reachable only by buying hints. */
   var POINTS = [100, 75, 50, 25, 5, 0, 0, 0];
   var MARKS = ["🟩", "🟨", "🟧", "🟦"];
   var MISS = "🟥";
@@ -906,11 +964,11 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   /* The escalation is the point of the run, so say it plainly on every chart
      rather than leaving it to a multiplier symbol in the corner. */
   var RAMP_WORDS = [
-    "Four options to start. Points at face value.",
-    "Four options again, but a harder chart. Worth half as much again.",
-    "Still four options, harder still. Worth double.",
-    "Six options now. Worth two and a half times.",
-    "Six options, the hardest of the day. Worth triple."
+    "The gentlest chart of the day. Points at face value.",
+    "A harder chart. Worth half as much again.",
+    "Harder still. Worth double.",
+    "Worth two and a half times.",
+    "The hardest of the day. Worth triple."
   ];
   /* A number on its own says nothing: 608 is meaningless until you know it is
      an ordinary day. The cut-offs are set against a simulated spread of play,
@@ -2074,7 +2132,13 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     $("runlabel").textContent = "Run #" + runNo;
     drawProgress();
     $("period").textContent = p.period || "";
+    /* The real title goes in so the bar is sized to it and revealing shifts
+       nothing. It is concealed by visibility:hidden in CSS, which keeps it out
+       of Ctrl+A and out of the accessibility tree; aria-hidden and the note
+       below say the same thing explicitly rather than relying on that alone. */
     $("truth").textContent = p.truth;
+    $("truth").setAttribute("aria-hidden", "true");
+    $("redaction-note").textContent = "Chart title redacted. Work it out from the chart.";
     var red = $("redaction");
     red.classList.add("snap");
     red.classList.remove("lifted");
@@ -2216,6 +2280,9 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       if (!won && j === answerIdx) b.classList.add("is-right");
     });
     $("redaction").classList.add("lifted");
+    /* Answer is out: hand the title back to assistive tech and to copy-paste. */
+    $("truth").removeAttribute("aria-hidden");
+    $("redaction-note").textContent = "";
 
     var tier = Math.min(cost, POINTS.length - 1);
     results[idx] = {
