@@ -104,6 +104,10 @@ def block(o):
     L.append('      unit: %s,' % json.dumps(o['unit'], ensure_ascii=False))
     if o.get('suffix'):
         L.append('      suffix: %s,' % json.dumps(o['suffix']))
+    if o.get('breakAfter'):
+        L.append('      breakAfter: %d,' % o['breakAfter'])
+    if o.get('log'):
+        L.append('      log: true,')
     if 'total' in o:
         L.append('      total: %d,' % o['total'])
     if 'leftYear' in o:

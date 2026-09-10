@@ -21,11 +21,11 @@ def fetch(code):
     return json.loads(raw)['value']
 
 
-def screen(code, year=None, sex='BTSX', show=12):
+def screen(code, year=None, sex=('SEX_BTSX', 'BTSX'), show=12):
     rows = fetch(code)
     rows = [r for r in rows if r.get('SpatialDimType') == 'COUNTRY']
-    if any(r.get('Dim1') == sex for r in rows):
-        rows = [r for r in rows if r.get('Dim1') == sex]
+    if any(r.get('Dim1') in sex for r in rows):
+        rows = [r for r in rows if r.get('Dim1') in sex]
     if year:
         rows = [r for r in rows if str(r.get('TimeDim')) == str(year)]
     else:

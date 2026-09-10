@@ -73,8 +73,9 @@ def who(code):
                          capture_output=True, text=True).stdout
     rows = json.loads(raw)['value']
     rows = [r for r in rows if r.get('SpatialDimType') == 'COUNTRY']
-    if any(r.get('Dim1') == 'BTSX' for r in rows):
-        rows = [r for r in rows if r.get('Dim1') == 'BTSX']
+    BOTH = ('SEX_BTSX', 'BTSX')   # the code is SEX_BTSX; the short form is legacy
+    if any(r.get('Dim1') in BOTH for r in rows):
+        rows = [r for r in rows if r.get('Dim1') in BOTH]
     # WHO keys on ISO3. Resolve to display names, or the digest reads as codes
     # and the population test silently matches nothing.
     iso = wb.real_countries()
