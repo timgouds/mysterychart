@@ -1,5 +1,3 @@
-  /* ============================ THE PUZZLES ============================ */
-
   var ALCOHOL = [["Afghanistan",0.011],["Albania",4.47],["Algeria",0.54],["Andorra",9.68],["Angola",4.13],["Antigua and Barbuda",6.66],["Argentina",8.05],["Armenia",4.28],["Australia",10.29],["Austria",11.51],["Azerbaijan",2.49],["Bahamas",3.65],["Bahrain",1.25],["Bangladesh",0.092],["Barbados",8.22],["Belarus",11.63],["Belgium",9.43],["Belize",3.67],["Benin",8.83],["Bhutan",0.18],["Bolivia",3.59],["Bosnia and Herzegovina",5.87],["Botswana",7.27],["Brazil",7.7],["Brunei",0.51],["Bulgaria",11.62],["Burkina Faso",11.27],["Burundi",4.16],["Cambodia",6.67],["Cameroon",9.6],["Canada",9.89],["Cape Verde",6.01],["Central African Republic",1.75],["Chad",2.91],["Chile",7.56],["China",4.58],["Colombia",4.24],["Comoros",0.23],["Congo",6.05],["Costa Rica",3.4],["Cote d'Ivoire",2.85],["Croatia",7.65],["Cuba",5.38],["Cyprus",6.36],["Czechia",11.99],["Democratic Republic of Congo",1.92],["Denmark",9.49],["Djibouti",0.38],["Dominica",5.02],["Dominican Republic",6.5],["East Timor",0.17],["Ecuador",2.54],["Egypt",0.13],["El Salvador",3.15],["Equatorial Guinea",6.56],["Eritrea",1.07],["Estonia",10.68],["Eswatini",6.79],["Ethiopia",3.06],["Fiji",3.58],["Finland",9.08],["France",10.32],["Gabon",8.14],["Gambia",0.61],["Georgia",14.41],["Germany",11.84],["Ghana",4.26],["Greece",5.81],["Grenada",7.33],["Guatemala",1.54],["Guinea",0.52],["Guinea-Bissau",3.73],["Guyana",5.04],["Haiti",3.11],["Honduras",3.08],["Hungary",9.93],["Iceland",7.94],["India",4.1],["Indonesia",0.074],["Iran",0.51],["Iraq",0.24],["Ireland",10.77],["Israel",2.84],["Italy",6.97],["Jamaica",3.1],["Japan",6.38],["Jordan",0.23],["Kazakhstan",4.52],["Kenya",2.47],["Kiribati",0.72],["Kuwait",0],["Kyrgyzstan",3.63],["Laos",10.82],["Latvia",12.87],["Lebanon",1.26],["Lesotho",4.3],["Liberia",2.86],["Libya",0.012],["Lithuania",12.1],["Luxembourg",10.82],["Madagascar",0.99],["Malawi",3.61],["Malaysia",0.74],["Maldives",1.49],["Mali",5.32],["Malta",7.11],["Mauritania",0],["Mauritius",6.86],["Mexico",4.79],["Micronesia",2.02],["Moldova",11.08],["Mongolia",7.68],["Montenegro",10.34],["Morocco",0.5],["Mozambique",1.89],["Myanmar",1.93],["Namibia",5.05],["Nauru",2.79],["Nepal",1.06],["Netherlands",8.71],["New Zealand",10.02],["Nicaragua",3.67],["Niger",0.13],["Nigeria",3.78],["North Korea",3.87],["North Macedonia",4.36],["Norway",7.38],["Oman",0.51],["Pakistan",0.084],["Panama",4.66],["Papua New Guinea",1.13],["Paraguay",5.62],["Peru",6.45],["Philippines",5.66],["Poland",11.66],["Portugal",8.88],["Qatar",1.05],["Romania",16.8],["Russia",10.53],["Rwanda",2.87],["Saint Kitts and Nevis",4.69],["Saint Lucia",9.28],["Saint Vincent",5.62],["Samoa",2.35],["Sao Tome and Principe",4.79],["Saudi Arabia",0],["Senegal",0.38],["Serbia",7.89],["Seychelles",10.19],["Sierra Leone",0.29],["Singapore",1.81],["Slovakia",10.67],["Slovenia",10.41],["Solomon Islands",1.45],["Somalia",0],["South Africa",7.13],["South Korea",7.79],["Spain",9.16],["Sri Lanka",2.91],["Sudan",0.01],["Suriname",5.93],["Sweden",9.57],["Switzerland",10.07],["Syria",0.092],["Tajikistan",0.74],["Tanzania",10.95],["Thailand",7.99],["Togo",1.44],["Tonga",0.36],["Trinidad and Tobago",6.03],["Tunisia",1.71],["Turkey",1.69],["Turkmenistan",2.62],["Tuvalu",1.26],["Uganda",11.3],["Ukraine",9.24],["United Arab Emirates",2.08],["United Kingdom",10.73],["United States",9.9],["Uruguay",5.61],["Uzbekistan",2.1],["Vanuatu",2.04],["Venezuela",1.99],["Vietnam",8.04],["Yemen",0.044],["Zambia",3.62],["Zimbabwe",2.67]];
 
   var PUZZLES = [
@@ -2084,8 +2082,8 @@
         ["Slovenia",4.6], ["Spain",6.3], ["Sweden",5.7], ["Switzerland",6.7],
         ["Turkey",3.4]
       ],
-      label: ["Romania", "Finland", "Ireland", "Netherlands", "Germany", "Italy", "France", "Cyprus", "Turkey"],
-      labelSm: ["Romania", "Finland", "Germany", "France", "Turkey"],
+      label: ["Romania", "Finland", "Ireland", "Netherlands", "Italy", "France", "Cyprus", "Turkey"],
+      labelSm: ["Romania", "Finland", "Netherlands", "France", "Turkey"],
       answer: "How much people say they trust others, on a scale of 0 to 10",
       decoys: [
         "How satisfied people say they are with their lives, from 0 to 10",
@@ -3442,8 +3440,8 @@
         ["Uruguay",2.76], ["Uzbekistan",0.13], ["Vanuatu",0.37], ["Venezuela",0.01],
         ["Vietnam",0.01], ["Yemen",0], ["Zambia",0.03], ["Zimbabwe",0.03]
       ],
-      label: ["Portugal", "France", "Italy", "Australia", "Germany", "United States", "China", "India", "Saudi Arabia"],
-      labelSm: ["Portugal", "France", "Germany", "United States", "Saudi Arabia"],
+      label: ["Portugal", "France", "Italy", "Australia", "Germany", "United States", "China", "India", "Iran"],
+      labelSm: ["Portugal", "France", "Germany", "United States", "Iran"],
       answer: "Wine drunk per adult",
       decoys: [
         "Cigarettes smoked per adult",
@@ -4080,8 +4078,8 @@
         ["Venezuela",1.32], ["Vietnam",0.19], ["Yemen",0], ["Zambia",0.4],
         ["Zimbabwe",2.34]
       ],
-      label: ["Belarus", "Russia", "Bulgaria", "South Korea", "Germany", "United States", "France", "Italy", "Saudi Arabia"],
-      labelSm: ["Belarus", "Russia", "Germany", "United States", "Saudi Arabia"],
+      label: ["Belarus", "Russia", "Bulgaria", "South Korea", "Germany", "United States", "France", "Italy", "Iran"],
+      labelSm: ["Belarus", "Russia", "Germany", "United States", "Iran"],
       answer: "Spirits drunk per adult",
       decoys: [
         "Cigarettes smoked per adult",
