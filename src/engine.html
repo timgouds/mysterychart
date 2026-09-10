@@ -811,7 +811,11 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   var CLASH = (function () {
     var answerAt = {}, map = [], i, j, d, hit;
     for (i = 0; i < PUZZLES.length; i++) {
+      /* Index the option text as well as the revealed title. Decoys never
+         carry a year and every truth does, so keying on truth alone could
+         never match and this table was silently empty for 122 puzzles. */
       if (PUZZLES[i].truth) answerAt[PUZZLES[i].truth.toLowerCase().trim()] = i;
+      if (PUZZLES[i].answer) answerAt[PUZZLES[i].answer.toLowerCase().trim()] = i;
     }
     for (i = 0; i < PUZZLES.length; i++) {
       map[i] = null;
