@@ -466,6 +466,12 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 .score-band-note { margin: 5px 0 0; color: var(--ink-2); font-size: 0.98rem; max-width: 46ch; }
 .score-streak { margin: 14px 0 0; color: var(--ink-2); font-size: 0.95rem; }
 
+/* The one place a person appears in the game, and the only ask on the site.
+   Shown on every completed run, deliberately the quietest thing on the screen:
+   same ink as the streak line, a size down, below the share button. */
+.colophon { margin: 30px auto 0; color: var(--ink-2); font-size: 0.86rem; max-width: 46ch; line-height: 1.5; text-align: center; }
+.colophon a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
 /* A row per chart, not a column: the titles are the point of this screen and
    five narrow columns wrapped them to four lines each. */
 .score-grid { display: flex; flex-direction: column; gap: 6px; }
@@ -684,6 +690,10 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     </div>
     <textarea id="share-fallback" readonly rows="5" aria-label="Your result, ready to copy"></textarea>
     <p class="score-note">Go on, put it in the group chat. It spoils nothing and settles everything.</p>
+    <p class="colophon" id="colophon">
+      Mystery Chart is made by Tim, who is not a statistician and has never claimed to be.
+      <a href="https://buymeacoffee.com/timgoudswaard" target="_blank" rel="noopener">Buy him a coffee</a>
+    </p>
   </section>
 
 
@@ -7341,18 +7351,47 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
        not decoration. Sources with their own reuse terms are linked instead of
        being labelled with a licence they do not use. */
     var LICENCE = {
-      "Our World in Data": "CC BY 4.0",
-      "World Bank": "CC BY 4.0"
+      "Our World in Data": {
+        label: "CC BY 4.0",
+        url: "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "World Bank": {
+        label: "CC BY 4.0",
+        /* The World Bank layers mandatory terms on top of CC BY 4.0 and states
+           that linking those terms of use satisfies them, so the label points
+           there rather than at the bare Creative Commons deed. */
+        url: "https://data.worldbank.org/summary-terms-of-use"
+      },
+      "WHO Global Health Observatory": {
+        /* WHO publications are CC BY-NC-SA 3.0 IGO; WHO's own dataset terms are
+           CC BY 4.0 with a mandatory citation clause. Which of the two governs a
+           given GHO indicator is not something this page can establish, so the
+           credit links WHO's terms rather than naming a licence unsupported. */
+        label: "WHO dataset terms",
+        url: "https://data.who.int/about/data/terms-and-conditions"
+      },
+      "OECD": {
+        /* OECD written content published from July 2024 is CC BY 4.0, but the
+           data carries its own terms: reuse for any purpose including
+           commercial, with attribution. Linking the terms is the safe label. */
+        label: "OECD terms of use",
+        url: "https://www.oecd.org/en/about/terms-conditions.html"
+      },
+      "Eurostat": {
+        /* Not a Creative Commons licence. Reuse is authorised under Commission
+           Decision 2011/833/EU provided the source is acknowledged. */
+        label: "\u00a9 European Union, reuse with acknowledgement",
+        url: "https://ec.europa.eu/eurostat/help/copyright-notice"
+      }
     };
-    if (p.source) {
-      var lic = LICENCE[p.source];
-      $("src").innerHTML = "Source: " + p.source + ' · <a href="' + p.sourceUrl +
-        '" target="_blank" rel="noopener">' + p.slug + "</a>" +
-        (lic ? " · " + lic : "");
-    } else {
-      $("src").innerHTML = 'Source: Our World in Data · <a href="https://ourworldindata.org/grapher/' +
-        p.slug + '" target="_blank" rel="noopener">' + p.slug + "</a> · CC BY 4.0";
-    }
+    var srcName = p.source || "Our World in Data";
+    var srcUrl = p.sourceUrl || ("https://ourworldindata.org/grapher/" + p.slug);
+    var lic = LICENCE[srcName];
+    $("src").innerHTML = "Source: " + srcName +
+      ' \u00b7 <a href="' + srcUrl + '" target="_blank" rel="noopener">' + p.slug + "</a>" +
+      (lic ? ' \u00b7 <a href="' + lic.url + '" target="_blank" rel="noopener">' +
+             lic.label + "</a>" : "") +
+      " \u00b7 Chart redrawn from the source data";
     $("meta").textContent = p.form + " · " + p.family;
     $("next").textContent = idx < ACTIVE.length - 1 ? "Next chart" : "See your score";
     $("outcome").classList.add("show");
