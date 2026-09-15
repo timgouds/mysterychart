@@ -5740,76 +5740,8 @@
     },
     {
       family: "Change over time",
-      form: "Connected scatterplot · 2009 → 2023",
-      exhibit: "Exhibit EZ",
-      type: "scatter", diff: 4,
-      truth: "Births per woman against the share of women in work, 2009 to 2023", period: "2009 → 2023",
-      unit: "horizontal: % of women aged 20 to 64 in work. vertical: births per woman",
-      startYear: 2009,
-      xUnit: "%", yUnit: "births",
-      series: [
-        { name: "Germany", points: [[67.8,1.36],[68.8,1.39],[70.3,1.39],[70.7,1.41],[71.5,1.42],[72.2,1.47],[72.7,1.5],[73.6,1.6],[74.3,1.57],[75,1.57],[75.7,1.54],[74.6,1.53],[75.9,1.58],[77,1.46],[77.4,1.39]] },
-        { name: "Spain", points: [[56.8,1.38],[56.3,1.37],[56.1,1.34],[54.6,1.32],[53.8,1.27],[54.8,1.32],[56.4,1.33],[58.1,1.33],[59.6,1.31],[61,1.26],[62.1,1.23],[60,1.18],[62.1,1.18],[63.7,1.16],[65.4,1.12]] },
-        { name: "Sweden", points: [[75.1,1.94],[74.4,1.98],[76,1.9],[76.4,1.91],[76.7,1.89],[77.2,1.88],[77.9,1.85],[78.7,1.85],[79.2,1.78],[79.7,1.76],[79.1,1.71],[77.5,1.67],[77.7,1.67],[79.1,1.53],[80.2,1.45]] },
-        { name: "Poland", points: [[55.6,1.4],[55.6,1.41],[55.8,1.33],[56.2,1.33],[56.3,1.29],[58.2,1.32],[59.9,1.32],[61.5,1.39],[63,1.48],[64.5,1.46],[65.3,1.44],[65.4,1.39],[68.5,1.33],[70.3,1.29],[72,1.2]] },
-        { name: "Italy", points: [[49.5,1.44],[49.2,1.44],[49.6,1.42],[50.1,1.42],[49.6,1.39],[50.1,1.38],[50.5,1.36],[51.6,1.36],[52.5,1.34],[53.2,1.31],[53.9,1.27],[52.1,1.24],[53.2,1.25],[55,1.24],[56.5,1.21]] },
-        { name: "Hungary", points: [[58.6,1.32],[59,1.25],[59.2,1.23],[60.4,1.34],[61.2,1.36],[64.1,1.45],[66.2,1.46],[68.9,1.55],[69.9,1.56],[71.4,1.57],[72.1,1.58],[72,1.61],[73.6,1.63],[75.4,1.57],[76.1,1.55]] }
-      ],
-      answer: "Births per woman against the share of women in work",
-      decoys: [
-        "Births per woman against the share of women in higher education",
-        "Age at first birth against the share of women in work",
-        "Births per woman against the share of births outside marriage",
-        "Births per woman against average household income"
-      ],
-      hints: [
-        "Every path here drifts to the right over the fifteen years, and most of them drift downwards at the same time.",
-        "Hungary is the one path that climbs, and it did so while spending more on families than any other country in Europe.",
-        "The horizontal axis is a percentage and runs to the high seventies; the vertical one never passes two.",
-        "The old story was that one of these two things had to fall for the other to rise. The chart says otherwise."
-      ],
-      why: "Every path drifts right as women's employment rises, and Hungary alone climbs, from 1.32 births to 1.55 while its employment rate goes from 58.6 to 76.1. Women in higher education dies on the horizontal axis, which reaches 80 per cent. Age at first birth dies on the vertical axis, which never passes two and would need to sit near thirty. Births outside marriage dies there too, that share being over half in several of these countries.",
-      slug: "births-and-womens-work",
-      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/demo_find"
-    },
-    {
-      family: "Change over time",
-      form: "Connected scatterplot · 1995 → 2023",
-      exhibit: "Exhibit FA",
-      type: "scatter", diff: 5,
-      truth: "Hours worked against output per hour, 1995 to 2023", period: "1995 → 2023",
-      unit: "horizontal: hours worked a year per worker. vertical: US dollars of output an hour",
-      startYear: 1995,
-      xUnit: "hours", yUnit: "$",
-      series: [
-        { name: "Germany", points: [[1528.9,33.181],[1515.5,34.322],[1506.2,35.289],[1503,36.079],[1490.3,37.339],[1464.5,38.579],[1457.4,40.644],[1448.3,42.368],[1443.1,44.159],[1442.7,46.132],[1431.9,47.33],[1452.4,49.748],[1453.9,51.855],[1446.9,53.397],[1406.8,53.462],[1425.4,55.439],[1427.2,58.702],[1406,60.122],[1395.7,62.55],[1400,64.841],[1401.6,65.618],[1395.8,69.623],[1388.2,72.788],[1380.7,75.355],[1372,79.308],[1313.6,82.652],[1341.2,86.254],[1343.4,94.539],[1338.8,97.869]] },
-        { name: "Japan", points: [[1884,24.041],[1892,25.189],[1865,26.05],[1842,26.461],[1810,27.555],[1821,29.402],[1809,30.485],[1798,31.877],[1799,32.665],[1785,34.28],[1777,35.621],[1786,36.853],[1785,38.121],[1771,38.81],[1714,38.514],[1733,40.195],[1728,41.297],[1745,42.798],[1734,44.954],[1729,45.31],[1719,47.102],[1714,46.536],[1709,47.201],[1680,47.918],[1644,49.21],[1597.01,50.545],[1607.48,52.672],[1606.99,55.975],[1610.74,59.191]] },
-        { name: "United States", points: [[1886.29,32.27],[1887.03,33.505],[1893.57,34.632],[1891.63,35.866],[1889.27,37.389],[1879.85,39.233],[1859.87,41.082],[1854.01,42.996],[1844.1,45.305],[1845.12,47.684],[1842.13,50.169],[1846.85,52.251],[1841.88,54.2],[1830.44,56.007],[1798.78,58.406],[1810.39,60.553],[1820.3,61.733],[1827.07,63.197],[1825.44,64.572],[1830.36,66.204],[1831.12,67.599],[1822.37,68.694],[1820.45,70.665],[1825.66,73.072],[1822.58,75.556],[1799.78,80.056],[1818.85,85.24],[1809.9,90.834],[1804.95,95.551]] },
-        { name: "Mexico", points: [[2161,13.58],[2192,14.22],[2241,14.632],[2168,15.202],[2242,15.195],[2174,16.021],[2146,16.37],[2196,16.943],[2143,17.446],[2123,18.033],[2289.6,19.074],[2277.8,20.606],[2259.8,21.258],[2263.7,22.302],[2254.5,22.464],[2253.5,23.631],[2247.5,25.501],[2238.6,26.071],[2244.2,26.332],[2242.2,27.33],[2248.3,27.52],[2254.6,28.98],[2257.4,29.885],[2258.3,30.519],[2247.3,30.601],[2231.1,29.608],[2235.1,31.492],[2246.2,35.051],[2228.3,38.662]] },
-        { name: "Netherlands", points: [[1490.97,33.437],[1506.06,34.074],[1491.81,35.598],[1488.56,37.347],[1486.86,38.652],[1473.5,41.967],[1463.56,43.53],[1445.91,45.766],[1437.17,46.147],[1458.19,48.418],[1444.28,51.148],[1440.5,54.839],[1439.51,57.313],[1439.02,59.857],[1430.6,58.767],[1430.15,59.951],[1430.72,61.969],[1421.71,63.623],[1426.68,67.035],[1438.52,66.997],[1438.41,68.38],[1451.09,70.033],[1451.1,72.572],[1451.04,74.618],[1456.55,77.554],[1402.14,81.757],[1442.16,86.035],[1451.12,95.915],[1447.01,97.698]] },
-        { name: "France", points: [[1579.08,32.919],[1575.09,33.828],[1573.88,35.17],[1564.93,36.575],[1560.67,37.445],[1542.14,39.991],[1523.13,42.279],[1489.72,44.918],[1493.35,44.592],[1517.26,45.566],[1518.59,47.934],[1503.36,51.388],[1525.35,52.778],[1531.92,54.1],[1520.03,54.844],[1528.03,56.704],[1533.7,58.848],[1527.9,59.4],[1512.8,63.244],[1504.18,64.586],[1504.33,65.752],[1507.39,68.473],[1492.04,71.111],[1499.65,73.322],[1504.38,79.902],[1390.85,83.96],[1468.61,82.533],[1498,86.316],[1503.07,91.182]] }
-      ],
-      answer: "Hours worked against output per hour",
-      decoys: [
-        "Hours worked against average pay",
-        "Hours worked against the share of workers in industry",
-        "Days of holiday against output per hour",
-        "Hours worked against the share of workers who are women"
-      ],
-      hints: [
-        "The Mexican path sits further right than anything else here and has spent thirty years going almost nowhere.",
-        "Every path moves left over time, and the vertical axis is denominated in the same thing everywhere because it has been converted.",
-        "The horizontal axis is a count of hours in a year and runs past two thousand; the vertical one is in US dollars.",
-        "Divide the second by nothing and you get the first back: one is time, the other is what the time produced."
-      ],
-      why: "Mexico works 2,228 hours a year for 38.7 dollars an hour; Germany works 1,339 for 97.9. Average pay dies on the vertical axis, which is in tens of dollars rather than the tens of thousands a salary needs. The share of workers in industry dies there too, because a share cannot reach 98. Days of holiday die on the horizontal axis, which runs past 2,000.",
-      slug: "hours-and-output",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PDB%40DF_PDB"
-    },
-    {
-      family: "Change over time",
       form: "Dumbbell · 2000 → 2023",
-      exhibit: "Exhibit FB",
+      exhibit: "Exhibit EZ",
       type: "dumbbell", diff: 2,
       truth: "Times a year the average person sees a doctor, 2000 vs 2023", period: "2000 → 2023",
       unit: "in-person consultations per person per year",
@@ -5842,7 +5774,7 @@
     {
       family: "Change over time",
       form: "Dumbbell · 2010 → 2023",
-      exhibit: "Exhibit FC",
+      exhibit: "Exhibit FA",
       type: "dumbbell", diff: 3,
       truth: "MRI scanners per million people, 2010 vs 2023", period: "2010 → 2023",
       unit: "machines per million people",
@@ -5875,7 +5807,7 @@
     {
       family: "Ranking",
       form: "Rank slope · 2002 → 2023",
-      exhibit: "Exhibit FD",
+      exhibit: "Exhibit FB",
       type: "slope", diff: 3,
       truth: "Ranking by the gap between men's and women's median pay, 2002 vs 2023", period: "2002 → 2023",
       unit: "rank, widest gap first",
@@ -5906,7 +5838,7 @@
     {
       family: "Deviation",
       form: "Diverging bar · distance from the OECD average, 2023",
-      exhibit: "Exhibit FE",
+      exhibit: "Exhibit FC",
       type: "deviation", reference: 2.0, diff: 3,
       truth: "Spending on research and development, 2023", period: "2023",
       unit: "% of GDP, against a 2% reference line",
@@ -5940,7 +5872,7 @@
     {
       family: "Ranking",
       form: "Rank slope · 2000 → 2022",
-      exhibit: "Exhibit FF",
+      exhibit: "Exhibit FD",
       type: "slope", diff: 4,
       truth: "Ranking by the age at which people actually stop working, 2000 vs 2022", period: "2000 → 2022",
       unit: "rank, latest first",
@@ -5971,7 +5903,7 @@
     {
       family: "Change over time",
       form: "Dumbbell · 2000 → 2021",
-      exhibit: "Exhibit FG",
+      exhibit: "Exhibit FE",
       type: "dumbbell", diff: 3,
       truth: "Public spending on pensions as a share of the economy, 2000 vs 2021", period: "2000 → 2021",
       unit: "% of GDP",
@@ -6006,7 +5938,7 @@
     {
       family: "Change over time",
       form: "Multi-line · 2000–2024",
-      exhibit: "Exhibit FH",
+      exhibit: "Exhibit FF",
       type: "line", diff: 3,
       truth: "Share of electricity generated from coal, 2000–2024", period: "2000–2024",
       unit: "% of electricity generated",
@@ -6039,7 +5971,7 @@
     {
       family: "Change over time",
       form: "Dumbbell · 1900 → 1996",
-      exhibit: "Exhibit FI",
+      exhibit: "Exhibit FG",
       type: "dumbbell", diff: 3,
       truth: "Average height of adult men, 1900 vs 1996", period: "1900 → 1996",
       unit: "centimetres",
