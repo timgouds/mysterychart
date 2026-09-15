@@ -5685,6 +5685,638 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       why: "Benin loses 78 per cent of everything put into its network, about one and a half times Iraq behind it, and a figure that large is not physics. Engineers split these losses in two. Technical losses are resistance in long, thin, overloaded lines and run to perhaps six or eight per cent even on a bad grid. Everything above that is non-technical: meters that are broken, bills that are never collected, and households wired straight into the line. That is why the top of the swarm is Benin, Iraq, Congo and Venezuela rather than the largest or the most remote countries, and why Singapore, a small dense grid with a working billing system, is at 2.0.",
       slug: "electricity-lost-in-transmission",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/EG.ELC.LOSS.ZS"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2000 → 2023",
+      exhibit: "Exhibit A",
+      type: "dumbbell",
+      diff: 3,
+      truth: "New tuberculosis cases per 100,000 people, 2000 vs 2023",
+      period: "2000 → 2023",
+      unit: "new cases per 100,000 people a year",
+      leftYear: 2000,
+      rightYear: 2023,
+      data: [["Djibouti", 2700.0, 477.0], ["Kiribati", 1280.0, 908.0], ["Philippines", 590.0, 632.0], ["Cambodia", 853.0, 276.0], ["South Africa", 762.0, 427.0], ["Indonesia", 370.0, 388.0], ["India", 322.0, 192.0], ["Peru", 367.0, 149.0], ["Romania", 189.0, 62.0], ["Portugal", 59.0, 16.0], ["United Kingdom", 12.0, 8.6], ["Sweden", 6.7, 3.8]],
+      answer: "New tuberculosis cases per 100,000 people",
+      decoys: ["Malaria cases per 100,000 people", "Deaths from air pollution per 100,000 people", "Road deaths per 100,000 people", "People living with HIV per 100,000 people"],
+      hints: ["Kiribati sits in the middle of the Pacific, four thousand kilometres from the nearest mosquito worth worrying about.", "Three of these are European and all three have fallen a long way; whatever this is, it answers to housing and to antibiotics.", "Counted per 100,000 people per year. The top bar runs past 500.", "A bacterial lung infection, curable since the 1950s, still the deadliest infection on earth in most years."],
+      why: "Djibouti falls from 2,700 per 100,000 to 477, and Sweden from 6.7 to 3.8, so the top of this chart is some seven hundred times the bottom. Road deaths and deaths from air pollution both die on that top figure: no death rate from anything reaches 2,700 per 100,000, and these are new cases rather than deaths. Malaria dies on Kiribati, high on the chart and sitting in the mid-Pacific, where malaria does not occur.",
+      slug: "tb-incidence",
+      source: "WHO Global Health Observatory",
+      sourceUrl: "https://www.who.int/data/gho/data/indicators/indicator-details/GHO/incidence-of-tuberculosis-per-100-000-population-per-year"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2000 → 2023",
+      exhibit: "Exhibit A",
+      type: "dumbbell",
+      diff: 2,
+      truth: "Share of one-year-olds given a first dose of measles vaccine, 2000 vs 2023",
+      period: "2000 → 2023",
+      unit: "% of one-year-olds",
+      leftYear: 2000,
+      rightYear: 2023,
+      data: [["Hungary", 99.0, 99.0], ["Kazakhstan", 99.0, 69.0], ["Rwanda", 74.0, 96.0], ["Bangladesh", 74.0, 96.0], ["Brazil", 99.0, 90.0], ["India", 56.0, 93.0], ["Indonesia", 76.0, 82.0], ["Ethiopia", 28.0, 71.0], ["Nigeria", 33.0, 54.0], ["DR Congo", 26.0, 52.0], ["Somalia", 24.0, 63.0], ["Chad", 28.0, 63.0]],
+      answer: "Share of one-year-olds given a first dose of measles vaccine",
+      decoys: ["Share of births attended by a trained health worker", "Share of one-year-olds given a first dose of polio vaccine", "Share of children who reach their fifth birthday", "Share of households with a mosquito net"],
+      hints: ["Rwanda is near the top, which is not where a country with its recent history is expected to be.", "The gap between the two dots is widest in the countries with the least of everything else, and several sit above ninety in both years.", "A percentage of children of a single age, counted at twelve months.", "One jab, given at about a year old, against a disease that was universal within living memory."],
+      why: "Kazakhstan falls from 99 per cent to 69 while Rwanda climbs from 74 to 96, so this is something a government can lose as well as build. Children reaching their fifth birthday dies on Somalia at 24, which would mean three quarters of its children dying. Births attended by a trained health worker dies on the same Kazakh collapse, which no country's hospital birth rate has done. Polio dies on timing, its first dose being given within weeks of birth rather than at about a year.",
+      slug: "measles-first-dose",
+      source: "WHO Global Health Observatory",
+      sourceUrl: "https://www.who.int/data/gho/data/indicators/indicator-details/GHO/measles-containing-vaccine-first-dose-(mcv1)-immunization-coverage-among-1-year-olds-(-)"
+    },
+    {
+      family: "Ranking",
+      form: "Rank slope · 2000 → 2023",
+      exhibit: "Exhibit A",
+      type: "slope",
+      diff: 4,
+      truth: "World ranking by deaths in childbirth per 100,000 births, 2000 vs 2023",
+      period: "2000 → 2023",
+      unit: "rank, worst first",
+      leftYear: 2000,
+      rightYear: 2023,
+      ranks: [["South Sudan", 1, 3], ["Chad", 6, 2], ["Nigeria", 8, 1], ["Sierra Leone", 2, 21], ["Afghanistan", 4, 7], ["Somalia", 7, 6], ["Central African Republic", 3, 4], ["Rwanda", 10, 35], ["Cambodia", 38, 55], ["Bangladesh", 31, 63]],
+      answer: "World ranking by deaths in childbirth per 100,000 births",
+      decoys: ["World ranking by deaths from malaria per 100,000 people", "World ranking by the share of children who are underweight", "World ranking by deaths from unsafe water per 100,000 people", "World ranking by the share of births in a hospital"],
+      hints: ["Rwanda and Cambodia both climb away from the top of this list, and both ended a war in the decade before it starts.", "Afghanistan holds its position while its neighbours improve, which points at something that needs a clinic rather than a drug.", "A rank, worst first, out of every country with an estimate.", "It is measured per 100,000 live births, and it is counted only among women."],
+      why: "Rwanda moves from tenth worst in the world to thirty-fifth and Bangladesh from thirty-first to sixty-third, while Nigeria goes from eighth to first. Underweight children, malaria and deaths from unsafe water all die on the same denominator: those are counted per head of population, and this is counted per live birth and only among women, which is why two countries with similar child nutrition can sit at opposite ends of it.",
+      slug: "maternal-deaths-rank",
+      source: "WHO Global Health Observatory",
+      sourceUrl: "https://www.who.int/data/gho/data/indicators/indicator-details/GHO/maternal-mortality-ratio-(per-100-000-live-births)"
+    },
+    {
+      family: "Deviation",
+      form: "Diverging bar · change between 2000 and 2022",
+      exhibit: "Exhibit A",
+      type: "deviation",
+      diff: 3,
+      truth: "Change in the share of under-fives who are too short for their age, 2000 to 2022",
+      period: "2000 → 2022",
+      unit: "percentage points, 2000 to 2022",
+      data: [["Australia", 2.1], ["Germany", 1.0], ["Mexico", -7.4], ["Nigeria", -8.3], ["Burundi", -8.6], ["Yemen", -9.0], ["Guatemala", -9.1], ["Egypt", -12.5], ["China", -15.3], ["Indonesia", -16.1], ["India", -17.0], ["Tanzania", -17.3], ["Rwanda", -18.2], ["Vietnam", -21.2], ["Ethiopia", -21.3], ["Malawi", -22.8], ["Peru", -23.5], ["Cambodia", -28.1], ["Bangladesh", -29.0], ["Nepal", -29.0]],
+      reference: 0,
+      delta: true,
+      answer: "Change in the share of under-fives who are too short for their age",
+      decoys: ["Change in the share of under-fives who are underweight", "Change in the share of adults who cannot read", "Change in the share of people without enough to eat", "Change in the share of children out of school"],
+      hints: ["Almost every bar points the same way, which is rarer in this game than it ought to be.", "The bars nearest the line belong to the rich countries, not because nothing changed there but because there was nothing left to change.", "Percentage points, not per cent: the difference between two shares taken twenty-two years apart.", "It is measured with a tape rather than a set of scales, and it is the slow measure, not the emergency one."],
+      why: "Nepal and Bangladesh each take 29 percentage points off this in twenty-two years, while Australia and Germany drift up by one or two, which is noise at their level. Undernourishment dies on the direction, having risen in several of these countries over the period while almost every bar here points one way. Underweight children dies on the same near-uniformity, being the measure that moves with harvests and prices. Adult illiteracy dies on arithmetic, because an adult population changes only as one generation replaces another.",
+      slug: "under-five-stunting-change",
+      source: "WHO Global Health Observatory",
+      sourceUrl: "https://www.who.int/data/gho/data/indicators/indicator-details/GHO/gho-jme-stunting-prevalence"
+    },
+    {
+      family: "Deviation",
+      form: "Diverging bar · distance from the world average, 2019",
+      exhibit: "Exhibit A",
+      type: "deviation",
+      diff: 4,
+      truth: "Share of adults with raised blood pressure, 2019",
+      period: "2019",
+      unit: "% of adults, against a 31% world average",
+      data: [["Lithuania", 55.32], ["Belarus", 52.09], ["Moldova", 51.7], ["Hungary", 48.71], ["Croatia", 46.65], ["Poland", 46.51], ["Germany", 46.02], ["Romania", 45.97], ["Japan", 38.01], ["Brazil", 36.81], ["United Kingdom", 35.95], ["Nigeria", 34.5], ["South Africa", 33.33], ["France", 33.09], ["Canada", 29.35], ["India", 28.36], ["United States", 23.04], ["Ecuador", 21.78], ["China", 19.85], ["Peru", 19.29]],
+      reference: 31,
+      suffix: "%",
+      answer: "Share of adults with raised blood pressure",
+      decoys: ["Share of adults with high cholesterol", "Share of adults with diabetes", "Share of adults with anaemia", "Share of adults who have never had a health check"],
+      hints: ["The countries furthest above the line are the ones where the Soviet Union used to be.", "China and Peru sit furthest below the line, and neither is a country anyone would nominate as the healthiest on the chart.", "A percentage of all adults, measured against a world average of 31.", "It is diagnosed with a cuff, it usually has no symptoms, and it is the largest single cause of death on earth."],
+      why: "Lithuania at 55 per cent is nearly three times Peru at 19, in a condition that usually has no symptoms at all. Diabetes dies on China and Mexico, both at the bottom of this chart and both among the worst in the world for it. Cholesterol dies on the top of the chart, which is Baltic and eastern rather than western European. Anaemia dies on Nigeria, mid-chart here and near the top of any anaemia ranking.",
+      slug: "raised-blood-pressure",
+      source: "WHO Global Health Observatory",
+      sourceUrl: "https://www.who.int/data/gho/data/indicators/indicator-details/GHO/raised-blood-pressure-(sbp-140-or-dbp-90)-(age-standardized-estimate)"
+    },
+    {
+      family: "Change over time",
+      form: "Multi-line · 2000–2022",
+      exhibit: "Exhibit A",
+      type: "line",
+      diff: 2,
+      truth: "Share of people who cook with clean fuels, 2000–2022",
+      period: "2000–2022",
+      unit: "% of the population",
+      startYear: 2000,
+      series: [{"name": "Indonesia", "values": [6.0, 6.0, 7.0, 8.0, 10.0, 13.0, 17.0, 22.0, 28.0, 35.0, 42.0, 48.0, 54.0, 60.0, 64.0, 69.0, 73.0, 76.0, 79.0, 81.0, 84.0, 86.0, 87.0]}, {"name": "India", "values": [22.0, 24.0, 25.0, 26.0, 27.0, 28.0, 29.0, 30.0, 31.0, 32.0, 34.0, 36.0, 39.0, 42.0, 46.0, 49.0, 53.0, 57.0, 61.0, 64.0, 68.0, 71.0, 75.0]}, {"name": "China", "values": [38.0, 40.0, 42.0, 44.0, 46.0, 48.0, 49.0, 50.0, 52.0, 55.0, 58.0, 61.0, 64.0, 66.0, 69.0, 72.0, 75.0, 77.0, 80.0, 82.0, 84.0, 86.0, 88.0]}, {"name": "Nigeria", "values": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 2.0, 2.0, 3.0, 4.0, 5.0, 7.0, 10.0, 13.0, 16.0, 19.0, 22.0, 24.0]}, {"name": "Ethiopia", "values": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 2.0, 3.0, 3.0, 4.0, 4.0, 5.0, 5.0, 5.0, 6.0, 6.0, 6.0, 7.0]}],
+      suffix: "%",
+      answer: "Share of people who cook with clean fuels",
+      decoys: ["Share of people with electricity at home", "Share of people with a bank account", "Share of people using the internet", "Share of people with a flushing toilet"],
+      hints: ["Indonesia climbs almost vertically in the middle of the 2000s, which is what a government deciding something looks like.", "Ethiopia barely moves while everything else in the chart improves, and that flat line is a rural population that still burns wood.", "A percentage of the whole population, from 2000 to 2022.", "It is about what happens in the kitchen, and the alternative fills the room with smoke."],
+      why: "Indonesia goes from 6 per cent to 87, almost all of it in a single vertical climb in the second half of the 2000s. Internet use and bank accounts both die on China, which starts this chart at 38 per cent in 2000, when very few Chinese households had either. Electricity at home dies on Ethiopia, which ends at 7 per cent here and has a far larger share than that connected to a grid.",
+      slug: "clean-cooking-fuels",
+      source: "WHO Global Health Observatory",
+      sourceUrl: "https://www.who.int/data/gho/data/indicators/indicator-details/GHO/proportion-of-population-with-primary-reliance-on-clean-fuels-and-technologies-for-cooking-(-)"
+    },
+    {
+      family: "Change over time",
+      form: "Multi-line · 2000–2022",
+      exhibit: "Exhibit A",
+      type: "line",
+      diff: 3,
+      truth: "Share of people with safely managed drinking water, 2000–2022",
+      period: "2000–2022",
+      unit: "% of the population",
+      startYear: 2000,
+      series: [{"name": "United Kingdom", "values": [100.0, 100.0, 100.0, 100.0, 100.0, 99.99, 99.99, 99.98, 99.97, 99.96, 99.95, 99.94, 99.93, 99.92, 99.91, 99.9, 99.9, 99.89, 99.88, 99.87, 99.86, 99.85, 99.84]}, {"name": "Mexico", "values": [40.01, 40.16, 40.3, 40.44, 40.58, 40.72, 40.86, 40.99, 41.13, 41.26, 41.39, 41.52, 41.65, 41.77, 41.9, 42.02, 42.14, 42.27, 42.39, 42.5, 42.62, 42.74, 42.85]}, {"name": "India", "values": [37.64, 39.1, 40.61, 42.13, 43.66, 45.2, 46.75, 48.32, 49.9, 51.48, 53.08, 54.69, 56.31, 57.94, 59.58, 61.23, 62.9, 64.57, 66.25, 67.93, 69.63, 71.32, 73.03]}, {"name": "Uganda", "values": [2.61, 3.1, 3.6, 4.12, 4.67, 5.23, 5.81, 6.41, 7.03, 7.67, 8.33, 9.02, 9.72, 10.44, 11.18, 11.95, 12.73, 13.54, 14.36, 15.2, 15.8, 16.37, 16.94]}, {"name": "Tanzania", "values": [1.28, 1.32, 1.36, 1.41, 2.14, 2.93, 4.03, 5.61, 7.3, 9.09, 10.99, 12.99, 15.11, 17.33, 19.6, 21.04, 22.51, 24.03, 25.58, 27.16, 28.57, 29.26, 29.95]}],
+      suffix: "%",
+      answer: "Share of people with safely managed drinking water",
+      decoys: ["Share of people with a toilet connected to a sewer", "Share of people with electricity at home", "Share of people living in a city", "Share of people with a mobile phone"],
+      hints: ["Two of these lines sit below ten for the whole period, which is a very low floor for anything a household can simply buy.", "India climbs steeply after 2014 while Tanzania stays flat, and the thing being counted has to be delivered to the house rather than carried to it.", "A percentage of the whole population, from 2000 to 2022.", "Available when needed, free from contamination, and on the premises: all three conditions, or it does not count."],
+      why: "Tanzania goes from 1.3 per cent to 30 and India from 38 to 73, while Mexico sits in the low forties for the whole period. Living in a city dies on the United Kingdom at 99.8, well above its urban share. Electricity at home dies on India, which reached effectively universal supply while this measure was still at 73. A toilet connected to a sewer dies on Mexico, where sewer connection is far higher than the low forties.",
+      slug: "safely-managed-water",
+      source: "WHO Global Health Observatory",
+      sourceUrl: "https://www.who.int/data/gho/data/indicators/indicator-details/GHO/population-using-safely-managed-drinking-water-services-(-)"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2000 → 2021",
+      exhibit: "Exhibit A",
+      type: "dumbbell",
+      diff: 4,
+      truth: "Years a sixty-year-old can expect to live, 2000 vs 2021",
+      period: "2000 → 2021",
+      unit: "further years of life at age 60",
+      leftYear: 2000,
+      rightYear: 2021,
+      data: [["Japan", 24.63, 26.63], ["Switzerland", 22.99, 25.35], ["Australia", 23.11, 25.69], ["Spain", 22.7, 24.95], ["United States", 21.34, 22.01], ["China", 17.96, 21.21], ["Brazil", 19.78, 19.41], ["India", 17.51, 15.62], ["South Africa", 17.01, 15.27], ["Nigeria", 16.22, 18.55], ["Central African Republic", 11.13, 12.09], ["Somalia", 12.35, 12.33]],
+      answer: "Years a sixty-year-old can expect to live",
+      decoys: ["Years a person can expect to live in good health", "Years a person can expect to spend in retirement", "Average age at death", "Average age of retirement"],
+      hints: ["The whole chart is squeezed into a band about twelve units wide, which is narrow for a measure that usually separates Japan from Somalia by forty.", "Nothing on this chart is above twenty-five, and the poorest countries are closer to the richest here than they are on almost any other health measure.", "Measured in years, and the largest value is under twenty-five.", "It starts counting at sixty rather than at birth, which is why the range is so compressed."],
+      why: "A Japanese sixty-year-old can expect another 26.6 years and a Somali 12.3, a narrower gap than the same two countries show at birth. Average age at death dies on magnitude, since nothing here passes 27. Years spent in retirement dies on Somalia and the Central African Republic, neither of which has a pension system to retire into. Years in good health dies on being the lower of the two figures everywhere, and this is the upper one.",
+      slug: "life-expectancy-at-60",
+      source: "WHO Global Health Observatory",
+      sourceUrl: "https://www.who.int/data/gho/data/indicators/indicator-details/GHO/life-expectancy-at-age-60-(years)"
+    },
+    {
+      family: "Distribution",
+      form: "Beeswarm · every country, 2019",
+      exhibit: "Exhibit A",
+      type: "beeswarm",
+      diff: 3,
+      truth: "Share of people with untreated decay in their adult teeth, 2019",
+      period: "2019",
+      unit: "% of people aged five and over",
+      data: [["Afghanistan", 36.81], ["Albania", 39.76], ["Algeria", 35.36], ["Andorra", 32.91], ["Angola", 27.2], ["Antigua and Barbuda", 28.65], ["Argentina", 36.94], ["Armenia", 33.33], ["Australia", 29.49], ["Austria", 29.86], ["Azerbaijan", 33.36], ["Bahamas", 28.69], ["Bahrain", 34.3], ["Bangladesh", 30.38], ["Barbados", 28.45], ["Belarus", 37.47], ["Belgium", 27.39], ["Belize", 30.04], ["Benin", 29.55], ["Bhutan", 29.69], ["Bolivia", 39.25], ["Bosnia and Herzegovina", 36.6], ["Botswana", 32.74], ["Brazil", 25.91], ["Brunei Darussalam", 28.72], ["Bulgaria", 38.18], ["Burkina Faso", 27.52], ["Burundi", 31.7], ["Cabo Verde", 30.15], ["Cambodia", 31.44], ["Cameroon", 29.85], ["Canada", 25.13], ["Central African Republic", 30.68], ["Chad", 29.11], ["Chile", 49.53], ["China", 24.62], ["Colombia", 44.15], ["Comoros", 32.25], ["Congo", 28.78], ["Cook Islands", 33.38], ["Costa Rica", 29.99], ["Cote d'Ivoire", 29.7], ["Croatia", 40.69], ["Cuba", 33.35], ["Cyprus", 33.77], ["Czechia", 37.3], ["DR Congo", 30.25], ["Democratic People's Republic of Korea", 26.23], ["Denmark", 24.56], ["Djibouti", 31.06], ["Dominica", 29.32], ["Dominican Republic", 29.39], ["Ecuador", 38.71], ["Egypt", 30.41], ["El Salvador", 30.62], ["Equatorial Guinea", 26.7], ["Eritrea", 35.63], ["Estonia", 31.65], ["Eswatini", 39.65], ["Ethiopia", 27.47], ["Fiji", 35.23], ["Finland", 29.66], ["France", 36.82], ["Gabon", 28.13], ["Gambia", 30.66], ["Georgia", 34.9], ["Germany", 31.65], ["Ghana", 25.27], ["Greece", 37.44], ["Grenada", 29.29], ["Guatemala", 30.77], ["Guinea", 29.93], ["Guinea-Bissau", 34.67], ["Guyana", 30.27], ["Haiti", 32.12], ["Honduras", 31.05], ["Hungary", 37.86], ["Iceland", 40.47], ["India", 28.8], ["Indonesia", 28.79], ["Iran", 33.57], ["Iraq", 35.12], ["Ireland", 31.6], ["Israel", 35.12], ["Italy", 29.58], ["Jamaica", 30.09], ["Japan", 25.82], ["Jordan", 38.5], ["Kazakhstan", 31.21], ["Kenya", 23.96], ["Kiribati", 36.81], ["Kuwait", 33.62], ["Kyrgyzstan", 34.96], ["Laos", 28.4], ["Latvia", 35.67], ["Lebanon", 34.89], ["Lesotho", 34.25], ["Liberia", 32.05], ["Libya", 35.97], ["Lithuania", 37.28], ["Luxembourg", 32.5], ["Madagascar", 37.19], ["Malawi", 31.44], ["Malaysia", 22.84], ["Maldives", 27.99], ["Mali", 29.73], ["Malta", 33.6], ["Marshall Islands", 35.94], ["Mauritania", 29.75], ["Mauritius", 26.83], ["Mexico", 23.63], ["Micronesia (Federated States of)", 36.42], ["Moldova", 39.36], ["Monaco", 29.77], ["Mongolia", 33.25], ["Montenegro", 38.77], ["Morocco", 35.97], ["Mozambique", 33.38], ["Myanmar", 22.76], ["Namibia", 32.11], ["Nauru", 34.26], ["Nepal", 31.48], ["Netherlands", 29.22], ["New Zealand", 26.35], ["Nicaragua", 31.15], ["Niger", 29.17], ["Nigeria", 23.87], ["Niue", 34.79], ["North Macedonia", 39.75], ["Norway", 35.14], ["Oman", 34.3], ["Pakistan", 26.99], ["Palau", 34.93], ["Panama", 32.74], ["Papua New Guinea", 35.87], ["Paraguay", 26.69], ["Peru", 38.18], ["Philippines", 29.36], ["Poland", 29.8], ["Portugal", 27.52], ["Qatar", 33.6], ["Romania", 41.31], ["Russia", 32.95], ["Rwanda", 31.42], ["Saint Kitts and Nevis", 28.62], ["Saint Lucia", 29.59], ["Saint Vincent and the Grenadines", 35.73], ["Samoa", 34.95], ["San Marino", 32.5], ["Sao Tome and Principe", 30.11], ["Saudi Arabia", 38.76], ["Senegal", 38.54], ["Serbia", 41.11], ["Seychelles", 26.43], ["Sierra Leone", 32.6], ["Singapore", 28.46], ["Slovakia", 38.05], ["Slovenia", 34.68], ["Solomon Islands", 36.18], ["Somalia", 33.72], ["South Africa", 27.86], ["South Korea", 29.27], ["South Sudan", 28.45], ["Spain", 34.04], ["Sri Lanka", 27.43], ["Sudan", 35.5], ["Suriname", 21.86], ["Sweden", 36.15], ["Switzerland", 40.31], ["Syria", 36.95], ["Tajikistan", 35.01], ["Tanzania", 32.74], ["Thailand", 27.04], ["Timor-Leste", 35.45], ["Togo", 31.02], ["Tonga", 35.21], ["Trinidad and Tobago", 28.23], ["Tunisia", 34.76], ["Turkey", 38.57], ["Turkmenistan", 32.56], ["Tuvalu", 36.15], ["Uganda", 24.89], ["Ukraine", 32.41], ["United Arab Emirates", 33.84], ["United Kingdom", 30.56], ["United States", 24.29], ["Uruguay", 37.63], ["Uzbekistan", 34.1], ["Vanuatu", 35.81], ["Venezuela", 30.32], ["Vietnam", 28.01], ["Yemen", 36.76], ["Zambia", 27.99], ["Zimbabwe", 28.08]],
+      label: ["Chile", "Romania", "United States", "United Kingdom", "Nigeria", "Malaysia"],
+      labelSm: ["Chile", "United States", "Malaysia"],
+      suffix: "%",
+      answer: "Share of people with untreated decay in their adult teeth",
+      decoys: ["Share of adults who have lost all their natural teeth", "Share of adults who see a dentist in a given year", "Share of adults who are short-sighted", "Share of children with decay in their milk teeth"],
+      hints: ["The spread from one end of this chart to the other is about twenty-eight points, which is a remarkably even distribution of human misfortune.", "Rich and poor countries are mixed together from one end of the chart to the other, so money does not buy a way out of this one.", "A percentage of everyone aged five and over, in a single year.", "It is the commonest disease on the planet, and it is treated with a drill."],
+      why: "Every country on earth sits between about 22 and 50 per cent, with rich and poor mixed along the whole length of it, which is true of almost nothing else in this game. Losing all your natural teeth, seeing a dentist and short-sightedness all die on the same absence: each of the three would separate rich countries from poor ones or east from west somewhere along the chart, and this one has no gradient at all.",
+      slug: "untreated-caries",
+      source: "WHO Global Health Observatory",
+      sourceUrl: "https://www.who.int/data/gho/data/indicators/indicator-details/GHO/prevalence-of-untreated-caries-of-permanent-teeth-in-people-5-years-(-)",
+      deadpan: true
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2019 → 2024",
+      exhibit: "Exhibit A",
+      type: "dumbbell",
+      diff: 2,
+      truth: "Share of employed people who usually work from home, 2019 vs 2024",
+      period: "2019 → 2024",
+      unit: "% of people in work",
+      leftYear: 2019,
+      rightYear: 2024,
+      data: [["Netherlands", 14.1, 12.2], ["Finland", 14.1, 19.6], ["Luxembourg", 11.6, 13.0], ["Ireland", 7.0, 20.6], ["Belgium", 6.9, 13.8], ["Sweden", 5.9, 13.4], ["France", 7.0, 11.1], ["Germany", 5.2, 12.7], ["Spain", 4.8, 7.8], ["Italy", 3.6, 3.7], ["Poland", 4.6, 5.5], ["Romania", 0.8, 1.2], ["Bulgaria", 0.5, 1.2]],
+      suffix: "%",
+      answer: "Share of employed people who usually work from home",
+      decoys: ["Share of employed people who are self-employed", "Share of employed people on a temporary contract", "Share of employed people working part time", "Share of employed people in the public sector"],
+      hints: ["Every dot on this chart moved the same way between the two years, and the reason had a name.", "The bottom of the chart is under one per cent in the first year, which no ordinary feature of a labour market ever is.", "A percentage of everyone in work, in 2019 and again in 2024.", "The rise is not evenly spread: it went to the countries with the most desks and the fastest broadband."],
+      why: "Bulgaria records half of one per cent in 2019 and Ireland goes from 7 per cent to 20.6, which is the pandemic arriving in a labour statistic. Self-employment dies on that Bulgarian floor, as do temporary contracts and part-time work: all three describe how a large minority of Europeans are employed, and none of them could start at half of one per cent in any country, let alone quadruple in five years.",
+      slug: "usually-working-from-home",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/lfsa_ehomp"
+    },
+    {
+      family: "Ranking",
+      form: "Rank slope · 2005 → 2023",
+      exhibit: "Exhibit A",
+      type: "slope",
+      diff: 3,
+      truth: "European ranking by household waste thrown away per person, 2005 vs 2023",
+      period: "2005 → 2023",
+      unit: "rank, most first",
+      leftYear: 2005,
+      rightYear: 2023,
+      ranks: [["Denmark", 1, 2], ["Ireland", 2, 10], ["Cyprus", 3, 7], ["Austria", 10, 1], ["Germany", 11, 8], ["France", 13, 13], ["Italy", 12, 18], ["Spain", 9, 23], ["Poland", 29, 30], ["Czechia", 30, 12], ["Slovakia", 31, 20], ["Romania", 26, 31]],
+      answer: "European ranking by household waste thrown away per person",
+      decoys: ["European ranking by electricity used per person", "European ranking by water used per person", "European ranking by packaging recycled per person", "European ranking by money spent on food per person"],
+      hints: ["The countries at the top of this list are the ones that would score best on almost any environmental measure you could name.", "Romania and Slovakia sit at the bottom, and it is not because they are careful.", "A rank, most first, among the European countries that report it.", "It is weighed at the kerb, in kilograms per person per year, and the number goes up as a country gets richer."],
+      why: "Austria climbs from tenth to first and Ireland falls from second to tenth, while Romania stays at the bottom throughout. Electricity per person dies on France, which heats with it and would lead any such ranking while sitting mid-table here. Water per person dies on Cyprus and Denmark ranking together near the top, one of them among the most water-stressed countries in Europe and the other not. Packaging recycled dies on Germany, which leads Europe on recycling and is not at the top of this.",
+      slug: "municipal-waste-rank",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/env_wasmun",
+      deadpan: true
+    },
+    {
+      family: "Distribution",
+      form: "Beeswarm · every reporting country, 2024",
+      exhibit: "Exhibit A",
+      type: "beeswarm",
+      diff: 2,
+      truth: "Share of people who live in a flat rather than a house, 2024",
+      period: "2024",
+      unit: "% of the population",
+      data: [["Austria", 49.4], ["Belgium", 23.0], ["Bulgaria", 46.7], ["Croatia", 24.2], ["Cyprus", 25.0], ["Czechia", 50.9], ["Denmark", 32.2], ["Estonia", 60.6], ["Finland", 38.9], ["France", 36.2], ["Germany", 59.4], ["Greece", 59.4], ["Hungary", 26.4], ["Ireland", 9.7], ["Italy", 58.9], ["Latvia", 64.4], ["Lithuania", 59.5], ["Luxembourg", 41.4], ["Malta", 63.2], ["Netherlands", 19.9], ["North Macedonia", 17.9], ["Norway", 27.7], ["Poland", 41.4], ["Portugal", 49.0], ["Romania", 36.8], ["Serbia", 29.5], ["Slovakia", 45.3], ["Slovenia", 27.6], ["Spain", 65.3], ["Sweden", 48.4], ["Switzerland", 64.4]],
+      label: ["Spain", "Latvia", "Germany", "France", "Netherlands", "Ireland"],
+      labelSm: ["Spain", "Germany", "Ireland"],
+      suffix: "%",
+      answer: "Share of people who live in a flat rather than a house",
+      decoys: ["Share of people who rent rather than own their home", "Share of people living in a household of one", "Share of people living in a home built since 2000", "Share of people living in an overcrowded home"],
+      hints: ["Spain and Latvia sit side by side at the top of this chart, which is not a pairing that many measures produce.", "Ireland is alone at the bottom, under ten, and the Netherlands is not far above it.", "A percentage of the whole population, in a single year.", "It is about the building rather than the household, and the answer is either one storey of it or all of them."],
+      why: "The chart runs from under 10 per cent to over 65, the widest housing split in Europe. Renting dies on Spain at 65.3, which has one of the highest home-ownership rates on the continent and tops this anyway. One-person households die on Sweden at 48.4, mid-chart, when Sweden leads Europe on living alone. Homes built since 2000 die on Ireland at 9.7, having built more of them per head than almost anywhere in the period.",
+      slug: "population-living-in-flats",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho01",
+      deadpan: true
+    },
+    {
+      family: "Part-to-whole",
+      form: "Treemap · share of the European total, 2024",
+      exhibit: "Exhibit A",
+      type: "treemap",
+      diff: 3,
+      truth: "Electricity generated from wind, by country, 2024",
+      period: "2024",
+      unit: "gigawatt hours",
+      data: [["Germany", 138914], ["Spain", 62090], ["France", 47499], ["Sweden", 40621], ["Turkey", 36826], ["Netherlands", 33509], ["Poland", 24945], ["Italy", 22322], ["Finland", 21046], ["Denmark", 20553], ["Norway", 14929], ["Portugal", 14419]],
+      total: 477673,
+      answer: "Electricity generated from wind, by country",
+      decoys: ["Electricity generated from water, by country", "Electricity generated from the sun, by country", "Electricity generated from nuclear power, by country", "Electricity generated from gas, by country"],
+      hints: ["Denmark is far larger here than a country of six million has any business being.", "France is third rather than first, which settles one of the four options on its own, and Norway and Austria are nowhere.", "Gigawatt hours in a single year, summing to the European total.", "The countries that do best are flat, coastal and windy, and the mountainous ones are missing."],
+      why: "Germany generates 138,914 gigawatt hours, more than twice Spain, and Denmark manages 20,553 from a far smaller population than either. Nuclear dies on France, third here at 47,499 when it would lead any nuclear chart by a distance. Water dies on Norway, second from bottom at 14,929 and below Denmark, when Norway leads Europe on hydro. The sun dies on Sweden at 40,621, fourth here and the wrong latitude to be fourth on solar.",
+      slug: "eu-wind-electricity",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_pehnf"
+    },
+    {
+      family: "Part-to-whole",
+      form: "Treemap · share of the European total, 2023",
+      exhibit: "Exhibit A",
+      type: "treemap",
+      diff: 3,
+      truth: "Goods moved by rail, by country, 2023",
+      period: "2023",
+      unit: "million tonne-kilometres",
+      data: [["Germany", 129090], ["Ukraine", 90632], ["Poland", 61085], ["France", 29399], ["Italy", 22693], ["Sweden", 21953], ["Austria", 20205], ["Czechia", 15038], ["Turkey", 12997], ["Romania", 12878], ["Switzerland", 11540], ["Hungary", 10460]],
+      total: 437970,
+      answer: "Goods moved by rail, by country",
+      decoys: ["Goods moved by lorry, by country", "Goods moved through seaports, by country", "Length of motorway, by country", "Passengers carried by rail, by country"],
+      hints: ["The second largest block belongs to a country at war, and the freight kept moving.", "Poland is enormous here and the Netherlands is small, which is the reverse of how goods usually rank in Europe.", "Million tonne-kilometres in a year: a tonne carried a kilometre, summed.", "The countries that dominate are the ones with coal, heavy industry and a nineteenth-century network still in daily use."],
+      why: "Ukraine is second at 90,632 million tonne-kilometres, more than twice France, in a third year of full-scale war. Goods moved by lorry dies on Spain and the Netherlands, the two road-freight heavyweights of Europe, neither near the top here. Seaports die on the Netherlands again, which handles more port tonnage than any country in Europe and is absent. Motorway length dies on Ukraine itself, which has very little of it and is second.",
+      slug: "eu-rail-freight",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/rail_go_total"
+    },
+    {
+      family: "Magnitude",
+      form: "Proportional symbols · the twelve largest, 2024",
+      exhibit: "Exhibit A",
+      type: "symbol",
+      diff: 2,
+      truth: "Nights spent in tourist accommodation per 1,000 residents, 2024",
+      period: "2024",
+      unit: "nights per 1,000 residents",
+      data: [["Croatia", 24248], ["Malta", 20091], ["Cyprus", 18533], ["Greece", 14741], ["Austria", 14325], ["Spain", 10390], ["Montenegro", 8339], ["Portugal", 8278], ["Netherlands", 8102], ["Slovenia", 7926], ["Italy", 7905], ["Ireland", 7788]],
+      answer: "Nights spent in tourist accommodation per 1,000 residents",
+      decoys: ["Visitors arriving from abroad per 1,000 residents", "Money spent by visitors from abroad per resident", "Hotel beds per 1,000 residents", "People working in hotels and restaurants per 1,000 residents"],
+      hints: ["Malta is smaller than the Isle of Wight and it is second on this chart.", "The big countries are missing altogether, so whatever this is has been divided by the number of people who live there.", "A count per 1,000 residents, summed across every hotel, campsite and holiday let.", "A fortnight on a beach counts fourteen times; a weekend in a capital counts twice."],
+      why: "Croatia records 24,248 nights per 1,000 residents, about 24 a head, against 7,905 for Italy. Foreign arrivals die on the unit, since an arrival counts a day tripper and this counts only people who stayed the night. Hotel beds die on Italy, which has more of them than any country in the EU and is eleventh here, because a bed counts whether or not anyone sleeps in it. Visitor spending dies on Cyprus and Malta ranking above Greece and Italy, an ordering about nights rather than money.",
+      slug: "eu-tourist-nights",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/tour_occ_ninat",
+      deadpan: true
+    },
+    {
+      family: "Deviation",
+      form: "Diverging bar · distance from the European average, 2024",
+      exhibit: "Exhibit A",
+      type: "deviation",
+      diff: 3,
+      truth: "Cost of the same basket of food, 2024",
+      period: "2024",
+      unit: "price level, EU average = 100",
+      data: [["Switzerland", 158.5], ["Iceland", 143.9], ["Norway", 131.2], ["Luxembourg", 124.8], ["Denmark", 120.2], ["Ireland", 114.5], ["Austria", 110.5], ["France", 110.1], ["Finland", 109.8], ["Sweden", 106.4], ["Greece", 105.8], ["Germany", 102.7], ["Italy", 101.7], ["Netherlands", 98.9], ["Spain", 95.2], ["Hungary", 94.8], ["Czechia", 89.0], ["Poland", 86.8], ["Turkey", 76.7], ["Romania", 75.5]],
+      reference: 100,
+      answer: "Cost of the same basket of food",
+      decoys: ["Average wage, against the European average", "Cost of the same basket of clothes", "Share of household spending that goes on food", "Cost of renting the same flat"],
+      hints: ["Switzerland is a long way out on its own, further than any member of the union it is not in.", "Romania and Poland sit well below the line while their wages sit further below it still.", "An index with the European average set at 100.", "It is the same trolley in every country, priced in a common currency, with nothing about what anyone earns."],
+      why: "The same trolley costs 158.5 in Switzerland and 75.5 in Romania against a European average of 100, so it is more than twice the price at one end of the continent as the other. Average wages die on the gap, since the eastern countries sit at 75 to 87 here and much further below the average on pay. Clothes die on tradability, being shipped and therefore far flatter in price across Europe. The share of household spending that goes on food dies on Romania, which has the highest such share in the EU and is last on this chart.",
+      slug: "food-price-level",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/prc_ppp_ind"
+    },
+    {
+      family: "Deviation",
+      form: "Diverging bar · distance from the European average, 2024",
+      exhibit: "Exhibit A",
+      type: "deviation",
+      diff: 3,
+      truth: "Cost of the same drink and cigarettes, 2024",
+      period: "2024",
+      unit: "price level, EU average = 100",
+      data: [["Iceland", 219.1], ["Norway", 205.3], ["Ireland", 204.5], ["Finland", 175.4], ["France", 137.1], ["Netherlands", 126.9], ["Denmark", 122.4], ["Sweden", 121.5], ["Germany", 99.6], ["Greece", 96.5], ["Portugal", 94.2], ["Austria", 90.4], ["Czechia", 90.2], ["Italy", 87.7], ["Romania", 87.1], ["Spain", 86.3], ["Hungary", 85.7], ["Poland", 82.9], ["Bulgaria", 69.0], ["Turkey", 59.6]],
+      reference: 100,
+      answer: "Cost of the same drink and cigarettes",
+      decoys: ["Price of the same litre of petrol", "Price of the same restaurant meal", "Duty collected per adult", "Money spent in pubs and bars per adult"],
+      hints: ["Ireland and Finland sit far above a line that Germany and Italy sit close to, and none of it is about how the stuff is made.", "The spread here is wider than for food, and the countries at the top are the ones with the strongest temperance movements.", "An index with the European average set at 100.", "Almost all of the difference between the top and the bottom of this chart is duty."],
+      why: "Iceland is at 219.1 and Turkey at 59.6 against a European average of 100, a spread nearly four times wide. Petrol dies on Turkey at 59.6, the cheapest on this chart and nowhere near the cheapest place in Europe to fill a tank. A restaurant meal dies on Ireland at 204.5, above Norway, when restaurant prices follow wages and Norwegian wages are higher. Duty collected per adult dies on the axis, since this is an index against an average of 100 rather than an amount of money.",
+      slug: "drink-price-level",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/prc_ppp_ind"
+    },
+    {
+      family: "Deviation",
+      form: "Diverging bar · change between 2010 and 2024",
+      exhibit: "Exhibit A",
+      type: "deviation",
+      diff: 3,
+      truth: "Change in the share of young people not in work or education, 2010 to 2024",
+      period: "2010 → 2024",
+      unit: "percentage points, 2010 to 2024",
+      data: [["Romania", 0.5], ["Norway", 0.1], ["Denmark", -0.2], ["Netherlands", -1.2], ["Germany", -1.9], ["Sweden", -2.0], ["France", -2.1], ["Czechia", -4.3], ["Greece", -4.4], ["Portugal", -4.9], ["Poland", -5.4], ["Hungary", -6.8], ["Italy", -6.8], ["Croatia", -7.0], ["Spain", -8.0], ["North Macedonia", -9.2], ["Turkey", -9.3], ["Serbia", -9.9], ["Bulgaria", -10.8], ["Ireland", -14.1]],
+      reference: 0,
+      delta: true,
+      answer: "Change in the share of young people not in work or education",
+      decoys: ["Change in the share of young people living with their parents", "Change in the share of young people in higher education", "Change in the share of workers on a temporary contract", "Change in the share of young people out of work"],
+      hints: ["The starting year was chosen badly on purpose: it is the worst year Europe had in a generation.", "Almost every bar points the same way, and the longest of them belong to the countries that had the furthest to fall.", "Percentage points between two years, not a level.", "It counts the people who are doing neither of the two things a person that age is expected to be doing."],
+      why: "Ireland takes 14.1 percentage points off this between 2010 and 2024, and only Romania ends the period worse than it started, at 0.5. Higher education dies on direction, having risen almost everywhere, which would point every bar the other way. Young people living with their parents dies on southern Europe, where that share rose over the same years. Temporary contracts die on the uniformity, moving in both directions across Europe while this moves in one.",
+      slug: "neet-change",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/edat_lfse_20"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2013 → 2023",
+      exhibit: "Exhibit A",
+      type: "dumbbell",
+      diff: 2,
+      truth: "Passenger cars per 1,000 people, 2013 vs 2023",
+      period: "2013 → 2023",
+      unit: "cars per 1,000 people",
+      leftYear: 2013,
+      rightYear: 2023,
+      data: [["Luxembourg", 661, 675], ["Italy", 613, 694], ["Finland", 570, 664], ["Poland", 510, 595], ["Germany", 543, 588], ["Austria", 546, 566], ["Spain", 474, 551], ["France", 546, 573], ["Netherlands", 471, 505], ["Denmark", 405, 474], ["Hungary", 309, 435], ["Romania", 235, 425], ["Latvia", 317, 416], ["Turkey", 121, 178]],
+      answer: "Passenger cars per 1,000 people",
+      decoys: ["Households with a washing machine per 1,000 people", "Mobile phone contracts per 1,000 people", "Bicycles sold per 1,000 people", "Households per 1,000 people"],
+      hints: ["Every single value on this chart is under eight hundred, and most of them went up over the ten years.", "The Netherlands and Denmark sit well below Poland, which is not where the rich countries usually are.", "A count per 1,000 people, in 2013 and again in 2023.", "Luxembourg is first partly because a great many of them are registered to companies rather than to people."],
+      why: "Italy reaches 694 cars per 1,000 people and Turkey 178, and every country on the chart rises over the decade. Mobile contracts die on the ceiling, exceeding 1,000 per 1,000 people in much of Europe while nothing here passes 700. Washing machines die on the spread, since a household owns one of those whether it is rich or poor and this chart runs almost fourfold. Bicycles sold die on the Netherlands and Denmark, which would lead any such list and sit mid-table here.",
+      slug: "passenger-cars-per-thousand",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/road_eqs_carhab",
+      deadpan: true
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 1995 → 2024",
+      exhibit: "Exhibit A",
+      type: "dumbbell",
+      diff: 4,
+      truth: "Share of a country's farm output that is flowers and ornamental plants, 1995 vs 2024",
+      period: "1995 → 2024",
+      unit: "% of the value of agricultural output",
+      leftYear: 1995,
+      rightYear: 2024,
+      data: [["Netherlands", 20.34, 22.6], ["Italy", 6.61, 5.0], ["Germany", 4.99, 3.39], ["Belgium", 5.61, 4.7], ["Denmark", 4.67, 4.17], ["France", 3.42, 2.13], ["Spain", 2.88, 5.81], ["Portugal", 4.6, 5.87], ["Ireland", 0.45, 0.74], ["Lithuania", 0.35, 0.63], ["Bulgaria", 0.09, 0.94]],
+      suffix: "%",
+      answer: "Share of a country's farm output that is flowers and ornamental plants",
+      decoys: ["Share of a country's farm output that is fruit", "Share of a country's farm output that is wine", "Share of a country's farm output that is milk", "Share of a country's farm output that is sold abroad"],
+      hints: ["One of these is four times the next, and it built the world's largest auction house for the purpose.", "Spain and Italy are near the bottom, which rules out anything that needs sun.", "A percentage of the value of everything the country's farms produce.", "It is grown under glass, sold by the stem, and worth more per hectare than anything else in the accounts."],
+      why: "Flowers and ornamental plants are 22.6 per cent of everything the Netherlands' farms produce, more than four times Italy at 5. Fruit dies on Spain, which leads Europe on it and is near the bottom here. Wine dies on France and Italy for the same reason. Milk dies on Ireland at 0.74, where dairy is a large share of farm output.",
+      slug: "flowers-share-of-farm-output",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/aact_eaa01",
+      deadpan: true
+    },
+    {
+      family: "Distribution",
+      form: "Beeswarm · every reporting country, 2022",
+      exhibit: "Exhibit A",
+      type: "beeswarm",
+      diff: 2,
+      truth: "Share of adults who read no books in a year, 2022",
+      period: "2022",
+      unit: "% of people aged 16 and over",
+      data: [["Albania", 70.8], ["Austria", 36.2], ["Belgium", 40.0], ["Bulgaria", 62.2], ["Croatia", 58.0], ["Cyprus", 67.3], ["Czechia", 35.8], ["Denmark", 27.8], ["Estonia", 29.2], ["Finland", 30.2], ["France", 38.5], ["Greece", 57.0], ["Hungary", 47.6], ["Ireland", 33.5], ["Italy", 64.8], ["Latvia", 49.6], ["Lithuania", 47.6], ["Luxembourg", 24.7], ["Malta", 56.2], ["Montenegro", 64.6], ["Netherlands", 32.9], ["Norway", 29.2], ["Poland", 45.4], ["Portugal", 58.1], ["Romania", 70.6], ["Serbia", 64.0], ["Slovakia", 52.1], ["Slovenia", 40.5], ["Spain", 45.8], ["Sweden", 30.5], ["Switzerland", 19.4], ["Turkey", 69.7]],
+      label: ["Romania", "Turkey", "Italy", "France", "Denmark", "Switzerland"],
+      labelSm: ["Romania", "Italy", "Switzerland"],
+      suffix: "%",
+      answer: "Share of adults who read no books in a year",
+      decoys: ["Share of adults who did not go to a cinema, theatre or concert in a year", "Share of adults who did not take a holiday in a year", "Share of adults who never use the internet", "Share of adults with no qualifications"],
+      hints: ["The best-performing country on this chart still has nearly one adult in five on the wrong side of it.", "Even the Nordic countries cannot get below a quarter, which puts a floor under this that the internet measure does not have.", "A percentage of everyone aged sixteen and over, asked about the last twelve months.", "One in the twelve months is enough to be counted on the right side of it."],
+      why: "Switzerland has the best figure in Europe at 19.4 per cent and Albania the worst at 70.8, so even at its best one adult in five read nothing at all in a year. Never using the internet dies on Switzerland at 19.4, which would mean a fifth of Swiss adults had never been online. Not taking a holiday dies on the same figure, in one of the countries best able to afford one. Not going to a cinema, theatre or concert dies on Albania at 70.8 being the worst on the chart, when skipping live culture altogether is commoner than that across most of Europe.",
+      slug: "read-no-books",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/ilc_scp33",
+      deadpan: true
+    },
+    {
+      family: "Change over time",
+      form: "Connected scatterplot · 2009 → 2023",
+      exhibit: "Exhibit A",
+      type: "scatter",
+      diff: 4,
+      truth: "Births per woman against the share of women in work, 2009 to 2023",
+      period: "2009 → 2023",
+      unit: "horizontal: % of women aged 20 to 64 in work. vertical: births per woman",
+      series: [{"name": "Germany", "points": [[67.8, 1.36], [68.8, 1.39], [70.3, 1.39], [70.7, 1.41], [71.5, 1.42], [72.2, 1.47], [72.7, 1.5], [73.6, 1.6], [74.3, 1.57], [75.0, 1.57], [75.7, 1.54], [74.6, 1.53], [75.9, 1.58], [77.0, 1.46], [77.4, 1.39]]}, {"name": "Spain", "points": [[56.8, 1.38], [56.3, 1.37], [56.1, 1.34], [54.6, 1.32], [53.8, 1.27], [54.8, 1.32], [56.4, 1.33], [58.1, 1.33], [59.6, 1.31], [61.0, 1.26], [62.1, 1.23], [60.0, 1.18], [62.1, 1.18], [63.7, 1.16], [65.4, 1.12]]}, {"name": "Sweden", "points": [[75.1, 1.94], [74.4, 1.98], [76.0, 1.9], [76.4, 1.91], [76.7, 1.89], [77.2, 1.88], [77.9, 1.85], [78.7, 1.85], [79.2, 1.78], [79.7, 1.76], [79.1, 1.71], [77.5, 1.67], [77.7, 1.67], [79.1, 1.53], [80.2, 1.45]]}, {"name": "Poland", "points": [[55.6, 1.4], [55.6, 1.41], [55.8, 1.33], [56.2, 1.33], [56.3, 1.29], [58.2, 1.32], [59.9, 1.32], [61.5, 1.39], [63.0, 1.48], [64.5, 1.46], [65.3, 1.44], [65.4, 1.39], [68.5, 1.33], [70.3, 1.29], [72.0, 1.2]]}, {"name": "Italy", "points": [[49.5, 1.44], [49.2, 1.44], [49.6, 1.42], [50.1, 1.42], [49.6, 1.39], [50.1, 1.38], [50.5, 1.36], [51.6, 1.36], [52.5, 1.34], [53.2, 1.31], [53.9, 1.27], [52.1, 1.24], [53.2, 1.25], [55.0, 1.24], [56.5, 1.21]]}, {"name": "Hungary", "points": [[58.6, 1.32], [59.0, 1.25], [59.2, 1.23], [60.4, 1.34], [61.2, 1.36], [64.1, 1.45], [66.2, 1.46], [68.9, 1.55], [69.9, 1.56], [71.4, 1.57], [72.1, 1.58], [72.0, 1.61], [73.6, 1.63], [75.4, 1.57], [76.1, 1.55]]}],
+      startYear: 2009,
+      xUnit: "%",
+      yUnit: "births",
+      answer: "Births per woman against the share of women in work",
+      decoys: ["Births per woman against the share of women in higher education", "Age at first birth against the share of women in work", "Births per woman against the share of births outside marriage", "Births per woman against average household income"],
+      hints: ["Every path here drifts to the right over the fifteen years, and most of them drift downwards at the same time.", "Hungary is the one path that climbs, and it did so while spending more on families than any other country in Europe.", "The horizontal axis is a percentage and runs to the high seventies; the vertical one never passes two.", "The old story was that one of these two things had to fall for the other to rise. The chart says otherwise."],
+      why: "Every path drifts right as women's employment rises, and Hungary alone climbs, from 1.32 births to 1.55 while its employment rate goes from 58.6 to 76.1. Women in higher education dies on the horizontal axis, which reaches 80 per cent. Age at first birth dies on the vertical axis, which never passes two and would need to sit near thirty. Births outside marriage dies there too, that share being over half in several of these countries.",
+      slug: "births-and-womens-work",
+      source: "Eurostat",
+      sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/demo_find"
+    },
+    {
+      family: "Change over time",
+      form: "Connected scatterplot · 1995 → 2023",
+      exhibit: "Exhibit A",
+      type: "scatter",
+      diff: 5,
+      truth: "Hours worked against output per hour, 1995 to 2023",
+      period: "1995 → 2023",
+      unit: "horizontal: hours worked a year per worker. vertical: US dollars of output an hour",
+      series: [{"name": "Germany", "points": [[1528.9, 33.181], [1515.5, 34.322], [1506.2, 35.289], [1503, 36.079], [1490.3, 37.339], [1464.5, 38.579], [1457.4, 40.644], [1448.3, 42.368], [1443.1, 44.159], [1442.7, 46.132], [1431.9, 47.33], [1452.4, 49.748], [1453.9, 51.855], [1446.9, 53.397], [1406.8, 53.462], [1425.4, 55.439], [1427.2, 58.702], [1406, 60.122], [1395.7, 62.55], [1400, 64.841], [1401.6, 65.618], [1395.8, 69.623], [1388.2, 72.788], [1380.7, 75.355], [1372, 79.308], [1313.6, 82.652], [1341.2, 86.254], [1343.4, 94.539], [1338.8, 97.869]]}, {"name": "Japan", "points": [[1884, 24.041], [1892, 25.189], [1865, 26.05], [1842, 26.461], [1810, 27.555], [1821, 29.402], [1809, 30.485], [1798, 31.877], [1799, 32.665], [1785, 34.28], [1777, 35.621], [1786, 36.853], [1785, 38.121], [1771, 38.81], [1714, 38.514], [1733, 40.195], [1728, 41.297], [1745, 42.798], [1734, 44.954], [1729, 45.31], [1719, 47.102], [1714, 46.536], [1709, 47.201], [1680, 47.918], [1644, 49.21], [1597.01, 50.545], [1607.48, 52.672], [1606.99, 55.975], [1610.74, 59.191]]}, {"name": "United States", "points": [[1886.29, 32.27], [1887.03, 33.505], [1893.57, 34.632], [1891.63, 35.866], [1889.27, 37.389], [1879.85, 39.233], [1859.87, 41.082], [1854.01, 42.996], [1844.1, 45.305], [1845.12, 47.684], [1842.13, 50.169], [1846.85, 52.251], [1841.88, 54.2], [1830.44, 56.007], [1798.78, 58.406], [1810.39, 60.553], [1820.3, 61.733], [1827.07, 63.197], [1825.44, 64.572], [1830.36, 66.204], [1831.12, 67.599], [1822.37, 68.694], [1820.45, 70.665], [1825.66, 73.072], [1822.58, 75.556], [1799.78, 80.056], [1818.85, 85.24], [1809.9, 90.834], [1804.95, 95.551]]}, {"name": "Mexico", "points": [[2161, 13.58], [2192, 14.22], [2241, 14.632], [2168, 15.202], [2242, 15.195], [2174, 16.021], [2146, 16.37], [2196, 16.943], [2143, 17.446], [2123, 18.033], [2289.6, 19.074], [2277.8, 20.606], [2259.8, 21.258], [2263.7, 22.302], [2254.5, 22.464], [2253.5, 23.631], [2247.5, 25.501], [2238.6, 26.071], [2244.2, 26.332], [2242.2, 27.33], [2248.3, 27.52], [2254.6, 28.98], [2257.4, 29.885], [2258.3, 30.519], [2247.3, 30.601], [2231.1, 29.608], [2235.1, 31.492], [2246.2, 35.051], [2228.3, 38.662]]}, {"name": "Netherlands", "points": [[1490.97, 33.437], [1506.06, 34.074], [1491.81, 35.598], [1488.56, 37.347], [1486.86, 38.652], [1473.5, 41.967], [1463.56, 43.53], [1445.91, 45.766], [1437.17, 46.147], [1458.19, 48.418], [1444.28, 51.148], [1440.5, 54.839], [1439.51, 57.313], [1439.02, 59.857], [1430.6, 58.767], [1430.15, 59.951], [1430.72, 61.969], [1421.71, 63.623], [1426.68, 67.035], [1438.52, 66.997], [1438.41, 68.38], [1451.09, 70.033], [1451.1, 72.572], [1451.04, 74.618], [1456.55, 77.554], [1402.14, 81.757], [1442.16, 86.035], [1451.12, 95.915], [1447.01, 97.698]]}, {"name": "France", "points": [[1579.08, 32.919], [1575.09, 33.828], [1573.88, 35.17], [1564.93, 36.575], [1560.67, 37.445], [1542.14, 39.991], [1523.13, 42.279], [1489.72, 44.918], [1493.35, 44.592], [1517.26, 45.566], [1518.59, 47.934], [1503.36, 51.388], [1525.35, 52.778], [1531.92, 54.1], [1520.03, 54.844], [1528.03, 56.704], [1533.7, 58.848], [1527.9, 59.4], [1512.8, 63.244], [1504.18, 64.586], [1504.33, 65.752], [1507.39, 68.473], [1492.04, 71.111], [1499.65, 73.322], [1504.38, 79.902], [1390.85, 83.96], [1468.61, 82.533], [1498.0, 86.316], [1503.07, 91.182]]}],
+      startYear: 1995,
+      xUnit: "hours",
+      yUnit: "$",
+      answer: "Hours worked against output per hour",
+      decoys: ["Hours worked against average pay", "Hours worked against the share of workers in industry", "Days of holiday against output per hour", "Hours worked against the share of workers who are women"],
+      hints: ["The Mexican path sits further right than anything else here and has spent thirty years going almost nowhere.", "Every path moves left over time, and the vertical axis is denominated in the same thing everywhere because it has been converted.", "The horizontal axis is a count of hours in a year and runs past two thousand; the vertical one is in US dollars.", "Divide the second by nothing and you get the first back: one is time, the other is what the time produced."],
+      why: "Mexico works 2,228 hours a year for 38.7 dollars an hour; Germany works 1,339 for 97.9. Average pay dies on the vertical axis, which is in tens of dollars rather than the tens of thousands a salary needs. The share of workers in industry dies there too, because a share cannot reach 98. Days of holiday die on the horizontal axis, which runs past 2,000.",
+      slug: "hours-and-output",
+      source: "OECD",
+      sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PDB%40DF_PDB"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2000 → 2023",
+      exhibit: "Exhibit A",
+      type: "dumbbell",
+      diff: 2,
+      truth: "Times a year the average person sees a doctor, 2000 vs 2023",
+      period: "2000 → 2023",
+      unit: "in-person consultations per person per year",
+      leftYear: 2000,
+      rightYear: 2023,
+      data: [["Japan", 14.4, 12.4], ["Hungary", 10.5, 9.7], ["Germany", 7.7, 9.7], ["Netherlands", 5.9, 10.1], ["France", 6.9, 5.3], ["Poland", 5.4, 7.7], ["Canada", 6.7, 5.4], ["Portugal", 3.5, 3.9], ["United States", 3.7, 3.6], ["Mexico", 2.5, 1.8], ["Chile", 2.4, 4.2], ["Costa Rica", 2.1, 2.2]],
+      answer: "Times a year the average person sees a doctor",
+      decoys: ["Prescriptions filled per person per year", "Nights spent in hospital per person per year", "Trips to a dentist per person per year", "Visits to a pharmacy per person per year"],
+      hints: ["The top of this chart is roughly once a month, every month, for everybody.", "The United States is in the lower half, well below Hungary, which is not the order that spending per head would give you.", "A count per person per year, in 2000 and again in 2023.", "It is the appointment itself that is counted, not what was written at the end of it."],
+      why: "Japan's 12.4 visits a year is about one a month for every person in the country, and the Netherlands nearly doubles over the period, from 5.9 to 10.1. Nights in hospital and trips to a dentist both die on that Japanese figure, which would have the average Japanese person in a hospital bed for a fortnight a year or in a dentist's chair monthly. Prescriptions die the other way: a good many visits end with one written, so that chart would sit above this one rather than on top of it.",
+      slug: "doctor-consultations",
+      source: "OECD",
+      sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_HEALTH_PROC%40DF_CONSULT",
+      deadpan: true
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2010 → 2023",
+      exhibit: "Exhibit A",
+      type: "dumbbell",
+      diff: 3,
+      truth: "MRI scanners per million people, 2010 vs 2023",
+      period: "2010 → 2023",
+      unit: "machines per million people",
+      leftYear: 2010,
+      rightYear: 2023,
+      data: [["Germany", 27.04, 37.1], ["Greece", 22.93, 39.18], ["Italy", 22.27, 33.64], ["South Korea", 19.88, 38.66], ["Austria", 18.65, 26.39], ["Finland", 18.65, 33.67], ["Spain", 13.96, 21.86], ["France", 6.96, 19.12], ["Netherlands", 12.22, 15.05], ["Ireland", 12.28, 16.76], ["Poland", 4.71, 14.34], ["Mexico", 1.93, 2.9]],
+      answer: "MRI scanners per million people",
+      decoys: ["Hospitals per million people", "Ambulances per million people", "Operating theatres per million people", "Pharmacies per million people"],
+      hints: ["Greece is second on this chart and has been since the machines arrived, which is not a story about the strength of its health service.", "Nothing on this chart passes thirty per million, so whatever is being counted is expensive and there is not much of it.", "A count per million people, in 2010 and again in 2023.", "It is a magnet the size of a room, and the queue for it is the usual political argument."],
+      why: "Greece reaches 39.2 scanners per million people, ahead of Germany at 37.1, while Mexico is at 2.9. Hospitals, ambulances and operating theatres all die on the same ceiling: nothing on this chart passes 39.2 per million, and a health system with only that many of any of the three would not be able to use the scanners it has.",
+      slug: "mri-scanners",
+      source: "OECD",
+      sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_HEALTH_REAC_HOSP%40DF_MED_TECH",
+      deadpan: true
+    },
+    {
+      family: "Ranking",
+      form: "Rank slope · 2002 → 2023",
+      exhibit: "Exhibit A",
+      type: "slope",
+      diff: 3,
+      truth: "Ranking by the gap between men's and women's median pay, 2002 vs 2023",
+      period: "2002 → 2023",
+      unit: "rank, widest gap first",
+      leftYear: 2002,
+      rightYear: 2023,
+      ranks: [["South Korea", 1, 1], ["Japan", 2, 3], ["United States", 8, 5], ["United Kingdom", 5, 10], ["Finland", 11, 4], ["Germany", 12, 7], ["Austria", 4, 14], ["Italy", 15, 18], ["Hungary", 22, 8], ["Czechia", 14, 11]],
+      answer: "Ranking by the gap between men's and women's median pay",
+      decoys: ["Ranking by the share of managers who are women", "Ranking by the gap between graduate and non-graduate pay", "Ranking by the share of women working part time", "Ranking by the share of parliamentary seats held by women"],
+      hints: ["Korea has held first place on this list for the whole of the present century.", "Italy is near the bottom, and it is not a country anyone would nominate as the most equal in Europe.", "A rank, largest first, among the countries that report it.", "It compares the middle man with the middle woman and reports the difference as a share of his pay."],
+      why: "Korea is first in both years and Hungary climbs from twenty-second to eighth. Women in management dies on the United States, fifth here, which has one of the highest shares of women managers in the OECD, so the two rank in opposite directions. The graduate pay premium dies on Korea holding first place, its premium being unremarkable. Part-time work dies on Hungary and Czechia, which have little of it and sit at opposite ends of this chart.",
+      slug: "gender-wage-gap-rank",
+      source: "OECD",
+      sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40GENDER_WAGE_GAP"
+    },
+    {
+      family: "Deviation",
+      form: "Diverging bar · distance from the OECD average, 2023",
+      exhibit: "Exhibit A",
+      type: "deviation",
+      diff: 3,
+      truth: "Spending on research and development, 2023",
+      period: "2023",
+      unit: "% of GDP, against a 2% reference line",
+      data: [["Israel", 3.82], ["Finland", 3.24], ["Japan", 2.86], ["United States", 2.62], ["Iceland", 2.54], ["Germany", 2.39], ["Switzerland", 2.24], ["France", 2.1], ["South Korea", 2.05], ["Belgium", 1.94], ["Austria", 1.9], ["Netherlands", 1.79], ["United Kingdom", 1.6], ["Czechia", 1.1], ["Italy", 1.0], ["Spain", 0.88], ["Hungary", 0.79], ["Portugal", 0.72], ["Poland", 0.64], ["Romania", 0.37]],
+      reference: 2.0,
+      suffix: "%",
+      answer: "Spending on research and development",
+      decoys: ["Government spending on universities", "Spending on defence", "Spending on machinery and equipment by business", "Money received from patents and licences"],
+      hints: ["Israel and Korea are first and second, and neither of them is large.", "The countries below the line include several with large armies, which settles one of the options.", "A percentage of GDP, drawn against a 2% line.", "Most of the money in this measure is spent by companies rather than by governments."],
+      why: "Israel spends 3.82 per cent of its economy on this and Romania 0.37, a tenfold spread around a 2 per cent line. Defence dies on Poland at 0.64 and Romania at 0.37, both substantial military spenders and both far below the line. University funding and business spending on machinery both die on that same 0.37, since no country runs either at a third of one per cent of its economy.",
+      slug: "rd-spending-deviation",
+      source: "OECD",
+      sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_MSTI%40DF_MSTI"
+    },
+    {
+      family: "Ranking",
+      form: "Rank slope · 2000 → 2022",
+      exhibit: "Exhibit A",
+      type: "slope",
+      diff: 4,
+      truth: "Ranking by the age at which people actually stop working, 2000 vs 2022",
+      period: "2000 → 2022",
+      unit: "rank, latest first",
+      leftYear: 2000,
+      rightYear: 2022,
+      ranks: [["Indonesia", 1, 1], ["South Korea", 10, 3], ["Japan", 7, 4], ["Mexico", 4, 7], ["United States", 14, 9], ["Sweden", 15, 13], ["Germany", 24, 22], ["France", 34, 30], ["Slovenia", 48, 46], ["Hungary", 46, 40]],
+      answer: "Ranking by the age at which people actually stop working",
+      decoys: ["Ranking by the official state pension age", "Ranking by the share of over-65s still in work", "Ranking by years spent in retirement", "Ranking by the age at which people leave education"],
+      hints: ["The countries at the top of this list are not the ones with the oldest pension ages; several of them barely have a state pension at all.", "France and Slovenia sit at the bottom in both years, and France's official figure is nowhere near that low.", "A rank, latest first, among the OECD countries.", "It is measured from what people did, not from what the law says they should do."],
+      why: "Indonesia is first in both years and Slovenia is forty-sixth, while Korea climbs from tenth to third. The official state pension age dies on Indonesia, which has barely any state pension to draw. Years spent in retirement dies on Japan, fourth here, which would also be near the top of that list, and the two cannot both hold. Over-65s still in work dies on the shape, being a percentage rather than an age.",
+      slug: "retirement-age-rank",
+      source: "OECD",
+      sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PAG%40DF_PAG"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2000 → 2021",
+      exhibit: "Exhibit A",
+      type: "dumbbell",
+      diff: 3,
+      truth: "Public spending on pensions as a share of the economy, 2000 vs 2021",
+      period: "2000 → 2021",
+      unit: "% of GDP",
+      leftYear: 2000,
+      rightYear: 2021,
+      data: [["Italy", 13.5, 16.1], ["Greece", 10.5, 16.2], ["France", 11.5, 13.4], ["Austria", 12.3, 14], ["Portugal", 7.8, 12.9], ["Germany", 10.9, 10.8], ["Japan", 6.9, 9.2], ["Poland", 10.4, 11.2], ["United Kingdom", 7.3, 7.1], ["United States", 5.7, 7.3], ["South Korea", 1.3, 3.8], ["Ireland", 3.1, 2.9], ["Mexico", 0.7, 5.3]],
+      suffix: "%",
+      answer: "Public spending on pensions as a share of the economy",
+      decoys: ["Public spending on health as a share of the economy", "Public spending on education as a share of the economy", "Public spending on unemployment benefits as a share of the economy", "Total tax collected as a share of the economy"],
+      hints: ["Korea and Mexico are at the bottom of this chart and both are ageing faster than the countries at the top.", "The United States sits mid-table while spending more than anyone on the thing one of the other options describes.", "A percentage of GDP, in 2000 and again in 2021.", "It is the largest single line in the budget of most of the countries at the top of this chart."],
+      why: "Greece goes from 10.5 per cent of its economy to 16.2 and Italy from 13.5 to 16.1, while Korea is at 3.8 and Mexico 5.3. Health dies on the United States, mid-table here, which would lead any health-spending chart by a wide margin. Unemployment benefits and education both die on Greece at 16.2, since no country spends a sixth of its entire economy on either of them.",
+      slug: "pension-spending",
+      source: "OECD",
+      sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PAG%40DF_PAG"
+    },
+    {
+      family: "Change over time",
+      form: "Multi-line · 2000–2024",
+      exhibit: "Exhibit A",
+      type: "line",
+      diff: 3,
+      truth: "Share of electricity generated from coal, 2000–2024",
+      period: "2000–2024",
+      unit: "% of electricity generated",
+      startYear: 2000,
+      series: [{"name": "Poland", "values": [94.91, 93.91, 93.3, 93.77, 92.51, 91.36, 91.48, 90.85, 89.9, 88.41, 87.08, 85.81, 83.34, 84.09, 81.79, 79.44, 78.51, 77.19, 77.06, 72.38, 68.34, 71.35, 69.84, 59.72, 54.32]}, {"name": "China", "values": [78.21, 76.25, 77.54, 79.56, 78.17, 79.2, 80.34, 80.96, 77.49, 78.38, 76.86, 78.31, 75.15, 75.07, 72.54, 69.59, 67.77, 67.08, 66.48, 64.71, 63.27, 62.5, 61.19, 60.83, 57.77]}, {"name": "India", "values": [68.29, 69.66, 69.99, 69.18, 66.3, 67.92, 67.9, 66.97, 69.18, 69.55, 68.66, 67.93, 72.32, 74.3, 75.47, 76.8, 76.96, 76.26, 76.28, 74.88, 73.16, 74.79, 74.5, 75.35, 74.53]}, {"name": "Germany", "values": [52.15, 50.74, 51.32, 50.6, 49.01, 46.98, 45.85, 47.08, 43.53, 43.11, 42.12, 43.38, 44.57, 45.77, 44.35, 42.59, 40.8, 37.44, 36.09, 28.57, 23.75, 28.45, 31.74, 24.63, 21.44]}, {"name": "United Kingdom", "values": [31.81, 34.17, 32.09, 34.77, 33.46, 33.8, 37.47, 34.26, 31.98, 27.35, 28.16, 29.47, 39.24, 36.36, 29.65, 22.39, 9.04, 6.66, 5.04, 2.11, 1.84, 2.21, 1.83, 1.29, 0.67]}],
+      suffix: "%",
+      answer: "Share of electricity generated from coal",
+      decoys: ["Share of electricity generated from gas", "Share of electricity generated from oil", "Share of electricity generated from fossil fuels of all kinds", "Share of a country's energy that is imported"],
+      hints: ["The British line falls off a cliff after 2012 and does not come back.", "India climbs while Germany halves, and China stays above every European line for the whole period.", "A percentage of all electricity generated, from 2000 to 2024.", "Poland was built on a seam of it, and still is."],
+      why: "Britain goes from 31.8 per cent to 0.67 while India rises from 68.3 to 74.5. Gas dies on the British line, since Britain's gas share rose over the same years that this collapsed. All fossil fuels together dies there too, Britain still generating a large share from gas, so that line would flatten well above zero. Oil dies on magnitude, having been in low single figures in all six of these countries throughout.",
+      slug: "electricity-from-coal",
+      source: "Our World in Data",
+      sourceUrl: "https://ourworldindata.org/grapher/share-electricity-coal"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 1900 → 1996",
+      exhibit: "Exhibit A",
+      type: "dumbbell",
+      diff: 3,
+      truth: "Average height of adult men, 1900 vs 1996",
+      period: "1900 → 1996",
+      unit: "centimetres",
+      leftYear: 1900,
+      rightYear: 1996,
+      data: [["Netherlands", 170.14, 182.54], ["Sweden", 172.32, 179.74], ["Norway", 171.8, 179.75], ["United States", 171.48, 177.13], ["Japan", 156.97, 170.82], ["South Korea", 160.3, 174.92], ["Spain", 162.63, 176.59], ["Brazil", 163.59, 173.55], ["India", 161.95, 164.95], ["Guatemala", 154.62, 163.41], ["Laos", 153.41, 160.52], ["Timor-Leste", 153.62, 159.79]],
+      baseline: 140,
+      answer: "Average height of adult men",
+      decoys: ["Average weight of adult men, in kilograms", "Average age of men at first marriage", "Average years of schooling among men", "Average waist measurement of adult men, in centimetres"],
+      hints: ["The Dutch were not first in the world in 1900. The Americans were.", "Every value on this chart sits between about 150 and 185, a range of under forty across the whole world and a whole century.", "Centimetres, measured in 1900 and again in 1996.", "South Korea moves further than almost anyone here, and it is not because Koreans changed."],
+      why: "Dutch men gain 12.4 centimetres in a century, from 170.1 to 182.5, overtaking Sweden and the United States on the way. Weight dies on the floor of 153, since no population has ever averaged 153 kilograms. Age at first marriage dies on the same floor from the other direction, sitting in the twenties. Years of schooling dies there too: nobody has 153 years of it.",
+      slug: "mean-male-height",
+      source: "Our World in Data",
+      sourceUrl: "https://ourworldindata.org/grapher/average-height-of-men"
     }
   ];
 
@@ -5735,6 +6367,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      dealer hits this exactly while unseen puzzles last, then degrades to a
      longest-unseen rotation rather than breaking. */
   var NEW_PER_RUN = 4;
+  var LAST_AIRED_RUN = 21;   /* aired, or airing today; order frozen */
 
   /* ---------------------------------------------------------------------
      BROADCAST HISTORY
@@ -5767,7 +6400,8 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     ["new-books-published", "rice-production", "co-emissions-per-capita", "net-migration", "tax-revenue"],
     ["spirits-consumption-per-person", "population", "unpaid-work-minutes", "foreign-aid-received", "inflation-rate"],
     ["international-tourism-number-of-arrivals", "renewable-electricity", "tomato-production", "armed-forces-share-of-workforce", "hydro-electricity"],
-    ["average-annual-temperature", "share-of-population-urban", "air-freight", "unemployment-rate", "arable-land"]
+    ["average-annual-temperature", "share-of-population-urban", "air-freight", "unemployment-rate", "arable-land"],
+    ["road-deaths-per-100000", "malaria-cases", "bank-branches-per-100000", "birth-rate", "forest-area-as-share-of-land-area"]
   ];
 
   var SLUG_INDEX = (function () {
@@ -5793,10 +6427,44 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return out;
   }());
 
-  function sortRun(run) {
-    return run.slice().sort(function (a, b) {
+  /* Observed first-try rate per slug, from chart/<slug>/<tier> in the analytics.
+     Empty until those counts are exported: our own difficulty guesses correlate
+     with real performance at +0.04, so a diff integer is not evidence and the
+     prior below is a placeholder, not a model. */
+  var FIRSTTRY = {};
+
+  /* Fallback while a chart has no history. Forms differ more than difficulty
+     does: a treemap of twelve blocks is read at a glance, a rank slope is not. */
+  var FIRSTTRY_PRIOR = {
+    treemap: 0.62, symbol: 0.60, dumbbell: 0.55, beeswarm: 0.54, lollipop: 0.53,
+    line: 0.50, deviation: 0.48, slope: 0.44, scatter: 0.38
+  };
+
+  function expectedFirstTry(i) {
+    var p = PUZZLES[i];
+    if (Object.prototype.hasOwnProperty.call(FIRSTTRY, p.slug)) return FIRSTTRY[p.slug];
+    var base = FIRSTTRY_PRIOR[p.type];
+    if (base === undefined) base = 0.5;
+    return base - 0.06 * (p.diff - 1);
+  }
+
+  /* Chart one is the chart most people get on the first try, which is not the
+     same as the lowest diff integer. Run 17 opened with a diff 2 that under a
+     third of players solved first time; run 20 opened with a diff 1 that is past
+     335 first-try solves. Charts two to five stay non-decreasing in difficulty.
+
+     Runs that have already aired keep the order they aired in. */
+  function sortRun(run, runNumber) {
+    var rest = run.slice().sort(function (a, b) {
       return PUZZLES[a].diff - PUZZLES[b].diff || a - b;
     });
+    if (!(runNumber > LAST_AIRED_RUN) || rest.length < 2) return rest;
+    var best = 0, k;
+    for (k = 1; k < rest.length; k++) {
+      if (expectedFirstTry(rest[k]) > expectedFirstTry(rest[best])) best = k;
+    }
+    var opener = rest.splice(best, 1)[0];
+    return [opener].concat(rest);
   }
 
   /* Which pairs of puzzles must not meet on the same day.
@@ -5900,14 +6568,14 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     var pool = seen.slice(0, Math.min(seen.length, fill + RECYCLE_WINDOW));
 
     if (want + fill < RUN_SIZE) {          /* pool smaller than a run */
-      return sortRun(unseen.concat(seen).slice(0, RUN_SIZE));
+      return sortRun(unseen.concat(seen).slice(0, RUN_SIZE), n);
     }
 
     for (a = 0; a < ATTEMPTS; a++) {
       var seed = ((n * 2654435761) ^ (a * 40503 + 0x9E37)) >>> 0;
       var pick = seededShuffle(unseen, seed).slice(0, want)
         .concat(seededShuffle(pool, (seed ^ 0x5bf03635) >>> 0).slice(0, fill));
-      var run = sortRun(pick), c = runCost(run);
+      var run = sortRun(pick, n), c = runCost(run);
       if (c < bestCost) { bestCost = c; best = run; if (c === 0) break; }
     }
     return best;
@@ -5917,7 +6585,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     var runs = [], lastSeen = {}, r, i, n, run;
 
     for (r = 0; r < HISTORY.length && r < upTo; r++) {
-      run = sortRun(HISTORY[r]);
+      run = sortRun(HISTORY[r], r + 1);
       runs.push(run);
       for (i = 0; i < run.length; i++) lastSeen[run[i]] = r + 1;
     }
@@ -5936,7 +6604,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     if (PUZZLES.length <= RUN_SIZE) {
       var all = [], k;
       for (k = 0; k < PUZZLES.length; k++) all.push(k);
-      return sortRun(all);
+      return sortRun(all, n);
     }
     if (!schedule || schedule.length < n) schedule = buildSchedule(Math.max(n, 40));
     return schedule[n - 1];
@@ -6990,6 +7658,166 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return svg;
   }
 
+  /* Connected scatterplot. Two measures, one path per country, a dot per year.
+     The form breaks rule 1 unless it is handled carefully: both axes are
+     measures, so labelling them the usual way would print the answer on the
+     chart. The axes therefore carry units and nothing else ("hours", "$"), the
+     redacted title names the pairing, and the decoys are alternative pairings
+     whose units do not fit the numbers on the axes.
+
+     Compact drops the interior year ticks, halves the dot radius and moves the
+     country label above the final dot rather than beside it, because a label to
+     the right of a point near the right edge is what clipped on a 360px screen. */
+  function drawScatter(p) {
+    var m = metrics(), W = m.W, H = m.compact ? 380 : 420;
+    var mL = m.compact ? 38 : 52, mR = m.compact ? 16 : 26;
+    var mT = m.compact ? 22 : 24, mB = m.compact ? 46 : 50;
+    var plotW = W - mL - mR, plotH = H - mT - mB;
+    var n = p.series[0].points.length;
+
+    var xs = [], ys = [];
+    p.series.forEach(function (s) {
+      s.points.forEach(function (pt) { xs.push(pt[0]); ys.push(pt[1]); });
+    });
+    /* Round the domain outwards to a sensible step rather than padding by a
+       percentage. Percentage padding gave axes labelled 1196, 1439, 1681 and a
+       dollar axis that started at minus eleven. */
+    function niceDomain(lo, hi, ticks, allowNegative) {
+      var raw = (hi - lo) / ticks || 1;
+      var mag = Math.pow(10, Math.floor(Math.log10(raw)));
+      var n = raw / mag;
+      var step = (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * mag;
+      var a = Math.floor(lo / step) * step, b = Math.ceil(hi / step) * step;
+      if (a === lo) a -= step;
+      if (b === hi) b += step;
+      if (!allowNegative && a < 0 && lo >= 0) a = 0;
+      return [a, b, step];
+    }
+    var tickCount = m.compact ? 3 : 5;
+    var xd = niceDomain(Math.min.apply(null, xs), Math.max.apply(null, xs), tickCount,
+                        Math.min.apply(null, xs) < 0);
+    var yd = niceDomain(Math.min.apply(null, ys), Math.max.apply(null, ys), tickCount,
+                        Math.min.apply(null, ys) < 0);
+    var xMin = xd[0], xMax = xd[1], yMin = yd[0], yMax = yd[1];
+
+    function X(v) { return mL + ((v - xMin) / (xMax - xMin)) * plotW; }
+    function Y(v) { return mT + plotH - ((v - yMin) / (yMax - yMin)) * plotH; }
+
+    var svg = el("svg", {
+      viewBox: "0 0 " + W + " " + H, role: "img",
+      "aria-label": "Connected scatterplot: one path per country over time, two "
+        + "measures. Both measures are withheld."
+    });
+
+    /* Step along the rounded step, rather than dividing the domain into equal
+       parts: dividing 0 to 100 into three gives ticks at 33.3 and 66.7. */
+    var xy, v, yTicks = [], xTicks = [];
+    for (v = yMin; v <= yMax + 1e-9; v += yd[2]) yTicks.push(v);
+    for (v = xMin; v <= xMax + 1e-9; v += xd[2]) xTicks.push(v);
+    yTicks.forEach(function (tv) {
+      v = tv; xy = Y(v);
+      svg.appendChild(el("line", {
+        x1: mL, y1: xy, x2: mL + plotW, y2: xy, stroke: "var(--grid)", "stroke-width": "1"
+      }));
+      svg.appendChild(txt(el("text", {
+        x: mL - 8, y: xy, "text-anchor": "end", "dominant-baseline": "middle",
+        fill: "var(--muted)", "font-size": m.compact ? "9.5" : "11", "font-family": MONO
+      }), tickNum(v)));
+    });
+    xTicks.forEach(function (tv) {
+      v = tv; xy = X(v);
+      svg.appendChild(el("line", {
+        x1: xy, y1: mT, x2: xy, y2: mT + plotH, stroke: "var(--grid)", "stroke-width": "1"
+      }));
+      svg.appendChild(txt(el("text", {
+        x: xy, y: mT + plotH + 17, "text-anchor": "middle",
+        fill: "var(--muted)", "font-size": m.compact ? "9.5" : "11", "font-family": MONO
+      }), tickNum(v)));
+    });
+
+    /* Units only. Never the name of the measure. */
+    svg.appendChild(txt(el("text", {
+      x: mL + plotW, y: mT + plotH + 36, "text-anchor": "end",
+      fill: "var(--ink-2)", "font-size": m.compact ? "10" : "11.5", "font-family": SANS
+    }), p.xUnit));
+    svg.appendChild(txt(el("text", {
+      x: mL - 8, y: mT - 8, "text-anchor": "end",
+      fill: "var(--ink-2)", "font-size": m.compact ? "10" : "11.5", "font-family": SANS
+    }), p.yUnit));
+
+    function tickNum(value) {
+      if (Math.abs(value) >= 1000) return String(Math.round(value));
+      if (Math.abs(value) < 10 && Math.round(value) !== value) return value.toFixed(1);
+      return String(Math.round(value));
+    }
+
+    var placed = [];
+    p.series.forEach(function (s, si) {
+      var col = seriesColor(si);
+      var d = s.points.map(function (pt, i) {
+        return (i ? "L" : "M") + X(pt[0]).toFixed(1) + " " + Y(pt[1]).toFixed(1);
+      }).join(" ");
+      svg.appendChild(el("path", {
+        d: d, fill: "none", stroke: col, "stroke-width": m.compact ? "1.6" : "2",
+        "stroke-linejoin": "round", "stroke-linecap": "round", opacity: "0.9"
+      }));
+      s.points.forEach(function (pt, i) {
+        var last = i === s.points.length - 1, first = i === 0;
+        svg.appendChild(el("circle", {
+          cx: X(pt[0]), cy: Y(pt[1]),
+          r: (first || last) ? (m.compact ? "3.6" : "4.4") : (m.compact ? "1.5" : "2"),
+          fill: last ? col : "var(--bg)", stroke: col,
+          "stroke-width": (first || last) ? "1.8" : "1"
+        }));
+      });
+
+      var end = s.points[s.points.length - 1];
+      var lx = X(end[0]), ly = Y(end[1]);
+      /* Two paths can finish within a few pixels of each other. Push the later
+         label clear rather than letting the names overprint. */
+      for (var q = 0; q < placed.length; q++) {
+        if (Math.abs(placed[q][0] - lx) < 62 && Math.abs(placed[q][1] - ly) < 14) {
+          ly = placed[q][1] + 15;
+        }
+      }
+      placed.push([lx, ly]);
+      var flip = lx > mL + plotW * 0.72;
+      svg.appendChild(txt(el("text", {
+        x: m.compact ? lx : (flip ? lx - 9 : lx + 9),
+        y: m.compact ? ly - 9 : ly + 4,
+        "text-anchor": m.compact ? "middle" : (flip ? "end" : "start"),
+        fill: "var(--ink)", "font-size": m.compact ? "10" : "12",
+        "font-family": SANS, "font-weight": "600"
+      }), s.name));
+    });
+
+    /* Which end is which. Printing the years next to the first series' own
+       endpoints put loose numbers in the middle of the plot, on top of other
+       countries' labels. A hollow dot for the first year and a filled one for
+       the last, explained once in the corner, says the same thing and collides
+       with nothing. */
+    var capY = mT + plotH + 36;
+    var capX = mL;
+    svg.appendChild(el("circle", {
+      cx: capX + 4, cy: capY - 4, r: "4", fill: "var(--bg)",
+      stroke: "var(--ink-2)", "stroke-width": "1.6"
+    }));
+    svg.appendChild(txt(el("text", {
+      x: capX + 13, y: capY, "text-anchor": "start", fill: "var(--ink-2)",
+      "font-size": m.compact ? "10" : "11.5", "font-family": MONO
+    }), String(p.startYear)));
+    var offs = m.compact ? 52 : 62;
+    svg.appendChild(el("circle", {
+      cx: capX + offs, cy: capY - 4, r: "4", fill: "var(--ink-2)"
+    }));
+    svg.appendChild(txt(el("text", {
+      x: capX + offs + 9, y: capY, "text-anchor": "start", fill: "var(--ink-2)",
+      "font-size": m.compact ? "10" : "11.5", "font-family": MONO
+    }), String(p.startYear + n - 1)));
+
+    return svg;
+  }
+
   var DRAW = {
     lollipop: drawLollipop,
     deviation: drawDeviation,
@@ -6998,7 +7826,8 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     dumbbell: drawDumbbell,
     line: drawLine,
     beeswarm: drawBeeswarm,
-    symbol: drawSymbol
+    symbol: drawSymbol,
+    scatter: drawScatter
   };
 
   /* ============================ GAME STATE ============================ */
