@@ -466,6 +466,12 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 .score-band-note { margin: 5px 0 0; color: var(--ink-2); font-size: 0.98rem; max-width: 46ch; }
 .score-streak { margin: 14px 0 0; color: var(--ink-2); font-size: 0.95rem; }
 
+/* The one place a person appears in the game, and the only ask on the site.
+   Shown on every completed run, deliberately the quietest thing on the screen:
+   same ink as the streak line, a size down, below the share button. */
+.colophon { margin: 30px auto 0; color: var(--ink-2); font-size: 0.86rem; max-width: 46ch; line-height: 1.5; text-align: center; }
+.colophon a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
 /* A row per chart, not a column: the titles are the point of this screen and
    five narrow columns wrapped them to four lines each. */
 .score-grid { display: flex; flex-direction: column; gap: 6px; }
@@ -684,6 +690,10 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     </div>
     <textarea id="share-fallback" readonly rows="5" aria-label="Your result, ready to copy"></textarea>
     <p class="score-note">Go on, put it in the group chat. It spoils nothing and settles everything.</p>
+    <p class="colophon" id="colophon">
+      Mystery Chart is made by Tim, who is not a statistician and has never claimed to be.
+      <a href="https://buymeacoffee.com/timgoudswaard" target="_blank" rel="noopener">Buy him a coffee</a>
+    </p>
   </section>
 
 
@@ -747,6 +757,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      dealer hits this exactly while unseen puzzles last, then degrades to a
      longest-unseen rotation rather than breaking. */
   var NEW_PER_RUN = 4;
+  var LAST_AIRED_RUN = 21;   /* aired, or airing today; order frozen */
 
   /* ---------------------------------------------------------------------
      BROADCAST HISTORY
@@ -765,7 +776,22 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     ["share-of-population-urban", "airline-passengers", "rice-production", "fish-and-seafood-consumption-per-capita", "prevalence-of-undernourishment"],
     ["wine-production", "health-spending-per-person", "share-of-adults-who-smoke", "population", "forest-area-as-share-of-land-area"],
     ["population-density", "largest-economies-ranking", "share-global-forest", "hospital-beds-per-1000", "trade-balance"],
-    ["cocoa-bean-production", "share-of-individuals-using-the-internet", "sugar-cane-production", "population-over-65", "annual-co2-emissions-per-country"]
+    ["cocoa-bean-production", "share-of-individuals-using-the-internet", "sugar-cane-production", "population-over-65", "annual-co2-emissions-per-country"],
+["life-expectancy", "age-leaving-parents-home", "meat-production-tonnes", "fuel-share-of-exports", "protected-land"],
+    ["doctors-per-1000", "age-at-first-marriage", "population-change-2013-2024", "cattle-livestock-count-heads-rank", "mobile-cellular-subscriptions-per-100-people"],
+    ["land-area", "walking-and-cycling", "coffee-bean-production", "remittances-sent", "meat-supply-per-person"],
+    ["beer-consumption-per-person", "share-of-women-in-parliament", "out-of-pocket-health-spending", "health-spending-share-of-economy", "current-account-balance"],
+    ["wheat-production", "foreign-reserves", "cropland-per-person", "annual-working-hours-per-worker", "prevalence-of-undernourishment"],
+    ["foreign-born-residents", "population-under-fifteen", "rainfall-each-year", "military-expenditure-as-a-share-of-gdp", "trust-in-others"],
+    ["homicide-rate-unodc", "wine-consumption-per-capita", "population-change-since-2000", "no-bath-or-shower", "daily-sugary-drinks"],
+    ["total-alcohol-consumption-per-capita-litres-of-pure-alcohol", "wheat-production-rank", "cannot-keep-home-warm", "city-dwellers-in-largest-city", "services-exports"],
+    ["pig-livestock-count-heads", "share-of-adults-who-smoke", "wild-fish-catch", "tax-wedge-on-employment", "trade-share-of-economy"],
+    ["wine-production", "electric-car-sales-share", "female-labour-force-participation", "cannot-afford-a-week-away", "freshwater-withdrawal"],
+    ["new-books-published", "rice-production", "co-emissions-per-capita", "net-migration", "tax-revenue"],
+    ["spirits-consumption-per-person", "population", "unpaid-work-minutes", "foreign-aid-received", "inflation-rate"],
+    ["international-tourism-number-of-arrivals", "renewable-electricity", "tomato-production", "armed-forces-share-of-workforce", "hydro-electricity"],
+    ["average-annual-temperature", "share-of-population-urban", "air-freight", "unemployment-rate", "arable-land"],
+    ["road-deaths-per-100000", "malaria-cases", "bank-branches-per-100000", "birth-rate", "forest-area-as-share-of-land-area"]
   ];
 
   var SLUG_INDEX = (function () {
@@ -791,10 +817,44 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return out;
   }());
 
-  function sortRun(run) {
-    return run.slice().sort(function (a, b) {
+  /* Observed first-try rate per slug, from chart/<slug>/<tier> in the analytics.
+     Empty until those counts are exported: our own difficulty guesses correlate
+     with real performance at +0.04, so a diff integer is not evidence and the
+     prior below is a placeholder, not a model. */
+  var FIRSTTRY = {};
+
+  /* Fallback while a chart has no history. Forms differ more than difficulty
+     does: a treemap of twelve blocks is read at a glance, a rank slope is not. */
+  var FIRSTTRY_PRIOR = {
+    treemap: 0.62, symbol: 0.60, dumbbell: 0.55, beeswarm: 0.54, lollipop: 0.53,
+    line: 0.50, deviation: 0.48, slope: 0.44, scatter: 0.38
+  };
+
+  function expectedFirstTry(i) {
+    var p = PUZZLES[i];
+    if (Object.prototype.hasOwnProperty.call(FIRSTTRY, p.slug)) return FIRSTTRY[p.slug];
+    var base = FIRSTTRY_PRIOR[p.type];
+    if (base === undefined) base = 0.5;
+    return base - 0.06 * (p.diff - 1);
+  }
+
+  /* Chart one is the chart most people get on the first try, which is not the
+     same as the lowest diff integer. Run 17 opened with a diff 2 that under a
+     third of players solved first time; run 20 opened with a diff 1 that is past
+     335 first-try solves. Charts two to five stay non-decreasing in difficulty.
+
+     Runs that have already aired keep the order they aired in. */
+  function sortRun(run, runNumber) {
+    var rest = run.slice().sort(function (a, b) {
       return PUZZLES[a].diff - PUZZLES[b].diff || a - b;
     });
+    if (!(runNumber > LAST_AIRED_RUN) || rest.length < 2) return rest;
+    var best = 0, k;
+    for (k = 1; k < rest.length; k++) {
+      if (expectedFirstTry(rest[k]) > expectedFirstTry(rest[best])) best = k;
+    }
+    var opener = rest.splice(best, 1)[0];
+    return [opener].concat(rest);
   }
 
   /* Which pairs of puzzles must not meet on the same day.
@@ -898,14 +958,14 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     var pool = seen.slice(0, Math.min(seen.length, fill + RECYCLE_WINDOW));
 
     if (want + fill < RUN_SIZE) {          /* pool smaller than a run */
-      return sortRun(unseen.concat(seen).slice(0, RUN_SIZE));
+      return sortRun(unseen.concat(seen).slice(0, RUN_SIZE), n);
     }
 
     for (a = 0; a < ATTEMPTS; a++) {
       var seed = ((n * 2654435761) ^ (a * 40503 + 0x9E37)) >>> 0;
       var pick = seededShuffle(unseen, seed).slice(0, want)
         .concat(seededShuffle(pool, (seed ^ 0x5bf03635) >>> 0).slice(0, fill));
-      var run = sortRun(pick), c = runCost(run);
+      var run = sortRun(pick, n), c = runCost(run);
       if (c < bestCost) { bestCost = c; best = run; if (c === 0) break; }
     }
     return best;
@@ -915,7 +975,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     var runs = [], lastSeen = {}, r, i, n, run;
 
     for (r = 0; r < HISTORY.length && r < upTo; r++) {
-      run = sortRun(HISTORY[r]);
+      run = sortRun(HISTORY[r], r + 1);
       runs.push(run);
       for (i = 0; i < run.length; i++) lastSeen[run[i]] = r + 1;
     }
@@ -934,7 +994,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     if (PUZZLES.length <= RUN_SIZE) {
       var all = [], k;
       for (k = 0; k < PUZZLES.length; k++) all.push(k);
-      return sortRun(all);
+      return sortRun(all, n);
     }
     if (!schedule || schedule.length < n) schedule = buildSchedule(Math.max(n, 40));
     return schedule[n - 1];
@@ -1988,6 +2048,166 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return svg;
   }
 
+  /* Connected scatterplot. Two measures, one path per country, a dot per year.
+     The form breaks rule 1 unless it is handled carefully: both axes are
+     measures, so labelling them the usual way would print the answer on the
+     chart. The axes therefore carry units and nothing else ("hours", "$"), the
+     redacted title names the pairing, and the decoys are alternative pairings
+     whose units do not fit the numbers on the axes.
+
+     Compact drops the interior year ticks, halves the dot radius and moves the
+     country label above the final dot rather than beside it, because a label to
+     the right of a point near the right edge is what clipped on a 360px screen. */
+  function drawScatter(p) {
+    var m = metrics(), W = m.W, H = m.compact ? 380 : 420;
+    var mL = m.compact ? 38 : 52, mR = m.compact ? 16 : 26;
+    var mT = m.compact ? 22 : 24, mB = m.compact ? 46 : 50;
+    var plotW = W - mL - mR, plotH = H - mT - mB;
+    var n = p.series[0].points.length;
+
+    var xs = [], ys = [];
+    p.series.forEach(function (s) {
+      s.points.forEach(function (pt) { xs.push(pt[0]); ys.push(pt[1]); });
+    });
+    /* Round the domain outwards to a sensible step rather than padding by a
+       percentage. Percentage padding gave axes labelled 1196, 1439, 1681 and a
+       dollar axis that started at minus eleven. */
+    function niceDomain(lo, hi, ticks, allowNegative) {
+      var raw = (hi - lo) / ticks || 1;
+      var mag = Math.pow(10, Math.floor(Math.log10(raw)));
+      var n = raw / mag;
+      var step = (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * mag;
+      var a = Math.floor(lo / step) * step, b = Math.ceil(hi / step) * step;
+      if (a === lo) a -= step;
+      if (b === hi) b += step;
+      if (!allowNegative && a < 0 && lo >= 0) a = 0;
+      return [a, b, step];
+    }
+    var tickCount = m.compact ? 3 : 5;
+    var xd = niceDomain(Math.min.apply(null, xs), Math.max.apply(null, xs), tickCount,
+                        Math.min.apply(null, xs) < 0);
+    var yd = niceDomain(Math.min.apply(null, ys), Math.max.apply(null, ys), tickCount,
+                        Math.min.apply(null, ys) < 0);
+    var xMin = xd[0], xMax = xd[1], yMin = yd[0], yMax = yd[1];
+
+    function X(v) { return mL + ((v - xMin) / (xMax - xMin)) * plotW; }
+    function Y(v) { return mT + plotH - ((v - yMin) / (yMax - yMin)) * plotH; }
+
+    var svg = el("svg", {
+      viewBox: "0 0 " + W + " " + H, role: "img",
+      "aria-label": "Connected scatterplot: one path per country over time, two "
+        + "measures. Both measures are withheld."
+    });
+
+    /* Step along the rounded step, rather than dividing the domain into equal
+       parts: dividing 0 to 100 into three gives ticks at 33.3 and 66.7. */
+    var xy, v, yTicks = [], xTicks = [];
+    for (v = yMin; v <= yMax + 1e-9; v += yd[2]) yTicks.push(v);
+    for (v = xMin; v <= xMax + 1e-9; v += xd[2]) xTicks.push(v);
+    yTicks.forEach(function (tv) {
+      v = tv; xy = Y(v);
+      svg.appendChild(el("line", {
+        x1: mL, y1: xy, x2: mL + plotW, y2: xy, stroke: "var(--grid)", "stroke-width": "1"
+      }));
+      svg.appendChild(txt(el("text", {
+        x: mL - 8, y: xy, "text-anchor": "end", "dominant-baseline": "middle",
+        fill: "var(--muted)", "font-size": m.compact ? "9.5" : "11", "font-family": MONO
+      }), tickNum(v)));
+    });
+    xTicks.forEach(function (tv) {
+      v = tv; xy = X(v);
+      svg.appendChild(el("line", {
+        x1: xy, y1: mT, x2: xy, y2: mT + plotH, stroke: "var(--grid)", "stroke-width": "1"
+      }));
+      svg.appendChild(txt(el("text", {
+        x: xy, y: mT + plotH + 17, "text-anchor": "middle",
+        fill: "var(--muted)", "font-size": m.compact ? "9.5" : "11", "font-family": MONO
+      }), tickNum(v)));
+    });
+
+    /* Units only. Never the name of the measure. */
+    svg.appendChild(txt(el("text", {
+      x: mL + plotW, y: mT + plotH + 36, "text-anchor": "end",
+      fill: "var(--ink-2)", "font-size": m.compact ? "10" : "11.5", "font-family": SANS
+    }), p.xUnit));
+    svg.appendChild(txt(el("text", {
+      x: mL - 8, y: mT - 8, "text-anchor": "end",
+      fill: "var(--ink-2)", "font-size": m.compact ? "10" : "11.5", "font-family": SANS
+    }), p.yUnit));
+
+    function tickNum(value) {
+      if (Math.abs(value) >= 1000) return String(Math.round(value));
+      if (Math.abs(value) < 10 && Math.round(value) !== value) return value.toFixed(1);
+      return String(Math.round(value));
+    }
+
+    var placed = [];
+    p.series.forEach(function (s, si) {
+      var col = seriesColor(si);
+      var d = s.points.map(function (pt, i) {
+        return (i ? "L" : "M") + X(pt[0]).toFixed(1) + " " + Y(pt[1]).toFixed(1);
+      }).join(" ");
+      svg.appendChild(el("path", {
+        d: d, fill: "none", stroke: col, "stroke-width": m.compact ? "1.6" : "2",
+        "stroke-linejoin": "round", "stroke-linecap": "round", opacity: "0.9"
+      }));
+      s.points.forEach(function (pt, i) {
+        var last = i === s.points.length - 1, first = i === 0;
+        svg.appendChild(el("circle", {
+          cx: X(pt[0]), cy: Y(pt[1]),
+          r: (first || last) ? (m.compact ? "3.6" : "4.4") : (m.compact ? "1.5" : "2"),
+          fill: last ? col : "var(--bg)", stroke: col,
+          "stroke-width": (first || last) ? "1.8" : "1"
+        }));
+      });
+
+      var end = s.points[s.points.length - 1];
+      var lx = X(end[0]), ly = Y(end[1]);
+      /* Two paths can finish within a few pixels of each other. Push the later
+         label clear rather than letting the names overprint. */
+      for (var q = 0; q < placed.length; q++) {
+        if (Math.abs(placed[q][0] - lx) < 62 && Math.abs(placed[q][1] - ly) < 14) {
+          ly = placed[q][1] + 15;
+        }
+      }
+      placed.push([lx, ly]);
+      var flip = lx > mL + plotW * 0.72;
+      svg.appendChild(txt(el("text", {
+        x: m.compact ? lx : (flip ? lx - 9 : lx + 9),
+        y: m.compact ? ly - 9 : ly + 4,
+        "text-anchor": m.compact ? "middle" : (flip ? "end" : "start"),
+        fill: "var(--ink)", "font-size": m.compact ? "10" : "12",
+        "font-family": SANS, "font-weight": "600"
+      }), s.name));
+    });
+
+    /* Which end is which. Printing the years next to the first series' own
+       endpoints put loose numbers in the middle of the plot, on top of other
+       countries' labels. A hollow dot for the first year and a filled one for
+       the last, explained once in the corner, says the same thing and collides
+       with nothing. */
+    var capY = mT + plotH + 36;
+    var capX = mL;
+    svg.appendChild(el("circle", {
+      cx: capX + 4, cy: capY - 4, r: "4", fill: "var(--bg)",
+      stroke: "var(--ink-2)", "stroke-width": "1.6"
+    }));
+    svg.appendChild(txt(el("text", {
+      x: capX + 13, y: capY, "text-anchor": "start", fill: "var(--ink-2)",
+      "font-size": m.compact ? "10" : "11.5", "font-family": MONO
+    }), String(p.startYear)));
+    var offs = m.compact ? 52 : 62;
+    svg.appendChild(el("circle", {
+      cx: capX + offs, cy: capY - 4, r: "4", fill: "var(--ink-2)"
+    }));
+    svg.appendChild(txt(el("text", {
+      x: capX + offs + 9, y: capY, "text-anchor": "start", fill: "var(--ink-2)",
+      "font-size": m.compact ? "10" : "11.5", "font-family": MONO
+    }), String(p.startYear + n - 1)));
+
+    return svg;
+  }
+
   var DRAW = {
     lollipop: drawLollipop,
     deviation: drawDeviation,
@@ -1996,7 +2216,8 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     dumbbell: drawDumbbell,
     line: drawLine,
     beeswarm: drawBeeswarm,
-    symbol: drawSymbol
+    symbol: drawSymbol,
+    scatter: drawScatter
   };
 
   /* ============================ GAME STATE ============================ */
@@ -2349,18 +2570,47 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
        not decoration. Sources with their own reuse terms are linked instead of
        being labelled with a licence they do not use. */
     var LICENCE = {
-      "Our World in Data": "CC BY 4.0",
-      "World Bank": "CC BY 4.0"
+      "Our World in Data": {
+        label: "CC BY 4.0",
+        url: "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "World Bank": {
+        label: "CC BY 4.0",
+        /* The World Bank layers mandatory terms on top of CC BY 4.0 and states
+           that linking those terms of use satisfies them, so the label points
+           there rather than at the bare Creative Commons deed. */
+        url: "https://data.worldbank.org/summary-terms-of-use"
+      },
+      "WHO Global Health Observatory": {
+        /* WHO publications are CC BY-NC-SA 3.0 IGO; WHO's own dataset terms are
+           CC BY 4.0 with a mandatory citation clause. Which of the two governs a
+           given GHO indicator is not something this page can establish, so the
+           credit links WHO's terms rather than naming a licence unsupported. */
+        label: "WHO dataset terms",
+        url: "https://data.who.int/about/data/terms-and-conditions"
+      },
+      "OECD": {
+        /* OECD written content published from July 2024 is CC BY 4.0, but the
+           data carries its own terms: reuse for any purpose including
+           commercial, with attribution. Linking the terms is the safe label. */
+        label: "OECD terms of use",
+        url: "https://www.oecd.org/en/about/terms-conditions.html"
+      },
+      "Eurostat": {
+        /* Not a Creative Commons licence. Reuse is authorised under Commission
+           Decision 2011/833/EU provided the source is acknowledged. */
+        label: "\u00a9 European Union, reuse with acknowledgement",
+        url: "https://ec.europa.eu/eurostat/help/copyright-notice"
+      }
     };
-    if (p.source) {
-      var lic = LICENCE[p.source];
-      $("src").innerHTML = "Source: " + p.source + ' · <a href="' + p.sourceUrl +
-        '" target="_blank" rel="noopener">' + p.slug + "</a>" +
-        (lic ? " · " + lic : "");
-    } else {
-      $("src").innerHTML = 'Source: Our World in Data · <a href="https://ourworldindata.org/grapher/' +
-        p.slug + '" target="_blank" rel="noopener">' + p.slug + "</a> · CC BY 4.0";
-    }
+    var srcName = p.source || "Our World in Data";
+    var srcUrl = p.sourceUrl || ("https://ourworldindata.org/grapher/" + p.slug);
+    var lic = LICENCE[srcName];
+    $("src").innerHTML = "Source: " + srcName +
+      ' \u00b7 <a href="' + srcUrl + '" target="_blank" rel="noopener">' + p.slug + "</a>" +
+      (lic ? ' \u00b7 <a href="' + lic.url + '" target="_blank" rel="noopener">' +
+             lic.label + "</a>" : "") +
+      " \u00b7 Chart redrawn from the source data";
     $("meta").textContent = p.form + " · " + p.family;
     $("next").textContent = idx < ACTIVE.length - 1 ? "Next chart" : "See your score";
     $("outcome").classList.add("show");
