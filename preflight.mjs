@@ -66,7 +66,11 @@ P.forEach((q, i) => {
   slugs.add(q.slug); truths.add(q.truth);
   if (!(q.diff >= 1 && q.diff <= 5)) bad.push(id + ': diff out of range');
   if (!q.period) bad.push(id + ': no period');            /* doc 10 */
-  if (!Array.isArray(q.decoys) || q.decoys.length !== 7) bad.push(id + `: ${q.decoys ? q.decoys.length : 0} decoys, want 7`);
+  /* Four, not seven. Only SHOWN_DECOYS (3) are ever rendered, so decoys 5 to 7
+     were written for every puzzle and seen by nobody. Four leaves one spare for
+     one rejected at review and degrades safely if the option ramp widens. The
+     original 134 still carry seven; both pass. */
+  if (!Array.isArray(q.decoys) || q.decoys.length < 4) bad.push(id + `: ${q.decoys ? q.decoys.length : 0} decoys, want at least 4`);
   if (!Array.isArray(q.hints) || q.hints.length !== 4) bad.push(id + `: ${q.hints ? q.hints.length : 0} hints, want 4`);
   const opts = [q.truth].concat(q.decoys || []);
   if (new Set(opts).size !== opts.length) bad.push(id + ': an option is duplicated');
