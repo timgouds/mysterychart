@@ -116,23 +116,11 @@ def block(o):
         L.append('      startYear: %d,' % o['startYear'])
     if 'baseline' in o:
         L.append('      baseline: %d,' % o['baseline'])
-    if 'xUnit' in o:
-        # Connected scatterplot. Both axes are measures, so the axes carry units
-        # only and the redacted title names the pairing (see SPEC rule 1).
-        L.append('      xUnit: %s, yUnit: %s,' % (json.dumps(o['xUnit'], ensure_ascii=False),
-                                                  json.dumps(o['yUnit'], ensure_ascii=False)))
     if 'series' in o:
         L.append('      series: [')
-        if 'xUnit' in o:
-            L.append(',\n'.join(
-                '        { name: %s, points: [%s] }'
-                % (json.dumps(s[0], ensure_ascii=False),
-                   ','.join('[%s,%s]' % (num(x, 2), num(y, 3)) for x, y in s[1]))
-                for s in o['series']))
-        else:
-            L.append(',\n'.join(
-                '        { name: %s, values: [%s] }' % (json.dumps(s[0], ensure_ascii=False), ','.join(num(v, 1) for v in s[1]))
-                for s in o['series']))
+        L.append(',\n'.join(
+            '        { name: %s, values: [%s] }' % (json.dumps(s[0], ensure_ascii=False), ','.join(num(v, 1) for v in s[1]))
+            for s in o['series']))
         L.append('      ],')
     key = 'ranks' if o['type'] == 'slope' else 'data'
     if key in o:

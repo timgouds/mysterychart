@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Assemble batch eight (31 puzzles, indices 134 to 164).
 
-Sources: WHO 9, Eurostat 13, OECD 7, OWID 2. No World Bank and no lollipops,
+Sources: WHO 9, Eurostat 12, OECD 6, OWID 2. No World Bank and no lollipops,
 both deliberate: the pool was 69% World Bank and OWID, and lollipop was 24 of
 134. Forms are dumbbell 10, diverging bar 6, rank slope 4, line 3, beeswarm 3,
-treemap 2, connected scatter 2, proportional symbols 1. 21 of the 31 use a time
-range. Nine are written to the deadpan brief.
+treemap 2, proportional symbols 1. 19 of the 29 use a time range. Nine are
+written to the deadpan brief.
 
 Three things this batch changed elsewhere, recorded here because a future batch
 will hit them too:
@@ -13,9 +13,11 @@ will hit them too:
   - Four decoys, not seven. Only SHOWN_DECOYS (3) are ever rendered, so decoys
     five to seven have never been seen by anybody. preflight.mjs now wants at
     least four rather than exactly seven.
-  - The connected scatterplot is new. Both its axes are measures, so they carry
-    units only and the redacted title names the pairing; common.block() grew one
-    branch for it and engine.html grew drawScatter with its compact variant.
+  - A connected scatterplot was built and then cut. Two measures on two axes
+    reads as a tangle of crossing paths, and the axis units have to name one of
+    the quantities to be legible at all, which is half the answer. The form is
+    gone from engine.html and from common.block(); the git history holds it if
+    it is ever worth another go.
   - A chart of change cannot be a beeswarm. drawBeeswarm maps x from zero, so a
     fall of -29 lands off the canvas. Both change charts here are diverging bars
     around a zero line, the same fix build7 made for temperature.
@@ -324,16 +326,6 @@ def extract_series():
         Y(*range(2000, 2023)))
     owid('coal_s',     'owid_coal_full.csv',  'Electricity from coal', '%',
          Y(*range(2000, 2025)))
-    es('fertility_s',  'es_fertility.json',   'Total fertility rate', 'births',
-       dict(indic_de='TOTFERRT'), Y(*range(2009, 2024)))
-    es('fememp_s',     'es_fememp.json',      "Women's employment rate", '%',
-       dict(indic_em='EMP_LFS', sex='F', age='Y20-64', unit='PC_POP'), Y(*range(2009, 2024)))
-    oecd('hours_s',    'oecd_hours.json',     'Annual hours worked', 'hours',
-         Y(*range(1995, 2024)), dict(MEASURE='HW', WORKER_STATUS='_T'))
-    oecd('prod_s',     'oecd_prod.json',      'GDP per hour worked', 'USD PPP',
-         Y(*range(1995, 2024)), dict(MEASURE='GDPHRS', UNIT_MEASURE='USD_PPP_H',
-         ACTIVITY='_T', TRANSFORMATION='N', PRICE_BASE='V', CONVERSION_TYPE='PPP',
-         ASSET_CODE='_Z'))
 
 
 SPECS = [
@@ -843,59 +835,6 @@ dict(slug='read-no-books', src='books', type='beeswarm', diff=2, deadpan=True,
          'discriminator: never using the internet is in low single figures across the '
          'Nordics, and this cannot get anywhere near that.'),
 
-dict(slug='births-and-womens-work', src=('fememp', 'fertility'), type='scatter', diff=4,
-     family='Change over time', form='Connected scatterplot · 2009 → 2023',
-     truth='Births per woman against the share of women in work, 2009 to 2023',
-     answer='Births per woman against the share of women in work',
-     period='2009 → 2023',
-     unit='horizontal: % of women aged 20 to 64 in work. vertical: births per woman',
-     xUnit='%', yUnit='births',
-     source='Eurostat',
-     sourceUrl='https://ec.europa.eu/eurostat/databrowser/view/demo_find',
-     pick=('paths', ['Germany', 'Spain', 'Sweden', 'Poland', 'Italy', 'Hungary']),
-     decoys=['Births per woman against the share of women in higher education',
-             'Age at first birth against the share of women in work',
-             'Births per woman against the share of births outside marriage',
-             'Births per woman against average household income'],
-     hints=['Every path here drifts to the right over the fifteen years, and most of them '
-            'drift downwards at the same time.',
-            'Hungary is the one path that climbs, and it did so while spending more on '
-            'families than any other country in Europe.',
-            'The horizontal axis is a percentage and runs to the high seventies; the '
-            'vertical one never passes two.',
-            'The old story was that one of these two things had to fall for the other to '
-            'rise. The chart says otherwise.'],
-     why='Fertility against female employment, 2009 to 2023, one path per country. The '
-         'vertical axis topping out below two rules out anything measured in years or '
-         'percentages, and Hungary is the only country whose path climbs.'),
-
-# ---------------------------------------------------------------------- OECD
-dict(slug='hours-and-output', src=('hours', 'prod'), type='scatter', diff=5,
-     family='Change over time', form='Connected scatterplot · 1995 → 2023',
-     truth='Hours worked against output per hour, 1995 to 2023',
-     answer='Hours worked against output per hour',
-     period='1995 → 2023',
-     unit='horizontal: hours worked a year per worker. vertical: US dollars of output an hour',
-     xUnit='hours', yUnit='$',
-     source='OECD', sourceUrl='https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PDB%40DF_PDB',
-     pick=('paths', ['Germany', 'Japan', 'United States', 'Mexico', 'Netherlands',
-                     'France']),
-     decoys=['Hours worked against average pay',
-             'Hours worked against the share of workers in industry',
-             'Days of holiday against output per hour',
-             'Hours worked against the share of workers who are women'],
-     hints=['The Mexican path sits further right than anything else here and has spent '
-            'thirty years going almost nowhere.',
-            'Every path moves left over time, and the vertical axis is denominated in the '
-            'same thing everywhere because it has been converted.',
-            'The horizontal axis is a count of hours in a year and runs past two thousand; '
-            'the vertical one is in US dollars.',
-            'Divide the second by nothing and you get the first back: one is time, the '
-            'other is what the time produced.'],
-     why='Annual hours worked against GDP per hour, PPP converted. The horizontal axis '
-         'running past 2,000 can only be hours in a year, which rules out the holiday '
-         'and pay readings.'),
-
 dict(slug='doctor-consultations', src='consult', type='dumbbell', diff=2, deadpan=True,
      family='Change over time', form='Dumbbell · 2000 → 2023',
      truth='Times a year the average person sees a doctor, 2000 vs 2023',
@@ -1252,21 +1191,6 @@ WHY = {
     "Albania at 70.8 being the worst on the chart, when skipping live culture altogether is "
     "commoner than that across most of Europe.",
 
-'births-and-womens-work':
-    "Every path drifts right as women's employment rises, and Hungary alone climbs, from "
-    "1.32 births to 1.55 while its employment rate goes from 58.6 to 76.1. Women in higher "
-    "education dies on the horizontal axis, which reaches 80 per cent. Age at first birth "
-    "dies on the vertical axis, which never passes two and would need to sit near thirty. "
-    "Births outside marriage dies there too, that share being over half in several of these "
-    "countries.",
-
-'hours-and-output':
-    "Mexico works 2,228 hours a year for 38.7 dollars an hour; Germany works 1,339 for "
-    "97.9. Average pay dies on the vertical axis, which is in tens of dollars rather than "
-    "the tens of thousands a salary needs. The share of workers in industry dies there too, "
-    "because a share cannot reach 98. Days of holiday die on the horizontal axis, which "
-    "runs past 2,000.",
-
 'doctor-consultations':
     "Japan's 12.4 visits a year is about one a month for every person in the country, and "
     "the Netherlands nearly doubles over the period, from 5.9 to 10.1. Nights in hospital "
@@ -1454,22 +1378,7 @@ def build(spec):
     }
     pick = spec['pick']
 
-    if t == 'scatter':
-        xs, ys = load(spec['src'][0] + '_s'), load(spec['src'][1] + '_s')
-        xr, yr = rows_of(xs), rows_of(ys)
-        y0 = max(int(xs['years'][0]), int(ys['years'][0]))
-        y1 = min(int(xs['years'][-1]), int(ys['years'][-1]))
-        xi, yi = xs['years'].index(str(y0)), ys['years'].index(str(y0))
-        span = y1 - y0 + 1
-        ser = []
-        for nm in pick[1]:
-            if nm not in xr or nm not in yr:
-                raise SystemExit(f"{spec['slug']}: no path for {nm}")
-            pts = [[round(xr[nm][xi + k], 2), round(yr[nm][yi + k], 3)] for k in range(span)]
-            ser.append({'name': nice(nm), 'points': pts})
-        p.update(series=ser, startYear=y0, xUnit=spec['xUnit'], yUnit=spec['yUnit'])
-
-    elif t == 'line':
+    if t == 'line':
         s = load(spec['src'] + '_s')
         have = require(spec, s, pick[1])
         p.update(startYear=int(s['years'][0]),
