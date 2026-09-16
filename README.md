@@ -62,13 +62,17 @@ See `trawl/README.md` for the fetchers and the two format traps.
 
 ## What preflight checks
 
-Content: required fields, exactly seven decoys and four hints, no duplicate
-options, no em-dashes in player-facing text, no answer word leaking into hint 1,
-no decoy that is another puzzle's answer anywhere in the pool, and a reveal that
-names any entity dominating its chart.
+Content: required fields, at least four decoys and exactly four hints, readable
+slugs, no duplicate options, no em-dashes in player-facing text, no answer word
+leaking into hint 1, a reveal that names any entity dominating its chart, and
+every country a reveal or hint places on a chart actually being on it. A shown
+decoy that is another puzzle's answer is reported as a warning, not a failure;
+the dealer keeps such pairs apart.
 
-Dealer: determinism, five charts a run, difficulty never falling within a run,
-form variety, and the broadcast history still resolving.
+Dealer: determinism, five charts a run, form variety, no clashing pairs dealt
+together, four options per chart, no line chart with more series than colours,
+gentle openers and hard closers (a warning), and the broadcast history still
+resolving.
 
 Runway: the last run carrying four new charts, and how many days that leaves.
 Under seven days warns; already exhausted fails.

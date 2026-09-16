@@ -188,6 +188,90 @@ P.forEach((q, i) => {
 check(!unexplained.length, 'every dominant outlier is explained in the reveal',
   'unexplained outliers:\n         ' + unexplained.join('\n         '));
 
+/* Every country a reveal or hint places on the chart must be on the chart.
+ *
+ * Seventeen puzzles shipped with reveals or discriminator hints built on
+ * countries that were not drawn: "Italy at 12" on a chart with no Italy, "the
+ * presence of Norway" on a chart with no Norway, and the reverse, "France and
+ * Italy are absent" on a chart showing both. A player who checks the chart
+ * against the explanation finds the explanation wrong. SPEC section 7, item 11.
+ *
+ * Absence is read from grammar, not from a keyword anywhere in the sentence: a
+ * list of names directly followed by "absent", "missing", "nowhere", "escape"
+ * or a bare "are not", or directly preceded by "absence of", "missing:" or
+ * "without". Names in such a list must not be drawn; every other name must be.
+ * A clause that supposes a different chart ("rice would put...") is skipped.
+ * It cannot resolve pronouns ("both are absent"), so it is a net, not a proof.
+ *
+ * ENTITY_OK holds mentions reviewed as deliberate: a country named as the
+ * origin of something, or on a different chart being compared. Add to it only
+ * after reading the sentence. */
+const ENTITY_OK = new Set([
+  'cocoa-bean-production/why/Vietnam',          // coffee's leaders, by comparison
+  'remittances-received/hint 4/Spain',          // where the builder works
+  'remittances-sent/why/Belgium',               // where Luxembourg's commuters live
+  'pig-livestock-count-heads/hint 4/India',     // "in India's case"
+  'potato-production/hint 4/Ireland',           // the famine
+  'eu-rail-freight/why/Netherlands',            // "which handles ... and is absent"
+  'eu-rail-freight/why/Spain',                  // "one of the largest ... and absent here"
+  'apple-production/why/Brazil',                // "Brazil, Indonesia and the rest of the tropics are absent"
+  'apple-production/why/Indonesia',
+  'life-expectancy-ranking/hint 4/United States', // "nowhere near it", and not drawn
+]);
+const entityProblems = (() => {
+  const labels = (q) => {
+    const out = [];
+    [q.data, q.ranks, q.series].forEach(rows => (Array.isArray(rows) ? rows : []).forEach(r => {
+      if (Array.isArray(r) && typeof r[0] === 'string') out.push(r[0]);
+      else if (r && typeof r === 'object' && typeof (r.name || r.label) === 'string') out.push(r.name || r.label);
+    }));
+    return out;
+  };
+  const ALIAS = { Britain: 'United Kingdom', America: 'United States', UAE: 'United Arab Emirates' };
+  const names = new Set([...Object.keys(ALIAS), ...Object.values(ALIAS)]);
+  P.forEach(q => labels(q).forEach(n => { if (/^[A-Z]/.test(n) && !/\d|^Rest of/i.test(n)) names.add(n); }));
+  const byLength = [...names].sort((x, y) => y.length - x.length);
+  const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const NOT_A_COUNTRY = /\b(New Mexico|Gulf of Guinea|Papua New Guinea|(Latin|North|South|Central) America|New South Wales)\b/g;
+  const NAME = '(?:the )?(?:' + byLength.map(esc).join('|') + ')';
+  const LIST = NAME + '(?:(?:, | and | or | nor )' + NAME + ')*';
+  const AFTER = new RegExp('(' + LIST + ')(?:, which [^,.;]*,)?\\s+(?:(?:is|are|was|were|do|does)\\s+)?'
+    + '(?:(?:all|both|each|also|entirely|altogether|largely)\\s+)?'
+    + '(?:absent|missing|nowhere(?! near)|appear nowhere|escape|not(?=[.,;]|$| (?:on|here|there|appear|present|at all|is)\\b))', 'g');
+  const BEFORE = new RegExp('(?:absence of|missing:|absent:|without)\\s+(' + LIST + ')', 'g');
+  const HYPOTHETICAL = /\b(would|could|if)\b/i;
+  const out = [];
+  P.forEach((q, i) => {
+    const on = new Set(labels(q));
+    const drawn = (n) => on.has(n) || on.has(ALIAS[n]) ||
+      Object.keys(ALIAS).some(a => ALIAS[a] === n && on.has(a));
+    const namesIn = (t) => {
+      const found = []; let s = t;
+      byLength.forEach(n => {
+        const re = new RegExp('\\b' + esc(n) + '\\b', 'g');
+        if (re.test(s)) { found.push(n); s = s.replace(re, ' '); }
+      });
+      return found;
+    };
+    const ok = (n, where) => ENTITY_OK.has(q.slug + '/' + where + '/' + n);
+    [['why', q.why], ...(q.hints || []).map((h, k) => ['hint ' + (k + 1), h])].forEach(([where, text]) => {
+      (text || '').split(/(?<=[.;!?])\s+|;\s*|,? (?:while|whereas) /).forEach(raw => {
+        if (!raw || HYPOTHETICAL.test(raw)) return;
+        let clause = raw.replace(NOT_A_COUNTRY, ' ');
+        const absent = [];
+        [AFTER, BEFORE].forEach(re => {
+          clause = clause.replace(re, (m, list) => { absent.push(...namesIn(list)); return m.replace(list, ' '); });
+        });
+        absent.forEach(n => { if (drawn(n) && !ok(n, where)) out.push(`[${i}] ${q.slug} ${where}: calls ${n} absent, but it is on the chart`); });
+        namesIn(clause).forEach(n => { if (!drawn(n) && !ok(n, where)) out.push(`[${i}] ${q.slug} ${where}: names ${n}, which is not on the chart`); });
+      });
+    });
+  });
+  return out;
+})();
+check(!entityProblems.length, 'every country a reveal or hint places on a chart is on it',
+  'reveal or hint contradicts the chart:\n         ' + entityProblems.join('\n         '));
+
 console.log('\n=== DEALER ===');
 const a = Array.from({ length: 60 }, (_, i) => dealRun(i + 1).join(','));
 const b = Array.from({ length: 60 }, (_, i) => dealRun(i + 1).join(','));
