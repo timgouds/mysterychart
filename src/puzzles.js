@@ -880,7 +880,7 @@
           "The United States, Saudi Arabia and Russia between them are about two fifths of the world total.",
           "It comes out of the ground as a black liquid."
         ],
-      why: "The United States leads because of shale. Hydraulic fracturing, chiefly in the Permian Basin of Texas and New Mexico, roughly doubled American output between 2010 and 2019 and pushed it past both Saudi Arabia and Russia, having been in long decline for the thirty years before that. The presence of Norway and Canada alongside the Gulf states rules out anything measuring reserves or exports rather than what comes out of the ground.",
+      why: "The United States leads because of shale. Hydraulic fracturing, chiefly in the Permian Basin of Texas and New Mexico, roughly doubled American output between 2010 and 2019, after decades of decline, and pushed it past both Saudi Arabia and Russia. China at under 5 per cent rules out steel and coal, where it produces more than half the world total, and Saudi Arabia at 11.5 per cent rules out natural gas, of which it produces only a few per cent.",
       slug: "oil-production-by-country"
     },
     {
@@ -1812,11 +1812,11 @@
       ],
       hints: [
         "One country holds a third of this square. The next eleven put together do not match it.",
-        "Singapore, Malaysia and the United Arab Emirates all take bigger blocks than Germany, and the Netherlands is not far behind. None of them is a large country; all four sit on a strait or a canal mouth.",
+        "Singapore, Malaysia and the United Arab Emirates all take bigger blocks than Japan, and Germany is not here at all. None of the three is a large country, and all three sit on a busy strait.",
         "Counted in twenty-foot steel boxes. The leader handles 279 million of them in a year.",
         "Each one is lifted off a ship by a gantry crane, and about a third of them pass through China."
       ],
-      why: "China takes a third of the world’s boxes because it holds seven of the ten busiest container ports on earth: Shanghai alone handles almost as many as the entire United States. Singapore and the Netherlands above Germany is the other giveaway. Both are transhipment hubs, where boxes come off one ship and go straight onto another without the country making or consuming anything, so any measure of what a country actually produces would put Germany and Japan far ahead of them.",
+      why: "China takes a third of the world’s boxes because it holds seven of the ten busiest container ports on earth: Shanghai alone handles almost as many as the entire United States. Singapore and the Netherlands on the board while Germany is absent is the other giveaway. Both are transhipment hubs, where boxes come off one ship and go straight onto another without the country making or consuming anything, so any measure of what a country actually produces would put Germany and Japan far ahead of them.",
       slug: "port-container-traffic",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/IS.SHP.GOOD.TU"
     },
@@ -1913,7 +1913,7 @@
         "World ranking by number of university students"
       ],
       hints: [
-        "Indonesia climbs eight places and Egypt five. Iran and Turkey both slide down the board.",
+        "Indonesia climbs eight places and Egypt five. Iran slides three places, and Russia and the United States each drop one.",
         "North Korea is third, above Russia and the United States, and Germany, Japan, France and the United Kingdom appear nowhere at all. This is a headcount, and it is not a budget.",
         "A ranking, so the chart carries no units. First place is a little over two million people.",
         "It counts everyone in uniform: soldiers, sailors and air crew, conscript or volunteer."
@@ -2134,7 +2134,7 @@
         "Measured as a percentage of adults doing this on a daily basis. The highest figure is 20.4 per cent and the lowest on the chart is 9.",
         "It is fizzy, it is sweetened, and Belgium gets through more of it than anywhere else in Europe."
       ],
-      why: "Belgium at 20.4 per cent is not a young person’s habit that drags the average up: it leads every single age band in the survey, and Belgians aged 65 to 74 report a higher daily rate (11.8 per cent) than Italians aged 15 to 24 (9.5 per cent). As for the ordering, daily alcohol would put Portugal and Spain at the very top and daily smoking would put Greece and Bulgaria there. Both are absent or low, and a northern and eastern list with the wine-growing south missing is the signature of sweetened soft drinks.",
+      why: "Belgium at 20.4 per cent is not a young person’s habit that drags the average up: it leads every single age band in the survey, and Belgians aged 65 to 74 report a higher daily rate (11.8 per cent) than Italians aged 15 to 24 (9.5 per cent). As for the ordering, daily alcohol would put Portugal and Spain at the very top and daily smoking would put Greece and Bulgaria there. Three of those four are absent and Bulgaria sits mid-table, and a northern and eastern list with the wine-growing south missing is the signature of sweetened soft drinks.",
       slug: "daily-sugary-drinks",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/hlth_ehis_fv7e/default/table"
     },
@@ -2300,11 +2300,11 @@
       ],
       hints: [
         "Argentina climbs eleven places and Bangladesh seven. France slips three.",
-        "France ninth and Ukraine tenth, with Canada and Australia just behind, is a list of exporters rather than of large countries. Nigeria and Ethiopia, which have plenty of both land and farmers, do not appear.",
+        "France ninth and Ukraine tenth, with Canada just behind, is a list of exporters rather than of large countries. Nigeria and Ethiopia, which have plenty of both land and farmers, do not appear.",
         "A ranking, so the chart shows no units. First place harvests about 640 million tonnes a year.",
         "It counts wheat, rice, maize and barley together, by weight, straight off the field."
       ],
-      why: "France, Ukraine, Canada, Argentina and Australia all appearing while Nigeria and Ethiopia do not is the discriminator. Those five have modest populations and modest amounts of farmland but enormous yields per hectare, which is a signature of mechanised grain rather than of land, labour or livestock.",
+      why: "France, Ukraine, Canada and Argentina all appearing, with Nigeria and Ethiopia absent, rules out farmers: the first four grow a great deal with very few people, and the last two have tens of millions working the land. Bangladesh seventh rules out farmland and meat together, since it has little of the first, less of the second, and grows rice two or three times a year on the same fields.",
       slug: "grain-production-ranking",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/AG.PRD.CREL.MT"
     },
@@ -2834,11 +2834,11 @@
       ],
       hints: [
         "Cyprus is first and Norway is second, which is not a pairing you would expect from anything cultural.",
-        "The top of this list mixes Cyprus and Malta with Norway, Switzerland and the Netherlands, and none of them clears 50 per cent. A ceiling that low rules out anything most people do as a matter of routine.",
+        "The top of this list mixes Cyprus and Italy with Norway, Belgium and Switzerland, and none of them clears 50 per cent. A ceiling that low rules out anything most people do as a matter of routine.",
         "Measured as a percentage of everyone aged 16 and over, from the same European survey that asks about trust. Nothing on the chart reaches 51.",
         "The survey asks how often you get together with friends or relatives, and even at the top only half of adults manage it every week."
       ],
-      why: "The ceiling is the evidence. Nobody clears 51 per cent, which is far too low for eating out or speaking to a relative and far too high for volunteering or club membership. Cyprus and Malta at the top alongside Norway and Switzerland also rules out any north-south cultural reading, which is what makes this one hard.",
+      why: "The ceiling is the evidence. Nobody clears 51 per cent, which is far too low for eating out or speaking to a relative and far too high for volunteering or club membership. Cyprus and Italy near the top alongside Norway and Switzerland also rules out any north-south cultural reading, which is what makes this one hard.",
       slug: "weekly-socialising",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/ilc_scp09/default/table"
     },
@@ -3298,12 +3298,12 @@
         "Change in the share of people who own their home since 2015"
       ],
       hints: [
-        "The three largest rises are all in central or eastern Europe, and the figures are well over 100 per cent in nine years.",
-        "Hungary has more than trebled while Italy has barely moved, a spread of nearly two hundred points over nine years. Wages and the cost of living moved within a far narrower band than that everywhere in Europe.",
+        "Hungary, Iceland and Lithuania lead, and even the bottom of the chart has risen by more than three fifths in nine years.",
+        "Portugal and the Netherlands have both roughly doubled in nine years. Nobody's pay in western Europe rose anywhere near that fast, and Dutch rents are held down by regulation.",
         "Measured as a percentage change against an index set to 100 in 2015, so zero is where things stood that year.",
-        "Hungary and the Baltic states more than doubled theirs, and Italy is the country that barely moved at all."
+        "It is what a flat in Budapest or Vilnius cost in 2024 against what the same flat cost in 2015."
       ],
-      why: "Hungary at 210 per cent against Italy at 12 is a spread no wage or price index in Europe came close to over the same nine years. Italy has had almost no house price growth since the financial crisis, while central Europe and the Baltics had the fastest on the continent, which is why this looks so much more violent than a cost of living chart. Turkey is left off deliberately: its index is nominal and lira inflation would have put it above 600 per cent, measuring the currency rather than the housing market.",
+      why: "Hungary at 210 per cent is the headline, but the western end is the evidence. The Netherlands has roughly doubled and Portugal has more than doubled, while pay in both rose by well under half over the same nine years, and Dutch rents are largely regulated. Hungary, Lithuania and Estonia had some of the fastest house price growth on the continent, which is why this looks so much more violent than a cost of living chart. Turkey is left off deliberately: its index is nominal and lira inflation would have put it above 600 per cent, measuring the currency rather than the housing market.",
       slug: "house-price-change",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/prc_hpi_a/default/table"
     },
@@ -3665,12 +3665,12 @@
         "Cassava grown"
       ],
       hints: [
-        "Ukraine, Poland, Germany and the Netherlands all have blocks here, and so do China and India.",
-        "Ukraine, Belarus and Poland together take a large share, and Belarus has nine million people. This is a crop that does well in cold, damp ground where wheat struggles.",
+        "Ukraine, Germany and the Netherlands all have blocks here, and so do China and India.",
+        "India is second and Ukraine third, ahead of both Russia and the United States. That rules out a crop that needs heat, and a crop that India barely grows.",
         "Counted in tonnes harvested in a year. The largest block is about 95 million tonnes.",
         "It came from the Andes, it saved and then starved Ireland, and eastern Europe grows more of it per head than anyone."
       ],
-      why: "Belarus and the Netherlands appearing beside China and India is what settles it. Rice would be almost entirely Asian and drop every European entry; wheat would put Russia, the United States, France and Canada at the front. A crop that thrives in cool wet soil is the only thing that puts Ukraine, Poland, Belarus and the Netherlands on the same square as the two giants.",
+      why: "Ukraine, Germany and the Netherlands appearing beside China and India is what settles it. Rice would be almost entirely Asian and drop every European entry; maize would be led by the United States by a distance, not show it fifth behind Russia; and sugar beet is barely grown in India or Bangladesh, which here are second and seventh. A crop that thrives in cool wet soil is the only thing that puts Ukraine, Germany and the Netherlands on the same square as the two giants.",
       slug: "potato-production",
       source: "Our World in Data", sourceUrl: "https://ourworldindata.org/grapher/potato-production"
     },
@@ -3698,12 +3698,12 @@
         "Pineapples grown"
       ],
       hints: [
-        "One circle is larger than all the others put together. Poland has the second or third biggest.",
+        "One circle is larger than all the others put together. Turkey, the United States and Poland hold the next three, with little to separate them.",
         "Poland, Italy and France are all here while Brazil, Indonesia and the Philippines are not. This grows in a cold winter, not a warm one.",
         "Counted in tonnes harvested in a year. The leader grows about 48 million tonnes of them.",
         "It needs a proper frost to fruit well, which is why Poland is near the top and the tropics are absent."
       ],
-      why: "China grows about half the world total, but the useful evidence is Poland second and Turkey, Italy and France all present while Brazil, India and the tropics are largely absent. This is a temperate fruit that needs winter chilling, so bananas, mangoes and pineapples are ruled out by the geography of the list alone.",
+      why: "China grows about half the world total, but the useful evidence is Poland fourth and Turkey, Italy and France all present while Brazil, Indonesia and the rest of the tropics are absent. This is a temperate fruit that needs winter chilling, so bananas, mangoes and pineapples are ruled out by the geography of the list alone.",
       slug: "apple-production",
       source: "Our World in Data", sourceUrl: "https://ourworldindata.org/grapher/apple-production"
     },
@@ -4200,11 +4200,11 @@
       ],
       hints: [
         "Lesotho and Namibia are both near the top of this list. Germany, Japan and the United States do not appear on it at all.",
-        "Nothing here reaches 40 per cent, and France, Germany and Italy are all absent despite being famously heavy on this. The reason is the word \"central\": in those countries a great deal is collected by regions or by separate social funds instead.",
+        "Nothing here reaches a third of the economy, France and Italy sit near the bottom despite being famously heavy on this, and Germany is absent altogether. The reason is the word \"central\": in those countries a great deal is collected by regions or by separate social funds instead.",
         "Measured as a percentage of everything the country produces in a year. The highest figure is close to 31.",
         "Lesotho is high because most of what it collects arrives through a customs union with South Africa."
       ],
-      why: "This is a narrower thing than it looks, which is what makes it hard: it counts only what central government collects, so federal countries and those with separate social insurance funds score far lower than their real tax burden. That is why Germany and France are missing while Lesotho and Namibia are near the top, both of them collecting most of their revenue as customs receipts through the Southern African Customs Union.",
+      why: "This is a narrower thing than it looks, which is what makes it hard: it counts only what central government collects, so federal countries and those with separate social insurance funds score far lower than their real tax burden. That is why Germany, Japan and the United States are missing and France and Italy sit near the bottom, while Lesotho and Namibia are near the top, both of them collecting a large part of their revenue as customs receipts through the Southern African Customs Union.",
       slug: "tax-revenue",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/GC.TAX.TOTL.GD.ZS"
     },
@@ -4348,7 +4348,7 @@
         "World ranking by the number of farms"
       ],
       hints: [
-        "Russia and Ukraine both climb. Argentina and Australia move around in the middle of the board.",
+        "Russia and Ukraine both climb. France and Turkey both slip.",
         "France, Canada and Australia are all in the top ten while Indonesia, Vietnam and Bangladesh are absent entirely. That is the wrong list for the grain most of Asia eats.",
         "A ranking, so the chart shows no units. First place harvests about 138 million tonnes.",
         "Russia’s climb is why an invasion of Ukraine in 2022 moved the price of bread everywhere."
@@ -4534,11 +4534,11 @@
       ],
       hints: [
         "Cyprus reports one tenth of one per cent. The Netherlands reports more than four in ten.",
-        "The bottom of the chart is Cyprus, Malta, Portugal and Spain, all close to nothing at all, so this is not something every household has some of. Slovakia and Poland sitting above France and Italy rules out money as well.",
+        "The bottom of the chart is Cyprus, Malta, Portugal and Turkey, all close to nothing at all, so this is not something every household has some of. Slovakia and Poland sitting far above Iceland and Spain rules out money as well.",
         "Measured as a percentage of adults answering a European health survey in 2019. The threshold is half an hour, every day.",
         "The Dutch do it on two wheels and the Danes and the Finns do it on two feet."
       ],
-      why: "The Netherlands is far out in front at 44 per cent, roughly one and a half times Slovakia behind it, and the reason is that cycling there is transport rather than exercise. The bottom of the chart is the discriminator: Cyprus at 0.1 and Malta at 2.4 rule out anything a household either has or does not have, because no measure of cars, homes or meals collapses that far. Slovakia, Hungary and Poland above France and Spain rules out wealth in the other direction.",
+      why: "The Netherlands is far out in front at 44 per cent, more than one and a half times Slovakia behind it, and the reason is that cycling there is transport rather than exercise. The bottom of the chart is the discriminator: Cyprus at 0.1 and Malta at 2.4 rule out anything a household either has or does not have, because no measure of cars, homes or meals collapses that far. Slovakia, Hungary and Poland far above Iceland and Spain rules out wealth in the other direction.",
       slug: "walking-and-cycling",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/hlth_ehis_pe6e/default/table"
     },
@@ -4569,12 +4569,12 @@
         "Share of Europeans living in a home built before 1946"
       ],
       hints: [
-        "Germany, Spain and the Netherlands all report either nothing or a tenth of one per cent. Romania reports twenty one.",
-        "Half the countries here are pinned against zero and stay there, which no measure of renting, crowding or damp ever does, because those never reach nothing anywhere. Everything that moves at all moves the same way.",
+        "Germany, Spain and the Netherlands all start or finish at zero. Romania finishes above twenty one.",
+        "Nearly half the countries here sit within two points of zero in both years, which no measure of renting, crowding or internet use ever does, because those never reach nothing anywhere. Every country that started high has fallen.",
         "Measured as a percentage of the population, from the annual European survey of living conditions.",
         "Romania has spent twenty years plumbing its villages, and has halved the figure without closing the gap."
       ],
-      why: "Romania is more than twice Latvia behind it and about a hundred times Germany, and the reason is rural: a third of Romanians live in villages where mains water arrived late or has not arrived. The floor is what gives the chart away. Germany, the Netherlands and Malta report zero, and almost nothing else measured across Europe reaches zero at all, because renting, crowding and damp exist everywhere. What is left is a piece of plumbing that rich countries finished installing decades ago.",
+      why: "Romania is more than twice Latvia behind it, and Germany reports none at all. The reason is rural: a third of Romanians live in villages where mains water arrived late or has not arrived. The floor is what gives the chart away. Germany, the Netherlands and Spain each report zero in one of the two years, and almost nothing else measured across Europe reaches zero at all, because renting, crowding and people who have never been online exist everywhere. What is left is a piece of plumbing that rich countries finished installing decades ago.",
       slug: "no-bath-or-shower",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/ilc_mdho02/default/table"
     },
@@ -4898,12 +4898,12 @@
         "World ranking by the amount of grain harvested"
       ],
       hints: [
-        "New Zealand and Malaysia have not moved off first and second in twenty years. The Netherlands has dropped ten places and Vietnam has climbed twelve.",
+        "New Zealand and Malaysia have not moved off first and second in twenty years. The Netherlands has dropped nine places and Vietnam has climbed twelve.",
         "Ireland and New Zealand are at the top with Malaysia and Costa Rica beside them, and India, Brazil, Russia and the United States are nowhere on the board. This is not a ranking by how much anybody grows, and the Dutch fall is a rule being obeyed rather than a market being lost.",
         "A ranking, so the chart carries no units at all. First place puts more than sixteen hundred kilograms on every hectare in a year.",
         "Grass in New Zealand and Ireland, oil palm in Malaysia, and Dutch farmers capped by a European limit on nitrates."
       ],
-      why: "This is intensity rather than quantity, which is why the giants are missing: India, Brazil, China and the United States buy far more of it in total, but they spread it over enormous areas. New Zealand and Ireland are at the top because heavily grazed grass is fed almost like a crop; Malaysia and Costa Rica because oil palm, bananas and coffee are grown hard on the same ground year after year. The Dutch fall from eleventh to twenty first is the European Union nitrates directive working. Vietnam climbing twelve places is three rice harvests a year on the same paddy. Kuwait, which would be third in 2022 and seventy seventh in 2002, is left off so the rest of the board stays legible.",
+      why: "This is intensity rather than quantity, which is why the giants are missing: India, Brazil, Russia and the United States buy far more of it in total, but they spread it over enormous areas. New Zealand and Ireland are at the top because heavily grazed grass is fed almost like a crop; Malaysia and Costa Rica because oil palm, bananas and coffee are grown hard on the same ground year after year. The Dutch fall from eleventh to twentieth is the European Union nitrates directive working. Vietnam climbing twelve places is three rice harvests a year on the same paddy. Kuwait, which would be third in 2022 and seventy seventh in 2002, is left off so the rest of the board stays legible.",
       slug: "fertiliser-ranking",
       source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/AG.CON.FERT.ZS"
     },
@@ -5136,7 +5136,7 @@
         "A percentage of all adults, measured against a world average of 31.",
         "It is diagnosed with a cuff, it usually has no symptoms, and it is the largest single cause of death on earth."
       ],
-      why: "Lithuania at 55 per cent is nearly three times Peru at 19, in a condition that usually has no symptoms at all. Diabetes dies on China and Mexico, both at the bottom of this chart and both among the worst in the world for it. Cholesterol dies on the top of the chart, which is Baltic and eastern rather than western European. Anaemia dies on Nigeria, mid-chart here and near the top of any anaemia ranking.",
+      why: "Lithuania at 55 per cent is nearly three times Peru at 19, in a condition that usually has no symptoms at all. Diabetes dies on China, second from the bottom here but home to more adults with diabetes than any other country. Cholesterol dies on the top of the chart, which is Baltic and eastern rather than western European. Anaemia dies on Nigeria, mid-chart here and near the top of any anaemia ranking.",
       slug: "raised-blood-pressure",
       source: "WHO Global Health Observatory", sourceUrl: "https://www.who.int/data/gho/data/indicators/indicator-details/GHO/raised-blood-pressure-(sbp-140-or-dbp-90)-(age-standardized-estimate)"
     },
@@ -5462,9 +5462,9 @@
       ],
       hints: [
         "Denmark is far larger here than a country of six million has any business being.",
-        "France is third rather than first, which settles one of the four options on its own, and Norway and Austria are nowhere.",
+        "France is third rather than first, which settles one of the four options on its own, and Norway is second from the bottom.",
         "Gigawatt hours in a single year, summing to the European total.",
-        "The countries that do best are flat, coastal and windy, and the mountainous ones are missing."
+        "The countries that do best are flat, coastal and windy, and Alpine Austria and Switzerland are missing."
       ],
       why: "Germany generates 138,914 gigawatt hours, more than twice Spain, and Denmark manages 20,553 from a far smaller population than either. Nuclear dies on France, third here at 47,499 when it would lead any nuclear chart by a distance. Water dies on Norway, second from bottom at 14,929 and below Denmark, when Norway leads Europe on hydro. The sun dies on Sweden at 40,621, fourth here and the wrong latitude to be fourth on solar.",
       slug: "eu-wind-electricity",
@@ -5493,11 +5493,11 @@
       ],
       hints: [
         "The second largest block belongs to a country at war, and the freight kept moving.",
-        "Poland is enormous here and the Netherlands is small, which is the reverse of how goods usually rank in Europe.",
+        "Poland is enormous here and the Netherlands is nowhere, which is the reverse of how goods usually rank in Europe.",
         "Million tonne-kilometres in a year: a tonne carried a kilometre, summed.",
         "The countries that dominate are the ones with coal, heavy industry and a nineteenth-century network still in daily use."
       ],
-      why: "Ukraine is second at 90,632 million tonne-kilometres, more than twice France, in a third year of full-scale war. Goods moved by lorry dies on Spain and the Netherlands, the two road-freight heavyweights of Europe, neither near the top here. Seaports die on the Netherlands again, which handles more port tonnage than any country in Europe and is absent. Motorway length dies on Ukraine itself, which has very little of it and is second.",
+      why: "Ukraine is second at 90,632 million tonne-kilometres, more than twice France, in its second year of full-scale war. Goods moved by lorry dies on Spain, one of the largest road hauliers in Europe and absent here, and on Ukraine, whose freight has long gone by rail rather than by road. Seaports die on the Netherlands, which handles more port tonnage than any other EU country and is absent. Motorway length dies on Ukraine itself, which has very little of it and is second.",
       slug: "eu-rail-freight",
       source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/rail_go_total"
     },

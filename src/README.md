@@ -23,7 +23,7 @@ machinery.
 
 ```
 python3 build.py        # assemble index.html and report
-node preflight.mjs      # 12 content and dealer checks; exit 1 blocks the ship
+node preflight.mjs      # content and dealer checks; exit 1 blocks the ship
 ```
 
 Then upload `index.html` to the repo root. `python3 build.py --check` tells you
@@ -36,8 +36,8 @@ broadcast history in `engine.html` is keyed on slug so a reorder will not
 corrupt it silently, but the dealer treats position as stable and there is no
 reason to disturb it.
 
-Each puzzle needs a unique `slug`, a `truth`, a `period`, exactly seven
-`decoys` ordered strongest first, exactly four `hints`, a `diff` of 1 to 5, and
+Each puzzle needs a unique `slug`, a `truth`, a `period`, at least four
+`decoys` ordered strongest first (only three are shown; the original 134 carry seven), exactly four `hints`, a `diff` of 1 to 5, and
 the fields its chart form requires. `preflight.mjs` checks all of that.
 
 ## After a batch
