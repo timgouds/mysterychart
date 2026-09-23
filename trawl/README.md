@@ -25,13 +25,27 @@ than rediscovering everything. This is the candidate bank doc 21 asked for.
 
 ## Building a batch
 
-One script per batch of twelve puzzles. Each fetches its own data live, asserts
-the data is usable, and prints a JS fragment for `src/puzzles.js`:
+Batches 1 to 8 were one script of about twelve puzzles each. From batch 9 a
+weekly batch of 35 is split across three scripts (`build9.py` snapshots,
+`build10.py` dumbbells and slopes, `build11.py` lines) so one bad fetch does not
+sink the lot. Each fetches its own data live, asserts it, and prints a JS
+fragment for `src/puzzles.js`. The player-facing text lives beside each script
+in `textN.py`, written from the script's `--digest` output, which prints the
+final data compactly, so the reveal and the hints are written from what will be
+drawn rather than from the screening pass:
 
-    python3 build4.py > batch4.js
+    python3 build9.py --digest
+    python3 build9.py > b9.js
+
+`sources.py` holds the strict fetchers used from batch 9 on. They pin every
+dimension of a dataset and stop the build if more than one value survives for a
+country and year; the screening explorers do not, and quietly keep whichever
+value arrived last. Two traps it handles: Eurostat's maritime data keys
+countries on `rep_mar` rather than `geo`, and the OECD API often answers with an
+internal server error, so it retries.
 
 `common.py` holds the shared emitters. `wb.py`, `eu.py` and `who.py` are the
-World Bank, Eurostat and WHO fetchers. Two things worth knowing: Eurostat
+World Bank, Eurostat and WHO fetchers (no new WHO charts until its licence is settled). Two things worth knowing: Eurostat
 arrives as JSON-stat and has to be decoded by computing the cube's strides
 rather than read from a summary (doc 22 records what happens otherwise), and
 OECD CSV is gzip, so curl needs `--compressed`.
