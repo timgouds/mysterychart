@@ -25,6 +25,7 @@ Add --check to verify the output against the currently deployed file without
 writing anything.
 """
 
+import datetime
 import hashlib
 import pathlib
 import re
@@ -73,15 +74,20 @@ def report(html):
         print("  launch        new Date(%s)" % launch.group(1))
     print("  size          %.0f KB" % (len(html.encode("utf-8")) / 1024))
 
-    # Fresh material lasts roughly pool / NEW_PER_RUN runs from launch. The
-    # engine's own runwayFrom() is exact; this is the cheap approximation, and
-    # it is here so a short runway is visible on every build rather than
-    # discovered by a player.
-    new_per_run = re.search(r"var NEW_PER_RUN = (\d+)", html)
-    if new_per_run and pool:
-        runs = pool // int(new_per_run.group(1))
-        print("  runway        ~%d runs of fresh material from launch" % runs)
-
+    # Every run takes FRESH_PER_RUN charts nobody has seen, so the last fresh
+    # run is the frozen history plus whatever the unseen charts can fill. This
+    # is here so a short runway is visible on every build rather than
+    # discovered by a player; preflight.mjs measures it from the real dealer.
+    fresh = re.search(r"var FRESH_PER_RUN = (\d+)", html)
+    aired = re.search(r"var LAST_AIRED_RUN = (\d+)", html)
+    hist = re.search(r"var HISTORY_SLUGS = \[(.*?)\n  \];", html, re.S)
+    if fresh and aired and hist and launch and pool:
+        seen = set(re.findall(r'"([a-z0-9-]+)"', hist.group(1)))
+        last = int(aired.group(1)) + (pool - len(seen)) // int(fresh.group(1))
+        y, m, d = [int(x) for x in launch.group(1).split(",")]
+        date = datetime.date(y, m + 1, d) + datetime.timedelta(days=last - 1)
+        print("  runway        %d unseen, last fresh run %d (%s)"
+              % (pool - len(seen), last, date.strftime("%-d %b %Y")))
 
 def main():
     check_only = "--check" in sys.argv

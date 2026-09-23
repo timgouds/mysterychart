@@ -43,7 +43,7 @@ html = html[:start] + pool + html[end:]
 # --- one run holding the whole batch --------------------------------------
 sub = [
     (r'var RUN_SIZE = 5;', 'var RUN_SIZE = %d;' % n),
-    (r'var NEW_PER_RUN = 4;', 'var NEW_PER_RUN = %d;' % n),
+    (r'var FRESH_PER_RUN = 5;', 'var FRESH_PER_RUN = %d;' % n),
     # the deal must not be constrained by what has already aired
     (r'var HISTORY_SLUGS = \[.*?\n  \];', 'var HISTORY_SLUGS = [];'),
     # every chart in the batch gets a fair number of options

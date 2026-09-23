@@ -6711,23 +6711,1207 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
       why: "Dutch men gain 12.4 centimetres in a century, from 170.1 to 182.5, overtaking Sweden and the United States on the way. Weight dies on the floor of 153, since no population has ever averaged 153 kilograms. Age at first marriage dies on the same floor from the other direction, sitting in the twenties. Years of schooling dies there too: nobody has 153 years of it.",
       slug: "mean-male-height",
       source: "Our World in Data", sourceUrl: "https://ourworldindata.org/grapher/average-height-of-men"
+    },
+    {
+      family: "Part-to-whole",
+      form: "Treemap · EU and candidate countries, 2024",
+      exhibit: "Exhibit FH",
+      type: "treemap", diff: 1,
+      truth: "Olives harvested, 2024", period: "2024",
+      unit: "thousand tonnes",
+      total: 17649,
+      data: [
+        ["Spain",8310], ["Turkey",3750], ["Italy",2300], ["Greece",1695],
+        ["Portugal",1341], ["Albania",147], ["Croatia",54], ["France",28],
+        ["Cyprus",21], ["Slovenia",4]
+      ],
+      answer: "Olives harvested",
+      decoys: [
+        "Grapes grown for wine",
+        "Hazelnuts harvested",
+        "Cork stripped from trees",
+        "Lemons grown"
+      ],
+      hints: [
+        "A crop that outlives the people who plant it, sometimes by a thousand years.",
+        "France, which makes more wine than almost anyone, barely registers, and Portugal is only fifth.",
+        "Thousand tonnes harvested in 2024, across the EU and the countries hoping to join it.",
+        "Most of it is pressed rather than eaten, and the province of Jaén alone accounts for a large part of the biggest block."
+      ],
+      why: "Spain harvests 8.3 million tonnes, more than twice Turkey and nearly half of everything on the chart. Grapes for wine die on France at 28 thousand tonnes, a country that could not make its wine from so little. Hazelnuts die on the order, since Turkey grows most of the world’s hazelnuts and here trails Spain by more than half. Cork dies on Portugal in fifth place, when it strips about half the world’s cork on its own.",
+      slug: "olive-harvest",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/apro_cpsh1"
+    },
+    {
+      family: "Part-to-whole",
+      form: "Treemap · share of the EU total, 2024",
+      exhibit: "Exhibit FI",
+      type: "treemap", diff: 2,
+      truth: "Brussels sprouts grown, 2024", period: "2024",
+      unit: "thousand tonnes",
+      total: 175,
+      data: [
+        ["Netherlands",64.7], ["Belgium",63.7], ["France",20.5], ["Germany",9.1],
+        ["Italy",6.5], ["Poland",3.4], ["Spain",3.2], ["Ireland",1.9],
+        ["Austria",0.8], ["Sweden",0.4], ["Slovenia",0.3], ["Finland",0.2]
+      ],
+      answer: "Brussels sprouts grown",
+      decoys: [
+        "Chicory grown",
+        "Cauliflower and broccoli grown",
+        "Tulip bulbs grown",
+        "Leeks grown"
+      ],
+      hints: [
+        "The two largest blocks are almost exactly the same size, and they belong to neighbours who have disagreed about most things.",
+        "Spain and Italy, two of Europe’s great vegetable gardens, hardly feature: this is a crop for cold, wet, northern fields.",
+        "Thousand tonnes harvested in 2024, EU countries only.",
+        "The Belgian capital lends it its name, and the Dutch grow slightly more of it."
+      ],
+      why: "The Netherlands grows 64.7 thousand tonnes and Belgium 63.7, so the vegetable named after the Belgian capital is grown in greatest quantity just over the border. Chicory dies on that order, since Belgium grows several times as much of it as the Netherlands. Cauliflower and broccoli die on Spain at 3.2 and Italy at 6.5, both among the largest growers of each. Tulip bulbs die on Belgium matching the Netherlands almost exactly, when the Dutch grow most of the world’s bulbs.",
+      slug: "brussels-sprouts-grown",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/apro_cpsh1"
+    },
+    {
+      family: "Part-to-whole",
+      form: "Treemap · the twelve largest, 2022",
+      exhibit: "Exhibit FJ",
+      type: "treemap", diff: 2,
+      truth: "Fish, shellfish and seaweed farmed, 2022", period: "2022",
+      unit: "thousand tonnes",
+      total: 120014,
+      data: [
+        ["China",75435], ["Indonesia",14776], ["India",10235], ["Vietnam",5113],
+        ["Bangladesh",2732], ["Philippines",2349], ["South Korea",2313], ["Norway",1662],
+        ["Egypt",1552], ["Chile",1524], ["Myanmar",1197], ["Ecuador",1125]
+      ],
+      answer: "Fish, shellfish and seaweed farmed",
+      decoys: [
+        "Fish and seafood eaten",
+        "Fish and seafood exported",
+        "Rice grown",
+        "Fertiliser used"
+      ],
+      hints: [
+        "The Mekong, the Ganges and the Nile each run through at least one of these blocks.",
+        "Norway, Chile and Ecuador are here and none of them grows rice worth mentioning; Japan and the United States are nowhere.",
+        "Thousand tonnes in 2022, counted by live weight and including plants.",
+        "Norway’s block is almost all salmon, and much of Indonesia’s is seaweed."
+      ],
+      why: "China produces 75.4 million tonnes, five times Indonesia and more than the other eleven blocks put together. Fish and seafood eaten dies on the absence of Japan and the United States, two of the largest markets for it. Exports die on Norway, the world’s second largest seafood exporter and only eighth here, behind Bangladesh and the Philippines. Rice dies on Norway, Chile and Ecuador, which grow almost none. Indonesia is second because seaweed counts, and Norway’s figure is nearly all salmon.",
+      slug: "fish-and-seaweed-farmed",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/ER.FSH.AQUA.MT"
+    },
+    {
+      family: "Part-to-whole",
+      form: "Treemap · the twelve largest, 2024",
+      exhibit: "Exhibit FK",
+      type: "treemap", diff: 2,
+      truth: "Passengers passing through seaports, 2024", period: "2024",
+      unit: "million passengers",
+      total: 412,
+      data: [
+        ["Italy",93.5], ["Greece",81.1], ["Denmark",41.3], ["Spain",35.8],
+        ["Croatia",34.7], ["Germany",28.3], ["Sweden",24.8], ["France",23.8],
+        ["Malta",15.6], ["Finland",14.4], ["Estonia",13.6], ["Norway",5.2]
+      ],
+      answer: "Passengers passing through seaports",
+      decoys: [
+        "Goods handled at seaports",
+        "Passengers passing through airports",
+        "Nights spent by tourists",
+        "Cruise ships calling"
+      ],
+      hints: [
+        "Some of the busiest crossings on this chart take less time than the queue to board them.",
+        "The Netherlands, which handles more cargo than any other country in Europe, is nowhere, while Malta outranks Finland.",
+        "Millions, counting everyone who boarded or left a ship in the country’s ports in 2024, so a single crossing is counted at both ends.",
+        "Think of the Strait of Messina, the Øresund and the hop from Helsinki to Tallinn."
+      ],
+      why: "Italy leads with 93.5 million, much of it crossings to Sicily, Sardinia and the islands of the Bay of Naples, with Greece close behind on its island ferries. Goods handled at seaports dies on the absence of the Netherlands, home to Europe’s largest port. Air passengers die on Germany and France, with the continent’s busiest airports and only sixth and eighth here. Tourist nights die on Denmark in third place, above Spain and France, a ranking made by short sea crossings rather than stays.",
+      slug: "sea-passengers",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/mar_pa_aa"
+    },
+    {
+      family: "Magnitude",
+      form: "Proportional symbols · every EU grower, 2024",
+      exhibit: "Exhibit FL",
+      type: "symbol", diff: 2,
+      truth: "Hops grown, 2024", period: "2024",
+      unit: "thousand tonnes",
+      data: [
+        ["Germany",46.5], ["Czechia",6.49], ["Poland",2.95], ["Slovenia",2.27],
+        ["Spain",1.11], ["France",0.67], ["Austria",0.32], ["Romania",0.15],
+        ["Italy",0.12]
+      ],
+      answer: "Hops grown",
+      decoys: [
+        "Beer brewed",
+        "Barley grown for malting",
+        "Tobacco grown",
+        "Sugar beet grown"
+      ],
+      hints: [
+        "A single valley in Bavaria accounts for most of the largest circle.",
+        "Belgium, the Netherlands and Ireland are nowhere, which would be strange for anything poured into a glass.",
+        "Thousand tonnes harvested in 2024, from the only EU countries that grow any.",
+        "It climbs wires strung high above the field, is picked in late summer, and the brewers of Munich and Pilsen buy almost all of it."
+      ],
+      why: "Germany grows 46.5 thousand tonnes, seven times Czechia and about three quarters of everything here. Beer brewed dies on the absence of Belgium, the Netherlands and Ireland, and on Slovenia in fourth place. Barley for malting dies on France, one of the world’s largest growers of it and sixth here with 0.67. Tobacco dies on Italy, the EU’s largest tobacco grower and last on this chart.",
+      slug: "hops-grown",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/apro_cpsh1"
+    },
+    {
+      family: "Magnitude",
+      form: "Proportional symbols · the largest EU growers, 2024",
+      exhibit: "Exhibit FM",
+      type: "symbol", diff: 2,
+      truth: "Asparagus grown, 2024", period: "2024",
+      unit: "thousand tonnes",
+      data: [
+        ["Germany",108.1], ["Italy",60.1], ["Spain",56.5], ["France",25],
+        ["Poland",18.4], ["Netherlands",13.3], ["Greece",8.7], ["Hungary",5.3],
+        ["Belgium",2.9], ["Austria",2.7], ["Croatia",0.6]
+      ],
+      answer: "Asparagus grown",
+      decoys: [
+        "Strawberries grown",
+        "Leeks grown",
+        "Peaches grown",
+        "Cabbages grown"
+      ],
+      hints: [
+        "For about ten weeks every spring, restaurants across the largest country here print a separate menu.",
+        "Germany, which grows almost no peaches, is first by a distance, and Belgium is ninth.",
+        "Thousand tonnes harvested in 2024, the largest growers in the EU.",
+        "It is cut by hand from mounded soil, white if it never sees the light and green if it does."
+      ],
+      why: "Germany grows 108.1 thousand tonnes, nearly twice Italy and more than Spain and France together. Strawberries die on Spain, the EU’s largest grower of them, third here at barely half the German figure. Leeks die on Belgium at 2.9, ninth here and one of the two largest leek growers in the EU. Peaches die on Germany itself, too far north to grow many.",
+      slug: "asparagus-grown",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/apro_cpsh1"
+    },
+    {
+      family: "Magnitude",
+      form: "Proportional symbols · the twelve largest, 2024",
+      exhibit: "Exhibit FN",
+      type: "symbol", diff: 2,
+      truth: "Nights spent at campsites, 2024", period: "2024",
+      unit: "million nights",
+      data: [
+        ["France",147.8], ["Italy",54.6], ["Spain",49.1], ["Germany",42.9],
+        ["Netherlands",26.2], ["Croatia",21.4], ["Sweden",16.7], ["Denmark",12.2],
+        ["Austria",8.5], ["Norway",8], ["Portugal",7.2], ["Switzerland",4.8]
+      ],
+      answer: "Nights spent at campsites",
+      decoys: [
+        "Nights spent in hotels",
+        "Nights spent in youth hostels",
+        "Ski lift passes sold",
+        "Nights spent on cruise ships"
+      ],
+      hints: [
+        "The largest circle is almost three times the size of the next, and the next is Italy.",
+        "Austria and Switzerland, with the best of the Alps, are near the bottom, and Greece is nowhere for all its hotel coast.",
+        "Millions of nights in 2024, counted from every guest who stayed, whether they lived in the country or not.",
+        "Pitches, awnings and a shared shower block."
+      ],
+      why: "France records 147.8 million nights, nearly three times Italy, on a coastline and countryside laid out for it. Hotel nights die on the absence of Greece, which fills far more hotel beds than the Netherlands, fifth here. Youth hostels die on Germany, home of the largest hostel network in the world and fourth on this chart. Ski passes die on Austria and Switzerland, ninth and twelfth.",
+      slug: "campsite-nights",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/tour_occ_ninat"
+    },
+    {
+      family: "Distribution",
+      form: "Beeswarm · every reporting country, 2024",
+      exhibit: "Exhibit FO",
+      type: "beeswarm", diff: 4,
+      truth: "Share of computing and IT specialists who are women, 2024", period: "2024",
+      unit: "% of the specialists employed",
+      suffix: "%",
+      data: [
+        ["Austria",21.1], ["Belgium",19], ["Bulgaria",27], ["Croatia",21.4],
+        ["Cyprus",23.7], ["Czechia",13], ["Denmark",21.2], ["Estonia",27.6],
+        ["Finland",22.4], ["France",19.3], ["Germany",19.1], ["Greece",16],
+        ["Hungary",15.2], ["Iceland",18.5], ["Ireland",24.4], ["Italy",17.1],
+        ["Latvia",26.8], ["Lithuania",18.2], ["Luxembourg",17.4], ["Malta",14.6],
+        ["Netherlands",18.7], ["North Macedonia",26.1], ["Norway",21.3], ["Poland",17.5],
+        ["Portugal",22.7], ["Romania",27.3], ["Serbia",22.5], ["Slovakia",17.2],
+        ["Slovenia",19.2], ["Spain",19.6], ["Sweden",24], ["Switzerland",17.9],
+        ["Turkey",21.8]
+      ],
+      label: ["Estonia", "Romania", "Bulgaria", "Sweden", "France", "Czechia"],
+      labelSm: ["Estonia", "France", "Czechia"],
+      answer: "Share of computing and IT specialists who are women",
+      decoys: [
+        "Share of company board seats held by women",
+        "Share of doctors who are women",
+        "Share of airline pilots who are women",
+        "Share of engineering graduates who are women"
+      ],
+      hints: [
+        "Four of the top five were in the Warsaw Pact or the Soviet Union itself.",
+        "France and Norway, which both legislated for women on company boards, are stuck in the middle, and nothing here reaches thirty per cent.",
+        "A percentage of everyone employed in one occupational group, 2024.",
+        "They write the code, run the networks and fix the laptop."
+      ],
+      why: "Estonia has the highest share at 27.6 per cent and Czechia the lowest at 13.0, so even at best fewer than three in ten of these jobs go to women. Board seats die on France at 19.3 and Norway at 21.3, both with legal quotas pushing that figure towards forty per cent. Doctors die on the ceiling, since women are most of the doctors in much of eastern Europe and nothing here passes 28. Pilots die on the floor: Czechia’s 13 per cent would be several times any country’s share of women in the cockpit.",
+      slug: "women-in-ict-jobs",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/isoc_sks_itsps"
+    },
+    {
+      family: "Distribution",
+      form: "Beeswarm · every reporting country, 2024",
+      exhibit: "Exhibit FP",
+      type: "beeswarm", diff: 2,
+      truth: "Share of people living in a home their household owns, 2024", period: "2024",
+      unit: "% of the population",
+      suffix: "%",
+      data: [
+        ["Austria",54.5], ["Belgium",70.3], ["Bulgaria",86], ["Croatia",91],
+        ["Cyprus",69.4], ["Czechia",74.7], ["Denmark",60.9], ["Estonia",79.3],
+        ["Finland",68.1], ["France",61.2], ["Germany",47.2], ["Greece",69.7],
+        ["Hungary",91.6], ["Ireland",69.3], ["Italy",75.9], ["Latvia",83.7],
+        ["Lithuania",87.4], ["Luxembourg",63.5], ["Malta",69.6], ["Montenegro",87.3],
+        ["Netherlands",68.8], ["North Macedonia",87], ["Norway",78.8], ["Poland",87.1],
+        ["Portugal",73.4], ["Romania",94.3], ["Serbia",88.9], ["Slovakia",93.1],
+        ["Slovenia",74.8], ["Spain",73.7], ["Sweden",64.8], ["Switzerland",42],
+        ["Turkey",55.8]
+      ],
+      label: ["Romania", "Slovakia", "Norway", "Italy", "France", "Germany", "Switzerland"],
+      labelSm: ["Romania", "Germany", "Switzerland"],
+      answer: "Share of people living in a home their household owns",
+      decoys: [
+        "Share of people with a mortgage",
+        "Share of households with a car",
+        "Share of adults who are married",
+        "Share of adults who own a smartphone"
+      ],
+      hints: [
+        "The bottom two are among the richest countries on the chart; the top one is among the poorest in the EU.",
+        "Romania at 94 cannot be counting mortgages, which few households there have, and Germany at 47 cannot be counting cars.",
+        "A percentage of the whole population, by the household they live in, 2024.",
+        "After 1990 many eastern European governments sold flats to the families living in them, for next to nothing."
+      ],
+      why: "Romania is highest at 94.3 per cent and Switzerland lowest at 42.0, with Germany just above it at 47.2. Mortgages die on Romania, where few households borrow to buy and yet almost everyone is counted here. Car ownership dies on Germany, one of the most motorised countries in Europe and second from bottom. Marriage dies on the top of the chart, since no country has 94 per cent of its people married. The eastern lead dates from the 1990s, when state flats were sold cheaply to the people living in them.",
+      slug: "home-ownership",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho02"
+    },
+    {
+      family: "Distribution",
+      form: "Beeswarm · every reporting country, 2023",
+      exhibit: "Exhibit FQ",
+      type: "beeswarm", diff: 2,
+      truth: "Cheese made per resident, 2023", period: "2023",
+      unit: "kilograms per resident",
+      data: [
+        ["Austria",25], ["Belgium",11.4], ["Bulgaria",15.2], ["Croatia",8.6],
+        ["Cyprus",43], ["Czechia",15.2], ["Denmark",83.7], ["Estonia",37.8],
+        ["France",27.9], ["Germany",28.4], ["Greece",24.2], ["Hungary",8.9],
+        ["Ireland",54], ["Italy",22.8], ["Latvia",29.8], ["Lithuania",33.5],
+        ["Netherlands",57.2], ["Norway",17.6], ["Poland",26.6], ["Portugal",7.8],
+        ["Romania",5.4], ["Slovenia",7.3], ["Spain",11.1], ["Sweden",7.6],
+        ["Switzerland",22.4], ["Turkey",9.3]
+      ],
+      label: ["Denmark", "Netherlands", "Cyprus", "France", "Italy", "Switzerland"],
+      labelSm: ["Denmark", "France", "Switzerland"],
+      answer: "Cheese made per resident",
+      decoys: [
+        "Cheese eaten per resident",
+        "Pork produced per resident",
+        "Butter made per resident",
+        "Milk drunk per resident"
+      ],
+      hints: [
+        "The largest figure belongs to a country of six million people, and the fourth largest to an island of about one.",
+        "Spain, which keeps more pigs than any other EU country, is near the bottom, and the leader’s figure is more than anyone could eat.",
+        "Kilograms per resident in 2023, from what the country’s dairies produced.",
+        "Halloumi explains fourth place; Gouda and Edam explain second."
+      ],
+      why: "Denmark makes 83.7 kilograms for every resident, while France, with its hundreds of named varieties, makes 27.9 and is ninth; Switzerland is fourteenth. Cheese eaten dies on Denmark itself, since no population eats anything like 84 kilograms of it a year. Pork dies on Spain, the EU’s largest pig producer and near the bottom here at 11.1. Butter dies on the same Danish figure, several times what Denmark’s dairies turn into butter.",
+      slug: "cheese-made-per-person",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/apro_mk_pobta"
+    },
+    {
+      family: "Distribution",
+      form: "Beeswarm · every country, 2023",
+      exhibit: "Exhibit FR",
+      type: "beeswarm", diff: 3,
+      truth: "Deaths each year per 1,000 people, 2023", period: "2023",
+      unit: "per 1,000 people a year",
+      data: [
+        ["Afghanistan",5.8], ["Albania",8.3], ["Algeria",4.6], ["Angola",6.9],
+        ["Antigua and Barbuda",6.9], ["Argentina",7.7], ["Armenia",8.2], ["Australia",6.9],
+        ["Austria",9.8], ["Azerbaijan",5.9], ["Bahamas",8.7], ["Bahrain",2.1],
+        ["Bangladesh",5], ["Barbados",10.6], ["Belarus",13.3], ["Belgium",9.4],
+        ["Belize",4.9], ["Benin",8.8], ["Bhutan",6.1], ["Bolivia",7.2],
+        ["Bosnia and Herzegovina",13.5], ["Botswana",5.7], ["Brazil",7.1], ["Brunei",5.2],
+        ["Bulgaria",15.7], ["Burkina Faso",8], ["Burundi",6.7], ["Cambodia",6.4],
+        ["Cameroon",7.2], ["Canada",8.2], ["Cape Verde",5.1], ["Central African Republic",9.4],
+        ["Chad",11], ["Chile",6.5], ["China",7.9], ["Colombia",5.4],
+        ["Comoros",7.2], ["Congo",6.3], ["Costa Rica",5.5], ["Croatia",13.3],
+        ["Cuba",10.1], ["Cyprus",7.1], ["Czechia",10.4], ["Côte d'Ivoire",7.7],
+        ["Democratic Republic of Congo",8.5], ["Denmark",9.8], ["Djibouti",7.5], ["Dominica",12.8],
+        ["Dominican Republic",6.2], ["East Timor",7.3], ["Ecuador",5.1], ["Egypt",5.5],
+        ["El Salvador",7.5], ["Equatorial Guinea",7.9], ["Eritrea",6], ["Estonia",11.7],
+        ["Eswatini",7.7], ["Ethiopia",6], ["Fiji",9.3], ["Finland",11],
+        ["France",9.4], ["Gabon",6.3], ["Gambia",6.3], ["Georgia",11.8],
+        ["Germany",12.3], ["Ghana",7], ["Greece",12.2], ["Grenada",8.9],
+        ["Guatemala",4.8], ["Guinea",9.1], ["Guinea-Bissau",7], ["Guyana",7.3],
+        ["Haiti",7.8], ["Honduras",4.5], ["Hong Kong",7.3], ["Hungary",13.4],
+        ["Iceland",6.7], ["India",6.6], ["Indonesia",7.5], ["Iran",4.7],
+        ["Iraq",4.1], ["Ireland",6.6], ["Israel",5.2], ["Italy",11.4],
+        ["Jamaica",8.1], ["Japan",13], ["Jordan",3], ["Kazakhstan",6.7],
+        ["Kenya",7.2], ["Kiribati",7], ["Kuwait",1.5], ["Kyrgyzstan",4.4],
+        ["Laos",6.2], ["Latvia",14.9], ["Lebanon",6], ["Lesotho",10.6],
+        ["Liberia",8.1], ["Libya",6.7], ["Lithuania",12.9], ["Luxembourg",6.6],
+        ["Madagascar",7.5], ["Malawi",5.4], ["Malaysia",5.2], ["Maldives",2.3],
+        ["Mali",8.6], ["Malta",7.3], ["Mauritania",5.5], ["Mauritius",9.5],
+        ["Mexico",6.2], ["Micronesia",7.6], ["Moldova",13.6], ["Mongolia",5.5],
+        ["Montenegro",10.1], ["Morocco",5.6], ["Mozambique",7], ["Myanmar",9.2],
+        ["Namibia",6.2], ["Nepal",6.9], ["Netherlands",9.5], ["New Zealand",7.3],
+        ["Nicaragua",4.6], ["Niger",8.9], ["Nigeria",11.7], ["North Korea",9.7],
+        ["North Macedonia",11], ["Norway",7.9], ["Oman",1.9], ["Pakistan",6.5],
+        ["Panama",4.8], ["Papua New Guinea",6.5], ["Paraguay",5.7], ["Peru",5.5],
+        ["Philippines",6.2], ["Poland",11.1], ["Portugal",11.2], ["Qatar",0.9],
+        ["Romania",12.8], ["Russia",12.1], ["Rwanda",5.9], ["Saint Kitts and Nevis",10],
+        ["Saint Lucia",8.6], ["Saint Vincent",11.5], ["Samoa",6.2], ["Sao Tome and Principe",5.6],
+        ["Saudi Arabia",2.3], ["Senegal",5.6], ["Serbia",14.7], ["Seychelles",7.3],
+        ["Sierra Leone",8.3], ["Singapore",6.2], ["Slovakia",10], ["Slovenia",10.2],
+        ["Solomon Islands",5.1], ["Somalia",9.8], ["South Africa",9.2], ["South Korea",6.9],
+        ["South Sudan",9.6], ["Spain",9], ["Sri Lanka",8.2], ["Sudan",6.4],
+        ["Suriname",6.6], ["Sweden",9], ["Switzerland",8.1], ["Syria",5],
+        ["Tajikistan",4.6], ["Tanzania",5.8], ["Thailand",8.9], ["Togo",8.7],
+        ["Tonga",6.4], ["Trinidad and Tobago",8.4], ["Tunisia",6.1], ["Turkey",6.2],
+        ["Turkmenistan",5.8], ["Uganda",4.8], ["Ukraine",13.1], ["United Arab Emirates",0.9],
+        ["United Kingdom",9.5], ["United States",9.2], ["Uruguay",9.8], ["Uzbekistan",6.2],
+        ["Vanuatu",5.1], ["Venezuela",7.6], ["Vietnam",6.6], ["Yemen",4.8],
+        ["Zambia",5.2], ["Zimbabwe",7.6]
+      ],
+      label: ["Bulgaria", "Japan", "Nigeria", "Germany", "Qatar"],
+      labelSm: ["Bulgaria", "Japan", "Qatar"],
+      answer: "Deaths each year per 1,000 people",
+      decoys: [
+        "New cancer cases each year per 1,000 people",
+        "People emigrating each year per 1,000 people",
+        "Marriages each year per 1,000 people",
+        "Immigrants arriving each year per 1,000 people"
+      ],
+      hints: [
+        "Japan and Nigeria sit almost side by side, for completely different reasons.",
+        "Nigeria is near the top, which rules out anything that needs a rich country’s hospitals to count it, and Japan’s figure is far too high for anything to do with leaving.",
+        "Per 1,000 people living in the country, over one year, 2023.",
+        "Young populations score low on this even when they are poor, and old ones score high even when they are rich."
+      ],
+      why: "Bulgaria is highest at 15.7 per 1,000, and Qatar and the United Arab Emirates lowest at 0.9, because most of their residents are young workers from abroad. Japan at 13.0 and Nigeria at 11.7 sit close together: one population is very old, the other faces high mortality at every age. New cancer cases die on Nigeria, where diagnosis is too scarce to produce a figure that high. Emigration dies on Japan, from which almost nobody leaves. Marriages die on Bulgaria at the top, a country with one of the lowest marriage rates in Europe.",
+      slug: "crude-death-rate",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SP.DYN.CDRT.IN"
+    },
+    {
+      family: "Distribution",
+      form: "Beeswarm · every OECD country with one, 2024",
+      exhibit: "Exhibit FS",
+      type: "beeswarm", diff: 4,
+      truth: "Minimum wage as a share of the median full-time wage, 2024", period: "2024",
+      unit: "% of the median full-time wage",
+      suffix: "%",
+      data: [
+        ["Australia",53.9], ["Belgium",47.6], ["Bulgaria",51.4], ["Canada",49.9],
+        ["Chile",69.5], ["Colombia",92.3], ["Costa Rica",87.1], ["Croatia",52],
+        ["Czechia",45.3], ["Estonia",41.8], ["France",62.5], ["Germany",50.1],
+        ["Greece",48.7], ["Hungary",48], ["Ireland",50.1], ["Israel",49.2],
+        ["Japan",46.8], ["Latvia",45.7], ["Lithuania",48.4], ["Luxembourg",55.9],
+        ["Mexico",73.7], ["Netherlands",47.7], ["New Zealand",65.7], ["Poland",58.4],
+        ["Portugal",58.2], ["Romania",56.7], ["Slovakia",50.3], ["Slovenia",60.8],
+        ["South Korea",60.5], ["Spain",55.2], ["Turkey",51.3], ["United Kingdom",61.1],
+        ["United States",25]
+      ],
+      label: ["Colombia", "Costa Rica", "Mexico", "France", "Germany", "United States"],
+      labelSm: ["Colombia", "France", "United States"],
+      answer: "Minimum wage as a share of the median full-time wage",
+      decoys: [
+        "Unemployment benefit as a share of the median full-time wage",
+        "Average rent as a share of the median full-time wage",
+        "Income tax paid as a share of the median full-time wage",
+        "State pension as a share of the median full-time wage"
+      ],
+      hints: [
+        "The three highest figures are all in Latin America, and the lowest belongs to the largest economy on the chart.",
+        "Colombia at 92 cannot be an income tax bill, and a country with little unemployment insurance cannot top a chart of it.",
+        "A percentage of what the middle full-time earner is paid, 2024.",
+        "It is the lowest rate an employer may legally pay, set against a typical wage."
+      ],
+      why: "Colombia’s legal floor is 92.3 per cent of the median full-time wage, so the minimum and the typical wage are almost the same thing, while the United States, whose federal rate has not risen since 2009, sits alone at 25.0. Unemployment benefit dies on Colombia, which pays very little of it and tops this chart. Rent dies on the same figure, since no country’s renters hand over 92 per cent of a middle wage. Income tax dies there too: no worker pays 92 per cent of their wage in tax.",
+      slug: "minimum-wage-to-median",
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE"
+    },
+    {
+      family: "Distribution",
+      form: "Beeswarm · every reporting country, 2024",
+      exhibit: "Exhibit FT",
+      type: "beeswarm", diff: 3,
+      truth: "Share of adults who took part in education or training in the last four weeks, 2024", period: "2024",
+      unit: "% of people aged 25 to 64",
+      suffix: "%",
+      data: [
+        ["Austria",17.6], ["Belgium",14.9], ["Bulgaria",1.8], ["Croatia",6.6],
+        ["Cyprus",11.2], ["Czechia",10.8], ["Denmark",31.2], ["Estonia",23.3],
+        ["Finland",29.1], ["France",15.1], ["Germany",9.3], ["Greece",4.4],
+        ["Hungary",11.8], ["Iceland",27.1], ["Ireland",14.7], ["Italy",10.4],
+        ["Latvia",11], ["Lithuania",9.8], ["Luxembourg",17.4], ["Malta",18.6],
+        ["Netherlands",26.5], ["North Macedonia",2.8], ["Norway",22.3], ["Poland",10],
+        ["Portugal",16.1], ["Romania",8.9], ["Serbia",5.5], ["Slovakia",12.8],
+        ["Slovenia",23.1], ["Spain",16], ["Sweden",37.5], ["Switzerland",26.4],
+        ["Turkey",8]
+      ],
+      label: ["Sweden", "Denmark", "Ireland", "Germany", "Greece", "Bulgaria"],
+      labelSm: ["Sweden", "Germany", "Bulgaria"],
+      answer: "Share of adults who took part in education or training in the last four weeks",
+      decoys: [
+        "Share of adults who hold a university degree",
+        "Share of adults who are out of work",
+        "Share of adults who used the internet in the last four weeks",
+        "Share of adults who did voluntary work in the last four weeks"
+      ],
+      hints: [
+        "The Nordic countries take the top three places, and Germany sits in the bottom third.",
+        "Ireland, with more graduates for its size than almost anywhere in Europe, is only in the middle, and Greece, with some of the highest unemployment, is near the bottom.",
+        "A percentage of people aged 25 to 64, asked about the previous four weeks, 2024.",
+        "An evening class, a course at work or a language lesson all count; a degree finished years ago does not."
+      ],
+      why: "Sweden leads at 37.5 per cent and Bulgaria trails at 1.8, a twentyfold gap in how many adults were being taught something in a given month. A degree dies on Ireland at 14.7, which has one of the most educated workforces in Europe. Being out of work dies on Greece at 4.4, near the bottom despite one of the highest jobless rates in the EU. Internet use dies on the top of the chart, since 37.5 per cent would be far too few for anywhere in Europe.",
+      slug: "adult-learning",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/trng_lfse_01"
+    },
+    {
+      family: "Deviation",
+      form: "Diverging bar · distance from the 0.7% line, 2024",
+      exhibit: "Exhibit FU",
+      type: "deviation", reference: 0.7, diff: 2,
+      truth: "Foreign aid given, as a share of national income, 2024", period: "2024",
+      unit: "% of national income, against a 0.7% line",
+      data: [
+        ["Norway",1.02], ["Luxembourg",1], ["Sweden",0.79], ["Denmark",0.72],
+        ["Germany",0.68], ["Netherlands",0.62], ["Ireland",0.56], ["United Kingdom",0.5],
+        ["Switzerland",0.49], ["France",0.48], ["Finland",0.47], ["Japan",0.37],
+        ["Canada",0.33], ["Italy",0.29], ["Spain",0.25], ["United States",0.23],
+        ["South Korea",0.21], ["Australia",0.19], ["Greece",0.15], ["Hungary",0.09]
+      ],
+      answer: "Foreign aid given, as a share of national income",
+      decoys: [
+        "Military spending, as a share of national income",
+        "Spending on research, as a share of national income",
+        "Spending on unemployment benefits, as a share of national income",
+        "Public spending on culture, as a share of national income"
+      ],
+      hints: [
+        "Norway and Luxembourg are level at the top, and Hungary is last.",
+        "The United States and South Korea are near the bottom, which rules out anything about armies or laboratories.",
+        "A percentage of gross national income in 2024, drawn against a 0.7% line.",
+        "The line is a target the United Nations set in 1970, and most rich countries have never reached it."
+      ],
+      why: "Norway gives 1.02 per cent of its national income and Luxembourg exactly 1; only Sweden and Denmark join them above the 0.7 per cent line, with Germany just short at 0.68. Military spending dies on the United States at 0.23, a country that spends about fifteen times that share on defence. Research dies on South Korea at 0.21, one of the heaviest research spenders in the world. Unemployment benefits die on Spain at 0.25, a country with long-standing high unemployment.",
+      slug: "aid-share-of-income",
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_DAC1%40DF_DAC1"
+    },
+    {
+      family: "Deviation",
+      form: "Diverging bar · change since 1990, index 1990 = 100",
+      exhibit: "Exhibit FV",
+      type: "deviation", reference: 100, diff: 3,
+      truth: "Greenhouse gas emissions compared with 1990, 1990 → 2023", period: "1990 → 2023",
+      unit: "index, 1990 = 100",
+      data: [
+        ["Turkey",242.5], ["Cyprus",157.5], ["Iceland",126.6], ["Ireland",98.6],
+        ["Spain",94.9], ["Portugal",90.1], ["Austria",86.2], ["Poland",73],
+        ["Italy",72.4], ["France",69.2], ["Netherlands",64.1], ["Sweden",62.1],
+        ["Denmark",54.2], ["Germany",53.4], ["Czechia",52.5], ["Bulgaria",45.6],
+        ["Latvia",38], ["Lithuania",37.6], ["Romania",37.6], ["Estonia",27]
+      ],
+      answer: "Greenhouse gas emissions compared with 1990",
+      decoys: [
+        "Energy used compared with 1990",
+        "Economic output compared with 1990",
+        "Cars on the road compared with 1990",
+        "Population compared with 1990"
+      ],
+      hints: [
+        "Every country at the bottom of this chart left the Soviet Union or the Warsaw Pact within two years of the starting date.",
+        "Germany has roughly halved, yet its economy is far larger than in 1990, so this is not a measure of output or of how many cars are on the road.",
+        "An index on which each country’s 1990 figure is 100, measured in 2023.",
+        "Carbon dioxide from burning fuel is most of it, with methane from farms and landfill much of the rest."
+      ],
+      why: "Turkey stands at 242.5, more than doubled since 1990 as its economy and population grew, while Estonia is at 27.0, having cut the oil-shale power generation it inherited from the Soviet Union. Energy use dies on Germany at 53.4, where consumption has fallen by around a fifth, not by half. Economic output dies on the same German figure, since the economy is far bigger than in 1990. Cars on the road die on Latvia at 38.0, where car ownership has risen steeply since independence.",
+      slug: "greenhouse-gas-change-since-1990",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/sdg_13_10"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2007 → 2024",
+      exhibit: "Exhibit FW",
+      type: "dumbbell", diff: 2,
+      truth: "Government debt as a share of GDP, 2007 vs 2024", period: "2007 → 2024",
+      unit: "% of GDP",
+      suffix: "%",
+      leftYear: 2007, rightYear: 2024,
+      data: [
+        ["Estonia",3.9,23.5], ["Bulgaria",16.3,23.8], ["Denmark",29.5,30.5],
+        ["Sweden",39.3,34.2], ["Ireland",23.9,38.3], ["Netherlands",42.8,43.8],
+        ["Germany",63.7,62.2], ["Austria",65.8,80], ["Finland",36,82.4],
+        ["Portugal",72.7,93.5], ["Spain",35.7,101.6], ["Belgium",87.5,103.9],
+        ["France",65.5,112.6], ["Italy",103.5,134.7], ["Greece",104.6,154.2]
+      ],
+      answer: "Government debt as a share of GDP",
+      decoys: [
+        "Household debt as a share of GDP",
+        "Government spending as a share of GDP",
+        "Exports as a share of GDP",
+        "Tax revenue as a share of GDP"
+      ],
+      hints: [
+        "Every dumbbell on this chart starts the year before the crash of 2008, and some never recovered from it.",
+        "Greece and Italy finish above 130, which no measure of spending or tax could reach, and Denmark sits near the bottom.",
+        "A percentage of each country’s annual GDP, in 2007 and 2024.",
+        "It is what the state owes, and the eurozone’s rules say it should stay under 60."
+      ],
+      why: "Greece rises from 104.6 to 154.2 per cent and Spain nearly triples from 35.7 to 101.6, while Estonia ends lowest at 23.5. Household debt dies on Denmark at 30.5, where households owe more relative to the economy than almost anywhere. Government spending dies on the top of the chart, since no state spends 154 per cent of its economy in a year. Exports die on Ireland at 38.3, one of the most export-heavy economies in the world.",
+      slug: "government-debt",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/gov_10dd_edpt1"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2004 → 2024",
+      exhibit: "Exhibit FX",
+      type: "dumbbell", diff: 2,
+      truth: "Share of workers who work part-time, 2004 vs 2024", period: "2004 → 2024",
+      unit: "% of people in work",
+      suffix: "%",
+      leftYear: 2004, rightYear: 2024,
+      data: [
+        ["Bulgaria",2.7,1.5], ["Romania",9.2,3], ["Poland",9.6,5.7],
+        ["Greece",4.5,6.3], ["Spain",8.8,13.4], ["France",16.9,16.8],
+        ["Italy",12.4,16.8], ["Sweden",23.1,19.5], ["Norway",29.1,23.6],
+        ["Belgium",21.5,24.1], ["Denmark",21.9,26.9], ["Germany",21.9,29],
+        ["Austria",19.9,30.5], ["Switzerland",32,39.5], ["Netherlands",45.2,42.7]
+      ],
+      answer: "Share of workers who work part-time",
+      decoys: [
+        "Share of workers with a second job",
+        "Share of workers in public-sector jobs",
+        "Share of workers who are women",
+        "Share of workers on night shifts"
+      ],
+      hints: [
+        "The Dutch figure has been near the top of every version of this chart since the 1980s.",
+        "Bulgaria and Romania end near zero, which no measure of women or public servants in the workforce could do, and the Dutch figure is far too large for second jobs.",
+        "A percentage of everyone aged 15 to 64 in work, in 2004 and 2024.",
+        "Fewer hours than a full week, by choice or otherwise."
+      ],
+      why: "The Netherlands leads at 42.7 per cent, down slightly from 45.2, while Austria climbs from 19.9 to 30.5, Germany from 21.9 to 29.0 and Bulgaria falls to 1.5. Second jobs die on the Dutch figure, since no country has four workers in ten holding two jobs. Public-sector jobs die on Bulgaria at 1.5, where the state employs far more than that. Women in work die on the same figure, since women are close to half the workforce everywhere.",
+      slug: "part-time-work",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/lfsa_eppga"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2012 → 2022",
+      exhibit: "Exhibit FY",
+      type: "dumbbell", diff: 3,
+      truth: "Share of farmland farmed organically, 2012 vs 2022", period: "2012 → 2022",
+      unit: "% of farmland",
+      suffix: "%",
+      leftYear: 2012, rightYear: 2022,
+      data: [
+        ["Malta",0.3,0.6], ["Ireland",1.2,2.2], ["Bulgaria",0.8,2.2],
+        ["Poland",4.5,3.9], ["Netherlands",2.6,4.4], ["Germany",5.8,9.8],
+        ["France",3.5,9.9], ["Spain",7.5,10.8], ["Denmark",7.3,11.4],
+        ["Finland",8.7,15], ["Latvia",10.6,15.9], ["Czechia",13.3,16],
+        ["Italy",9.3,18.1], ["Portugal",5.5,19.3], ["Sweden",15.8,19.9],
+        ["Estonia",14.9,23.4]
+      ],
+      answer: "Share of farmland farmed organically",
+      decoys: [
+        "Share of farmland that is irrigated",
+        "Share of farmland used for grazing",
+        "Share of farmland planted with cereals",
+        "Share of farmland under glass"
+      ],
+      hints: [
+        "Portugal’s figure more than tripled in ten years, while Poland’s went backwards.",
+        "Estonia leads and Malta is last, the reverse of any chart about watering fields, and Ireland, almost all grass, is near the bottom.",
+        "A percentage of all farmland in use, in 2012 and 2022.",
+        "No synthetic fertiliser, no synthetic pesticide, and a certificate to prove it."
+      ],
+      why: "Estonia farms 23.4 per cent of its land this way, Portugal more than triples to 19.3 and Italy roughly doubles to 18.1, while Malta ends at 0.6. Irrigation dies on that order, since Malta and Spain water far more of their farmland than Estonia. Grazing dies on Ireland at 2.2, a country almost entirely under grass. Cereals die on the ceiling: nothing here passes a quarter, when cereals cover far more than that across most of the EU.",
+      slug: "organic-farmland",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/sdg_02_40"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2011 → 2024",
+      exhibit: "Exhibit FZ",
+      type: "dumbbell", diff: 2,
+      truth: "Share of adults with a bank or mobile-money account, 2011 vs 2024", period: "2011 → 2024",
+      unit: "% of people aged 15 and over",
+      suffix: "%",
+      leftYear: 2011, rightYear: 2024,
+      data: [
+        ["Pakistan",10.3,27.3], ["Egypt",9.7,43.1], ["Philippines",26.6,50.2],
+        ["Mexico",27.4,53], ["Indonesia",19.6,56.3], ["Nigeria",29.7,63.3],
+        ["Vietnam",21.4,70.6], ["Turkey",57.6,81.6], ["Brazil",55.9,86.4],
+        ["India",35.2,89], ["China",63.8,89.4], ["Kenya",42.3,90.1],
+        ["Thailand",72.7,91.8], ["Germany",98.1,98.3]
+      ],
+      answer: "Share of adults with a bank or mobile-money account",
+      decoys: [
+        "Share of adults who own a smartphone",
+        "Share of adults who use the internet",
+        "Share of adults who can read and write",
+        "Share of adults who own a car"
+      ],
+      hints: [
+        "India’s figure more than doubled, and most of the rise came inside three years.",
+        "Kenya at 90 is far above anything it could reach in smartphones or internet use, and Egypt and Pakistan are too low for reading and writing.",
+        "A percentage of everyone aged 15 and over, surveyed in 2011 and 2024.",
+        "A savings book, a debit card or a wallet on a phone all count."
+      ],
+      why: "India climbs from 35.2 to 89.0 per cent after a government drive opened hundreds of millions of accounts, and Kenya reaches 90.1 on the back of mobile money, while Pakistan ends lowest at 27.3. Smartphones die on Kenya, where far fewer than nine adults in ten own one. Internet use dies on India in 2011 at 35.2, years before a third of Indians were online. Literacy dies on Pakistan and Egypt at 27.3 and 43.1, well below the share who can read in either.",
+      slug: "bank-account-ownership",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2000 → 2023",
+      exhibit: "Exhibit GA",
+      type: "dumbbell", diff: 3,
+      truth: "Years women can expect to outlive men, 2000 vs 2023", period: "2000 → 2023",
+      unit: "years",
+      leftYear: 2000, rightYear: 2023,
+      data: [
+        ["India",2,3.1], ["Sweden",4.6,3.3], ["Bangladesh",1.4,3.3],
+        ["United Kingdom",4.8,3.8], ["Germany",6,4.8], ["United States",5.2,5.3],
+        ["France",7.7,5.6], ["Japan",6.9,6], ["Poland",8.3,7.5],
+        ["Kazakhstan",11.5,8.3], ["Lithuania",10.7,9], ["Belarus",11.3,9.5],
+        ["Latvia",11.1,10.1], ["Russia",13.2,10.7], ["Ukraine",11.3,13.3]
+      ],
+      answer: "Years women can expect to outlive men",
+      decoys: [
+        "Years by which husbands are older than their wives",
+        "Years of schooling women have over men",
+        "Years by which men retire later than women",
+        "Years by which men’s working lives outlast women’s"
+      ],
+      hints: [
+        "The largest gap at the end belongs to a country at war, and it widened by two years.",
+        "The top of the chart is former Soviet republics at ten years or more, far beyond any gap in marriage age, schooling or retirement.",
+        "Years, in 2000 and 2023.",
+        "It is the difference between two life expectancies, and in Russia much of it is drink, tobacco and accidents among men."
+      ],
+      why: "Ukraine ends with the largest gap, 13.3 years, widened by the war, and Russia narrows from 13.2 to 10.7, while in India and Bangladesh women outlive men by about three. The gap in marriage age dies on the top of the chart, since husbands are not typically a decade older than their wives anywhere here. Schooling dies on the same figures, which no education gap comes near. Retirement dies there too: no country makes men work ten years longer than women.",
+      slug: "women-outlive-men",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SP.DYN.LE00.FE.IN"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2004 → 2023",
+      exhibit: "Exhibit GB",
+      type: "dumbbell", diff: 4,
+      truth: "Share of energy that is imported, 2004 vs 2023", period: "2004 → 2023",
+      unit: "% of energy used",
+      suffix: "%",
+      leftYear: 2004, rightYear: 2023,
+      data: [
+        ["Estonia",30.1,3.5], ["Sweden",37.3,26.4], ["Latvia",69.4,32.7],
+        ["Czechia",25.3,41.7], ["France",50.9,44.8], ["Poland",14.7,48],
+        ["Germany",61.2,66.8], ["Spain",77.7,68.3], ["Lithuania",45.5,69.5],
+        ["Netherlands",32.1,70.4], ["Italy",84.4,75.4], ["Belgium",79.8,75.8],
+        ["Ireland",91.6,77.8], ["Cyprus",95.5,92.2], ["Malta",99.8,97.6]
+      ],
+      answer: "Share of energy that is imported",
+      decoys: [
+        "Share of energy from renewable sources",
+        "Share of energy from coal",
+        "Share of energy used by industry",
+        "Share of energy used for heating"
+      ],
+      hints: [
+        "One country here ends almost self-sufficient on a rock that burns.",
+        "The Netherlands more than doubles after closing its great gas field, Malta stays near a hundred, and Sweden, full of dams and forests, sits low.",
+        "A percentage of all the energy a country uses, in 2004 and 2023.",
+        "Pipelines, tankers and cables from abroad supply almost all of Malta’s and almost none of Estonia’s."
+      ],
+      why: "Malta imports 97.6 per cent of its energy and Estonia only 3.5, running increasingly on its own oil shale, while the Netherlands jumps from 32.1 to 70.4 as the Groningen gas field was wound down. Renewables die on Sweden at 26.4, a country that gets most of its energy from water, wood and wind. Coal dies on the Netherlands at 70.4, far above any share coal has had there. Industry’s share dies on Malta at 97.6, since no country’s factories use nearly all its energy.",
+      slug: "energy-imported",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_id"
+    },
+    {
+      family: "Change over time",
+      form: "Dumbbell · 2005 → 2024",
+      exhibit: "Exhibit GC",
+      type: "dumbbell", diff: 3,
+      truth: "Average number of people per household, 2005 vs 2024", period: "2005 → 2024",
+      unit: "people",
+      leftYear: 2005, rightYear: 2024,
+      data: [
+        ["Finland",2.1,1.9], ["Germany",2.1,2], ["Denmark",2,2],
+        ["France",2.3,2.1], ["Netherlands",2.3,2.1], ["Italy",2.5,2.2],
+        ["Bulgaria",2.9,2.3], ["Czechia",2.5,2.3], ["Malta",2.9,2.4],
+        ["Portugal",2.8,2.4], ["Greece",2.7,2.4], ["Spain",2.8,2.5],
+        ["Cyprus",3,2.5], ["Ireland",2.8,2.7], ["Poland",2.8,2.9],
+        ["Slovakia",2.9,3.1]
+      ],
+      answer: "Average number of people per household",
+      decoys: [
+        "Average number of rooms per person",
+        "Average number of cars per household",
+        "Average number of televisions per home",
+        "Average number of bedrooms per home"
+      ],
+      hints: [
+        "Slovakia and Poland went one way over these twenty years, and almost everyone else went the other.",
+        "Slovakia has some of the most crowded homes in the EU and tops this chart, and no country has three cars for every home.",
+        "People, averaged across every private household, in 2005 and 2024.",
+        "The Nordic figure is low because so many there live alone."
+      ],
+      why: "Slovakia rises from 2.9 to 3.1 and Poland from 2.8 to 2.9, while Bulgaria falls from 2.9 to 2.3 and Finland ends lowest at 1.9. Rooms per person dies on Slovakia, where homes are among the most crowded in the EU and yet it tops this chart. Cars and televisions per home both die on Slovakia’s 3.1, since neither reaches three a household anywhere in Europe.",
+      slug: "household-size",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvph01"
+    },
+    {
+      family: "Ranking",
+      form: "Rank slope · 2004 → 2024",
+      exhibit: "Exhibit GD",
+      type: "slope", diff: 3,
+      truth: "EU ranking by share of 25 to 34 year olds with a degree, 2004 vs 2024", period: "2004 → 2024",
+      unit: "rank among EU countries, highest first",
+      leftYear: 2004, rightYear: 2024,
+      ranks: [
+        ["Ireland",3,1], ["Luxembourg",11,2], ["Cyprus",1,3],
+        ["Lithuania",8,4], ["Netherlands",9,5], ["France",5,7],
+        ["Spain",4,8], ["Belgium",2,10], ["Portugal",21,16],
+        ["Finland",6,21], ["Czechia",26,24], ["Italy",24,26],
+        ["Romania",27,27]
+      ],
+      answer: "EU ranking by share of 25 to 34 year olds with a degree",
+      decoys: [
+        "EU ranking by youth unemployment",
+        "EU ranking by average income of 25 to 34 year olds",
+        "EU ranking by share of 25 to 34 year olds who own their home",
+        "EU ranking by share of young adults who smoke"
+      ],
+      hints: [
+        "Finland fell fifteen places without its own figure moving, which says everything about everyone else.",
+        "Lithuania, far poorer than most, climbs to fourth, and Romania, where almost everyone owns their home, is last in both years.",
+        "A rank among the 27 EU countries by the share of people aged 25 to 34, in 2004 and 2024.",
+        "Three years of lectures and a certificate at the end of them."
+      ],
+      why: "Ireland rises to first with 65.2 per cent and Luxembourg climbs from eleventh to second, while Finland falls from sixth to twenty-first although its own figure barely moved, from 38.2 to 39.1. Youth unemployment dies on Ireland at the top and on Spain in eighth, when Spain would lead that ranking. Income dies on Lithuania, fourth here and far from the richest. Home ownership dies on Romania, last in both years, where almost every household owns its home.",
+      slug: "young-graduates-rank",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/edat_lfse_03"
+    },
+    {
+      family: "Ranking",
+      form: "Rank slope · 2000 → 2019",
+      exhibit: "Exhibit GE",
+      type: "slope", diff: 4,
+      truth: "OECD ranking by share of employees who belong to a trade union, 2000 vs 2019", period: "2000 → 2019",
+      unit: "rank among OECD countries, highest first",
+      leftYear: 2000, rightYear: 2019,
+      ranks: [
+        ["Iceland",1,1], ["Sweden",2,2], ["Denmark",4,3],
+        ["Finland",3,4], ["Belgium",5,5], ["Norway",6,6],
+        ["Italy",11,7], ["Canada",12,8], ["Ireland",10,9],
+        ["Japan",18,15], ["Germany",17,17], ["United States",24,25],
+        ["France",28,26], ["Estonia",23,28]
+      ],
+      answer: "OECD ranking by share of employees who belong to a trade union",
+      decoys: [
+        "OECD ranking by share of workers covered by collective agreements",
+        "OECD ranking by days lost to strikes",
+        "OECD ranking by paid holiday entitlement",
+        "OECD ranking by minimum wage"
+      ],
+      hints: [
+        "The top of this list barely moved in twenty years, and at the very top is a country of under four hundred thousand people.",
+        "France, a byword for strikes and for long holidays, is near the bottom, and so is the United States.",
+        "A rank among the OECD countries reporting both years, highest first, 2000 and 2019.",
+        "In much of Scandinavia it is the union, not the state, that pays out when you lose your job."
+      ],
+      why: "Iceland is first in both years, with 91.1 per cent of employees in a union by 2019, and the Nordic countries hold most of the next places, while France sits twenty-sixth at 10.1 and Estonia falls to last. Collective agreements die on France, where they cover almost every employee despite so few members. Strikes die on the same French figure, near the bottom of a ranking France would lead. Paid holiday dies on France again, which has some of the most generous leave in the OECD.",
+      slug: "union-membership-rank",
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_TUD"
+    },
+    {
+      family: "Ranking",
+      form: "Rank slope · 2000 → 2024",
+      exhibit: "Exhibit GF",
+      type: "slope", diff: 3,
+      truth: "OECD ranking by average annual wage, adjusted for prices, 2000 vs 2024", period: "2000 → 2024",
+      unit: "rank among OECD countries, highest first",
+      leftYear: 2000, rightYear: 2024,
+      ranks: [
+        ["Iceland",5,1], ["Luxembourg",1,2], ["Switzerland",3,3],
+        ["United States",7,4], ["Netherlands",2,5], ["Germany",8,9],
+        ["Ireland",19,12], ["Canada",13,13], ["South Korea",23,16],
+        ["France",18,20], ["Turkey",29,21], ["Lithuania",34,24],
+        ["Italy",11,25], ["Japan",17,26], ["Greece",26,35]
+      ],
+      answer: "OECD ranking by average annual wage, adjusted for prices",
+      decoys: [
+        "OECD ranking by economic output per person",
+        "OECD ranking by output per hour worked",
+        "OECD ranking by share of workers with a degree",
+        "OECD ranking by average pension paid"
+      ],
+      hints: [
+        "Iceland climbs to first, and Italy, Japan and Greece each drop nine places or more.",
+        "Ireland, near the top of any chart of output per person, is only twelfth, and Japan, full of graduates, falls to twenty-sixth.",
+        "A rank among the OECD countries reporting both years, highest first, after adjusting for what money buys at home.",
+        "It is what the average full-time job pays in a year."
+      ],
+      why: "Iceland climbs from fifth to first and Lithuania from thirty-fourth to twenty-fourth, while Italy falls fourteen places and Greece drops to thirty-fifth, its average wage lower in real terms than in 2000. Output per person dies on Ireland in twelfth, a country near the top of that ranking. Output per hour dies on the same Irish figure. Graduates die on Japan, twenty-sixth here and one of the most educated workforces in the OECD.",
+      slug: "average-wage-rank",
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40AV_AN_WAGE"
+    },
+    {
+      family: "Ranking",
+      form: "Rank slope · 2009 → 2024",
+      exhibit: "Exhibit GG",
+      type: "slope", diff: 4,
+      truth: "EU ranking by the gap between men’s and women’s employment rates, 2009 vs 2024", period: "2009 → 2024",
+      unit: "rank among EU countries, largest first",
+      leftYear: 2009, rightYear: 2024,
+      ranks: [
+        ["Italy",3,1], ["Greece",2,2], ["Romania",5,3],
+        ["Malta",1,4], ["Czechia",4,5], ["Poland",8,6],
+        ["Spain",9,8], ["Ireland",17,9], ["Netherlands",10,13],
+        ["Germany",15,15], ["France",19,18], ["Sweden",23,23],
+        ["Lithuania",27,26], ["Finland",24,27]
+      ],
+      answer: "EU ranking by the gap between men’s and women’s employment rates",
+      decoys: [
+        "EU ranking by the gap between men’s and women’s pay",
+        "EU ranking by unemployment rate",
+        "EU ranking by share of women in parliament",
+        "EU ranking by birth rate"
+      ],
+      hints: [
+        "Malta started this period first by a distance and has spent fifteen years falling.",
+        "Italy, which has one of the smallest pay gaps in the EU, is first, and Czechia, with almost no unemployment, is fifth.",
+        "A rank among the 27 EU countries, largest first, measured in percentage points for people aged 20 to 64, 2009 and 2024.",
+        "Take the share of men in work and subtract the share of women."
+      ],
+      why: "Italy ends first with a gap of 19.4 points between the shares of men and women in work, and Malta, first in 2009 at 37.5, falls to fourth at 13.6 as women moved into work; Finland ends last at 0.7. The pay gap dies on Italy at the top, where the difference in pay is among the smallest in the EU. Unemployment dies on Czechia in fifth, with one of the lowest jobless rates in Europe. Women in parliament die on Finland and Sweden near the bottom, when both would lead that ranking.",
+      slug: "gender-employment-gap-rank",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/tesem060"
+    },
+    {
+      family: "Ranking",
+      form: "Rank slope · 2004 → 2023",
+      exhibit: "Exhibit GH",
+      type: "slope", diff: 3,
+      truth: "EU ranking by share of household waste recycled, 2004 vs 2023", period: "2004 → 2023",
+      unit: "rank among EU countries, highest first",
+      leftYear: 2004, rightYear: 2023,
+      ranks: [
+        ["Germany",2,1], ["Austria",1,2], ["Slovenia",13,3],
+        ["Netherlands",4,4], ["Belgium",3,6], ["Italy",14,7],
+        ["Slovakia",20,9], ["Lithuania",25,10], ["Denmark",7,11],
+        ["Spain",9,14], ["France",11,16], ["Sweden",5,17],
+        ["Poland",22,21], ["Greece",18,22], ["Romania",26,26]
+      ],
+      answer: "EU ranking by share of household waste recycled",
+      decoys: [
+        "EU ranking by share of household waste burned for energy",
+        "EU ranking by share of household waste sent to landfill",
+        "EU ranking by share of electricity from renewable sources",
+        "EU ranking by food thrown away per person"
+      ],
+      hints: [
+        "Lithuania rose fifteen places in nineteen years, and Sweden fell twelve.",
+        "Sweden, which burns more of its rubbish than almost anyone and runs on hydropower, drops to seventeenth, and Romania is last in both years.",
+        "A rank among the EU countries reporting both years, highest first, 2004 and 2023.",
+        "Glass, paper, cans and the food caddy, as a share of everything collected from homes."
+      ],
+      why: "Germany ends first with 68.7 per cent, Slovenia climbs from thirteenth to third and Lithuania from twenty-fifth to tenth, while Sweden falls from fifth to seventeenth. Burning for energy dies on Sweden, which burns about half its household waste and yet slips down this list. Landfill dies on Romania, last in both years when it would top any ranking of waste buried. Renewable electricity dies on the same Swedish fall.",
+      slug: "recycling-rate-rank",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/cei_wm011"
+    },
+    {
+      family: "Ranking",
+      form: "Rank slope · 2004 → 2023",
+      exhibit: "Exhibit GI",
+      type: "slope", diff: 4,
+      truth: "EU ranking by distance travelled by train per person, 2004 vs 2023", period: "2004 → 2023",
+      unit: "rank among EU countries, highest first",
+      leftYear: 2004, rightYear: 2023,
+      ranks: [
+        ["Austria",3,1], ["France",1,2], ["Sweden",4,3],
+        ["Germany",5,4], ["Netherlands",6,5], ["Denmark",2,6],
+        ["Finland",9,7], ["Italy",7,8], ["Czechia",8,9],
+        ["Spain",11,11], ["Slovakia",12,12], ["Romania",13,17],
+        ["Lithuania",21,20], ["Greece",19,21]
+      ],
+      answer: "EU ranking by distance travelled by train per person",
+      decoys: [
+        "EU ranking by rail freight per person",
+        "EU ranking by length of high-speed track",
+        "EU ranking by railway track per square kilometre",
+        "EU ranking by train punctuality"
+      ],
+      hints: [
+        "Greece travels less than half as far this way as it did in 2004, and ends last.",
+        "Spain, with the longest high-speed network in Europe, is only eleventh, and Czechia, with one of the densest webs of track, is ninth.",
+        "A rank among the EU countries reporting both years, highest first, 2004 and 2023.",
+        "Passenger-kilometres divided by population: every journey counted by its length."
+      ],
+      why: "Austria climbs to first with about 1,585 kilometres a year for every resident, overtaking France, while Greece falls to last as its figure more than halves. High-speed track dies on Spain in eleventh, the owner of Europe’s longest high-speed network. Track density dies on Czechia in ninth, one of the most thickly railed countries for its area. Freight dies on Lithuania near the bottom, one of the heaviest rail freight countries for its size.",
+      slug: "rail-travel-per-person-rank",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/rail_pa_total"
+    },
+    {
+      family: "Change over time",
+      form: "Multi-line · 2004–2024",
+      exhibit: "Exhibit GJ",
+      type: "line", diff: 3,
+      truth: "Share of 18 to 24 year olds who left school early and are not in training, 2004–2024", period: "2004–2024",
+      unit: "% of 18 to 24 year olds",
+      suffix: "%",
+      startYear: 2004,
+      series: [
+        { name: "Malta", values: [42.1,33,32.2,30.2,27.2,25.7,21.4,18.8,18.1,17.1,17,16.3,15.6,14,14,14.2,13,10.9,10.3,10.2,9.5] },
+        { name: "Portugal", values: [39.3,38.3,38.5,36.5,34.9,30.9,28.3,22.8,20.5,18.7,17.3,13.5,13.9,12.6,11.6,10.5,9.1,6.4,6.3,8.1,6.6] },
+        { name: "Spain", values: [32.2,31,30.3,30.8,31.7,30.9,28.2,26.3,24.7,23.6,21.9,20,19,18.3,17.9,17.3,16,13.3,13.9,13.7,13] },
+        { name: "Romania", values: [22.4,19.6,17.9,17.3,15.9,16.6,19.3,18.1,17.8,17.3,18.1,19.1,18.5,18.1,16.4,15.3,15.6,15.3,15.6,16.6,16.8] },
+        { name: "Germany", values: [12.1,13.5,13.7,12.5,11.8,11.1,11.8,11.6,10.5,9.8,9.5,10.1,10.3,10.1,10.3,10.3,10.1,12.3,12.5,13,13.5] }
+      ],
+      answer: "Share of 18 to 24 year olds who left school early and are not in training",
+      decoys: [
+        "Share of 18 to 24 year olds who are unemployed",
+        "Share of 18 to 24 year olds who smoke",
+        "Share of 18 to 24 year olds living with their parents",
+        "Share of 18 to 24 year olds who are married"
+      ],
+      hints: [
+        "Two small southern countries started this period with four young people in ten on the wrong side of it.",
+        "Spain falls steadily through years when its youth unemployment doubled, and Germany is the one line that ends higher than it began.",
+        "A percentage of everyone aged 18 to 24, 2004 to 2024.",
+        "They finished at most the first years of secondary school and are no longer studying anything."
+      ],
+      why: "Portugal falls from 39.3 per cent to 6.6 and Malta from 42.1 to 9.5, while Germany ends slightly higher than it began, at 13.5. Youth unemployment dies on Spain, whose line falls steadily from 32.2 to 13.0 through years when joblessness among the young more than doubled. Smoking dies on Germany, rising at the end when smoking among the young has fallen almost everywhere. Living with parents dies on the ceiling, since far more than 42 per cent of young adults in Malta and Portugal live at home.",
+      slug: "early-school-leavers",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/edat_lfse_14"
+    },
+    {
+      family: "Change over time",
+      form: "Multi-line · 2005–2024",
+      exhibit: "Exhibit GK",
+      type: "line", diff: 3,
+      truth: "Interest rate on ten-year government bonds, 2005–2024", period: "2005–2024",
+      unit: "% a year",
+      suffix: "%",
+      startYear: 2005,
+      series: [
+        { name: "Greece", values: [3.6,4.1,4.5,4.8,5.2,9.1,15.8,22.5,10.1,6.9,9.7,8.4,6,4.2,2.6,1.3,0.9,3.5,4,3.4] },
+        { name: "Portugal", values: [3.4,3.9,4.4,4.5,4.2,5.4,10.2,10.6,6.3,3.8,2.4,3.2,3,1.8,0.8,0.4,0.3,2.2,3.2,3] },
+        { name: "Italy", values: [3.6,4,4.5,4.7,4.3,4,5.4,5.5,4.3,2.9,1.7,1.5,2.1,2.6,1.9,1.2,0.8,3.2,4.3,3.7] },
+        { name: "Spain", values: [3.4,3.8,4.3,4.4,4,4.2,5.4,5.8,4.6,2.7,1.7,1.4,1.6,1.4,0.7,0.4,0.3,2.2,3.5,3.1] },
+        { name: "Hungary", values: [6.6,7.1,6.7,8.2,9.1,7.3,7.6,7.9,5.9,4.8,3.4,3.1,3,3.1,2.5,2.2,3.1,7.6,7.5,6.5] }
+      ],
+      answer: "Interest rate on ten-year government bonds",
+      decoys: [
+        "Central bank interest rate",
+        "Inflation rate",
+        "Government deficit as a share of GDP",
+        "Growth in average wages"
+      ],
+      hints: [
+        "One line climbs past twenty in a single year and is back below two within a decade.",
+        "Greece, Portugal, Italy and Spain share a currency and a central bank, yet their lines split apart, and the Greek peak came in a year when prices there were barely rising.",
+        "A percentage a year, the annual average, 2005 to 2024.",
+        "It is what markets charged each government to borrow for a decade."
+      ],
+      why: "Greece peaks at 22.5 per cent in 2012 and Portugal at 10.6, as markets priced in the chance of default, before the European Central Bank promised to stand behind the euro and brought them down. Hungary, outside the euro, ends highest at 6.5. A central bank’s rate dies on the four euro countries, which share one and yet split apart. Inflation dies on Greece in 2012, when prices there were barely rising. The deficit dies on the same peak, since Greece was not borrowing 22 per cent of its economy that year.",
+      slug: "ten-year-bond-yields",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/irt_lt_mcby_a"
+    },
+    {
+      family: "Change over time",
+      form: "Multi-line · 2009–2024",
+      exhibit: "Exhibit GL",
+      type: "line", diff: 3,
+      truth: "Share of employees on temporary contracts, 2009–2024", period: "2009–2024",
+      unit: "% of employees aged 20 to 64",
+      suffix: "%",
+      startYear: 2009,
+      series: [
+        { name: "Spain", values: [24.7,24.3,24.8,23.1,22.9,23.8,24.9,25.8,26.4,26.4,25.8,23.8,24.9,21,16.9,15.5] },
+        { name: "Netherlands", values: [23.7,23.9,23.9,24.8,25.8,26.7,25.5,25.8,26.5,25.8,24.6,22.7,23,23.7,23.4,22.6] },
+        { name: "Portugal", values: [20.5,21.6,21.5,20.1,21,21,21.5,21.9,21.6,21.6,20.4,17.5,16.8,16.3,17.1,15.6] },
+        { name: "Italy", values: [12.1,12.4,13,13.5,13,13.4,13.9,13.8,15.1,16.7,16.7,14.9,16.3,16.5,15.7,14.4] },
+        { name: "Germany", values: [13,13.1,13.3,12.6,12.2,11.9,11.9,12,11.7,11.5,10.8,10,10,10.6,10.2,9.7] }
+      ],
+      answer: "Share of employees on temporary contracts",
+      decoys: [
+        "Share of employees working from home",
+        "Share of employees earning the minimum wage",
+        "Share of employees in public-sector jobs",
+        "Share of employees working night shifts"
+      ],
+      hints: [
+        "One line holds steady for twelve years and then drops by more than a third in three.",
+        "Nothing jumps in 2020, when office workers went home, and Germany already stood at 13 in 2009, six years before it had a legal minimum wage.",
+        "A percentage of all employees aged 20 to 64, 2009 to 2024.",
+        "A contract with an end date: seasonal, fixed-term or through an agency."
+      ],
+      why: "Spain holds near a quarter for twelve years, then drops from 24.9 per cent in 2021 to 15.5 after a 2022 law restricted fixed-term hiring, leaving the Netherlands highest at 22.6. Working from home dies on 2020, when no line jumps. The minimum wage dies on Germany at 13.0 in 2009, six years before it had one. Public-sector jobs die on the Spanish fall, since Spain did not lose a third of its public servants in three years.",
+      slug: "temporary-contracts",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/tesem110"
+    },
+    {
+      family: "Change over time",
+      form: "Multi-line · 2000–2025",
+      exhibit: "Exhibit GM",
+      type: "line", diff: 2,
+      truth: "Objects launched into space each year, 2000–2025", period: "2000–2025",
+      unit: "number a year",
+      startYear: 2000,
+      series: [
+        { name: "United States", values: [56,34,33,28,21,21,36,46,25,38,36,30,34,80,96,105,105,286,191,362,984,1232,1936,2233,2261,3708] },
+        { name: "China", values: [6,2,7,9,10,7,8,10,17,8,20,20,26,19,25,38,38,31,95,76,73,110,182,210,266,374] },
+        { name: "Russia", values: [23,30,19,22,19,19,16,18,21,30,24,24,23,29,35,27,14,25,23,30,24,21,50,66,97,89] },
+        { name: "Britain", values: [4,1,0,1,0,3,0,2,3,3,3,2,4,7,10,7,1,7,12,14,104,289,112,145,31,10] },
+        { name: "Japan", values: [3,4,10,7,2,5,11,6,6,12,9,4,9,5,24,4,11,16,17,21,9,24,12,16,26,30] }
+      ],
+      answer: "Objects launched into space each year",
+      decoys: [
+        "Rocket launches each year",
+        "Satellites in orbit",
+        "Astronauts sent into space each year",
+        "Airliners delivered each year"
+      ],
+      hints: [
+        "One line spends two decades near the floor and then leaves the chart behind in about six years.",
+        "The British line leaps to nearly three hundred in 2021 and falls back, which nothing that only accumulates could do, and no country launches ten rockets a day.",
+        "A count per year, 2000 to 2025.",
+        "Most of the American total is one company’s broadband satellites, and the British spike is a rival network’s."
+      ],
+      why: "The United States goes from 56 in 2000 to 3,708 in 2025, most of them satellites for one company’s broadband network, and the British spike to 289 in 2021 is a rival network registered there. Rocket launches die on the American figure, since no country flies ten rockets a day. Satellites in orbit die on the British line, which falls after 2021 when a running total cannot. Astronauts die on magnitude: fewer than a hundred people go to space in a year.",
+      slug: "objects-launched-into-space",
+      source: "Our World in Data", sourceUrl: "https://ourworldindata.org/grapher/yearly-number-of-objects-launched-into-outer-space"
+    },
+    {
+      family: "Change over time",
+      form: "Multi-line · 2000–2024",
+      exhibit: "Exhibit GN",
+      type: "line", diff: 3,
+      truth: "Share of 55 to 64 year olds in work, 2000–2024", period: "2000–2024",
+      unit: "% of people aged 55 to 64",
+      suffix: "%",
+      startYear: 2000,
+      series: [
+        { name: "Sweden", values: [64.3,66.2,68.3,68.6,69,69.5,69.6,70,70.1,70,70.4,72,73,73.6,74,74.5,75.5,76.4,78,77.7,77.6,76.4,77,78,78.1] },
+        { name: "Germany", values: [37.4,37.7,38.4,39.4,41.4,45.5,48.1,51.3,53.7,56.1,57.8,60,61.6,63.6,65.6,66.2,68.6,70.1,71.4,72.7,71.7,71.9,73.3,74.5,75] },
+        { name: "Italy", values: [27.3,26.9,28.6,30,30.2,31.4,32.4,33.7,34.3,35.6,36.5,37.8,40.3,42.7,46.2,48.2,50.3,52.2,53.7,54.3,54,53.4,55,57.3,59] },
+        { name: "Poland", values: [29,28.6,26.6,27.1,26.1,27.2,28.1,29.7,31.6,32.3,34.1,36.9,38.7,40.6,42.5,44.3,46.2,48.3,48.9,49.5,51.9,54.7,56.5,58.1,59] },
+        { name: "Slovenia", values: [22.3,23.4,25.9,22.7,30.1,30.7,32.6,33.5,32.8,35.6,35,31.2,32.9,33.5,35.4,36.6,38.5,42.7,47,48.6,50.5,52.7,55.2,54.2,56.3] }
+      ],
+      answer: "Share of 55 to 64 year olds in work",
+      decoys: [
+        "Share of 55 to 64 year olds with a university degree",
+        "Share of 55 to 64 year olds who own their home",
+        "Share of 55 to 64 year olds living alone",
+        "Share of 55 to 64 year olds who are overweight"
+      ],
+      hints: [
+        "Germany’s line doubles over a quarter of a century and ends within touching distance of Sweden’s.",
+        "Sweden starts at 64, far above any share of that age group holding degrees, and Slovenia starts at 22, far below any share owning a home.",
+        "A percentage of everyone aged 55 to 64, 2000 to 2024.",
+        "Pension reforms raised the age at which people could stop, and people stopped later."
+      ],
+      why: "Germany doubles from 37.4 per cent to 75.0 and Slovenia rises from 22.3 to 56.3 as pension ages rose across Europe, while Sweden, already at 64.3 in 2000, reaches 78.1. A degree dies on Sweden in 2000, since nothing like 64 per cent of that generation went to university. Home ownership dies on Slovenia at 22.3, a country where most people own their home. Living alone dies on Sweden’s 78.1, far above any share of that age group living by themselves.",
+      slug: "older-workers-in-work",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/lfsa_ergan"
+    },
+    {
+      family: "Change over time",
+      form: "Multi-line · 1997–2017",
+      exhibit: "Exhibit GO",
+      type: "line", diff: 3,
+      truth: "Divorces each year per 1,000 residents, 1997–2017", period: "1997–2017",
+      unit: "per 1,000 residents a year",
+      startYear: 1997,
+      series: [
+        { name: "Lithuania", values: [3.2,3.3,3.2,3.1,3.2,3.1,3.1,3.3,3.3,3.4,3.5,3.2,2.9,3.2,3.4,3.5,3.4,3.3,3.2,3.1,3] },
+        { name: "Czechia", values: [3.2,3.1,2.3,2.9,3.1,3.1,3.8,3.2,3.1,3.1,3,3,2.8,2.9,2.7,2.5,2.7,2.5,2.5,2.4,2.4] },
+        { name: "Spain", values: [0.9,0.9,0.9,0.9,1,1,1.1,1.2,1.7,2.9,2.8,2.4,2.1,2.2,2.2,2.2,2,2.2,2.1,2.1,2.1] },
+        { name: "Italy", values: [0.6,0.6,0.6,0.7,0.7,0.7,0.8,0.8,0.8,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,1.4,1.6,1.5] },
+        { name: "Ireland", values: [0,0.4,0.6,0.7,0.7,0.7,0.7,0.8,0.8,0.9,0.8,0.8,0.7,0.7,0.6,0.6,0.6,0.6,0.7,0.7,0.7] }
+      ],
+      answer: "Divorces each year per 1,000 residents",
+      decoys: [
+        "Marriages each year per 1,000 residents",
+        "Emigrants each year per 1,000 residents",
+        "Suicides each year per 1,000 residents",
+        "Civil partnerships each year per 1,000 residents"
+      ],
+      hints: [
+        "One line begins at exactly zero, for a reason once written into a constitution.",
+        "Ireland at zero in 1997 rules out anything that happens in every country every year, like weddings or people leaving, and Spain triples in under ten years.",
+        "Per 1,000 residents, over a year, 1997 to 2017.",
+        "Spain made it quicker in 2005, Italy in 2015, and Ireland made it possible at all in 1997."
+      ],
+      why: "Ireland starts at zero in 1997, the year its first divorces were granted after a 1995 referendum, and Spain triples from 0.9 to 2.9 by 2006 after a 2005 law removed the need to separate first, while Lithuania and Czechia stay highest at around three. Marriages die on Ireland’s zero, since Irish couples were marrying in 1997. Emigration dies there too, in a country people have never stopped leaving. Suicides die on magnitude: three per 1,000 would be far beyond the real rate anywhere.",
+      slug: "divorce-rate",
+      source: "Eurostat", sourceUrl: "https://ec.europa.eu/eurostat/databrowser/view/demo_ndivind"
+    },
+    {
+      family: "Change over time",
+      form: "Multi-line · 1990–2023",
+      exhibit: "Exhibit GP",
+      type: "line", diff: 3,
+      truth: "Boys born for every 100 girls, 1990–2023", period: "1990–2023",
+      unit: "per 100",
+      startYear: 1990,
+      baseline: 100,
+      series: [
+        { name: "China", values: [111.8,112.5,113.2,113.9,114.6,115.2,115.7,116.2,116.6,116.9,117.2,117.4,117.6,117.7,117.8,117.8,117.8,117.7,117.5,117.4,117.1,116.8,116.4,116,115.5,115,114.5,113.3,113.9,113.9,111.2,110.4,110.6,110.8] },
+        { name: "Azerbaijan", values: [106.7,106.9,107.4,108,109,110.1,111.1,112.2,113.3,114.4,115.3,116,116.5,116.7,116.8,116.8,116.8,116.8,116.8,116.7,116.5,116.2,115.9,115.5,115.1,114.6,114.3,114,113.8,113.4,113,112.6,112.2,111.8] },
+        { name: "India", values: [106.9,107.3,107.6,107.9,108.4,108.9,109,109.2,109.3,109.3,109.5,109.3,109.1,109.3,109.4,109.4,109.3,109.3,109.4,109.5,109.6,109.5,109.2,109.1,109.1,109,108.8,108.6,108.4,108.2,107.9,107.7,107.5,107.3] },
+        { name: "Vietnam", values: [106.3,106.3,106.3,106.3,106.3,106.3,106.4,106.4,106.5,106.8,107.3,109,107,104,108,106,109.8,111.6,112.1,110.5,111.2,111.9,112.3,113.8,112.2,112.8,112.2,112.1,114.8,111.5,112.1,112,111.1,110.9] },
+        { name: "South Korea", values: [115.7,113,113.8,115.2,115,113.2,111.5,108.9,110,109.7,110,109.3,109.7,108.8,108.2,107.8,107.4,106.4,106.3,106.4,106.6,105.8,105.7,105.4,105.3,105.3,105.2,106.1,105.5,105.6,105.7,105.7,105.8,105.8] }
+      ],
+      answer: "Boys born for every 100 girls",
+      decoys: [
+        "Men for every 100 women in the population",
+        "Children born for every 100 women",
+        "Male smokers for every 100 female smokers",
+        "Men for every 100 women at university"
+      ],
+      hints: [
+        "South Korea begins as the highest line and ends as the lowest.",
+        "India sits below China, which rules out anything to do with how many children women have, and South Korea moves ten points, far too much for a whole population’s balance of men and women.",
+        "A ratio per 100, 1990 to 2023, drawn from a floor of 100.",
+        "Nature’s figure is about 105; everything above it on this chart was chosen."
+      ],
+      why: "China peaks at 117.8 in 2004 and Azerbaijan at 116.8, against a natural figure of about 105, while South Korea falls from 115.7 in 1990 to 105.8 as the preference for sons faded. The population as a whole dies on the South Korean fall, far too fast for a whole country’s balance of men and women. Children per woman die on India sitting below China, when Indian women have about twice as many. Male smokers die on magnitude, since men outnumber women among smokers many times over in all five.",
+      slug: "boys-born-per-100-girls",
+      source: "World Bank", sourceUrl: "https://data.worldbank.org/indicator/SP.POP.BRTH.MF"
     }
   ];
 
 
   /* ========================= DEALING THE DAY =========================
      The five charts for a date are dealt, not written out by hand. The deal is
-     seeded by the cycle number and nothing else, so every player on a date gets
-     the same five, and adding a puzzle to the pool lengthens the cycle instead
-     of forcing the whole deck to be re-dealt by hand. Hand-dealing is what put
-     a sparse array and a missing pair of years into the file; this removes the
+     seeded by the run number and nothing else, so every player on a date gets
+     the same five, and adding puzzles to the pool lengthens the runway instead
+     of forcing anything to be re-dealt by hand. Hand-dealing is what put a
+     sparse array and a missing pair of years into the file; this removes the
      step entirely.
 
-     Guaranteed by construction: the same five for everyone on a date, at least
-     four charts nobody has seen before while unseen puzzles last, no chart
-     repeated until the pool is exhausted, and difficulty rising across the run.
-     Form variety is best effort. If the search cannot reach a clean deal the
-     run still plays, just with a duller mix. */
+     Guaranteed by construction: the same five for everyone on a date, runs
+     that have aired replayed exactly as they aired, and, while the pool is
+     ahead of the calendar, five charts nobody has seen in every new run, so no
+     chart ever repeats. Difficulty rises across charts two to five. Form
+     variety is best effort: if the search cannot reach a clean deal the run
+     still plays, just with a duller mix. */
 
   /* Four options on every chart. The run still escalates, but through the charts
      themselves rather than the width of the list: the dealer sorts each run by
@@ -6757,11 +7941,14 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return rare;
   })();
 
-  /* How many of each run's five must be charts nobody has seen before. The
-     dealer hits this exactly while unseen puzzles last, then degrades to a
-     longest-unseen rotation rather than breaking. */
-  var NEW_PER_RUN = 4;
-  var LAST_AIRED_RUN = 22;   /* aired, or airing today; order frozen */
+  /* Every chart in a run is one nobody has seen. Charts are never recycled:
+     returning players are most of the audience and would recognise a repeat,
+     so the pool is fed a weekly batch and has to stay ahead of the calendar.
+     If it ever falls behind, the dealer fills the shortfall from the charts
+     unseen longest so the page still plays. That is an emergency path, not a
+     mode, and preflight fails the build a week before it would be needed. */
+  var FRESH_PER_RUN = 5;
+  var LAST_AIRED_RUN = 30;   /* aired, or airing today; order frozen */
 
   /* ---------------------------------------------------------------------
      BROADCAST HISTORY
@@ -6772,7 +7959,9 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      corrupts the moment the pool is reordered, whereas an unresolvable slug
      announces itself in the console.
 
-     Append a run here only once it has aired. Never edit an existing row.
+     Append a run here only once it has aired, with its five slugs in the
+     order they aired. Rows are replayed exactly as written, so the order is
+     part of the record. Never edit an existing row.
      --------------------------------------------------------------------- */
   var HISTORY_SLUGS = [
     ["homicide-rate-unodc", "military-expenditure-as-a-share-of-gdp", "goods-exports", "farm-employment", "city-dwellers-in-largest-city"],
@@ -6797,6 +7986,14 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     ["average-annual-temperature", "share-of-population-urban", "air-freight", "unemployment-rate", "arable-land"],
     ["road-deaths-per-100000", "malaria-cases", "bank-branches-per-100000", "birth-rate", "forest-area-as-share-of-land-area"],
     ["oil-production-by-country", "share-of-population-in-extreme-poverty", "orange-production", "house-price-change", "trade-balance"],
+    ["apple-production", "share-of-adults-defined-as-obese", "under-five-stunting-change", "municipal-waste-rank", "share-global-forest"],
+    ["scientific-papers", "eu-tourist-nights", "goods-exports", "pension-spending", "raised-blood-pressure"],
+    ["clean-cooking-fuels", "largest-economies-ranking", "young-adults-living-with-parents", "mri-scanners", "fertiliser-ranking"],
+    ["cocoa-bean-production", "landlines-per-100", "eu-wind-electricity", "life-expectancy-ranking", "life-expectancy-at-60"],
+    ["population-living-in-flats", "price-of-a-bottle-of-wine", "food-price-level", "electricity-from-coal", "hospital-beds-per-1000"],
+    ["cattle-livestock-count-heads", "population-density", "armed-forces-ranking", "forest-area-change", "retirement-age-rank"],
+    ["read-no-books", "health-spending-per-person", "grain-production-ranking", "banana-production", "electricity-lost-in-transmission"],
+    ["potato-production", "age-leaving-parents-home", "physical-inactivity", "gender-wage-gap-rank", "child-mortality"],
   ];
 
   var SLUG_INDEX = (function () {
@@ -6848,12 +8045,13 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      third of players solved first time; run 20 opened with a diff 1 that is past
      335 first-try solves. Charts two to five stay non-decreasing in difficulty.
 
-     Runs that have already aired keep the order they aired in. */
-  function sortRun(run, runNumber) {
+     Runs that have already aired are not sorted at all: HISTORY_SLUGS holds
+     them in the order they aired and buildSchedule replays that verbatim. */
+  function sortRun(run) {
     var rest = run.slice().sort(function (a, b) {
       return PUZZLES[a].diff - PUZZLES[b].diff || a - b;
     });
-    if (!(runNumber > LAST_AIRED_RUN) || rest.length < 2) return rest;
+    if (rest.length < 2) return rest;
     var best = 0, k;
     for (k = 1; k < rest.length; k++) {
       if (expectedFirstTry(rest[k]) > expectedFirstTry(rest[best])) best = k;
@@ -6924,14 +8122,15 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   /* ---------------------------------------------------------------------
      THE DEALER
 
-     Runs forward from run 1, keeping a record of when each puzzle was last
-     shown. Each run takes NEW_PER_RUN charts nobody has seen and fills the
-     rest from the charts unseen longest, so adding puzzles extends the
-     runway instead of reshuffling the whole deck.
+     Runs forward from run 1, replaying the broadcast history and then dealing
+     each later run from charts nobody has seen. Each run takes FRESH_PER_RUN
+     (all five) from the unseen queue; runCost and the seeded draws choose
+     which five and sortRun orders them. Adding puzzles extends the runway.
 
-     The old dealer shuffled the entire pool each cycle, which guaranteed no
-     repeat within a cycle and nothing at all across cycles. On a pool of 100
-     that meant a run next month could serve four charts from week one.
+     If the unseen queue ever holds fewer than five, the shortfall is filled
+     from the charts unseen longest so the page still plays. That is the
+     emergency path described above FRESH_PER_RUN, and preflight treats any
+     run in the coming week that would need it as a failure.
 
      Deterministic: the schedule is a pure function of the pool and the run
      number, so everyone still sees the same five on the same date with no
@@ -6941,8 +8140,8 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   /* Ten years of runs. Past that we wrap rather than build an unbounded
      schedule, which protects the page from a badly wrong device clock. */
   var MAX_RUN = 3650;
-  var ATTEMPTS = 240;      /* seeded draws tried per run, best cost wins */
-  var RECYCLE_WINDOW = 8;  /* how deep into the longest-unseen list to look */
+  var ATTEMPTS = 240;         /* seeded draws tried per run, best cost wins */
+  var EMERGENCY_WINDOW = 8;   /* emergency only: how far past the oldest-seen to look */
 
   var schedule = null;
 
@@ -6955,22 +8154,20 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     /* Oldest first. Ties break on index so the order is total and stable. */
     seen.sort(function (x, y) { return lastSeen[x] - lastSeen[y] || x - y; });
 
-    var want = Math.min(NEW_PER_RUN, unseen.length, RUN_SIZE);
-    var fill = Math.min(RUN_SIZE - want, seen.length);
-    /* Look a little past the strictly-oldest charts so the cost search has
-       room to avoid a form clash, but never so far that a recent chart
-       returns. */
-    var pool = seen.slice(0, Math.min(seen.length, fill + RECYCLE_WINDOW));
+    var want = Math.min(FRESH_PER_RUN, unseen.length, RUN_SIZE);
+    /* Normally zero. Non-zero only when the pool has fallen behind. */
+    var shortfall = Math.min(RUN_SIZE - want, seen.length);
+    var fallback = seen.slice(0, Math.min(seen.length, shortfall + EMERGENCY_WINDOW));
 
-    if (want + fill < RUN_SIZE) {          /* pool smaller than a run */
-      return sortRun(unseen.concat(seen).slice(0, RUN_SIZE), n);
+    if (want + shortfall < RUN_SIZE) {     /* pool smaller than a run */
+      return sortRun(unseen.concat(seen).slice(0, RUN_SIZE));
     }
 
     for (a = 0; a < ATTEMPTS; a++) {
       var seed = ((n * 2654435761) ^ (a * 40503 + 0x9E37)) >>> 0;
       var pick = seededShuffle(unseen, seed).slice(0, want)
-        .concat(seededShuffle(pool, (seed ^ 0x5bf03635) >>> 0).slice(0, fill));
-      var run = sortRun(pick, n), c = runCost(run);
+        .concat(seededShuffle(fallback, (seed ^ 0x5bf03635) >>> 0).slice(0, shortfall));
+      var run = sortRun(pick), c = runCost(run);
       if (c < bestCost) { bestCost = c; best = run; if (c === 0) break; }
     }
     return best;
@@ -6980,7 +8177,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     var runs = [], lastSeen = {}, r, i, n, run;
 
     for (r = 0; r < HISTORY.length && r < upTo; r++) {
-      run = sortRun(HISTORY[r], r + 1);
+      run = HISTORY[r].slice();            /* as aired; never re-sorted */
       runs.push(run);
       for (i = 0; i < run.length; i++) lastSeen[run[i]] = r + 1;
     }
@@ -6999,23 +8196,24 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     if (PUZZLES.length <= RUN_SIZE) {
       var all = [], k;
       for (k = 0; k < PUZZLES.length; k++) all.push(k);
-      return sortRun(all, n);
+      return sortRun(all);
     }
     if (!schedule || schedule.length < n) schedule = buildSchedule(Math.max(n, 40));
     return schedule[n - 1];
   }
 
-  /* Reports how many runs remain before a chart has to be repeated in a
-     NEW_PER_RUN slot. Not used by the game; it is here so the build can
-     print the runway and fail loudly when it gets short. */
-  function runwayFrom(n) {
-    var fresh = PUZZLES.length, r, i, seen = {}, c = 0;
-    for (r = 0; r < Math.min(n - 1, MAX_RUN); r++) {
-      var run = dealRun(r + 1);
-      for (i = 0; i < run.length; i++) seen[run[i]] = 1;
+  /* The last run whose five charts are all new. Not used by the game; it is
+     here so the build and preflight can print the runway and fail loudly
+     before the emergency path is ever reached. */
+  function lastFreshRun() {
+    var seen = {}, n, i, run, ok, last = 0;
+    for (n = 1; n <= MAX_RUN; n++) {
+      run = dealRun(n); ok = true;
+      for (i = 0; i < run.length; i++) { if (seen[run[i]]) ok = false; seen[run[i]] = 1; }
+      if (!ok && n > HISTORY.length) break;
+      if (ok) last = n;
     }
-    for (i in seen) c++;
-    return Math.floor((fresh - c) / NEW_PER_RUN);
+    return last;
   }
 
   /* Points fall with every mistake, whether that was a wrong guess or a bought
@@ -7581,8 +8779,15 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     labels.forEach(function (L, li) {
       L.y = li === 0 ? L.ideal : Math.max(L.ideal, labels[li - 1].y + GAP);
     });
-    var overflow = labels[labels.length - 1].y - (mT + plotH);
-    if (overflow > 0) labels.forEach(function (L) { L.y -= overflow; });
+    /* Clamp the lowest label to the plot and push back up only the labels it
+       collides with. Shifting every label by the overflow used to lift a
+       series that ends at the top of the scale clean off the chart: the
+       satellites chart lost its American label that way. */
+    var li2, bottom = mT + plotH;
+    if (labels[labels.length - 1].y > bottom) labels[labels.length - 1].y = bottom;
+    for (li2 = labels.length - 2; li2 >= 0; li2--) {
+      labels[li2].y = Math.min(labels[li2].y, labels[li2 + 1].y - GAP);
+    }
 
     labels.forEach(function (L) {
       var color = seriesColor(L.slot - 1);

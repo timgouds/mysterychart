@@ -2764,3 +2764,42 @@ the change must be made there too or the next `build.py` will silently revert it
    hint style guide.
 4. Regenerate the catalogue and schedule after every batch, since the deal moves.
 
+
+---
+
+# No recycling, and the first weekly batch
+
+_23 September 2026_
+
+## The decision
+
+From run 31 every run is five charts nobody has seen, and no chart is ever recycled.
+Returning players had reached about 69% of completions, and under the old dealer (four new
+charts plus one unseen longest) each of them met a chart they had already played in every
+run from 23 onwards. The pool is now fed 35 puzzles a week, five a day, and the dealer's
+longest-unseen fill survives only as an emergency path that preflight fails on a week out.
+
+## Freezing what aired
+
+`HISTORY_SLUGS` had stopped at run 22, so runs 23 to 29 had aired unfrozen. Two of them,
+28 and today's 29, had a chart moved forward by the opener rule, which meant the old freeze
+step (re-sort a frozen row by difficulty) would have reordered them, and leaving today
+unfrozen would have let the new dealer re-deal it. Every existing row was already stored in
+sorted order, so frozen rows are now replayed verbatim instead, which changes nothing for
+runs 1 to 22 and lets a run be frozen, in its aired order, on the day it airs. Run 30 was
+frozen too: player clocks are local, and New Zealand had reached it by early afternoon UK
+time. Runs 1 to 30 were checked identical before and after by script.
+
+## Batch 9
+
+35 puzzles: 25 Eurostat, 5 World Bank, 4 OECD, 1 OWID; 14 at difficulty 1 to 2; 21 over a
+period. Four meet the funny brief (Brussels sprouts, hops, asparagus, cheese per head);
+three more were not good enough to ship. Screening lost tea and olives to retired OWID
+charts, electricity prices to a unit that named the answer, and several series to gaps
+the builders' asserts caught (Malta and Ireland divorces, Poland and Hungary rail, a
+Polish survey break in 2021).
+
+The render pass found a line-chart bug invisible in code: when the bottom labels overflowed
+the plot, every label was lifted, and a series ending at the top of its scale was pushed
+off the canvas. Only colliding labels move now. Four older line charts shift a label
+towards its own line as a result.

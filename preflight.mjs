@@ -37,10 +37,24 @@ const code =
 vm.createContext(sandbox);
 vm.runInContext(code + '\nthis.P = PUZZLES; this.dealRun = dealRun; this.runCost = runCost;'
   + ' this.HISTORY = HISTORY; this.clash = clash; this.SHOWN_DECOYS = SHOWN_DECOYS;'
-  + ' this.OPTION_COUNT = OPTION_COUNT;', sandbox);
-const { P, dealRun, runCost, HISTORY, clash, SHOWN_DECOYS, OPTION_COUNT } = sandbox;
+  + ' this.OPTION_COUNT = OPTION_COUNT; this.FRESH_PER_RUN = FRESH_PER_RUN;'
+  + ' this.LAST_AIRED_RUN = LAST_AIRED_RUN; this.lastFreshRun = lastFreshRun;', sandbox);
+const { P, dealRun, runCost, HISTORY, clash, SHOWN_DECOYS, OPTION_COUNT,
+        FRESH_PER_RUN, LAST_AIRED_RUN, lastFreshRun } = sandbox;
 
-const RUN_SIZE = 5, NEW_PER_RUN = 4;
+const RUN_SIZE = 5;
+const [LY, LM, LD] = html.match(/var LAUNCH = new Date\((\d+), (\d+), (\d+)\)/).slice(1).map(Number);
+const LAUNCH = new Date(LY, LM, LD);
+const dayMs = 86400000;
+const startOfDay = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+const today = Math.round((startOfDay(new Date()) - LAUNCH) / dayMs) + 1;
+const dateOf = (n) => new Date(LY, LM, LD + n - 1)
+  .toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+/* Everything the pool can actually deal without repeating a chart. Dealer
+ * quality is measured over this span: past it, runs come from the emergency
+ * path and preflight has already failed. */
+const lastFresh = lastFreshRun();
+const horizon = Math.max(lastFresh, today + 7);
 const NEEDS = {
   treemap:   ['data', 'total', 'unit'],
   lollipop:  ['data', 'unit'],
@@ -273,6 +287,8 @@ check(!entityProblems.length, 'every country a reveal or hint places on a chart 
   'reveal or hint contradicts the chart:\n         ' + entityProblems.join('\n         '));
 
 console.log('\n=== DEALER ===');
+check(FRESH_PER_RUN === RUN_SIZE, `every new run takes all ${RUN_SIZE} charts from the unseen queue`,
+  `FRESH_PER_RUN is ${FRESH_PER_RUN}; the no-recycling rule needs ${RUN_SIZE}`);
 const a = Array.from({ length: 60 }, (_, i) => dealRun(i + 1).join(','));
 const b = Array.from({ length: 60 }, (_, i) => dealRun(i + 1).join(','));
 check(a.join('|') === b.join('|'), 'the deal is deterministic across 60 runs', 'the deal is not deterministic');
@@ -289,7 +305,8 @@ check(!sizeBad, 'every run deals five charts', `${sizeBad} runs dealt the wrong 
  * reported as one number. Zero-cost runs fell from 39/40 to 33/40 as the pool
  * grew, which looked like a variety regression; it was not. Split them. */
 let adjacent = 0, tripled = 0, hardOpen = 0, easyClose = 0;
-for (let n = 1; n <= 200; n++) {
+const firstNew = LAST_AIRED_RUN + 1, span = Math.max(0, lastFresh - LAST_AIRED_RUN);
+for (let n = firstNew; n <= lastFresh; n++) {
   const r = dealRun(n).map(i => P[i]);
   for (let k = 1; k < r.length; k++) if (r[k].type === r[k - 1].type) adjacent++;
   const c = {};
@@ -302,13 +319,14 @@ for (let n = 1; n <= 200; n++) {
  * draws per run and keeps the cheapest, but coverage and the difficulty ramp
  * come first. A stray pair in a thousand neighbours is not worth blocking a
  * ship over; a systematic breakdown is. */
-const pairs = 200 * (RUN_SIZE - 1);
-if (!adjacent && !tripled) pass('form variety: no run repeats a form back to back');
+const pairs = Math.max(1, span * (RUN_SIZE - 1));
+const spanTxt = `runs ${firstNew}-${lastFresh}`;
+if (!adjacent && !tripled) pass(`form variety: no run repeats a form back to back (${spanTxt})`);
 else if (adjacent / pairs < 0.02 && !tripled)
   warn(`form variety: ${adjacent} adjacent same-form pair(s) in ${pairs} neighbours`
     + ' (best effort, per doc 23)');
 else check(false, 'form variety',
-  `${adjacent} adjacent pairs and ${tripled} forms appearing three times in 200 runs`);
+  `${adjacent} adjacent pairs and ${tripled} forms appearing three times in ${spanTxt}`);
 
 /* The dealer is now the thing standing between a player and the same sentence
  * twice in one sitting, so it has to be measured rather than assumed. Unlike
@@ -316,13 +334,13 @@ else check(false, 'form variety',
  * name: with only 240 seeded draws per run the dealer can be cornered, and if
  * it ever is, the fix is to demote the offending decoy into the unshown tail. */
 const met = [];
-for (let n = 1; n <= 400; n++) {
+for (let n = 1; n <= horizon; n++) {
   const r = dealRun(n);
   for (let i = 0; i < r.length; i++)
     for (let j = i + 1; j < r.length; j++)
       if (clash(r[i], r[j])) met.push(`run ${n}: [${r[i]}] and [${r[j]}]`);
 }
-check(!met.length, 'no run puts a chart beside another that offers its answer as a decoy (400 runs)',
+check(!met.length, `no run puts a chart beside another that offers its answer as a decoy (runs 1-${horizon})`,
   'clashing pairs dealt together:\n         ' + met.slice(0, 8).join('\n         '));
 
 check(OPTION_COUNT.length === RUN_SIZE && OPTION_COUNT.every(n => n === 4),
@@ -337,32 +355,47 @@ const overSeries = P.map((q, i) => [i, q])
 check(!overSeries.length, 'no line chart has more series than the palette has colours',
   'too many series:\n         ' + overSeries.join('\n         '));
 
-const easy = P.filter(p => p.diff <= 2).length;
-if (!hardOpen && !easyClose) pass('every run opens easy and closes hard');
-else warn(`${hardOpen}/200 runs open above difficulty 2 and ${easyClose}/200 close below 4.\n`
-  + `         Only ${easy} of ${P.length} puzzles are difficulty 2 or less, so the dealer\n`
-  + '         runs out of gentle openers. Future batches need easier charts.');
+/* Without recycling the dealer can only balance runs out of what the unseen
+ * queue holds, so a shortage of gentle openers is a batch problem, not a
+ * dealer one: each weekly batch needs one diff 1-2 chart per run. */
+if (!hardOpen && !easyClose) pass(`every run opens easy and closes hard (${spanTxt})`);
+else warn(`${hardOpen}/${span} runs open above difficulty 2 and ${easyClose}/${span} close below 4 (${spanTxt}).\n`
+  + '         The unseen queue is short of gentle openers or hard closers; the next batch\n'
+  + '         should carry at least one diff 1-2 chart per run.');
 
 /* The frozen history must still resolve. doc 25 */
-check(HISTORY.length && HISTORY.every(r => r.length === RUN_SIZE),
+check(HISTORY.length === LAST_AIRED_RUN && HISTORY.every(r => r.length === RUN_SIZE),
   `broadcast history intact: ${HISTORY.length} runs frozen`,
   'a run in HISTORY_SLUGS no longer resolves; a puzzle was renamed or removed');
 
 console.log('\n=== RUNWAY ===');
-const seen = new Set();
-let lastFresh = 0;
-for (let n = 1; n <= 400; n++) {
-  const r = dealRun(n);
-  const fresh = r.filter(i => !seen.has(i)).length;
-  r.forEach(i => seen.add(i));
-  if (fresh >= NEW_PER_RUN) lastFresh = n;
-  if (seen.size === P.length && n > lastFresh) break;
-}
-const today = Math.floor((Date.now() - new Date(2026, 7, 26).getTime()) / 86400000) + 1;
+/* No chart is ever recycled. Every run after the frozen history takes five
+ * charts nobody has seen, and the weekly batch has to keep the pool ahead of
+ * the calendar. If it falls behind, the dealer fills the gap from the charts
+ * unseen longest so the page still plays; that is an emergency, so a run in
+ * the coming week that would need it fails the build. */
+const everSeen = new Set();
+for (let n = 1; n <= LAST_AIRED_RUN; n++) dealRun(n).forEach(i => everSeen.add(i));
+const unseenNow = P.length - everSeen.size;
 const left = lastFresh - today;
-console.log(`  run ${lastFresh} is the last with ${NEW_PER_RUN} new charts (today is run ${today})`);
-if (left < 0) fail(`fresh material ran out ${-left} days ago; every chart is now a repeat`);
-else if (left < 7) warn(`only ${left} days of fresh material left. Build the next batch now.`);
+console.log(`  ${unseenNow} charts unseen after run ${LAST_AIRED_RUN}; today is run ${today} (${dateOf(today)})`);
+console.log(`  run ${lastFresh} is the last fully fresh run: ${dateOf(lastFresh)}`);
+const netRuns = [];
+{
+  const seenSoFar = new Set();
+  for (let n = 1; n <= today + 7; n++) {
+    const r = dealRun(n);
+    if (n > LAST_AIRED_RUN && n >= today) {
+      const reused = r.filter(i => seenSoFar.has(i));
+      if (reused.length) netRuns.push(`run ${n} (${dateOf(n)}) repeats ${reused.map(i => P[i].slug).join(', ')}`);
+    }
+    r.forEach(i => seenSoFar.add(i));
+  }
+}
+check(!netRuns.length, 'no run in the next 7 days needs the emergency path',
+  'these runs would repeat a chart:\n         ' + netRuns.join('\n         '));
+if (left < 7) fail(`only ${left} days of fresh material left. A batch must ship before this does.`);
+else if (left < 14) warn(`${left} days of fresh material left, under two weeks. Build the next batch now.`);
 else pass(`${left} days of fresh material remain`);
 
 console.log('');
