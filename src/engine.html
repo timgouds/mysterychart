@@ -713,17 +713,18 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
 
   /* ========================= DEALING THE DAY =========================
      The five charts for a date are dealt, not written out by hand. The deal is
-     seeded by the cycle number and nothing else, so every player on a date gets
-     the same five, and adding a puzzle to the pool lengthens the cycle instead
-     of forcing the whole deck to be re-dealt by hand. Hand-dealing is what put
-     a sparse array and a missing pair of years into the file; this removes the
+     seeded by the run number and nothing else, so every player on a date gets
+     the same five, and adding puzzles to the pool lengthens the runway instead
+     of forcing anything to be re-dealt by hand. Hand-dealing is what put a
+     sparse array and a missing pair of years into the file; this removes the
      step entirely.
 
-     Guaranteed by construction: the same five for everyone on a date, at least
-     four charts nobody has seen before while unseen puzzles last, no chart
-     repeated until the pool is exhausted, and difficulty rising across the run.
-     Form variety is best effort. If the search cannot reach a clean deal the
-     run still plays, just with a duller mix. */
+     Guaranteed by construction: the same five for everyone on a date, runs
+     that have aired replayed exactly as they aired, and, while the pool is
+     ahead of the calendar, five charts nobody has seen in every new run, so no
+     chart ever repeats. Difficulty rises across charts two to five. Form
+     variety is best effort: if the search cannot reach a clean deal the run
+     still plays, just with a duller mix. */
 
   /* Four options on every chart. The run still escalates, but through the charts
      themselves rather than the width of the list: the dealer sorts each run by
@@ -753,11 +754,14 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     return rare;
   })();
 
-  /* How many of each run's five must be charts nobody has seen before. The
-     dealer hits this exactly while unseen puzzles last, then degrades to a
-     longest-unseen rotation rather than breaking. */
-  var NEW_PER_RUN = 4;
-  var LAST_AIRED_RUN = 22;   /* aired, or airing today; order frozen */
+  /* Every chart in a run is one nobody has seen. Charts are never recycled:
+     returning players are most of the audience and would recognise a repeat,
+     so the pool is fed a weekly batch and has to stay ahead of the calendar.
+     If it ever falls behind, the dealer fills the shortfall from the charts
+     unseen longest so the page still plays. That is an emergency path, not a
+     mode, and preflight fails the build a week before it would be needed. */
+  var FRESH_PER_RUN = 5;
+  var LAST_AIRED_RUN = 30;   /* aired, or airing today; order frozen */
 
   /* ---------------------------------------------------------------------
      BROADCAST HISTORY
@@ -768,7 +772,9 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      corrupts the moment the pool is reordered, whereas an unresolvable slug
      announces itself in the console.
 
-     Append a run here only once it has aired. Never edit an existing row.
+     Append a run here only once it has aired, with its five slugs in the
+     order they aired. Rows are replayed exactly as written, so the order is
+     part of the record. Never edit an existing row.
      --------------------------------------------------------------------- */
   var HISTORY_SLUGS = [
     ["homicide-rate-unodc", "military-expenditure-as-a-share-of-gdp", "goods-exports", "farm-employment", "city-dwellers-in-largest-city"],
@@ -793,6 +799,14 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     ["average-annual-temperature", "share-of-population-urban", "air-freight", "unemployment-rate", "arable-land"],
     ["road-deaths-per-100000", "malaria-cases", "bank-branches-per-100000", "birth-rate", "forest-area-as-share-of-land-area"],
     ["oil-production-by-country", "share-of-population-in-extreme-poverty", "orange-production", "house-price-change", "trade-balance"],
+    ["apple-production", "share-of-adults-defined-as-obese", "under-five-stunting-change", "municipal-waste-rank", "share-global-forest"],
+    ["scientific-papers", "eu-tourist-nights", "goods-exports", "pension-spending", "raised-blood-pressure"],
+    ["clean-cooking-fuels", "largest-economies-ranking", "young-adults-living-with-parents", "mri-scanners", "fertiliser-ranking"],
+    ["cocoa-bean-production", "landlines-per-100", "eu-wind-electricity", "life-expectancy-ranking", "life-expectancy-at-60"],
+    ["population-living-in-flats", "price-of-a-bottle-of-wine", "food-price-level", "electricity-from-coal", "hospital-beds-per-1000"],
+    ["cattle-livestock-count-heads", "population-density", "armed-forces-ranking", "forest-area-change", "retirement-age-rank"],
+    ["read-no-books", "health-spending-per-person", "grain-production-ranking", "banana-production", "electricity-lost-in-transmission"],
+    ["potato-production", "age-leaving-parents-home", "physical-inactivity", "gender-wage-gap-rank", "child-mortality"],
   ];
 
   var SLUG_INDEX = (function () {
@@ -844,12 +858,13 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
      third of players solved first time; run 20 opened with a diff 1 that is past
      335 first-try solves. Charts two to five stay non-decreasing in difficulty.
 
-     Runs that have already aired keep the order they aired in. */
-  function sortRun(run, runNumber) {
+     Runs that have already aired are not sorted at all: HISTORY_SLUGS holds
+     them in the order they aired and buildSchedule replays that verbatim. */
+  function sortRun(run) {
     var rest = run.slice().sort(function (a, b) {
       return PUZZLES[a].diff - PUZZLES[b].diff || a - b;
     });
-    if (!(runNumber > LAST_AIRED_RUN) || rest.length < 2) return rest;
+    if (rest.length < 2) return rest;
     var best = 0, k;
     for (k = 1; k < rest.length; k++) {
       if (expectedFirstTry(rest[k]) > expectedFirstTry(rest[best])) best = k;
@@ -920,14 +935,15 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   /* ---------------------------------------------------------------------
      THE DEALER
 
-     Runs forward from run 1, keeping a record of when each puzzle was last
-     shown. Each run takes NEW_PER_RUN charts nobody has seen and fills the
-     rest from the charts unseen longest, so adding puzzles extends the
-     runway instead of reshuffling the whole deck.
+     Runs forward from run 1, replaying the broadcast history and then dealing
+     each later run from charts nobody has seen. Each run takes FRESH_PER_RUN
+     (all five) from the unseen queue; runCost and the seeded draws choose
+     which five and sortRun orders them. Adding puzzles extends the runway.
 
-     The old dealer shuffled the entire pool each cycle, which guaranteed no
-     repeat within a cycle and nothing at all across cycles. On a pool of 100
-     that meant a run next month could serve four charts from week one.
+     If the unseen queue ever holds fewer than five, the shortfall is filled
+     from the charts unseen longest so the page still plays. That is the
+     emergency path described above FRESH_PER_RUN, and preflight treats any
+     run in the coming week that would need it as a failure.
 
      Deterministic: the schedule is a pure function of the pool and the run
      number, so everyone still sees the same five on the same date with no
@@ -937,8 +953,8 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
   /* Ten years of runs. Past that we wrap rather than build an unbounded
      schedule, which protects the page from a badly wrong device clock. */
   var MAX_RUN = 3650;
-  var ATTEMPTS = 240;      /* seeded draws tried per run, best cost wins */
-  var RECYCLE_WINDOW = 8;  /* how deep into the longest-unseen list to look */
+  var ATTEMPTS = 240;         /* seeded draws tried per run, best cost wins */
+  var EMERGENCY_WINDOW = 8;   /* emergency only: how far past the oldest-seen to look */
 
   var schedule = null;
 
@@ -951,22 +967,20 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     /* Oldest first. Ties break on index so the order is total and stable. */
     seen.sort(function (x, y) { return lastSeen[x] - lastSeen[y] || x - y; });
 
-    var want = Math.min(NEW_PER_RUN, unseen.length, RUN_SIZE);
-    var fill = Math.min(RUN_SIZE - want, seen.length);
-    /* Look a little past the strictly-oldest charts so the cost search has
-       room to avoid a form clash, but never so far that a recent chart
-       returns. */
-    var pool = seen.slice(0, Math.min(seen.length, fill + RECYCLE_WINDOW));
+    var want = Math.min(FRESH_PER_RUN, unseen.length, RUN_SIZE);
+    /* Normally zero. Non-zero only when the pool has fallen behind. */
+    var shortfall = Math.min(RUN_SIZE - want, seen.length);
+    var fallback = seen.slice(0, Math.min(seen.length, shortfall + EMERGENCY_WINDOW));
 
-    if (want + fill < RUN_SIZE) {          /* pool smaller than a run */
-      return sortRun(unseen.concat(seen).slice(0, RUN_SIZE), n);
+    if (want + shortfall < RUN_SIZE) {     /* pool smaller than a run */
+      return sortRun(unseen.concat(seen).slice(0, RUN_SIZE));
     }
 
     for (a = 0; a < ATTEMPTS; a++) {
       var seed = ((n * 2654435761) ^ (a * 40503 + 0x9E37)) >>> 0;
       var pick = seededShuffle(unseen, seed).slice(0, want)
-        .concat(seededShuffle(pool, (seed ^ 0x5bf03635) >>> 0).slice(0, fill));
-      var run = sortRun(pick, n), c = runCost(run);
+        .concat(seededShuffle(fallback, (seed ^ 0x5bf03635) >>> 0).slice(0, shortfall));
+      var run = sortRun(pick), c = runCost(run);
       if (c < bestCost) { bestCost = c; best = run; if (c === 0) break; }
     }
     return best;
@@ -976,7 +990,7 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     var runs = [], lastSeen = {}, r, i, n, run;
 
     for (r = 0; r < HISTORY.length && r < upTo; r++) {
-      run = sortRun(HISTORY[r], r + 1);
+      run = HISTORY[r].slice();            /* as aired; never re-sorted */
       runs.push(run);
       for (i = 0; i < run.length; i++) lastSeen[run[i]] = r + 1;
     }
@@ -995,23 +1009,24 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     if (PUZZLES.length <= RUN_SIZE) {
       var all = [], k;
       for (k = 0; k < PUZZLES.length; k++) all.push(k);
-      return sortRun(all, n);
+      return sortRun(all);
     }
     if (!schedule || schedule.length < n) schedule = buildSchedule(Math.max(n, 40));
     return schedule[n - 1];
   }
 
-  /* Reports how many runs remain before a chart has to be repeated in a
-     NEW_PER_RUN slot. Not used by the game; it is here so the build can
-     print the runway and fail loudly when it gets short. */
-  function runwayFrom(n) {
-    var fresh = PUZZLES.length, r, i, seen = {}, c = 0;
-    for (r = 0; r < Math.min(n - 1, MAX_RUN); r++) {
-      var run = dealRun(r + 1);
-      for (i = 0; i < run.length; i++) seen[run[i]] = 1;
+  /* The last run whose five charts are all new. Not used by the game; it is
+     here so the build and preflight can print the runway and fail loudly
+     before the emergency path is ever reached. */
+  function lastFreshRun() {
+    var seen = {}, n, i, run, ok, last = 0;
+    for (n = 1; n <= MAX_RUN; n++) {
+      run = dealRun(n); ok = true;
+      for (i = 0; i < run.length; i++) { if (seen[run[i]]) ok = false; seen[run[i]] = 1; }
+      if (!ok && n > HISTORY.length) break;
+      if (ok) last = n;
     }
-    for (i in seen) c++;
-    return Math.floor((fresh - c) / NEW_PER_RUN);
+    return last;
   }
 
   /* Points fall with every mistake, whether that was a wrong guess or a bought
@@ -1577,8 +1592,15 @@ svg { display: block; width: 100%; height: auto; font-variant-numeric: tabular-n
     labels.forEach(function (L, li) {
       L.y = li === 0 ? L.ideal : Math.max(L.ideal, labels[li - 1].y + GAP);
     });
-    var overflow = labels[labels.length - 1].y - (mT + plotH);
-    if (overflow > 0) labels.forEach(function (L) { L.y -= overflow; });
+    /* Clamp the lowest label to the plot and push back up only the labels it
+       collides with. Shifting every label by the overflow used to lift a
+       series that ends at the top of the scale clean off the chart: the
+       satellites chart lost its American label that way. */
+    var li2, bottom = mT + plotH;
+    if (labels[labels.length - 1].y > bottom) labels[labels.length - 1].y = bottom;
+    for (li2 = labels.length - 2; li2 >= 0; li2--) {
+      labels[li2].y = Math.min(labels[li2].y, labels[li2 + 1].y - GAP);
+    }
 
     labels.forEach(function (L) {
       var color = seriesColor(L.slot - 1);
