@@ -2238,7 +2238,7 @@
       ],
       why: "Two to four hours a day is too much for eating, television or travel and far too little for paid work, which rules out the whole set by scale alone. Mexico at the top and Japan and Korea at the bottom also matches nothing about wealth: it tracks how much household work is done at home rather than bought in.",
       slug: "unpaid-work-minutes",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TIME_USE%40DF_TIME_USE"
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TIME_USE%40DF_TIME_USE&df[ag]=OECD.WISE.INE"
     },
     {
       family: "Part-to-whole",
@@ -3050,7 +3050,7 @@
       ],
       why: "Colombia at zero is the discriminator, and it is real: a single worker on the average wage there pays no income tax and no employee social contribution, and the employer contributions are excluded from this measure. No country has a top income tax rate or a value added tax rate of zero, so any decoy of that kind dies on the left-hand end of the swarm alone.",
       slug: "tax-wedge-on-employment",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_AV"
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_AV&df[ag]=OECD.CTP.TPS"
     },
     {
       family: "Distribution",
@@ -5769,7 +5769,7 @@
       ],
       why: "Japan's 12.4 visits a year is about one a month for every person in the country, and the Netherlands nearly doubles over the period, from 5.9 to 10.1. Nights in hospital and trips to a dentist both die on that Japanese figure, which would have the average Japanese person in a hospital bed for a fortnight a year or in a dentist's chair monthly. Prescriptions die the other way: a good many visits end with one written, so that chart would sit above this one rather than on top of it.",
       slug: "doctor-consultations",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_HEALTH_PROC%40DF_CONSULT"
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_HEALTH_PROC%40DF_CONSULT&df[ag]=OECD.ELS.HD"
     },
     {
       family: "Change over time",
@@ -5802,7 +5802,7 @@
       ],
       why: "Greece reaches 39.2 scanners per million people, ahead of Germany at 37.1, while Mexico is at 2.9. Hospitals, ambulances and operating theatres all die on the same ceiling: nothing on this chart passes 39.2 per million, and a health system with only that many of any of the three would not be able to use the scanners it has.",
       slug: "mri-scanners",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_HEALTH_REAC_HOSP%40DF_MED_TECH"
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_HEALTH_REAC_HOSP%40DF_MED_TECH&df[ag]=OECD.ELS.HD"
     },
     {
       family: "Ranking",
@@ -5833,7 +5833,7 @@
       ],
       why: "Korea is first in both years and Hungary climbs from twenty-second to eighth. Women in management dies on the United States, fifth here, which has one of the highest shares of women managers in the OECD, so the two rank in opposite directions. The graduate pay premium dies on Korea holding first place, its premium being unremarkable. Part-time work dies on Hungary and Czechia, which have little of it and sit at opposite ends of this chart.",
       slug: "gender-wage-gap-rank",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40GENDER_WAGE_GAP"
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40GENDER_WAGE_GAP&df[ag]=OECD.ELS.SAE"
     },
     {
       family: "Deviation",
@@ -5867,7 +5867,7 @@
       ],
       why: "Israel spends 3.82 per cent of its economy on this and Romania 0.37, a tenfold spread around a 2 per cent line. Defence dies on Poland at 0.64 and Romania at 0.37, both substantial military spenders and both far below the line. University funding and business spending on machinery both die on that same 0.37, since no country runs either at a third of one per cent of its economy.",
       slug: "rd-spending-deviation",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_MSTI%40DF_MSTI"
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_MSTI%40DF_MSTI&df[ag]=OECD.STI.STP"
     },
     {
       family: "Ranking",
@@ -5898,7 +5898,7 @@
       ],
       why: "Indonesia is first in both years and Slovenia is forty-sixth, while Korea climbs from tenth to third. The official state pension age dies on Indonesia, which has barely any state pension to draw. Years spent in retirement dies on Japan, fourth here, which would also be near the top of that list, and the two cannot both hold. Over-65s still in work dies on the shape, being a percentage rather than an age.",
       slug: "retirement-age-rank",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PAG%40DF_PAG"
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PAG%40DF_PAG&df[ag]=OECD.ELS.SPD"
     },
     {
       family: "Change over time",
@@ -5933,7 +5933,7 @@
       ],
       why: "Greece goes from 10.5 per cent of its economy to 16.2 and Italy from 13.5 to 16.1, while Korea is at 3.8 and Mexico 5.3. Health dies on the United States, mid-table here, which would lead any health-spending chart by a wide margin. Unemployment benefits and education both die on Greece at 16.2, since no country spends a sixth of its entire economy on either of them.",
       slug: "pension-spending",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PAG%40DF_PAG"
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PAG%40DF_PAG&df[ag]=OECD.ELS.SPD"
     },
     {
       family: "Change over time",
@@ -6431,7 +6431,7 @@
       ],
       why: "Colombia’s legal floor is 92.3 per cent of the median full-time wage, so the minimum and the typical wage are almost the same thing, while the United States, whose federal rate has not risen since 2009, sits alone at 25.0. Unemployment benefit dies on Colombia, which pays very little of it and tops this chart. Rent dies on the same figure, since no country’s renters hand over 92 per cent of a middle wage. Income tax dies there too: no worker pays 92 per cent of their wage in tax.",
       slug: "minimum-wage-to-median",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE"
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE"
     },
     {
       family: "Distribution",
@@ -6500,7 +6500,7 @@
       ],
       why: "Norway gives 1.02 per cent of its national income and Luxembourg exactly 1; only Sweden and Denmark join them above the 0.7 per cent line, with Germany just short at 0.68. Military spending dies on the United States at 0.23, a country that spends about fifteen times that share on defence. Research dies on South Korea at 0.21, one of the heaviest research spenders in the world. Unemployment benefits die on Spain at 0.25, a country with long-standing high unemployment.",
       slug: "aid-share-of-income",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_DAC1%40DF_DAC1"
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_DAC1%40DF_DAC1&df[ag]=OECD.DCD.FSD"
     },
     {
       family: "Deviation",
@@ -6826,7 +6826,7 @@
       ],
       why: "Iceland is first in both years, with 91.1 per cent of employees in a union by 2019, and the Nordic countries hold most of the next places, while France sits twenty-sixth at 10.1 and Estonia falls to last. Collective agreements die on France, where they cover almost every employee despite so few members. Strikes die on the same French figure, near the bottom of a ranking France would lead. Paid holiday dies on France again, which has some of the most generous leave in the OECD.",
       slug: "union-membership-rank",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_TUD"
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_TUD&df[ag]=OECD.ELS.SAE"
     },
     {
       family: "Ranking",
@@ -6858,7 +6858,7 @@
       ],
       why: "Iceland climbs from fifth to first and Lithuania from thirty-fourth to twenty-fourth, while Italy falls fourteen places and Greece drops to thirty-fifth, its average wage lower in real terms than in 2000. Output per person dies on Ireland in twelfth, a country near the top of that ranking. Output per hour dies on the same Irish figure. Graduates die on Japan, twenty-sixth here and one of the most educated workforces in the OECD.",
       slug: "average-wage-rank",
-      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40AV_AN_WAGE"
+      source: "OECD", sourceUrl: "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40AV_AN_WAGE&df[ag]=OECD.ELS.SAE"
     },
     {
       family: "Ranking",
