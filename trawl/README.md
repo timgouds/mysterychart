@@ -44,6 +44,17 @@ value arrived last. Two traps it handles: Eurostat's maritime data keys
 countries on `rep_mar` rather than `geo`, and the OECD API often answers with an
 internal server error, so it retries.
 
+Batch 10 is `build12.py` (snapshots and deviations), `build13.py` (dumbbells and
+rank slopes) and `build14.py` (lines, reusing the helpers in `build11.py`).
+`oecd()` takes an optional SDMX series `key`, dimension values in the flow's
+order with dots between (`build13.key()` builds one by position). Some OECD
+flows are enormous unfiltered: health utilisation is 276 MB and educational
+attainment 465 MB with key `all`, a few hundred kilobytes with one. Two rank
+slope traps the render check caught: with many countries ranked (77 for arms
+imports) a place is about five pixels, so drawn countries need to be at least
+four places apart in both years; and scores given to one decimal tie often, and
+tied labels draw on top of each other, so pick countries that share no rank.
+
 `common.py` holds the shared emitters. `wb.py`, `eu.py` and `who.py` are the
 World Bank, Eurostat and WHO fetchers (no new WHO charts until its licence is settled). Two things worth knowing: Eurostat
 arrives as JSON-stat and has to be decoded by computing the cube's strides

@@ -56,11 +56,16 @@ def eurostat(code, years, geo_dim='geo', **pin):
     return out
 
 
-def oecd(agency, flow, start, end, **pin):
-    """Same contract as eurostat(), from an OECD SDMX flow, with retries."""
-    url = ('https://sdmx.oecd.org/public/rest/data/%s,%s,/all?format=csvfilewithlabels'
-           '&startPeriod=%s&endPeriod=%s' % (agency, flow, start, end))
-    path = os.path.join(eu.CACHE, 'oecd_%s_%s_%s.csv' % (flow.replace('@', '_'), start, end))
+def oecd(agency, flow, start, end, key='all', **pin):
+    """Same contract as eurostat(), from an OECD SDMX flow, with retries.
+
+    key is an SDMX series key (dimension values in the flow's order, dots
+    between, empty for all). Some flows are very large unfiltered: the health
+    utilisation flow is 276 MB with key 'all' and about 1,000 rows with one."""
+    url = ('https://sdmx.oecd.org/public/rest/data/%s,%s,/%s?format=csvfilewithlabels'
+           '&startPeriod=%s&endPeriod=%s' % (agency, flow, key, start, end))
+    tag = '' if key == 'all' else '_' + key.replace('.', '-').strip('-')
+    path = os.path.join(eu.CACHE, 'oecd_%s_%s_%s%s.csv' % (flow.replace('@', '_'), start, end, tag))
     for attempt in range(5):
         if os.path.exists(path) and open(path, encoding='utf-8', errors='replace').read(9) == 'STRUCTURE':
             break
